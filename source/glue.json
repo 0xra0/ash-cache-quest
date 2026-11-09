@@ -1,0 +1,2332 @@
+{
+  "_about": [
+    "The world layer: how a fact declared in facts.json under world_triggers or",
+    "discoveries actually gets set. The .questphase graph only ever WAITS on these",
+    "(rule 1 - the engine runs the quest), so until something sets one, the graph",
+    "stalls at it forever and the quest looks installed but dead. That was OI-12.",
+    "",
+    "tools/gen_glue.py turns this file into mod/r6/scripts/AshCache/AshCacheGlue.reds.",
+    "Nothing here is quest logic: no objectives, no journal, no markers, no branching.",
+    "Every entry is one sentence of the form 'when the player does X, set fact F',",
+    "which is what the tech spec calls glue.",
+    "",
+    "Facts that need world content nobody has authored yet live under 'blocked'.",
+    "They are listed rather than faked, because a fact set by a stub is worse than",
+    "an unset one: the quest advances past a beat that never happened."
+  ],
+  "module": "AshCache",
+  "system": "AshCacheGlue",
+  "start": {
+    "_about": [
+      "The quest hook. ashcache_start is the entry gate the graph's await_start node",
+      "waits on. The prerequisite is a VANILLA fact, so it is deliberately not",
+      "ashcache_-prefixed and rule 5 does not apply to it.",
+      "",
+      "q304_done is Somewhat Damaged - the Phantom Liberty mission where V goes into",
+      "the Cynosure facility and is scanned. That scan is the thing this quest is",
+      "about, so the story cannot start before it. Verified as a real fact name: the",
+      "installed mod DisclosedHiddenGems uses it as a FactRequisite, and it appears",
+      "in the game's own q304 questphase (see reference/facts.md).",
+      "",
+      "The delay is real seconds, not in-game hours, and exists so the SMS does not",
+      "land on top of the mission-complete card. It is not persisted - if the player",
+      "saves and quits inside the window, the prerequisite is re-checked on load and",
+      "the delay simply restarts."
+    ],
+    "fact": "ashcache_start",
+    "prerequisite": "q304_done",
+    "delay": 30.0
+  },
+  "areas": [
+    {
+      "_about": [
+        "Arrival. 'marker' names an entry in world.json, so a corrected coordinate",
+        "(OI-9) moves the map pin and the arrival trigger together, from one edit.",
+        "",
+        "'stage' is the value of ashcache_progress during which this arrival can",
+        "happen. Outside it the watch is not armed at all, which is both free and",
+        "correct: the player who drives past the clinic in act 1 must not pre-satisfy",
+        "an act 2 gate. validate.py checks the stage against the graph."
+      ],
+      "fact": "ashcache_at_motel",
+      "marker": "ac_motel_entrance",
+      "radius": 25.0,
+      "stage": 1
+    },
+    {
+      "fact": "ashcache_at_clinic",
+      "marker": "ac_clinic_entrance",
+      "radius": 25.0,
+      "stage": 2
+    },
+    {
+      "_about": [
+        "D122. Arrival at the landfill. Radius 12 rather than the 25 the other two",
+        "use: those two are 'you have got to the right building', which wants to fire",
+        "from the street, and this one is 'you are standing over her', which must not",
+        "fire from a passing car. Stage 7 - the quest is already resolved when this",
+        "is armed, and the player is out in the world doing something else."
+      ],
+      "fact": "ashcache_at_landfill",
+      "marker": "ac_landfill_body",
+      "radius": 12.0,
+      "stage": 7
+    },
+    {
+      "_about": [
+        "D129. Arrival at the shaft head. Radius 12, matching the landfill and not the 25 the act 1/act 2 arrivals use: those are 'you have found the right building' and want to fire from the street; this one is 'you are standing on it'.",
+        "",
+        "Stage 7 - the quest is resolved, quest_done has already fired, and the player is out in the world with one optional objective left."
+      ],
+      "fact": "ashcache_at_cynosure",
+      "marker": "ac_cynosure_shaft",
+      "radius": 12.0,
+      "stage": 7
+    },
+    {
+      "_about": [
+        "D130. Arrival at the meeting. Radius 25, the act 1/act 2 value rather than the 12 the body and the shaft head use, and for the opposite reason: those two must not fire from a passing car, this one must fire BEFORE the player is close enough to watch a man appear out of nothing. The scene spawns its own actor when it starts.",
+        "",
+        "The marker is ac_motel_entrance - the same point act 1 sends V to, and one of the coordinates that has been stood on. It is not a placeholder for somewhere better: validate.py refuses to anchor a scene or spawn an actor on an unverified position, so a meeting at an invented coordinate cannot ship at all. Moving him later is one edit here plus one in the graph's sceneLocation and one in journal.json's pin.",
+        "",
+        "Stage 8, not 7. On stage 7 this would be armed while the player is walking up to the shaft head, which is the same lot, and the meeting would start on the step that grants the closure order - before the message that asks for it."
+      ],
+      "fact": "ashcache_at_blueeyes",
+      "marker": "ac_motel_entrance",
+      "radius": 25.0,
+      "stage": 8
+    },
+    {
+      "_about": [
+        "D193, M1 SCAFFOLDING. The far end of the Cynosure Escape corridor. Arrival returns V",
+        "to the shaft head (the graph's tp_cyn_up). Stage 7, the same act as the shaft-head arrival.",
+        "rearm: the graph resets the fact to 0 on every descent, and the glue re-arms on that reset,",
+        "so the round trip repeats without a reload. The M4 ending flow replaces this watch."
+      ],
+      "fact": "ashcache_cyn_escaped",
+      "marker": "ac_cyn_escape",
+      "radius": 4.0,
+      "stage": 7,
+      "rearm": true
+    }
+  ],
+  "shards": [
+    {
+      "_about": [
+        "Shard reads. 'item' names an entry in items.json of kind 'shard'; the",
+        "journal path is taken from that item's onscreen block, so the shard's Read",
+        "action and the fact it sets can never point at different entries.",
+        "",
+        "The hook is gameJournalListenerType.Visited, which is the game's own",
+        "'the player opened this entry' signal - the same one the Shards journal UI",
+        "listens to. Not State: State fires when the entry becomes available, which",
+        "for a shard is when it is picked up, not when it is read."
+      ],
+      "fact": "ashcache_courier_log_played",
+      "item": "courier_log"
+    },
+    {
+      "fact": "ashcache_journal_read",
+      "item": "mara_journal"
+    },
+    {
+      "_about": "D122. Both wound variants set the SAME fact - the aftermath cares that V read the note, not which one arrived, and only one of the two can ever be in an inventory.",
+      "fact": "ashcache_mara_autopsy_read",
+      "item": "mara_autopsy_shot"
+    },
+    {
+      "fact": "ashcache_mara_autopsy_read",
+      "item": "mara_autopsy_cut"
+    }
+  ],
+  "props": [
+    {
+      "_about": [
+        "Props whose LOOK depends on a fact (D118). The graph owns what happens; this owns",
+        "only which of a prop's states is on screen, the same division the fragments",
+        "already use.",
+        "",
+        "Why it is here and not in world.json: a sector node is emitted once and cannot be",
+        "taken out of the world at runtime, so a prop with two looks cannot be two nodes.",
+        "These are spawned with Codeware's DynamicEntitySystem, one tag per state, and",
+        "exactly one state is drawn - the FIRST whose facts all hold, so the order of",
+        "'states' is the order they are tested in and the last one should be the default.",
+        "",
+        "'prop' names an entry in world.json, which stays the single place the pose is",
+        "measured and verified, and is why that node is 'disabled' there rather than",
+        "deleted. persistSpawn is false, so a load draws nothing until the system resyncs -",
+        "which is why SyncProps runs from OnAttach, OnRestored and every watched fact."
+      ],
+      "id": "ac_case",
+      "prop": "ac_splinter_box",
+      "watch": [
+        "ashcache_box_opened",
+        "ashcache_splinter_given"
+      ],
+      "states": [
+        {
+          "_about": "Opened, with the splinter lying in it. Vanilla's own opened Relic case: an opened military case mesh plus base\\items\\quest\\q003__splinter_case\\q003__splinter.mesh, and an entLightComponent that lights the thing the player is being asked to take. It is a plain gameObject, not a device - no instanceData buffer, which is what made computer_1.ent a crash suspect for a month (D65-D101). Live only BETWEEN the two prompts: opened, not yet taken.",
+          "tag": "ashcache_case_open",
+          "template": "mod\\ash_cache\\props\\ash_case\\ash_case_open.ent",
+          "when": [
+            {
+              "fact": "ashcache_box_opened",
+              "min": 1
+            },
+            {
+              "fact": "ashcache_splinter_given",
+              "max": 0
+            }
+          ],
+          "z_offset": 0.0,
+          "_z_offset_why": "0 until the first in-game look. The two templates are different meshes, so the opened case can sit at a different height on the bench than the closed one; this is the D117 lesson - keep the nudge in data, not in code.",
+          "yaw_offset": 0.0
+        },
+        {
+          "_about": "Closed. The default, and deliberately the state both BEFORE the case is opened and AFTER the splinter is taken: V shuts the case on the way out, and the bench is left the way it was found. This is the prop that was static until D118 and whose pose was approved in game (sc_better.png).",
+          "tag": "ashcache_case_closed",
+          "template": "mod\\ash_cache\\props\\ash_case\\ash_case_closed.ent",
+          "when": [],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_about": [
+        "D122. Mara's body. One state and no default: when its 'when' does not hold,",
+        "nothing is drawn, which is the correct picture for the three endings where",
+        "she is alive. ac_case has a default state because a bench always has a case",
+        "on it; a landfill does not always have a woman in it.",
+        "",
+        "The template is a CORPSE ENTITY, not a character (D127). D122 spawned",
+        "q105_jigjig_prostitute_dead.ent here and the player found a living woman",
+        "standing on the landfill, unhurt, who crashed the game when shot. That .ent",
+        "carries 110 components - gameAttitudeAgent, gameSquadMemberComponent,",
+        "gameInventory - and eight appearances, every one of them a living prostitute.",
+        "Nothing about it is dead: q105 spawns her alive and kills her from script.",
+        "q105_fluff_dead_body_01.ent is the opposite object - eight components headed",
+        "by entCorpseComponent, one appearance (wa_q105_fluff_01_corpse, a woman), no",
+        "AI, no inventory, no health. Nothing to anger and nothing to kill.",
+        "",
+        "Watching ashcache_mara_body_placed rather than the ending facts keeps the",
+        "decision in ONE place - the graph decides who lives, this only draws the",
+        "answer. If the rule ever changes, it changes in source/quest_graph.json and",
+        "this file does not move.",
+        "",
+        "D175: the body is Mara - her own meshes in a generated corpse .app",
+        "(tools/gen_mara_corpse.py). mara_shot carries the Liberty's three torso wounds, mara_cut the",
+        "neck and defensive forearm cuts; the same fact the coroner's note reads picks which."
+      ],
+      "id": "ac_body",
+      "prop": "ac_mara_body",
+      "watch": [
+        "ashcache_mara_body_placed",
+        "ashcache_mara_liberty_given"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_mara_body",
+          "template": "mod\\ash_cache\\characters\\mara_corpse\\ash_mara_corpse.ent",
+          "appearance": "mara_shot",
+          "when": [
+            {
+              "fact": "ashcache_mara_body_placed",
+              "min": 1
+            },
+            {
+              "fact": "ashcache_mara_liberty_given",
+              "min": 1
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        },
+        {
+          "tag": "ashcache_mara_body_cut",
+          "template": "mod\\ash_cache\\characters\\mara_corpse\\ash_mara_corpse.ent",
+          "appearance": "mara_cut",
+          "when": [
+            {
+              "fact": "ashcache_mara_body_placed",
+              "min": 1
+            },
+            {
+              "fact": "ashcache_mara_liberty_given",
+              "max": 0
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_about": [
+        "D122. The visible half of 'bullet or knife'. Her Liberty on the ground next",
+        "to her, on the one route where she had it - or no gun anywhere, on the route",
+        "where V told her to get lost.",
+        "",
+        "Two facts in 'when', not one. ashcache_mara_liberty_given goes to 1 in act 3,",
+        "hours before the body exists, so on its own it would put a pistol in an empty",
+        "landfill for most of the playthrough. The body fact is what makes it a scene",
+        "rather than litter."
+      ],
+      "id": "ac_body_gun",
+      "prop": "ac_mara_liberty_drop",
+      "watch": [
+        "ashcache_mara_body_placed",
+        "ashcache_mara_liberty_given",
+        "ashcache_mara_trophy_dropped"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_mara_gun_dropped",
+          "_template_note": "D127 retired the D118 placeholder - this drew a biochip suitcase lying beside her body. int_weapons_002__* is a pure visual weapon: ONE component, entAnimationControllerComponent, no item data and no pickup logic, which is what makes it safe to spawn dynamically. It ships ten appearances and defaults to Rogue's engraved one, so the plain one is named.",
+          "template": "base\\items\\interactive\\weapons\\int_weapons_002__constitutional_liberty__base1.ent",
+          "appearance": "w_handgun__constitutional_liberty__base1_01_default",
+          "when": [
+            {
+              "fact": "ashcache_mara_body_placed",
+              "min": 1
+            },
+            {
+              "fact": "ashcache_mara_liberty_given",
+              "min": 1
+            },
+            {
+              "fact": "ashcache_mara_trophy_dropped",
+              "max": 0,
+              "_why": "D186: once the real, pickable Last Word is on the ground this look-alike goes, so there is never a second gun that cannot be picked up."
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_about": [
+        "D146. The clinic redesign's procedure island. Present for the whole window the quest owns the room (ashcache_progress 2..6, same as the ac_clinic hide), gone when Farida's furniture returns."
+      ],
+      "id": "ac_clinic_table",
+      "prop": "ac_procedure_table",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_clinic_table",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_procedure_table.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_monitor",
+      "prop": "ac_dress_monitor",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_monitor",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_monitor.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_diag",
+      "prop": "ac_dress_diag",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_diag",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_diag.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_folder",
+      "prop": "ac_dress_folder",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_folder",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_folder.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_stool",
+      "prop": "ac_dress_stool",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_stool",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_stool.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_trolley_a",
+      "prop": "ac_dress_trolley_a",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_trolley_a",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_trolley_a.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_trolley_b",
+      "prop": "ac_dress_trolley_b",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_trolley_b",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_trolley_b.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_cabinet",
+      "prop": "ac_dress_cabinet",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_cabinet",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_cabinet.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_iv_stand",
+      "prop": "ac_dress_iv_stand",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_iv_stand",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_iv_stand.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bin",
+      "prop": "ac_dress_bin",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bin",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bin.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_light_terminal",
+      "prop": "ac_light_terminal",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_light_terminal",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_terminal.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_light_mara",
+      "prop": "ac_light_mara",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_light_mara",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_mara.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_wall_cabinet",
+      "prop": "ac_dress_wall_cabinet",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_wall_cabinet",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_wall_cabinet.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_sink",
+      "prop": "ac_dress_sink",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_sink",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_sink.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_medkit",
+      "prop": "ac_dress_medkit",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_medkit",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_medkit.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_fusebox",
+      "prop": "ac_dress_fusebox",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_fusebox",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_fusebox.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_box_a",
+      "prop": "ac_dress_box_a",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_box_a",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_box_a.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_box_b",
+      "prop": "ac_dress_box_b",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_box_b",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_box_b.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_crate",
+      "prop": "ac_dress_crate",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_crate",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_crate.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bed",
+      "prop": "ac_dress_bed",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bed",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bench",
+      "prop": "ac_dress_bench",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bench",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bench.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bench_tray",
+      "prop": "ac_dress_bench_tray",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bench_tray",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bench_tray.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_shelf",
+      "prop": "ac_dress_shelf",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_shelf",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_shelf.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_freezer",
+      "prop": "ac_dress_freezer",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_freezer",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_freezer.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_machine",
+      "prop": "ac_dress_machine",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_machine",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_machine.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_table_cloth",
+      "prop": "ac_dress_table_cloth",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_table_cloth",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_table_cloth.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_lamp",
+      "prop": "ac_dress_lamp",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_lamp",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_lamp.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_light_far",
+      "prop": "ac_light_far",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_light_far",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_far.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_wheelchair",
+      "prop": "ac_dress_wheelchair",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_wheelchair",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_wheelchair.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_mattress",
+      "prop": "ac_dress_mara_mattress",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_mattress",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_mattress.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_duvet",
+      "prop": "ac_dress_mara_duvet",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_duvet",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_duvet.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_pillow",
+      "prop": "ac_dress_mara_pillow",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_pillow",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_pillow.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_duffel",
+      "prop": "ac_dress_mara_duffel",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_duffel",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_duffel.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_locker",
+      "prop": "ac_dress_mara_locker",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_locker",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_locker.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_folded",
+      "prop": "ac_dress_mara_folded",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_folded",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_folded.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_table",
+      "prop": "ac_dress_mara_table",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_table",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_table.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_laptop",
+      "prop": "ac_dress_mara_laptop",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_laptop",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_laptop.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_lamp",
+      "prop": "ac_dress_mara_lamp",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_lamp",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_lamp.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_mug",
+      "prop": "ac_dress_mara_mug",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_mug",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_mug.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_noodle",
+      "prop": "ac_dress_mara_noodle",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_noodle",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_noodle.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_chair",
+      "prop": "ac_dress_mara_chair",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_chair",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_chair.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_light_mara_room",
+      "prop": "ac_light_mara_room",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_light_mara_room",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_mara_room.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_locker_1",
+      "prop": "ac_dress_hall_locker_1",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_locker_1",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_locker_1.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_locker_2",
+      "prop": "ac_dress_hall_locker_2",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_locker_2",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_locker_2.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_locker_3",
+      "prop": "ac_dress_hall_locker_3",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_locker_3",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_locker_3.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_locker_4",
+      "prop": "ac_dress_hall_locker_4",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_locker_4",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_locker_4.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_folded",
+      "prop": "ac_dress_hall_folded",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_folded",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_folded.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_folded_b",
+      "prop": "ac_dress_hall_folded_b",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_folded_b",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_folded_b.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_duffel",
+      "prop": "ac_dress_hall_duffel",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_duffel",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_duffel.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_light_hall",
+      "prop": "ac_light_hall",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_light_hall",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_hall.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_cart_lane",
+      "prop": "ac_dress_cart_lane",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_cart_lane",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_cart_lane.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_iv_b",
+      "prop": "ac_dress_iv_b",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_iv_b",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_iv_b.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bed_device",
+      "prop": "ac_dress_bed_device",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bed_device",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_device.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bench_lamp",
+      "prop": "ac_dress_bench_lamp",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bench_lamp",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bench_lamp.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bench_pack",
+      "prop": "ac_dress_bench_pack",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bench_pack",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bench_pack.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_shelf_1",
+      "prop": "ac_dress_hall_shelf_1",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_shelf_1",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_shelf_1.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_shelf_2",
+      "prop": "ac_dress_hall_shelf_2",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_shelf_2",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_shelf_2.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_top_1",
+      "prop": "ac_dress_hall_top_1",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_top_1",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_top_1.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_top_2",
+      "prop": "ac_dress_hall_top_2",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_top_2",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_top_2.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_top_3",
+      "prop": "ac_dress_hall_top_3",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_top_3",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_top_3.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_hall_top_4",
+      "prop": "ac_dress_hall_top_4",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_hall_top_4",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_top_4.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_shelf",
+      "prop": "ac_dress_mara_shelf",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_shelf",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_shelf.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_top_1",
+      "prop": "ac_dress_mara_top_1",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_top_1",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_top_1.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_mara_top_2",
+      "prop": "ac_dress_mara_top_2",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_mara_top_2",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_top_2.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_far_shelf",
+      "prop": "ac_dress_far_shelf",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_far_shelf",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_far_shelf.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_far_shelf_a",
+      "prop": "ac_dress_far_shelf_a",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_far_shelf_a",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_far_shelf_a.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_far_shelf_c",
+      "prop": "ac_dress_far_shelf_c",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_far_shelf_c",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_far_shelf_c.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_far_shelf_rack",
+      "prop": "ac_dress_far_shelf_rack",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_far_shelf_rack",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_far_shelf_rack.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_apron_rack",
+      "prop": "ac_dress_apron_rack",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_apron_rack",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_apron_rack.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_apron_1",
+      "prop": "ac_dress_apron_1",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_apron_1",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_apron_1.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_apron_2",
+      "prop": "ac_dress_apron_2",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_apron_2",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_apron_2.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bed_shelf",
+      "prop": "ac_dress_bed_shelf",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bed_shelf",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_shelf.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bed_shelf_1",
+      "prop": "ac_dress_bed_shelf_1",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bed_shelf_1",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_shelf_1.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bed_shelf_2",
+      "prop": "ac_dress_bed_shelf_2",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bed_shelf_2",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_shelf_2.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_bed_shelf_3",
+      "prop": "ac_dress_bed_shelf_3",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_bed_shelf_3",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_shelf_3.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    },
+    {
+      "_dressing": true,
+      "id": "dress_ac_dress_gloves",
+      "prop": "ac_dress_gloves",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "states": [
+        {
+          "tag": "ashcache_ac_dress_gloves",
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_gloves.ent",
+          "when": [
+            {
+              "fact": "ashcache_progress",
+              "min": 2
+            },
+            {
+              "fact": "ashcache_progress",
+              "max": 6
+            }
+          ],
+          "z_offset": 0.0,
+          "yaw_offset": 0.0
+        }
+      ]
+    }
+  ],
+  "blocked": {
+    "_about": [
+      "Declared, waited on by the graph, and NOT set by this file, because each one",
+      "needs a thing in the world that has not been authored yet. This used to say",
+      "world.json generates marker nodes only (D9); that stopped being true at D15,",
+      "which added triggers, spawners and props, and the two questions the probes",
+      "existed to ask were answered on 2026-09-08 (D46). The blocker is authoring",
+      "now, not capability. Two of the four came off this list at D65: the box and",
+      "the terminal are placed as props, and the graph waits on the player USING",
+      "them rather than on a fact this file could set. D102 and D119 changed WHAT",
+      "does the waiting - both prompts are scene hubs now (ash_cache_box.scene,",
+      "ash_cache_terminal.scene) and both props are scenery, because a hub can",
+      "carry a menu and an entity Use prompt cannot. The conclusion is unchanged:",
+      "nothing here sets those two any more and nothing should: a prop",
+      "the player touched is the honest signal, and glue guessing it from",
+      "proximity would make the prop decorative. What is left needs an encounter",
+      "and a lock, not a placement.",
+      "",
+      "These are content gaps, not glue gaps. Tracked as OI-13."
+    ],
+    "ashcache_cabinet_opened": "the optional FIA-locked cabinet, plus whatever unlocks it"
+  },
+  "hide": [
+    {
+      "_about": [
+        "D134. Farida's clinic furniture, hidden while this quest owns the room and given back when it resolves. Phantom Liberty (q304/q305) uses the same room (D128), so the window is closed at both ends.",
+        "The nodes are cooked flat with no NodeRefs (D133), and a mod Quest sector is not phase-streamed (D133 probe, 2026-09-24), so: Codeware tags the scanned setups with our NodeRefs as each sector loads, and WorldStateSystem.ToggleNode hides them. Architecture, lights, decals, occluders and the ambient sound stay (tools/clinic_hide_scan.py KEEP_*).",
+        "Window: from 'courier room searched' (2), so the room is already stripped the first time V walks in, to 'terminal read/cleanup' (6); 'resolved' (7) gives it back. Every ending passes progress_7."
+      ],
+      "id": "ac_clinic",
+      "scan": "reference/clinic_hide.json",
+      "watch": [
+        "ashcache_progress"
+      ],
+      "when": [
+        {
+          "fact": "ashcache_progress",
+          "min": 2,
+          "max": 6
+        }
+      ]
+    }
+  ],
+  "_parked_props": [],
+  "_parked_props_why": "D143 (2026-09-24): ac_case parked for the clinic redesign. Move it back into 'props' to restore."
+}

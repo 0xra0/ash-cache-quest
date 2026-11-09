@@ -1,0 +1,167 @@
+{
+  "_comment": [
+    "TweakDB character records for everyone who has a body in a scene.",
+    "",
+    "The shape is the one both reference mods ship: inherit a vanilla Character",
+    "record with $base and override only what differs. Hot Fuzz's entire NPC is two",
+    "lines (Character.judy_max: $base Character.Judy + entityTemplatePath), which is",
+    "the whole of the mechanism.",
+    "",
+    "Every 'base' and 'appearance' below is VERIFIED against Appearance Menu Mod's",
+    "db.sqlite3 - its 'entities' table stores entity_path as a literal TweakDB record",
+    "name and joins to an 'appearances' table of valid appearance CNames. Nothing here",
+    "is invented; a record or appearance that AMM cannot spawn does not go in this file.",
+    "",
+    "'marker' is a NodeRef to a worldStaticMarkerNode declared in source/world.json. It",
+    "becomes spawnDespawnParams.spawnMarkerNodeRef verbatim, which is how the engine",
+    "knows where to put her. It carries the leading '#' because throughout this project",
+    "a marker DEFINITION (world.json) is bare and a marker REFERENCE carries '#' - and",
+    "because validate.py finds every reference by scanning source/*.json for '#ac_*',",
+    "so writing it bare here would hide it from the typo and dead-weight checks.",
+    "",
+    "The short '#name' form is deliberate and is what Hot Fuzz ships on this field",
+    "('#nq_judy_spawner'). The LONG '$/03_night_city/...' path is used only by a quest",
+    "node's sceneLocation. Same marker, two forms, two different fields.",
+    "",
+    "'displayName' is a symbolic id in source/strings.json; tools/gen_tweak.py resolves",
+    "it through source/lockeys.json to the LocKey#N form TweakXL wants (rule 6)."
+  ],
+
+  "characters": [
+    {
+      "id": "mara",
+      "record": "ashcache_mara",
+      "actorName": "Mara",
+      "base": "Character.q306_fia_agent_corpo_scene_wa",
+      "appearance": "corpo__nusa_wa__q306__fia_undercover_01",
+      "displayName": "char_mara_name",
+      "fullDisplayName": "char_mara_fullname",
+      "marker": "#ac_mara",
+      "keepAlive": true,
+
+      "_casting": [
+        "Vanilla 'Female Suspicious Traveler' - a background traveller in Phantom",
+        "Liberty's q306 airport. Chosen for three reasons: her appearances are the only",
+        "ones in the game literally named 'fia_undercover', which is precisely what Mara",
+        "has been for nine years; she is a non-combat scene NPC, so nothing in her record",
+        "wants to shoot V; and no player will recognise her as somebody else, which using",
+        "a named NPC like Judy or Songbird would guarantee."
+      ],
+      "_alternatives": {
+        "_comment": "Swapping 'base' + 'appearance' to any of these is a one-edit change. Each one changes how the player reads Mara BEFORE she speaks, which is the real decision.",
+        "dogtown_civilian": {
+          "base": "Character.ep1_combat_zone_citizen_barghest_wa",
+          "appearance": "citizen_barghest_wa_default_01",
+          "reads_as": "nobody at all - fits 'spent nine years hoping nobody'd dig it back out'; 10 appearances to pick from"
+        },
+        "still_dangerous": {
+          "base": "Character.q305_bunker_security",
+          "appearance": "corpo__militech_wa_recon__lvl2_01",
+          "reads_as": "a threat in tactical kit - makes the opening line land as an ambush rather than a warning"
+        },
+        "other_undercover_looks": [
+          "corpo__nusa_wa__q306__fia_undercover_02",
+          "corpo__nusa_wa__q306__fia_undercover_03"
+        ]
+      }
+    },
+    {
+      "_comment": "Whoever tips V off. Deliberately never identified - the premise gives the hook to 'an unknown number' and Mr. Blue Eyes his own contact, so the question of who made this call is a hole the quest never fills. displayName reuses str.sms_unknown_title, the same string the phone contact is named with, so the nameplate on the subtitle and the name on the phone cannot drift apart into two different kinds of anonymous.",
+      "id": "unknown",
+      "record": "ashcache_unknown_caller",
+      "actorName": "Unknown",
+      "base": "Character.q005_penthouse_siri",
+      "displayName": "sms_unknown_title",
+      "voice": true
+    },
+    {
+      "_comment": "The two seconds of recording the caller plays down the line: V's own voice saying words V never said. It is a separate actor from V because V is in the scene, on the phone - a line hung on the player actor would be V speaking, not V being played back. The subtitle says RECORDING rather than a name because the phone has no idea who it is either; that ambiguity is the beat.",
+      "id": "echo",
+      "record": "ashcache_echo_voice",
+      "actorName": "Echo",
+      "base": "Character.q005_penthouse_siri",
+      "displayName": "char_recording_name",
+      "voice": true
+    },
+    {
+      "_comment": [
+        "D130. Mr. Blue Eyes, for the one scene in this quest where he is a man",
+        "standing on a pavement rather than a number with no caller id.",
+        "",
+        "Character.q203_mr_x is HIS OWN vanilla record, not a lookalike. Its",
+        "entityTemplatePath is the raRef hash 2012867658149774415, which is FNV1a64 of",
+        "base\\quest\\main_quests\\epilogue\\q203\\characters\\q203_mr_x.ent - and Appearance",
+        "Menu Mod's db lists that same record under the name 'Mr. Blue Eyes (G-Man)'",
+        "with exactly one appearance, the one named here. The record's own",
+        "appearanceName flat is empty, so naming it here is not an override of a",
+        "choice, it is supplying the one gen_scene.py needs.",
+        "",
+        "corporat_ma__q003_gman is also the only place the game says out loud what he",
+        "is. The model was cut for q003 - the heist - and reused for the man who turns",
+        "up when everything is over.",
+        "",
+        "displayName reuses sms_blueeyes_title - NO CALLER ID - exactly as the unknown",
+        "caller reuses sms_unknown_title (D126): the nameplate over his head and the",
+        "name on the phone are the same handle, because V never gets another one. It",
+        "is also how he is named in eighteen locales without inventing a translation",
+        "for a character the player has never heard V address by name.",
+        "",
+        "No keepAlive, unlike Mara (D105): he is despawned the frame the scene ends.",
+        "That is the right picture for this man, and it also keeps a shootable",
+        "Character record off a Dogtown pavement - D127 is what that costs."
+      ],
+      "id": "blueeyes",
+      "record": "ashcache_blueeyes",
+      "actorName": "BlueEyes",
+      "base": "Character.q203_mr_x",
+      "appearance": "corporat_ma__q003_gman",
+      "displayName": "sms_blueeyes_title",
+      "marker": "#ac_motel_entrance"
+    }
+  ],
+
+  "_voices": [
+    "D126. 'voice': true marks a speaker with no body at all. They are cast only in",
+    "holocall scenes, where gen_scene.py builds them with voice_actor_def() -",
+    "acquisitionPlan findInContext, contextualName 'Voice' - so there is no entity to",
+    "place and nothing to stand anywhere.",
+    "",
+    "Three tools read the flag. validate.py stops demanding a 'marker', because there",
+    "is no spawn for a missing marker to send to the world origin; gen_tweak.py stops",
+    "writing uiNameplate, because a nameplate is drawn over a head and these have",
+    "none; and validate.py refuses to let a voice be cast in a scene that is NOT a",
+    "holocall - the one way this flag could go wrong quietly, since actor_def() would",
+    "then want the marker that is no longer required.",
+    "",
+    "Both inherit Character.q005_penthouse_siri, which is not a stand-in: it is the",
+    "record behind the penthouse AI in q005_07_vip_apartment - the one vanilla actor",
+    "on this machine that speaks without a body, and the same scene voice_actor_def()",
+    "was built field-for-field from. A bodiless speaker inheriting the bodiless",
+    "speaker is the honest $base; any walking NPC's record would have been a claim",
+    "about an appearance nobody can ever see."
+  ],
+
+  "_enemies": [
+    "The Act 5 cleanup crew. Every vanilla FIA record (q305_fia_agent, q305_nusa_agent,",
+    "q307_fia_av_agent, q306_fia_agent_corpo_scene_*) is friendly or neutral and carries",
+    "no weapon, so none of them can fight. These inherit the NetWatch field agents of",
+    "mws_se5_06 - suits, a rifle and a handgun loadout, full archetypeData - and override",
+    "one flat: baseAttitudeGroup 'hostile' (Attitudes.Group_Hostile: Hostile to Group_Player,",
+    "Friendly to itself and to everyone else, so they do not start a war with Barghest).",
+    "168 vanilla Character records ship baseAttitudeGroup hostile. No appearance override:",
+    "the base's own appearance list is used, so there is nothing to verify against AMM.",
+    "No nameplate either - an enemy gets the game's default combat nameplate."
+  ],
+  "enemies": [
+    {"id": "fia_rifle",   "record": "ashcache_fia_agent_rifle",
+     "base": "Character.mws_se5_06_netwatch_rifle_ma",   "attitude": "hostile"},
+    {"id": "fia_handgun", "record": "ashcache_fia_agent_handgun",
+     "base": "Character.mws_se5_06_netwatch_handgun_ma", "attitude": "hostile"}
+  ],
+
+  "player": {
+    "actorName": "V",
+    "record": "Character.Player_Puppet_Base",
+    "_record": "Not ours and not overridden - this is the vanilla player puppet, read off the Undermine template's scnPlayerActorDef. V is acquired with findInContext, never spawned."
+  }
+}

@@ -1,0 +1,3247 @@
+{
+  "_comment": "The whole quest. Node ids here are authoring names; the generator assigns numeric graph ids. Links are [from, to] or [from, to, input_socket]; either endpoint may be written 'node:Socket' - journal nodes need the input socket named because the socket IS the state transition, and condition nodes need the output socket named because they branch on True/False. One socket may carry several connections: on an output that is a parallel fan-out, on an input it is an OR-join.",
+  "_phase_revision": "Bump this to force the phase to re-enter on a save that has already run it. ArchiveXL names the questPhaseNodeDefinition it builds in the parent quest CRC16(phase depot path + ':' + parent node id), derives a fact id from that node id, and on every load force-starts the node only when that fact is still 0 - then sets it to 1 whether or not anything actually ran. A save that loaded a broken build therefore carries a permanent 'already started' marker for that exact path. Changing the revision changes the depot filename, so the CRC, the node id and the fact id are all new and the phase starts cleanly. Verified against cp2077-archive-xl/src/App/Extensions/QuestPhase/Extension.cpp (PatchPhase, OnGameRestored, CreatePhaseNode, GeneratePhaseNodeID). See D21. Bumped to 19 on 2026-09-22 (D127). D126 inserted five nodes near the TOP of the node array and gen_questphase numbers nodes by their position in it, so every id after them moved; a save parked mid-phase against r18 would have resumed against the wrong numbering. The bump is safe because every side effect in this graph sits behind a guard that reads a fact the player already has - tools/replaytest.py proves a re-entry fires none of them - and because guard_hook now also tests ashcache_progress == 0, so the re-walk rings the opening call only for a player who had not started the quest yet. r20 (2026-09-24, D134): the D133 probe branch removed; saves that ran r19 hold probe_prefab_wait active. r21 (2026-09-25, D158): terminal branch forked off desc_find_box, joined by wait_terminal; a save parked at take_chip had already passed the fork, so it needs the re-walk to start the terminal. r22 (2026-09-26, D171): re-walk used to replay the Mara meeting in a save with ashcache_mara_choice_made reset to 0, to see the new idle workspot; no node change. r23 (2026-10-02): temporary questShowWorldNode door-test branch; every load crashed (3/3). r24 (2026-10-02): branch removed, r22 graph under a new id to bisect the crash.",
+  "phase_revision": 24,
+  "_journal_root": "quests/main_quest/prologue/ash_cache",
+  "nodes": [
+    {
+      "_comment": "The socket name is load-bearing and is NOT free choice. ArchiveXL builds a questPhaseNodeDefinition inside the parent quest for us and hardcodes its entry socket as In1 (the literal is in ArchiveXL.dll, and every injected phase on this machine - lifeswitch, llquest_root, vendorsxl_*, uqs_launcher - names it In1). The engine enters a child phase by matching that socket name against a questInputNodeDefinition here. Name it anything else and the phase merges, resolves, and never runs a single node - silently.",
+      "id": "start",
+      "type": "input",
+      "socket": "In1"
+    },
+    {
+      "_comment": "Entry gate. Set by the redscript glue once the start conditions are met; also the hook a CET debug command uses to force-start the quest.",
+      "id": "await_start",
+      "type": "pause_fact",
+      "fact": "ashcache_start",
+      "value": 1,
+      "compare": "Equal"
+    },
+    {
+      "_comment": "The phone leads and the journal follows, which is the order every vanilla side job arrives in: something buzzes, you read it, and only then does a new entry appear in the log. This used to fire first, so the quest announced itself and then explained why - the right beats in the wrong order, and it read as a mod handing out a task rather than as somebody contacting V.",
+      "id": "quest_active",
+      "type": "journal_quest",
+      "class": "gameJournalQuest",
+      "path": "quests/main_quest/prologue/ash_cache"
+    },
+    {
+      "_comment": "=== The hook (D126). The quest used to open with two SMS from an unknown number; it opens with a call from the same number now. The slot is unchanged - still between await_start and quest_active, so the phone still leads and the journal still follows, which is the order every vanilla side job arrives in.\n\nThe guard is new and is not decoration. Two journal_entry nodes needed none: re-activating a message that is already in the thread shows the player nothing. A call re-fires audibly. A phase_revision bump re-walks a finished save from the top, and without this the opening hook rings again hours into the quest, explaining a burn order the player has already beaten.",
+      "id": "guard_hook",
+      "type": "condition",
+      "condition": {
+        "all": [
+          {
+            "fact": "ashcache_hook_called",
+            "value": 0
+          },
+          {
+            "fact": "ashcache_progress",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "_comment": "Opens the phone. applyPhoneRestriction is off here and ON at the hang-up, which is not a typo - phoneSystem.script's TriggerCall only touches the restriction when the flag is 1, and on the EndCall branch it calls ApplyPhoneCallRestriction(FALSE), so 1 on EndCall is what RELEASES the phone. Vanilla ships exactly this pair; see D124 and q112_03_infiltration.\n\nAudio, not Video: the caller is anonymous, and a video call would put a face in the corner of the screen that this quest has decided never to show.",
+      "id": "hook_start",
+      "type": "phone_call",
+      "phase": "StartCall",
+      "mode": "Audio",
+      "caller": "contacts/ac_contact_unknown",
+      "addressee": "contacts/player"
+    },
+    {
+      "_comment": "source/scene_hookcall.json. 'anchor' pins it to the player rather than to a marker, and here that is not a convenience but a requirement: this fires 30 real seconds after Somewhat Damaged ends (see source/glue.json 'start'), and V can be anywhere in Night City when it does. A scene anchored at the clinic would be a scene that may simply never play - and the quest's only objective is raised at the end of it.",
+      "id": "hook_scene",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_hookcall.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_motel_entrance",
+      "anchor": "around_player",
+      "entries": [
+        "hook_in"
+      ],
+      "exits": [
+        "hook_done"
+      ]
+    },
+    {
+      "_comment": "Hangs up and gives the phone back. See hook_start on why this one carries the restriction flag.",
+      "id": "hook_end",
+      "type": "phone_call",
+      "phase": "EndCall",
+      "mode": "Audio",
+      "caller": "contacts/ac_contact_unknown",
+      "addressee": "contacts/player"
+    },
+    {
+      "_comment": "After the hang-up, never before the ring. A save interrupted mid-call then rings again rather than losing the address - and at this point in the quest the address IS the quest, because no objective has been raised yet.",
+      "id": "mark_hook",
+      "type": "set_fact",
+      "fact": "ashcache_hook_called",
+      "value": 1
+    },
+    {
+      "id": "obj_dogtown_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_goto_dogtown"
+    },
+    {
+      "id": "desc_goto_dogtown",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_goto_dogtown/description"
+    },
+    {
+      "id": "progress_1",
+      "type": "set_fact",
+      "fact": "ashcache_progress",
+      "value": 1
+    },
+    {
+      "_comment": "World trigger at the motel sets this fact.",
+      "id": "await_motel",
+      "type": "pause_fact",
+      "fact": "ashcache_at_motel",
+      "value": 1
+    },
+    {
+      "id": "obj_dogtown_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_goto_dogtown"
+    },
+    {
+      "id": "desc_goto_dogtown_off",
+      "_comment": "Retires this paragraph as the objective closes. questLogDetailsPanel.PopulateObjectives concatenates EVERY description GetDescriptions returns into the one m_questDescription text field, and a Succeeded objective is still walked - GetDescriptions' own filter sets succeeded=true, and the recursion into an objective re-enters with GetDefaultFilter(), which accepts Active children. So a description that is never set Inactive keeps rendering for the rest of the quest. The separator is a single space, not a paragraph break: the line 'description + \"\\n\";' under the concatenation discards its result and is dead code in the shipped script. Without these nodes the panel grows into one run-on blob of every paragraph so far, and a phase_revision re-entry produces the whole blob at once because the walk races through every already-set pause_fact in a single frame. Vanilla sidesteps it by carrying few descriptions - Hot Fuzz ships two, 'description' and 'judy_notell', both on its only objective - while this quest carries one per objective, so it retires them instead. The four ending descriptions are deliberately NOT retired: they are what a finished quest shows in the log.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_goto_dogtown/description"
+    },
+    {
+      "id": "obj_room_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_search_room"
+    },
+    {
+      "id": "desc_search_room",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_search_room/description"
+    },
+    {
+      "id": "obj_motel_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "optional": true,
+      "track": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_search_motel"
+    },
+    {
+      "_comment": "Set once the courier audio log has been played - that is the beat that names the clinic.",
+      "id": "await_room",
+      "type": "pause_fact",
+      "fact": "ashcache_courier_log_played",
+      "value": 1
+    },
+    {
+      "id": "obj_room_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_search_room"
+    },
+    {
+      "id": "desc_search_room_off",
+      "_comment": "Retires this paragraph as the objective closes - see desc_goto_dogtown_off for why every still-Active description is concatenated into the same text field.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph1_signal/ac_obj_search_room/description"
+    },
+    {
+      "id": "sms_blueeyes",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_blueeyes/ac_msg_blueeyes/ac_msg_blueeyes_01"
+    },
+    {
+      "id": "progress_2",
+      "type": "set_fact",
+      "fact": "ashcache_progress",
+      "value": 2
+    },
+    {
+      "id": "obj_clinic_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_goto_clinic"
+    },
+    {
+      "id": "desc_goto_clinic",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_goto_clinic/description"
+    },
+    {
+      "id": "await_clinic",
+      "type": "pause_fact",
+      "fact": "ashcache_at_clinic",
+      "value": 1
+    },
+    {
+      "id": "open_clinic_entrance",
+      "_comment": "D99. The clinic's street door, vanilla q303 prefab node {single_door} at -1899.80 -2477.14 24.06. Shut on the player's save although its authored state is unlocked - a q303/q304 runtime state the files cannot show. ForceOpen rather than ForceUnlock because DoorControllerPS.OnQuestForceOpen sets opened, unlocked and unsealed in one go and ignores power, so it holds whatever state the door was left in. Placed after await_clinic because ac_clinic_entrance stands on the street 13 m away, so the door's sector is streamed when this runs.",
+      "type": "device_action",
+      "device": "#q303_dvc_door_clinic_entrance",
+      "controller": "DoorControllerPS",
+      "action": "ForceOpen"
+    },
+    {
+      "id": "open_clinic_inner",
+      "_comment": "D99. The inner double door {double_door} at -1903.74 -2473.97 24.06, between the entrance and the surgery where the box and the terminal stand. Same reasoning as open_clinic_entrance.",
+      "type": "device_action",
+      "device": "#q303_dvc_door_clinic",
+      "controller": "DoorControllerPS",
+      "action": "ForceOpen"
+    },
+    {
+      "id": "obj_clinic_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_goto_clinic"
+    },
+    {
+      "id": "desc_goto_clinic_off",
+      "_comment": "Retires this paragraph as the objective closes - see desc_goto_dogtown_off for why every still-Active description is concatenated into the same text field.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_goto_clinic/description"
+    },
+    {
+      "id": "progress_3",
+      "type": "set_fact",
+      "fact": "ashcache_progress",
+      "value": 3
+    },
+    {
+      "id": "obj_box_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_find_box"
+    },
+    {
+      "id": "desc_find_box",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_find_box/description"
+    },
+    {
+      "_comment": "=== The two optional clinic discoveries. They hang off the spine as their own branches so that never finding them cannot stall the quest - obj_box_on fans out to both this branch and await_box.",
+      "id": "obj_journal_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "optional": true,
+      "track": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_read_journal"
+    },
+    {
+      "id": "obj_cabinet_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "optional": true,
+      "track": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_open_cabinet"
+    },
+    {
+      "id": "opt_wait_journal",
+      "type": "pause_fact",
+      "fact": "ashcache_journal_read"
+    },
+    {
+      "id": "obj_journal_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "optional": true,
+      "track": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_read_journal"
+    },
+    {
+      "id": "opt_wait_cabinet",
+      "type": "pause_fact",
+      "fact": "ashcache_cabinet_opened"
+    },
+    {
+      "id": "obj_cabinet_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "optional": true,
+      "track": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_open_cabinet"
+    },
+    {
+      "_comment": "=== ACT 3: the box, then Mara. meet_mara plays source/scene_mara.json, which sets ashcache_mara_choice_made and, on the two non-hostile routes, ashcache_mara_trusted. Those facts are set INSIDE the scene by embedded scnQuestNodes, so the graph does not wait on them - the scene node itself blocks until the conversation ends (decision D1). The box works the same way since D102: open_box plays source/scene_box.json, whose only content is a Use hub attached to the Relic case, and the scene node blocks until V presses it. This guard is what a second entry into the phase (a phase_revision bump) reads, so a save that already opened the box is not asked to open it again. The set_fact after the scene is what keeps ashcache_box_opened honest for everything that reads it - the dev report, the glue's stage arming, and a later save that jumps in behind this point.",
+      "id": "guard_box",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_box_opened",
+        "value": 0
+      }
+    },
+    {
+      "id": "open_box",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_box.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_box_origin",
+      "entries": [
+        "box_in"
+      ],
+      "exits": [
+        "box_done"
+      ],
+      "_location": "Same long NodeRef form as meet_mara. The marker sits on the case itself (source/world.json), so the hub's offset in the scene is only a height."
+    },
+    {
+      "_comment": "Set here rather than by the world, because a worldEntityNode has no way to write a quest fact. The interaction released the pause; this is what records that it happened.",
+      "id": "box_opened_set",
+      "type": "set_fact",
+      "fact": "ashcache_box_opened",
+      "value": 1
+    },
+    {
+      "_comment": "Closed when the splinter is IN HAND, not when the lid opens (D118). This objective owns the map pin at the case (ac_pin_splinter in source/journal.json), so completing it on box_opened would have left the player who opens the case and walks away with no active objective and no pin leading back to the thing still lying in it. Both routes out of guard_splinter arrive here, which is why it takes two connections on one input socket: the run that just took the splinter, and a re-entry walk that finds it already taken.",
+      "id": "obj_box_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_find_box"
+    },
+    {
+      "id": "desc_find_box_off",
+      "_comment": "Retires this paragraph as the objective closes - see desc_goto_dogtown_off for why every still-Active description is concatenated into the same text field.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph2_clinic/ac_obj_find_box/description"
+    },
+    {
+      "id": "progress_4",
+      "type": "set_fact",
+      "fact": "ashcache_progress",
+      "value": 4
+    },
+    {
+      "id": "obj_mara_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph3_truth/ac_obj_talk_mara"
+    },
+    {
+      "id": "desc_talk_mara",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph3_truth/ac_obj_talk_mara/description"
+    },
+    {
+      "_comment": "Re-entry guard on the Mara conversation - the worst thing a bump can repeat, because a scene replaying at an arbitrary moment yanks the player into dialogue. Needs no marker of its own: ashcache_mara_choice_made is set inside the scene, and 'fact_made' dominates the scene's only exit, so it is 1 for exactly the players who finished it. Proven by deleting the node and checking the exit goes unreachable (D50).",
+      "id": "guard_meet_mara",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_choice_made",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "Which door of the Mara scene to open. The fourth micro-choice quotes her journal back at her, so it may only be offered to a player who read the shard - and an option cannot be greyed out - it can now be conditioned (D26), but a failing condition removes it rather than dimming it (see the header of source/scene_mara.json, and D14 for the same move on the ending). So the gate is a graph branch and the scene has two entry points. ashcache_journal_read is set by the redscript shard hook, so it is genuinely readable by the time V walks in; a player who reads the shard AFTER this node fires gets the three-option hub, which is the same one-shot behaviour route_hide has and is correct - the conversation has already started.",
+      "id": "route_mara",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_journal_read",
+        "value": 1
+      }
+    },
+    {
+      "id": "meet_mara",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_mara.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_mara",
+      "entries": [
+        "mara_meet_in",
+        "mara_meet_in_journal"
+      ],
+      "exits": [
+        "mara_done"
+      ],
+      "_location": "The scene has no position of its own; this NodeRef is its origin - everything in the scene is placed relative to it. Defined as a worldStaticMarkerNode in source/world.json (sector ash_cache_clinic). The LONG form is deliberate: a map pin resolves the short '#ac_mara' fine, but the only observed sceneLocation sample uses the full path, and a scene anchored to nothing plays at the world origin instead of erroring."
+    },
+    {
+      "id": "mara_int_wait",
+      "_comment": "Interruption safety net. Required because ash_cache_mara.scene raises the gameplay tier: if the player is interrupted out of a Tier3 conversation and nothing hands control back, they are left unable to move, with no error anywhere. Every one of the 15 wired INT paths in the shipped game is this exact shape - 500 ms realtime delay, then questSetTier to Tier1_FullGameplay - and 13 of 128 interruption-aware phases bother to wire it at all, because only the ones that change tier have to. See reference/interruption.md and D28.",
+      "type": "pause",
+      "condition": {
+        "delay": 500
+      }
+    },
+    {
+      "id": "mara_int_tier",
+      "type": "set_tier",
+      "tier": "Tier1_FullGameplay"
+    },
+    {
+      "id": "mara_ret_wait",
+      "_comment": "Return half of the same net - see the INT comment above.",
+      "type": "pause",
+      "condition": {
+        "delay": 500
+      }
+    },
+    {
+      "id": "mara_ret_tier",
+      "type": "set_tier",
+      "tier": "Tier1_FullGameplay"
+    },
+    {
+      "id": "obj_mara_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph3_truth/ac_obj_talk_mara"
+    },
+    {
+      "_comment": "D121. Which of Mara's two goodbyes V earned. The scene has already played the handover (sec_gift) or the walk-out (sec_cold) and set the disposition facts on its way out, so this reads the answer rather than deciding it. False is the intimidate route, where she leaves without giving V anything - which is the first consequence that branch has ever had beyond a gate.",
+      "id": "route_gift",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_trusted",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "Re-entry guard on give_liberty, the same shape as every other grant in this file: a phase_revision bump re-walks from 'start' with every fact the player has already set, and without this the walk hands out a second pistol on its way past.",
+      "id": "guard_liberty",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_liberty_given",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "Mara's sidearm. notify so the pickup reads as a gift rather than as inventory appearing from nowhere - the engine raises its own item notification and that IS the feedback for this beat.",
+      "id": "give_liberty",
+      "type": "add_item",
+      "item": "ashcache_mara_liberty",
+      "notify": true
+    },
+    {
+      "id": "mark_liberty",
+      "type": "set_fact",
+      "fact": "ashcache_mara_liberty_given",
+      "value": 1
+    },
+    {
+      "id": "desc_talk_mara_off",
+      "_comment": "Retires this paragraph as the objective closes - see desc_goto_dogtown_off for why every still-Active description is concatenated into the same text field.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph3_truth/ac_obj_talk_mara/description"
+    },
+    {
+      "_comment": "=== ACT 4: the terminal. ashcache_terminal_read is the required beat; ashcache_terminal_full_read is the optional completionist read and is not waited on here.",
+      "id": "obj_terminal_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph3_truth/ac_obj_terminal"
+    },
+    {
+      "id": "desc_terminal",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph3_truth/ac_obj_terminal/description"
+    },
+    {
+      "_comment": "D119 replaced await_terminal here. That node waited on the computer's own Use prompt ('Executed' on #ac_terminal_pc) OR on the fact, and the press was the whole beat: one click, objective ticked, nothing read and nothing taken. The prompt now belongs to ash_cache_terminal.scene, so the wait is the scene node below and the prop is scenery ('device': null in world.json). This guard is what keeps the pair honest on a re-entry: a phase_revision re-walk with ashcache_terminal_read already 1 takes False and skips both the menu and the grant, so nobody is asked to download an archive they are already carrying. Same shape as guard_splinter.",
+      "id": "guard_terminal",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_terminal_read",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "The menu. Blocks until the player picks 'Download Voss's archive'; the optional audit read loops back inside the scene and does not leave it, so this node has exactly one way out. The CET debug panel can still skip the beat, but only from in front of it - setting ashcache_terminal_read while the walk is already parked here does nothing, because the guard above was read on the way in. That is the same caveat the case's take_chip carries.",
+      "id": "terminal_menu",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_terminal.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_terminal_origin",
+      "entries": [
+        "menu_in"
+      ],
+      "exits": [
+        "menu_done"
+      ],
+      "_location": "#ac_terminal_origin, the marker on the terminal prop's own floor point. The hub's offset is relative to it - see the marker's _about, and scene_terminal.json's attachToWorld for the 1.4 m screen height."
+    },
+    {
+      "_comment": "D119. The download has to leave something behind, or 'download the archive' is a fact and a progress bar with no archive at the end of it. This is the readable shard the bar was filling: source/items.json 'clinic_archive', Voss's own record of the intake and the index of the 212 files that are not in it. Inside the guard with the fact, so a re-entry cannot grant it twice - replaytest.py checks exactly that.",
+      "id": "give_archive",
+      "type": "add_item",
+      "item": "ashcache_clinic_archive",
+      "notify": true
+    },
+    {
+      "_comment": "Set here rather than by the world, because a worldEntityNode has no way to write a quest fact. The interaction released the pause; this is what records that it happened.",
+      "id": "terminal_read_set",
+      "type": "set_fact",
+      "fact": "ashcache_terminal_read",
+      "value": 1
+    },
+    {
+      "id": "obj_terminal_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph3_truth/ac_obj_terminal"
+    },
+    {
+      "id": "desc_terminal_off",
+      "_comment": "Retires this paragraph as the objective closes - see desc_goto_dogtown_off for why every still-Active description is concatenated into the same text field.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph3_truth/ac_obj_terminal/description"
+    },
+    {
+      "id": "progress_5",
+      "type": "set_fact",
+      "fact": "ashcache_progress",
+      "value": 5
+    },
+    {
+      "_comment": "=== ACT 5: the FIA cleanup crew.",
+      "id": "obj_survive_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph4_cleanup/ac_obj_survive"
+    },
+    {
+      "id": "desc_survive",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph4_cleanup/ac_obj_survive/description"
+    },
+    {
+      "_comment": "D111: the FIA cleanup crew. Vanilla shape (q304_transmitter_tower_04): questSpawner Activate -> questCharacterSpawned -> questCombatNodeParams_ShootAt '#player'. Guarded on ashcache_cleanup_done so a phase_revision re-walk after the fight does not bring the crew back. UNVERIFIED in game: a Character on a worldPopulationSpawnerNode taking ShootAt and satisfying questCharacterKilled through its own NodeRef - vanilla only ever does either through a community.",
+      "id": "guard_cleanup",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cleanup_done",
+        "value": 0
+      }
+    },
+    {
+      "id": "spawn_fia",
+      "type": "spawn",
+      "actions": [
+        {
+          "spawner": "#ac_fia_car"
+        },
+        {
+          "spawner": "#ac_fia_agent_1"
+        },
+        {
+          "spawner": "#ac_fia_agent_2"
+        },
+        {
+          "spawner": "#ac_fia_agent_3"
+        }
+      ]
+    },
+    {
+      "id": "await_fia_spawned",
+      "type": "pause",
+      "condition": {
+        "all": [
+          {
+            "spawned": "#ac_fia_agent_1"
+          },
+          {
+            "spawned": "#ac_fia_agent_2"
+          },
+          {
+            "spawned": "#ac_fia_agent_3"
+          }
+        ]
+      }
+    },
+    {
+      "_comment": "D121. Mara promised to count them ('Keep your phone on') and this is her keeping the promise while V is being shot at. Hangs off await_fia_spawned rather than off the spawn, so the count is sent once the crew is actually standing on the street and the numbers are true. It needs no guard of its own: the whole cleanup sits behind guard_cleanup, so a re-walk of a finished fight never reaches it. False is the intimidate route, which gets the same count from someone who refuses to have a conversation about it - she helps either way, she is just not friendly about it.",
+      "id": "route_mara_fight",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_hostile",
+        "value": 0
+      }
+    },
+    {
+      "id": "sms_mara_fight",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_01"
+    },
+    {
+      "id": "sms_mara_fight_cold",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_02"
+    },
+    {
+      "id": "fia_attack_1",
+      "type": "shoot_at",
+      "attacker": "#ac_fia_agent_1",
+      "target": "#player"
+    },
+    {
+      "id": "fia_attack_2",
+      "type": "shoot_at",
+      "attacker": "#ac_fia_agent_2",
+      "target": "#player"
+    },
+    {
+      "id": "fia_attack_3",
+      "type": "shoot_at",
+      "attacker": "#ac_fia_agent_3",
+      "target": "#player"
+    },
+    {
+      "_comment": "D113: re-send the threat every 5 s while the fight lasts. Spawner NPCs come back from a save with no AI state, so a one-shot inject leaves a reloaded crew standing where it spawned (seen in game). One loop per agent: if a combat node never completes on a dead agent, only that agent's loop stops. Separate from await_fia_dead, which stays a single uninterrupted pause.",
+      "id": "fia_tick_1",
+      "type": "pause",
+      "condition": {
+        "delay": 5000
+      }
+    },
+    {
+      "id": "fia_fighting_1",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cleanup_done",
+        "value": 0
+      }
+    },
+    {
+      "id": "fia_tick_2",
+      "type": "pause",
+      "condition": {
+        "delay": 5000
+      }
+    },
+    {
+      "id": "fia_fighting_2",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cleanup_done",
+        "value": 0
+      }
+    },
+    {
+      "id": "fia_tick_3",
+      "type": "pause",
+      "condition": {
+        "delay": 5000
+      }
+    },
+    {
+      "id": "fia_fighting_3",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cleanup_done",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "count 1 per spawner: each NodeRef addresses one NPC, so 'this one is down' is GreaterOrEqual 1. defeated/killed/unconscious all count, so a non-lethal build finishes the fight too.",
+      "id": "await_fia_dead",
+      "type": "pause",
+      "condition": {
+        "all": [
+          {
+            "killed": "#ac_fia_agent_1",
+            "count": 1
+          },
+          {
+            "killed": "#ac_fia_agent_2",
+            "count": 1
+          },
+          {
+            "killed": "#ac_fia_agent_3",
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "id": "cleanup_set",
+      "type": "set_fact",
+      "fact": "ashcache_cleanup_done",
+      "value": 1
+    },
+    {
+      "id": "await_cleanup",
+      "type": "pause_fact",
+      "fact": "ashcache_cleanup_done"
+    },
+    {
+      "id": "obj_survive_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph4_cleanup/ac_obj_survive"
+    },
+    {
+      "id": "desc_survive_off",
+      "_comment": "Retires this paragraph as the objective closes - see desc_goto_dogtown_off for why every still-Active description is concatenated into the same text field.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph4_cleanup/ac_obj_survive/description"
+    },
+    {
+      "id": "progress_6",
+      "type": "set_fact",
+      "fact": "ashcache_progress",
+      "value": 6
+    },
+    {
+      "_comment": "=== ACT 5b: Mara comes out (D123). Sits between the fight closing and the D3 hide gate, so she speaks BEFORE the decision rather than after it - which is the whole point of the beat: what she says reframes the choice V is about to make. Plays source/scene_aftertalk.json.\n\nTwo conditions, cheapest first, both of which mean 'skip it entirely': she has to be alive, and this has to be the first time. mara_dead is 0 on every route the graph can currently produce - protect_mara makes her Immortal and never releases it - but the gate is written anyway, for the same reason gate_hide writes it: the day a branch can kill her, nothing here needs revisiting. mara_warned is set inside the scene, on both of its routes, so the guard is 1 for exactly the players who finished it - the same shape guard_meet_mara uses on ashcache_mara_choice_made, and the reason a phase_revision bump cannot yank the player back into a Tier3 conversation.",
+      "id": "guard_aftertalk",
+      "type": "condition",
+      "condition": {
+        "all": [
+          {
+            "fact": "ashcache_mara_dead",
+            "value": 0
+          },
+          {
+            "fact": "ashcache_mara_warned",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "_comment": "Picks which door of the scene to open, exactly as route_mara and route_hide do. False is the intimidate route, which gets its own four lines and no choice hub. She hands over Cynosure either way - see the header of source/scene_aftertalk.json for why that is deliberate and not an oversight.",
+      "id": "route_aftertalk",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_hostile",
+        "value": 0
+      }
+    },
+    {
+      "id": "aftertalk_scene",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_aftertalk.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_clinic_entrance",
+      "entries": [
+        "after_in",
+        "after_in_cold"
+      ],
+      "exits": [
+        "after_done"
+      ],
+      "_location": "Anchored on #ac_clinic_entrance - one of the VERIFIED coordinates (D9), and the same marker the decision scene uses. Since D87 an actor carries no spawnMarkerNodeRef of its own and spawns at the scene's location with a zero offset, so this NodeRef is also what puts Mara in the doorway. 'She emerges from the clinic' is therefore a property of this one line: no new position to stand on, and nothing to measure.",
+      "_int_ret": "Raises the tier, so it needs the interruption net. It reuses decide_int_wait / decide_ret_wait rather than growing a pair of its own - the four epilogue scenes already share that pair, and the net is nothing but '500 ms, then Tier1'."
+    },
+    {
+      "_comment": "=== ACT 6: the D3 gate, then the choice. The gate runs BEFORE the choice is offered and leaves its answer in ashcache_hide_available. Both outcomes continue to obj_decide_on - the False branch just skips setting the fact - and route_hide picks the answer back up a moment later.",
+      "id": "gate_hide",
+      "type": "condition",
+      "condition": {
+        "all": [
+          {
+            "fact": "ashcache_mara_trusted",
+            "value": 1
+          },
+          {
+            "fact": "ashcache_mara_dead",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "hide_available",
+      "type": "set_fact",
+      "fact": "ashcache_hide_available",
+      "value": 1
+    },
+    {
+      "id": "obj_decide_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph4_cleanup/ac_obj_decide"
+    },
+    {
+      "id": "desc_decide",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph4_cleanup/ac_obj_decide/description"
+    },
+    {
+      "_comment": "Same guard on the ending conversation, on ashcache_decision_made, which dominates that scene's exit the same way.",
+      "id": "guard_decide",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_decision_made",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "route_hide reads back what gate_hide decided and picks which door of the scene to open. It exists because the Hide option cannot be greyed out inside the hub - conditioning it is possible since D26 but only ever hides it - the reasoning is in the header of source/scene_decision.json - so the branch is expressed as two entry points into one scene instead. That also makes ashcache_hide_available load-bearing: until now the graph set it and nothing ever read it.",
+      "id": "route_hide",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_hide_available",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "Plays source/scene_decision.json. Both entry points lead to the same exit; every option inside sets one ashcache_end_* fact and then ashcache_decision_made, which is what the br_* chain below reads. This node replaced a pause_fact placeholder once the .scene existed - the same move await_box made in decision D1. It is anchored to #ac_clinic_entrance rather than to a new marker because that coordinate is one of the two VERIFIED ones (D9): the ending does not wait on OI-9, and OI-9 does not grow by one more position to stand on.",
+      "id": "decide_scene",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_decision.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_clinic_entrance",
+      "entries": [
+        "decide_in",
+        "decide_in_hide"
+      ],
+      "exits": [
+        "decide_done"
+      ]
+    },
+    {
+      "id": "decide_int_wait",
+      "_comment": "Interruption safety net for the decision scene, which also raises the tier. Same 500 ms + Tier1 shape as the Mara one.",
+      "type": "pause",
+      "condition": {
+        "delay": 500
+      }
+    },
+    {
+      "id": "decide_int_tier",
+      "type": "set_tier",
+      "tier": "Tier1_FullGameplay"
+    },
+    {
+      "id": "decide_ret_wait",
+      "_comment": "Interruption safety net for the decision scene, which also raises the tier. Same 500 ms + Tier1 shape as the Mara one.",
+      "type": "pause",
+      "condition": {
+        "delay": 500
+      }
+    },
+    {
+      "id": "decide_ret_tier",
+      "type": "set_tier",
+      "tier": "Tier1_FullGameplay"
+    },
+    {
+      "id": "obj_decide_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph4_cleanup/ac_obj_decide"
+    },
+    {
+      "id": "desc_decide_off",
+      "_comment": "Retires this paragraph as the objective closes - see desc_goto_dogtown_off for why every still-Active description is concatenated into the same text field.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph4_cleanup/ac_obj_decide/description"
+    },
+    {
+      "id": "progress_7",
+      "type": "set_fact",
+      "fact": "ashcache_progress",
+      "value": 7
+    },
+    {
+      "_comment": "=== ACT 7: the ending switch. Chained on False, which is the standard idiom for a multi-way branch. Hide is checked LAST and re-tests the D3 gate, so a bugged or modded choice hub still cannot reach an ending Mara is not alive to play. br_hide's own False means no ending fact was set at all, which is a bug rather than a player choice - it routes straight to quest_done so the player is never left with a permanently open quest.",
+      "id": "br_destroy",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_destroy",
+        "value": 1
+      }
+    },
+    {
+      "id": "br_absorb",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_absorb",
+        "value": 1
+      }
+    },
+    {
+      "id": "br_blueeyes",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_blueeyes",
+        "value": 1
+      }
+    },
+    {
+      "id": "br_hide",
+      "type": "condition",
+      "condition": {
+        "all": [
+          {
+            "fact": "ashcache_end_hide",
+            "value": 1
+          },
+          {
+            "fact": "ashcache_mara_trusted",
+            "value": 1
+          },
+          {
+            "fact": "ashcache_mara_dead",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "_comment": "Each ending raises its objective silently and completes it. Build 1 resolves all four at the moment of the decision; when the Blue Eyes handover and the Badlands drive become real content, the wait for the travel leg goes between the _on and _done node of those two.",
+      "id": "end_destroy_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "notify": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_destroy"
+    },
+    {
+      "id": "desc_end_destroy",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_destroy/description"
+    },
+    {
+      "id": "end_destroy_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_destroy"
+    },
+    {
+      "id": "end_absorb_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "notify": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_absorb"
+    },
+    {
+      "id": "desc_end_absorb",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_absorb/description"
+    },
+    {
+      "id": "end_absorb_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_absorb"
+    },
+    {
+      "id": "end_blueeyes_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "notify": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_blueeyes"
+    },
+    {
+      "id": "desc_end_blueeyes",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_blueeyes/description"
+    },
+    {
+      "id": "end_blueeyes_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_blueeyes"
+    },
+    {
+      "id": "end_hide_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "notify": false,
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_hide"
+    },
+    {
+      "id": "desc_end_hide",
+      "_comment": "Activates this objective's description paragraph, the block the journal screen shows above the objective list. It is a separate entry - gameJournalQuestDescription, id 'description', a child of the objective - and it needs activating in its own right. QuestLogUtils.UnpackRecursiveWithFilter skips every entry whose own state is Inactive and exempts only JournalQuestMapPinBase, so before this node existed all 12 descriptions were written, localized, shipped in the resource, and filtered out of GetDescriptions - an empty panel with nothing logged anywhere. The map pins kept working the whole time, which is what hid it. Reference shape: Hot Fuzz's questphase addresses '.../01_go_to_notell_judy/description' exactly this way.",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_hide/description"
+    },
+    {
+      "id": "end_hide_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_hide"
+    },
+    {
+      "_comment": "D120. The beat each ending was missing, one node per ending. They all play source/scene_epilogue.json and differ only in which door they open: three entry points, three exit points, and the three beats inside never see each other. Three nodes rather than one shared node with three entries because a shared one would hand the graph three live exit sockets from a single walk - which is also exactly what tools/replaytest.py reported. Anchored to #ac_clinic_entrance, the verified marker decide_scene uses (D9): the decision hands straight over to this and V has not moved.",
+      "id": "epi_scene_destroy",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_epilogue.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_clinic_entrance",
+      "entries": [
+        "epi_destroy_in"
+      ],
+      "exits": [
+        "epi_destroy_done"
+      ]
+    },
+    {
+      "id": "epi_scene_absorb",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_epilogue.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_clinic_entrance",
+      "entries": [
+        "epi_absorb_in"
+      ],
+      "exits": [
+        "epi_absorb_done"
+      ]
+    },
+    {
+      "id": "epi_scene_sell",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_epilogue.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_clinic_entrance",
+      "entries": [
+        "epi_sell_in"
+      ],
+      "exits": [
+        "epi_sell_done"
+      ]
+    },
+    {
+      "_comment": "D120 re-entry guards, one per ending, on the same fact. A phase_revision bump re-walks a FINISHED save from 'start', and every fact it reads is still set, so the walk races through the whole quest and arrives back at its own ending - replaying the beat, taking an item the player no longer has, and in the Blue Eyes case paying 15,000 eddies a second time. False skips straight to the objective's Succeeded socket, so the spine is unchanged either way. Same shape as guard_splinter; measured by tools/replaytest.py (D50).",
+      "id": "guard_epi_destroy",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_epilogue_played",
+        "value": 0
+      }
+    },
+    {
+      "id": "guard_epi_absorb",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_epilogue_played",
+        "value": 0
+      }
+    },
+    {
+      "id": "guard_epi_sell",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_epilogue_played",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "D120. Three of the four endings END WITH THE SPLINTER GONE - burned, read into a head, or dropped in somebody else's box - and until now all three left it sitting in the backpack afterwards. The chip tree does not notice: its visibility is keyed on the fact ashcache_splinter_given, not on holding the item, so the perks V bought with it survive the object leaving.",
+      "id": "burn_splinter",
+      "type": "remove_item",
+      "item": "ashcache_splinter"
+    },
+    {
+      "id": "absorb_splinter",
+      "type": "remove_item",
+      "item": "ashcache_splinter"
+    },
+    {
+      "id": "sell_splinter",
+      "type": "remove_item",
+      "item": "ashcache_splinter"
+    },
+    {
+      "_comment": "D120. 'For a price' made literal. Items.money is the game's own currency item - the same TweakDB id vanilla loot and every eddies mod moves - so the engine raises its normal eddies notification on the grant and no HUD node is needed. notify is on because this one IS the payoff.",
+      "id": "pay_blueeyes",
+      "type": "add_item",
+      "item": "money",
+      "quantity": 15000,
+      "notify": true
+    },
+    {
+      "_comment": "D120. The receipt, on the same anonymous thread that pushed V at the courier in Act 1. Fired after the scene hands control back, so the phone buzzes in normal gameplay rather than over a Tier3 conversation, next to the eddies notification.",
+      "id": "sms_blueeyes_paid",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_blueeyes/ac_msg_blueeyes/ac_msg_blueeyes_02"
+    },
+    {
+      "_comment": "D120. Set last in every ending chain, after the beat has played and its side effects have landed, so a save taken mid-beat replays it rather than skipping it. One fact for all three: they are mutually exclusive and the guard only ever asks 'has an ending already played'.",
+      "id": "mark_epi_destroy",
+      "type": "set_fact",
+      "fact": "ashcache_epilogue_played",
+      "value": 1
+    },
+    {
+      "id": "mark_epi_absorb",
+      "type": "set_fact",
+      "fact": "ashcache_epilogue_played",
+      "value": 1
+    },
+    {
+      "id": "mark_epi_sell",
+      "type": "set_fact",
+      "fact": "ashcache_epilogue_played",
+      "value": 1
+    },
+    {
+      "_comment": "D121. The fourth epilogue door. D120 built three and left Hide on the build-1 treatment - objective raised, objective completed, splinter still in the backpack - which left the one ending gated on Mara's trust as the one ending she does not appear in. Same guard fact and same shape as the other three.",
+      "id": "guard_epi_hide",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_epilogue_played",
+        "value": 0
+      }
+    },
+    {
+      "id": "epi_scene_hide",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_epilogue.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_clinic_entrance",
+      "entries": [
+        "epi_hide_in"
+      ],
+      "exits": [
+        "epi_hide_done"
+      ]
+    },
+    {
+      "_comment": "Buried with the case. The same defect D120 fixed on the other three endings and did not fix here: 'bury the case where the FIA does not look' ticked with the splinter still in V's pocket.",
+      "id": "hide_splinter",
+      "type": "remove_item",
+      "item": "ashcache_splinter"
+    },
+    {
+      "id": "mark_epi_hide",
+      "type": "set_fact",
+      "fact": "ashcache_epilogue_played",
+      "value": 1
+    },
+    {
+      "_comment": "All five paths OR-join on this one Succeeded socket.",
+      "id": "quest_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuest",
+      "path": "quests/main_quest/prologue/ash_cache"
+    },
+    {
+      "_comment": "D121. Mara's verdict on what V did with the splinter, wired at the point all four endings already converge rather than four times over inside them. Chained on False exactly like the ending switch above it (br_destroy -> br_absorb -> br_hide), and reading the same ashcache_end_* facts, so the two switches cannot disagree about which ending happened.\n\nFalse is the intimidate route and it short-circuits the whole chain: she sends one message, the same four lines whatever V chose. That sameness is the characterisation - she is squaring a debt with a stranger, not reacting to a friend's decision.",
+      "id": "route_verdict",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_hostile",
+        "value": 0
+      }
+    },
+    {
+      "id": "sms_mara_cold",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_end_cold"
+    },
+    {
+      "id": "br_v_destroy",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_destroy",
+        "value": 1
+      }
+    },
+    {
+      "id": "sms_mara_destroy",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_end_destroy"
+    },
+    {
+      "id": "br_v_absorb",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_absorb",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "The only one of the four where she is frightened rather than relieved or disappointed, and the only one that asks V for something back.",
+      "id": "sms_mara_absorb",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_end_absorb"
+    },
+    {
+      "id": "br_v_blueeyes",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_blueeyes",
+        "value": 1
+      }
+    },
+    {
+      "id": "sms_mara_blueeyes",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_end_blueeyes"
+    },
+    {
+      "_comment": "Tested rather than assumed as the last else, for the reason br_hide gives: a False here means no ending fact was set at all, which is a bug and not a player choice. It routes on to the break check with no message rather than sending the wrong woman's reaction to an ending that did not happen.",
+      "id": "br_v_hide",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_hide",
+        "value": 1
+      }
+    },
+    {
+      "id": "sms_mara_hide",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_end_hide"
+    },
+    {
+      "_comment": "The payoff for opt_break_j - until now the hardest option in Mara's conversation set a fact alongside trust and nothing ever read it. Last in the chain so it arrives after whichever verdict she sent, which is what makes it read as an afterthought she could not help sending. Unreachable on the intimidate route by construction: break is only ever set alongside trusted.",
+      "id": "route_break",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_break",
+        "value": 1
+      }
+    },
+    {
+      "id": "sms_mara_break",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_break"
+    },
+    {
+      "_comment": "=== ACT 7b: the holocall (D124). Mara rings V once the ending has landed and hands over the Cynosure address - the payoff for after_close_1, 'Keep the phone on. One day you'll want the address.'\n\nPlaced HERE, between the ending messages and the landfill aftermath, for two reasons. It has to be after the endings because what she is calling about is what V just did with the splinter; and it has to be before the aftermath because on the absorb and blueeyes routes the aftermath is where she turns up dead. A call from a woman whose body the player has already found would be a bug that reads as a ghost story.\n\nThree tests. mara_dead is the fight; mara_warned is the promise itself, and reading it rather than mara_trusted is what lets the intimidate route get the call too - she gave V the address on that route as well, just with worse grace. mara_called is the replay guard.",
+      "id": "guard_holocall",
+      "type": "condition",
+      "condition": {
+        "all": [
+          {
+            "fact": "ashcache_mara_dead",
+            "value": 0
+          },
+          {
+            "fact": "ashcache_mara_warned",
+            "value": 1
+          },
+          {
+            "fact": "ashcache_mara_called",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "_comment": "Opens the phone. applyPhoneRestriction is left off here and switched ON at the hang-up, which is not a typo: phoneSystem.script's TriggerCall only touches the restriction when the flag is 1, and on the EndCall branch it calls ApplyPhoneCallRestriction(FALSE). So 1 on EndCall is what RELEASES the phone. Vanilla ships exactly this pair - see q112_03_infiltration, Takemura twice.",
+      "id": "holo_start",
+      "type": "phone_call",
+      "phase": "StartCall",
+      "mode": "Audio",
+      "caller": "contacts/ac_contact_mara",
+      "addressee": "contacts/player"
+    },
+    {
+      "_comment": "The conversation itself. 'anchor' pins it to the player rather than to a marker, because by now V could be anywhere in Night City and a scene anchored at the clinic is a scene that may never get to play. No INT/RET net is wired: this scene raises no tier, so there is no gameplay state for an interruption to restore.\n\n'every_ending' is read by tools/replaytest.py only. It says this beat runs whichever ending the player took, so the tool stops counting it once per ending and reporting 4x. Nothing else in the graph claims it, and anything that claims it by accident would be hiding a guard that has stopped reading the ending.",
+      "id": "holo_scene",
+      "type": "scene",
+      "every_ending": true,
+      "file": "mod\\ash_cache\\quest\\ash_cache_holocall.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_clinic_entrance",
+      "anchor": "around_player",
+      "entries": [
+        "holo_in"
+      ],
+      "exits": [
+        "holo_done"
+      ]
+    },
+    {
+      "_comment": "Hangs up and gives the phone back. See holo_start on why this one carries the restriction flag.",
+      "id": "holo_end",
+      "type": "phone_call",
+      "phase": "EndCall",
+      "mode": "Audio",
+      "caller": "contacts/ac_contact_mara",
+      "addressee": "contacts/player"
+    },
+    {
+      "_comment": "Set after the hang-up rather than before the ring, so a save interrupted mid-call rings again rather than losing the address forever. Same rule every replay guard in this graph follows: the marker goes immediately after the effect it guards, never before.",
+      "id": "mark_holocall",
+      "type": "set_fact",
+      "fact": "ashcache_mara_called",
+      "value": 1
+    },
+    {
+      "_comment": "=== ACT 8: the aftermath (D122). Everything below sits between the ending messages and quest_done, so the quest is still OPEN while the landfill objective is up - an objective raised after gameJournalQuest fires Succeeded would be an objective on a completed quest, which the journal UI has no place to draw. The cost is that a player who never drives out there leaves one thread open forever, which is a fair description of the ending anyway.\n\nThree conditions decide whether there is a body at all, cheapest first. She turns up dead in exactly the two endings that leave the cache ALIVE in the world - absorb, where it is in V's head, and blueeyes, where V sold the trail with it. Burn it or bury it and nobody has a reason to go looking for her. Nothing in the text ever says this; it is meant to be found by comparing saves.",
+      "id": "route_body_alive",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_dead",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "She already died in the clinic - there is no landfill beat, and the Hide ending was locked out for the same reason (gate_hide). Falls through.",
+      "id": "route_body_hide",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_hide",
+        "value": 0
+      }
+    },
+    {
+      "id": "route_body_destroy",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_destroy",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "D122. Retire the ending's own description before raising the landfill one. An ending description is never switched off anywhere else - it stays Active until the quest closes, which was invisible while it was the only live paragraph. The aftermath adds a second, and the log panel concatenates every still-Active description into ONE field (D54), so absorb plus landfill would have rendered as a single run-on block. tools/descpanel.py caught it.\n\nOnly these two exist because only these two endings reach the aftermath - see route_body_hide and route_body_destroy just above. Both are now reached by a POSITIVE test: D127 added route_body_blueeyes so that 'no ending fact set at all' falls out of the chain into quest_done instead of into Blue Eyes and a corpse.",
+      "id": "route_body_absorb",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_absorb",
+        "value": 1
+      }
+    },
+    {
+      "id": "desc_end_absorb_off",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_absorb/description"
+    },
+    {
+      "id": "desc_end_blueeyes_off",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph5_resolution/ac_obj_end_blueeyes/description"
+    },
+    {
+      "_comment": "Replay guard around the two irreversible steps only - the notice and the fact that draws the body. The objective and the wait sit OUTSIDE it on purpose: a phase_revision bump on a save that got the message but never drove out there has to be able to put the objective back.",
+      "id": "guard_body",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_body_placed",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "The last message the M. VOSS thread ever sends, and it is not from her.",
+      "id": "sms_mara_ncpd",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_mara/ac_msg_mara/ac_msg_mara_ncpd"
+    },
+    {
+      "_comment": "Doubles as world state: source/glue.json draws the corpse while this is 1. Set here rather than on arrival so the body is in the world before the player is, which is what makes it possible to stumble onto it without the pin.",
+      "id": "mark_body",
+      "type": "set_fact",
+      "fact": "ashcache_mara_body_placed",
+      "value": 1
+    },
+    {
+      "id": "obj_landfill_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_landfill"
+    },
+    {
+      "id": "desc_landfill",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_landfill/description"
+    },
+    {
+      "_comment": "Set by the glue's proximity watch, radius 12, stage 7. The phase parks here - possibly for the rest of the save, which is allowed: six vanilla q305 phases ship with no output node at all.",
+      "id": "wait_landfill",
+      "type": "pause_fact",
+      "fact": "ashcache_at_landfill",
+      "value": 1,
+      "compare": "Equal"
+    },
+    {
+      "id": "guard_autopsy",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_autopsy_given",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "The wound. D121's sidearm deciding how she died: V who handed her the Liberty gets the note that says she emptied it, V who told her to get lost gets the one that says her hands were empty. This is the ONLY read of ashcache_mara_liberty_given outside its own replay guard.",
+      "id": "route_wound",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_liberty_given",
+        "value": 1
+      }
+    },
+    {
+      "id": "give_autopsy_shot",
+      "type": "add_item",
+      "item": "ashcache_mara_autopsy_shot",
+      "notify": true
+    },
+    {
+      "id": "give_autopsy_cut",
+      "type": "add_item",
+      "item": "ashcache_mara_autopsy_cut",
+      "notify": true
+    },
+    {
+      "id": "mark_autopsy",
+      "type": "set_fact",
+      "fact": "ashcache_mara_autopsy_given",
+      "value": 1
+    },
+    {
+      "id": "obj_landfill_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_landfill"
+    },
+    {
+      "id": "desc_landfill_off",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_landfill/description"
+    },
+    {
+      "id": "phase_out",
+      "type": "output",
+      "socket": "Out1",
+      "exit": "Terminating"
+    },
+    {
+      "_comment": "Re-entry guard on give_courier_log. A phase_revision bump re-walks the graph from 'start', and every fact the player has already set still is, so the walk races past every pause_fact to wherever they are - re-granting the courier's audio log on the way. False skips straight to this node's own successor, so the spine is unchanged either way. On a first run the marker is 0 and this is a no-op. Measured by tools/replaytest.py (D50).",
+      "id": "guard_courier_log",
+      "type": "condition",
+      "condition": {
+        "all": [
+          {
+            "fact": "ashcache_courier_shard_taken",
+            "value": 0
+          },
+          {
+            "fact": "ashcache_courier_log_played",
+            "value": 0
+          }
+        ]
+      },
+      "_comment_d110": "D110. Offers the room 7 shard unless it was already taken or the log already read. Not keyed on courier_log_given: a pre-D110 save got the log silently (given=1) and never saw a shard, so it must still get the Take prompt - and then the grant, because a shard is not kept in the inventory (ash_cache_debug trail: courier_log count 0 on every load, read or not), so there is no copy to duplicate (D110b)."
+    },
+    {
+      "_comment": "Sets the give_courier_log marker the instant the grant lands. Immediately after, so an interrupted save cannot hold the item without the marker or the marker without the item.",
+      "id": "mark_courier_log",
+      "type": "set_fact",
+      "fact": "ashcache_courier_log_given",
+      "value": 1
+    },
+    {
+      "_comment": "D110. The courier's shard lies in room 7 as scenery; this scene hangs a Take prompt on it (scene_courier_shard.json, same mechanism as open_box / D102) and blocks until V takes it. Only then is the item granted, so the log is FOUND in the room instead of appearing in the inventory on arrival.",
+      "id": "take_courier_log",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_courier_shard.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_shard_origin",
+      "entries": [
+        "shard_in"
+      ],
+      "exits": [
+        "shard_done"
+      ]
+    },
+    {
+      "_comment": "D110 replay guard: marks the shard as taken so a later phase_revision re-walk does not offer it, or grant the log, again.",
+      "id": "mark_courier_shard_taken",
+      "type": "set_fact",
+      "fact": "ashcache_courier_shard_taken",
+      "value": 1
+    },
+    {
+      "_comment": "Item grants. The engine's own questItemManagerNodeDefinition, so no redscript is involved (rule 1). Each one sits between the beat that hands the object over and whatever follows, so a grant can never be skipped by a branch.",
+      "id": "give_courier_log",
+      "type": "add_item",
+      "item": "ashcache_courier_log",
+      "notify": true
+    },
+    {
+      "_comment": "Re-entry guard on give_mara_journal. A phase_revision bump re-walks the graph from 'start', and every fact the player has already set still is, so the walk races past every pause_fact to wherever they are - re-granting Mara's journal shard on the way. False skips straight to this node's own successor, so the spine is unchanged either way. On a first run the marker is 0 and this is a no-op. Measured by tools/replaytest.py (D50).",
+      "id": "guard_mara_journal",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_mara_journal_given",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "Sets the give_mara_journal marker the instant the grant lands. Immediately after, so an interrupted save cannot hold the item without the marker or the marker without the item.",
+      "id": "mark_mara_journal",
+      "type": "set_fact",
+      "fact": "ashcache_mara_journal_given",
+      "value": 1
+    },
+    {
+      "id": "give_mara_journal",
+      "type": "add_item",
+      "item": "ashcache_mara_journal"
+    },
+    {
+      "_comment": "Re-entry guard on give_splinter. A phase_revision bump re-walks the graph from 'start', and every fact the player has already set still is, so the walk races past every pause_fact to wherever they are - re-granting the splinter on the way. False skips straight to this node's own successor, so the spine is unchanged either way. On a first run the marker is 0 and this is a no-op. Measured by tools/replaytest.py (D50).",
+      "id": "guard_splinter",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_splinter_given",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "D118. The second prompt on the case: opening it and taking what is inside are two acts, and until this node existed the item simply appeared in the inventory of a player still looking at a closed case. Deliberately INSIDE guard_splinter's True branch rather than before it, so the prompt and the grant share one guard - on a re-entry walk with ashcache_splinter_given already 1 the False branch skips both, and nothing can show a prompt for an item the player is already carrying.",
+      "id": "take_chip",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_chip.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_box_origin",
+      "entries": [
+        "chip_in"
+      ],
+      "exits": [
+        "chip_done"
+      ],
+      "_location": "The same marker as open_box, on purpose: one point in the world carries both prompts, and only one of them can be live at a time because the graph is at exactly one of the two nodes."
+    },
+    {
+      "_comment": "Sets the give_splinter marker the instant the grant lands. Immediately after, so an interrupted save cannot hold the item without the marker or the marker without the item.",
+      "id": "mark_splinter",
+      "type": "set_fact",
+      "fact": "ashcache_splinter_given",
+      "value": 1
+    },
+    {
+      "_comment": "The one the player is told about. Three of the four endings act on this object, so its arrival is a beat in itself and gets the notification vanilla suppresses on its own grants.",
+      "id": "give_splinter",
+      "type": "add_item",
+      "item": "ashcache_splinter",
+      "notify": true
+    },
+    {
+      "_comment": "Re-entry guard on give_fia_key. A phase_revision bump re-walks the graph from 'start', and every fact the player has already set still is, so the walk races past every pause_fact to wherever they are - re-granting the FIA master key on the way. False skips straight to this node's own successor, so the spine is unchanged either way. On a first run the marker is 0 and this is a no-op. Measured by tools/replaytest.py (D50).",
+      "id": "guard_fia_key",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_fia_key_given",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "Sets the give_fia_key marker the instant the grant lands. Immediately after, so an interrupted save cannot hold the item without the marker or the marker without the item.",
+      "id": "mark_fia_key",
+      "type": "set_fact",
+      "fact": "ashcache_fia_key_given",
+      "value": 1
+    },
+    {
+      "_comment": "Hide ending only. Mara has to be alive to hand it over - br_hide already tests that (OI-1), so sitting behind it needs no extra gate.",
+      "id": "give_fia_key",
+      "type": "add_item",
+      "item": "ashcache_fia_master_key",
+      "notify": true
+    },
+    {
+      "_comment": "D127. The aftermath used to reach Blue Eyes by elimination: not hide, not destroy, not absorb, therefore blueeyes, therefore Mara turns up dead. That made 'she is dead' the DEFAULT outcome of the whole chain - any state in which no ending fact is set at all reads as the one ending that kills her, and the player is shown a body for a choice they did not make. A positive test costs one node and removes the whole class.\n\nAppended at the end of the nodes array rather than written beside route_body_absorb on purpose: gen_questphase numbers nodes by their position in this list (enumerate(specs)), so inserting one in the middle renumbers every node after it and a save parked mid-phase would resume against the wrong ids. Position in this array is not meaning - the links below are what wire the graph.",
+      "id": "route_body_blueeyes",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_blueeyes",
+        "value": 1
+      }
+    },
+    {
+      "id": "close_clinic_entrance",
+      "_comment": "D128. The counterweight to open_clinic_entrance. The quest used to ForceOpen this door in act 2 and never touch it again, so Farida's clinic stood open for the rest of the save - including for q303/q304, the Phantom Liberty mission that dresses this same prefab and installs V's facial implant there. Closing it when the quest starts means the quest owns the door for exactly its own duration: shut at the opening call, opened on arrival, left open afterwards. Appended to the end of the nodes array, never inserted: gen_questphase numbers nodes by position, so an insertion would renumber every node after it.",
+      "type": "device_action",
+      "device": "#q303_dvc_door_clinic_entrance",
+      "controller": "DoorControllerPS",
+      "action": "ForceClose"
+    },
+    {
+      "id": "lock_clinic_entrance",
+      "_comment": "ForceLock rather than relying on the close alone: DoorControllerPS.OnQuestForceClose (vanilla_scripts.reds:135551) sets isOpened false and leaves isLocked untouched, and an unlocked vanilla door opens on approach - which is the 'can be freely entered' the close was supposed to stop. Order matters only in that ForceLock does not reopen: close first, then lock. Both are undone in one call by the act 2 ForceOpen (:135528 sets opened, unlocked, unsealed).",
+      "type": "device_action",
+      "device": "#q303_dvc_door_clinic_entrance",
+      "controller": "DoorControllerPS",
+      "action": "ForceLock"
+    },
+    {
+      "id": "close_clinic_inner",
+      "_comment": "The inner double door, closed for the same reason and at the same moment as the street door. Symmetry with the open pair is the invariant worth keeping: whatever this quest shuts, the same two ForceOpen nodes reopen.",
+      "type": "device_action",
+      "device": "#q303_dvc_door_clinic",
+      "controller": "DoorControllerPS",
+      "action": "ForceClose"
+    },
+    {
+      "id": "lock_clinic_inner",
+      "_comment": "Locked with the entrance so the pair is reversed exactly by the pair that opens it.",
+      "type": "device_action",
+      "device": "#q303_dvc_door_clinic",
+      "controller": "DoorControllerPS",
+      "action": "ForceLock"
+    },
+    {
+      "_comment": "D129. APPENDED, never inserted: gen_questphase numbers nodes by their position in this array, so an insert renumbers every node after it and a save parked mid-phase resumes against the wrong ids. D127 paid for that lesson.",
+      "id": "obj_cynosure_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_cynosure"
+    },
+    {
+      "id": "desc_cynosure",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_cynosure/description"
+    },
+    {
+      "_comment": "Set by the glue's 12 m watch on ac_cynosure_shaft. The phase parks here for as long as the player likes - including forever, which is a legitimate way to finish this quest. The journal already reads complete (D122's shape).",
+      "id": "wait_cynosure",
+      "type": "pause_fact",
+      "fact": "ashcache_at_cynosure",
+      "value": 1,
+      "compare": "Equal"
+    },
+    {
+      "_comment": "Replay guard (D50). A phase_revision bump re-walks this graph from the start, so the one irreversible node below has to be able to say 'already done'.",
+      "id": "guard_cynosure_seal",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cynosure_seal_given",
+        "value": 0
+      }
+    },
+    {
+      "id": "give_cynosure_seal",
+      "type": "add_item",
+      "item": "ashcache_cynosure_seal",
+      "notify": true
+    },
+    {
+      "id": "mark_cynosure_seal",
+      "type": "set_fact",
+      "fact": "ashcache_cynosure_seal_given",
+      "value": 1
+    },
+    {
+      "id": "obj_cynosure_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_cynosure"
+    },
+    {
+      "id": "desc_cynosure_off",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_cynosure/description"
+    },
+    {
+      "_comment": "D130. APPENDED, never inserted - gen_questphase numbers nodes by position, so an insert renumbers everything after it (D127, D129).\n\nThe aftermath's second leg. Stage 8 exists so the meeting's arrival watch is not armed while the player is walking up to the shaft head: both sit on the same lot, and on one stage the meeting would start on the step that grants the closure order.",
+      "id": "progress_8",
+      "type": "set_fact",
+      "fact": "ashcache_progress",
+      "value": 8
+    },
+    {
+      "_comment": "He asks for the meeting the moment V has the closure order in hand - which is the point of the message: he was watching the shaft, not V.",
+      "id": "sms_meet",
+      "type": "journal_entry",
+      "class": "gameJournalPhoneMessage",
+      "path": "contacts/ac_contact_blueeyes/ac_msg_blueeyes/ac_msg_blueeyes_03"
+    },
+    {
+      "id": "obj_meet_on",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_meet"
+    },
+    {
+      "id": "desc_meet",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_meet/description"
+    },
+    {
+      "_comment": "Set by the glue's 25 m watch on ac_motel_entrance, stage 8. Parks here for as long as the player likes, including forever - the journal already reads complete (D122's shape).",
+      "id": "wait_meet",
+      "type": "pause_fact",
+      "fact": "ashcache_at_blueeyes",
+      "value": 1,
+      "compare": "Equal"
+    },
+    {
+      "_comment": "Replay guard (D50). A phase_revision bump re-walks this graph from the start; without this the conversation plays a second time.",
+      "id": "guard_meet",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_meeting_played",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "Which door of the scene opens. Four POSITIVE tests and no elimination branch: D127 was the bill for reaching an outcome by 'not the other three', and a state with no ending fact set at all must reach no door rather than the last one. Same facts as the ending switch reads, so the two cannot disagree about what V did.",
+      "id": "rt_meet_sell",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_blueeyes",
+        "value": 1
+      }
+    },
+    {
+      "id": "rt_meet_absorb",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_absorb",
+        "value": 1
+      }
+    },
+    {
+      "id": "rt_meet_destroy",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_destroy",
+        "value": 1
+      }
+    },
+    {
+      "id": "rt_meet_hide",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_end_hide",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "source/scene_blueeyes.json. ONE node with four entries and one exit, the scene_aftertalk.json shape: what D120 could not do with the epilogue was share a node with four live EXIT sockets, which is a different thing. Anchored on #ac_motel_entrance - a VERIFIED coordinate (D9), which is also where the actor spawns (D87) and therefore the pavement he is standing on. An unverified position is refused here by validate.py, for both reasons at once.\n\n'every_ending' is read by tools/replaytest.py only, and means what it says on holo_scene: this beat plays whichever ending the player took, so the tool credits it once instead of summing the four counterfactual walks and reporting 4x. The claim is true by construction here - four positive route conditions, exactly one of which can hold - and the replay guard above it is counted separately, so nothing is being hidden.",
+      "id": "meet_scene",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_blueeyes.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_motel_entrance",
+      "entries": [
+        "meet_sell_in",
+        "meet_absorb_in",
+        "meet_destroy_in",
+        "meet_hide_in"
+      ],
+      "exits": [
+        "meet_done"
+      ],
+      "every_ending": true
+    },
+    {
+      "id": "mark_meet",
+      "type": "set_fact",
+      "fact": "ashcache_meeting_played",
+      "value": 1
+    },
+    {
+      "id": "obj_meet_done",
+      "type": "journal_quest",
+      "class": "gameJournalQuestObjective",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_meet"
+    },
+    {
+      "id": "desc_meet_off",
+      "type": "journal_entry",
+      "class": "gameJournalQuestDescription",
+      "path": "quests/main_quest/prologue/ash_cache/ac_ph6_aftermath/ac_obj_meet/description"
+    },
+    {
+      "_comment": "D131. APPENDED, never inserted - gen_questphase numbers nodes by position (D127, D129, D130).\n\nThe shaft head stops being a silent item grant and becomes a scene the player works. This guard is the whole beat's replay guard: it is set the moment the scene exits, whatever the player did or did not do on the site, so a phase_revision re-walk cannot put V back on the pad. guard_cynosure_seal below stays exactly where it was and keeps its own job - the one irreversible node needs its own guard (D50).",
+      "id": "guard_shaft_site",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cynosure_site",
+        "value": 0
+      }
+    },
+    {
+      "_comment": "source/scene_cynosure.json. V alone, a world-attached prompt hub, and options that loop back to it - scene_terminal.json's shape, which is the only one in this quest that lets a player work a location in whatever order they like and stop when they are done.\n\nAnchored on #ac_motel_entrance because it is VERIFIED (D9) and validate.py refuses a scene origin on a position nobody has stood on. ac_cynosure_shaft carries that same coordinate today, so the map pin, the 12 m arrival watch and this prompt are one point; a stood-on capture at the real shaft head moves all three at once.\n\nRaises the tier, so Default INT / Default RET are wired to the shared decide_int_wait / decide_ret_wait pair, like every other tier-raising scene here.",
+      "id": "shaft_scene",
+      "type": "scene",
+      "file": "mod\\ash_cache\\quest\\ash_cache_cynosure.scene",
+      "location": "$/03_night_city/ash_cache/#AshCache/#ac_motel_entrance",
+      "entries": [
+        "shaft_in",
+        "shaft_return"
+      ],
+      "exits": [
+        "shaft_done",
+        "shaft_descend"
+      ]
+    },
+    {
+      "id": "mark_shaft_site",
+      "type": "set_fact",
+      "fact": "ashcache_cynosure_site",
+      "value": 1
+    },
+    {
+      "id": "tp_cyn_down",
+      "type": "teleport",
+      "destination": "#ac_cyn_entry_tp",
+      "_comment": "D193. Shaft 14 descent. The shaft head is by the motel; the facility lies ~340 m away beneath the clinic (D192). The fade abstracts the service route between them. A dedicated landing marker, offset 0."
+    },
+    {
+      "id": "set_cyn_descended",
+      "type": "set_fact",
+      "fact": "ashcache_cyn_descended",
+      "value": 1,
+      "_comment": "After the teleport, never before it: a save must not say V went down while V still stands at the shaft."
+    },
+    {
+      "id": "set_cyn_phase_entry",
+      "type": "set_fact",
+      "fact": "ashcache_cyn_phase",
+      "value": 20
+    },
+    {
+      "id": "reset_cyn_escaped",
+      "type": "set_fact",
+      "fact": "ashcache_cyn_escaped",
+      "value": 0,
+      "_comment": "Re-arms the glue's return watch (rearm) for this descent."
+    },
+    {
+      "id": "wait_cyn_escape",
+      "type": "pause_fact",
+      "fact": "ashcache_cyn_escaped",
+      "value": 1,
+      "_comment": "D193, M1 SCAFFOLDING: parks until V reaches the end of the Escape corridor."
+    },
+    {
+      "id": "tp_cyn_up",
+      "type": "teleport",
+      "destination": "#ac_cyn_shaft_return_tp",
+      "_comment": "D193, M1 SCAFFOLDING. Back to the shaft head, then straight back into the shaft scene, so V can go down again or head out. The M4 ending flow owns this transition later."
+    },
+    {
+      "_comment": "The scene sets facts; the graph hands out the objects. A scene cannot grant an item, and putting the grant here also means both shards arrive as ordinary notifications after V steps back rather than mid-conversation.",
+      "id": "check_plate",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cynosure_plate",
+        "value": 1
+      }
+    },
+    {
+      "id": "check_port",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cynosure_port",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "D50: the second irreversible node on this beat gets the same treatment as the first.",
+      "id": "guard_cynosure_survey",
+      "type": "condition",
+      "condition": {
+        "fact": "ashcache_cynosure_survey_given",
+        "value": 0
+      }
+    },
+    {
+      "id": "give_cynosure_survey",
+      "type": "add_item",
+      "item": "ashcache_cynosure_survey",
+      "notify": true
+    },
+    {
+      "id": "mark_cynosure_survey",
+      "type": "set_fact",
+      "fact": "ashcache_cynosure_survey_given",
+      "value": 1
+    },
+    {
+      "id": "wait_terminal",
+      "type": "pause_fact",
+      "fact": "ashcache_terminal_read",
+      "_comment": "D158. The terminal no longer waits for Mara: desc_find_box forks it off beside the case (same shape as the optional journal/cabinet branches), so V can download the archive whenever. The main walk joins here, after Mara, and goes on to progress 5 only once the archive is read. Appended at the END of the node array so no existing node id moves."
+    },
+    {
+      "_comment": "D185. The real close. quest_done fires Succeeded after the landfill, but obj_cynosure_on right behind it sets a child objective Active, and the journal propagates that up - the quest flips back to Active and nothing ever succeeded it again, so a finished playthrough showed an open quest forever. Every route runs cynosure -> meet -> desc_meet_off, so closing here closes all of them. Appended, never inserted (see route_body_blueeyes).",
+      "id": "quest_final",
+      "type": "journal_quest",
+      "class": "gameJournalQuest",
+      "path": "quests/main_quest/prologue/ash_cache"
+    }
+  ],
+  "links": [
+    [
+      "start",
+      "await_start"
+    ],
+    [
+      "await_start",
+      "guard_hook"
+    ],
+    [
+      "guard_hook:True",
+      "hook_start"
+    ],
+    [
+      "hook_start",
+      "hook_scene",
+      "hook_in"
+    ],
+    [
+      "hook_scene:hook_done",
+      "hook_end"
+    ],
+    [
+      "hook_end",
+      "mark_hook"
+    ],
+    [
+      "mark_hook",
+      "quest_active",
+      "Active"
+    ],
+    [
+      "guard_hook:False",
+      "quest_active",
+      "Active"
+    ],
+    [
+      "quest_active",
+      "close_clinic_entrance"
+    ],
+    [
+      "close_clinic_entrance",
+      "lock_clinic_entrance"
+    ],
+    [
+      "lock_clinic_entrance",
+      "close_clinic_inner"
+    ],
+    [
+      "close_clinic_inner",
+      "lock_clinic_inner"
+    ],
+    [
+      "lock_clinic_inner",
+      "obj_dogtown_on",
+      "Active"
+    ],
+    [
+      "desc_goto_dogtown",
+      "progress_1"
+    ],
+    [
+      "progress_1",
+      "await_motel"
+    ],
+    [
+      "await_motel",
+      "obj_dogtown_done",
+      "Succeeded"
+    ],
+    [
+      "obj_dogtown_done",
+      "desc_goto_dogtown_off",
+      "Inactive"
+    ],
+    [
+      "desc_goto_dogtown_off",
+      "obj_room_on",
+      "Active"
+    ],
+    [
+      "desc_search_room",
+      "guard_courier_log"
+    ],
+    [
+      "give_courier_log",
+      "mark_courier_log"
+    ],
+    [
+      "obj_motel_on",
+      "await_room"
+    ],
+    [
+      "await_room",
+      "obj_room_done",
+      "Succeeded"
+    ],
+    [
+      "obj_room_done",
+      "desc_search_room_off",
+      "Inactive"
+    ],
+    [
+      "desc_search_room_off",
+      "sms_blueeyes",
+      "Active"
+    ],
+    [
+      "sms_blueeyes",
+      "progress_2"
+    ],
+    [
+      "progress_2",
+      "obj_clinic_on",
+      "Active"
+    ],
+    [
+      "desc_goto_clinic",
+      "await_clinic"
+    ],
+    [
+      "await_clinic",
+      "open_clinic_entrance"
+    ],
+    [
+      "open_clinic_entrance",
+      "open_clinic_inner"
+    ],
+    [
+      "open_clinic_inner",
+      "obj_clinic_done",
+      "Succeeded"
+    ],
+    [
+      "obj_clinic_done",
+      "desc_goto_clinic_off",
+      "Inactive"
+    ],
+    [
+      "desc_goto_clinic_off",
+      "progress_3"
+    ],
+    [
+      "progress_3",
+      "obj_box_on",
+      "Active"
+    ],
+    [
+      "desc_find_box",
+      "obj_journal_on",
+      "Active"
+    ],
+    [
+      "obj_journal_on",
+      "guard_mara_journal"
+    ],
+    [
+      "give_mara_journal",
+      "mark_mara_journal"
+    ],
+    [
+      "obj_cabinet_on",
+      "opt_wait_journal"
+    ],
+    [
+      "obj_cabinet_on",
+      "opt_wait_cabinet"
+    ],
+    [
+      "opt_wait_journal",
+      "obj_journal_done",
+      "Succeeded"
+    ],
+    [
+      "opt_wait_cabinet",
+      "obj_cabinet_done",
+      "Succeeded"
+    ],
+    [
+      "desc_find_box",
+      "guard_box"
+    ],
+    [
+      "desc_find_box",
+      "obj_terminal_on",
+      "Active"
+    ],
+    [
+      "guard_box:True",
+      "open_box",
+      "box_in"
+    ],
+    [
+      "guard_box:False",
+      "box_opened_set"
+    ],
+    [
+      "open_box:box_done",
+      "box_opened_set"
+    ],
+    [
+      "obj_box_done",
+      "desc_find_box_off",
+      "Inactive"
+    ],
+    [
+      "desc_find_box_off",
+      "progress_4"
+    ],
+    [
+      "give_splinter",
+      "mark_splinter"
+    ],
+    [
+      "progress_4",
+      "obj_mara_on",
+      "Active"
+    ],
+    [
+      "desc_talk_mara",
+      "guard_meet_mara"
+    ],
+    [
+      "route_mara:True",
+      "meet_mara",
+      "mara_meet_in_journal"
+    ],
+    [
+      "route_mara:False",
+      "meet_mara",
+      "mara_meet_in"
+    ],
+    [
+      "obj_mara_done",
+      "desc_talk_mara_off",
+      "Inactive"
+    ],
+    [
+      "desc_terminal",
+      "guard_terminal"
+    ],
+    [
+      "guard_terminal:True",
+      "terminal_menu",
+      "menu_in"
+    ],
+    [
+      "terminal_menu:menu_done",
+      "give_archive"
+    ],
+    [
+      "give_archive",
+      "terminal_read_set"
+    ],
+    [
+      "guard_terminal:False",
+      "obj_terminal_done",
+      "Succeeded"
+    ],
+    [
+      "obj_terminal_done",
+      "desc_terminal_off",
+      "Inactive"
+    ],
+    [
+      "progress_5",
+      "obj_survive_on",
+      "Active"
+    ],
+    [
+      "desc_survive",
+      "guard_cleanup"
+    ],
+    [
+      "guard_cleanup:True",
+      "spawn_fia"
+    ],
+    [
+      "guard_cleanup:False",
+      "await_cleanup"
+    ],
+    [
+      "spawn_fia",
+      "await_fia_spawned"
+    ],
+    [
+      "await_fia_spawned",
+      "fia_attack_1"
+    ],
+    [
+      "await_fia_spawned",
+      "fia_attack_2"
+    ],
+    [
+      "await_fia_spawned",
+      "fia_attack_3"
+    ],
+    [
+      "await_fia_spawned",
+      "await_fia_dead"
+    ],
+    [
+      "fia_attack_1",
+      "fia_tick_1"
+    ],
+    [
+      "fia_tick_1",
+      "fia_fighting_1"
+    ],
+    [
+      "fia_fighting_1:True",
+      "fia_attack_1"
+    ],
+    [
+      "fia_attack_2",
+      "fia_tick_2"
+    ],
+    [
+      "fia_tick_2",
+      "fia_fighting_2"
+    ],
+    [
+      "fia_fighting_2:True",
+      "fia_attack_2"
+    ],
+    [
+      "fia_attack_3",
+      "fia_tick_3"
+    ],
+    [
+      "fia_tick_3",
+      "fia_fighting_3"
+    ],
+    [
+      "fia_fighting_3:True",
+      "fia_attack_3"
+    ],
+    [
+      "await_fia_dead",
+      "cleanup_set"
+    ],
+    [
+      "cleanup_set",
+      "await_cleanup"
+    ],
+    [
+      "await_cleanup",
+      "obj_survive_done",
+      "Succeeded"
+    ],
+    [
+      "obj_survive_done",
+      "desc_survive_off",
+      "Inactive"
+    ],
+    [
+      "desc_survive_off",
+      "progress_6"
+    ],
+    [
+      "progress_6",
+      "guard_aftertalk"
+    ],
+    [
+      "guard_aftertalk:True",
+      "route_aftertalk"
+    ],
+    [
+      "guard_aftertalk:False",
+      "gate_hide"
+    ],
+    [
+      "route_aftertalk:True",
+      "aftertalk_scene",
+      "after_in"
+    ],
+    [
+      "route_aftertalk:False",
+      "aftertalk_scene",
+      "after_in_cold"
+    ],
+    [
+      "aftertalk_scene:after_done",
+      "gate_hide"
+    ],
+    [
+      "aftertalk_scene:Default INT",
+      "decide_int_wait"
+    ],
+    [
+      "aftertalk_scene:Default RET",
+      "decide_ret_wait"
+    ],
+    [
+      "gate_hide:True",
+      "hide_available"
+    ],
+    [
+      "hide_available",
+      "obj_decide_on",
+      "Active"
+    ],
+    [
+      "gate_hide:False",
+      "obj_decide_on",
+      "Active"
+    ],
+    [
+      "desc_decide",
+      "guard_decide"
+    ],
+    [
+      "route_hide:True",
+      "decide_scene",
+      "decide_in_hide"
+    ],
+    [
+      "route_hide:False",
+      "decide_scene",
+      "decide_in"
+    ],
+    [
+      "decide_scene:decide_done",
+      "obj_decide_done",
+      "Succeeded"
+    ],
+    [
+      "obj_decide_done",
+      "desc_decide_off",
+      "Inactive"
+    ],
+    [
+      "desc_decide_off",
+      "progress_7"
+    ],
+    [
+      "progress_7",
+      "br_destroy"
+    ],
+    [
+      "br_destroy:True",
+      "end_destroy_on",
+      "Active"
+    ],
+    [
+      "br_destroy:False",
+      "br_absorb"
+    ],
+    [
+      "br_absorb:True",
+      "end_absorb_on",
+      "Active"
+    ],
+    [
+      "br_absorb:False",
+      "br_blueeyes"
+    ],
+    [
+      "br_blueeyes:True",
+      "end_blueeyes_on",
+      "Active"
+    ],
+    [
+      "br_blueeyes:False",
+      "br_hide"
+    ],
+    [
+      "br_hide:True",
+      "guard_fia_key"
+    ],
+    [
+      "give_fia_key",
+      "mark_fia_key"
+    ],
+    [
+      "br_hide:False",
+      "quest_done",
+      "Succeeded"
+    ],
+    [
+      "quest_done",
+      "obj_cynosure_on",
+      "Active"
+    ],
+    [
+      "obj_cynosure_on",
+      "desc_cynosure",
+      "Active"
+    ],
+    [
+      "desc_cynosure",
+      "wait_cynosure"
+    ],
+    [
+      "wait_cynosure",
+      "guard_shaft_site"
+    ],
+    [
+      "guard_cynosure_seal:True",
+      "give_cynosure_seal"
+    ],
+    [
+      "give_cynosure_seal",
+      "mark_cynosure_seal"
+    ],
+    [
+      "mark_cynosure_seal",
+      "check_port"
+    ],
+    [
+      "guard_cynosure_seal:False",
+      "check_port"
+    ],
+    [
+      "guard_shaft_site:True",
+      "shaft_scene",
+      "shaft_in"
+    ],
+    [
+      "guard_shaft_site:False",
+      "obj_cynosure_done",
+      "Succeeded"
+    ],
+    [
+      "shaft_scene:shaft_done",
+      "mark_shaft_site"
+    ],
+    [
+      "shaft_scene:Default INT",
+      "decide_int_wait"
+    ],
+    [
+      "shaft_scene:Default RET",
+      "decide_ret_wait"
+    ],
+    [
+      "mark_shaft_site",
+      "check_plate"
+    ],
+    [
+      "check_plate:True",
+      "guard_cynosure_seal"
+    ],
+    [
+      "check_plate:False",
+      "check_port"
+    ],
+    [
+      "check_port:True",
+      "guard_cynosure_survey"
+    ],
+    [
+      "check_port:False",
+      "obj_cynosure_done",
+      "Succeeded"
+    ],
+    [
+      "guard_cynosure_survey:True",
+      "give_cynosure_survey"
+    ],
+    [
+      "guard_cynosure_survey:False",
+      "obj_cynosure_done",
+      "Succeeded"
+    ],
+    [
+      "give_cynosure_survey",
+      "mark_cynosure_survey"
+    ],
+    [
+      "mark_cynosure_survey",
+      "obj_cynosure_done",
+      "Succeeded"
+    ],
+    [
+      "obj_cynosure_done",
+      "desc_cynosure_off",
+      "Inactive"
+    ],
+    [
+      "desc_cynosure_off",
+      "progress_8"
+    ],
+    [
+      "progress_8",
+      "sms_meet",
+      "Active"
+    ],
+    [
+      "sms_meet",
+      "obj_meet_on",
+      "Active"
+    ],
+    [
+      "obj_meet_on",
+      "desc_meet",
+      "Active"
+    ],
+    [
+      "desc_meet",
+      "wait_meet"
+    ],
+    [
+      "wait_meet",
+      "guard_meet"
+    ],
+    [
+      "guard_meet:True",
+      "rt_meet_sell"
+    ],
+    [
+      "guard_meet:False",
+      "obj_meet_done",
+      "Succeeded"
+    ],
+    [
+      "rt_meet_sell:True",
+      "meet_scene",
+      "meet_sell_in"
+    ],
+    [
+      "rt_meet_sell:False",
+      "rt_meet_absorb"
+    ],
+    [
+      "rt_meet_absorb:True",
+      "meet_scene",
+      "meet_absorb_in"
+    ],
+    [
+      "rt_meet_absorb:False",
+      "rt_meet_destroy"
+    ],
+    [
+      "rt_meet_destroy:True",
+      "meet_scene",
+      "meet_destroy_in"
+    ],
+    [
+      "rt_meet_destroy:False",
+      "rt_meet_hide"
+    ],
+    [
+      "rt_meet_hide:True",
+      "meet_scene",
+      "meet_hide_in"
+    ],
+    [
+      "rt_meet_hide:False",
+      "obj_meet_done",
+      "Succeeded"
+    ],
+    [
+      "meet_scene:meet_done",
+      "mark_meet"
+    ],
+    [
+      "meet_scene:Default INT",
+      "decide_int_wait"
+    ],
+    [
+      "meet_scene:Default RET",
+      "decide_ret_wait"
+    ],
+    [
+      "mark_meet",
+      "obj_meet_done",
+      "Succeeded"
+    ],
+    [
+      "obj_meet_done",
+      "desc_meet_off",
+      "Inactive"
+    ],
+    [
+      "desc_meet_off",
+      "quest_final",
+      "Succeeded"
+    ],
+    [
+      "quest_final",
+      "phase_out"
+    ],
+    [
+      "meet_mara:Default INT",
+      "mara_int_wait"
+    ],
+    [
+      "mara_int_wait",
+      "mara_int_tier"
+    ],
+    [
+      "meet_mara:Default RET",
+      "mara_ret_wait"
+    ],
+    [
+      "mara_ret_wait",
+      "mara_ret_tier"
+    ],
+    [
+      "decide_scene:Default INT",
+      "decide_int_wait"
+    ],
+    [
+      "decide_int_wait",
+      "decide_int_tier"
+    ],
+    [
+      "decide_scene:Default RET",
+      "decide_ret_wait"
+    ],
+    [
+      "decide_ret_wait",
+      "decide_ret_tier"
+    ],
+    [
+      "obj_dogtown_on",
+      "desc_goto_dogtown",
+      "Active"
+    ],
+    [
+      "obj_room_on",
+      "desc_search_room",
+      "Active"
+    ],
+    [
+      "obj_clinic_on",
+      "desc_goto_clinic",
+      "Active"
+    ],
+    [
+      "obj_box_on",
+      "desc_find_box",
+      "Active"
+    ],
+    [
+      "obj_mara_on",
+      "desc_talk_mara",
+      "Active"
+    ],
+    [
+      "obj_terminal_on",
+      "desc_terminal",
+      "Active"
+    ],
+    [
+      "obj_survive_on",
+      "desc_survive",
+      "Active"
+    ],
+    [
+      "obj_decide_on",
+      "desc_decide",
+      "Active"
+    ],
+    [
+      "end_destroy_on",
+      "desc_end_destroy",
+      "Active"
+    ],
+    [
+      "end_absorb_on",
+      "desc_end_absorb",
+      "Active"
+    ],
+    [
+      "end_blueeyes_on",
+      "desc_end_blueeyes",
+      "Active"
+    ],
+    [
+      "end_hide_on",
+      "desc_end_hide",
+      "Active"
+    ],
+    [
+      "guard_courier_log:True",
+      "take_courier_log",
+      "shard_in"
+    ],
+    [
+      "take_courier_log:shard_done",
+      "mark_courier_shard_taken"
+    ],
+    [
+      "mark_courier_shard_taken",
+      "give_courier_log"
+    ],
+    [
+      "guard_courier_log:False",
+      "obj_motel_on",
+      "Active"
+    ],
+    [
+      "mark_courier_log",
+      "obj_motel_on",
+      "Active"
+    ],
+    [
+      "guard_mara_journal:True",
+      "give_mara_journal"
+    ],
+    [
+      "guard_mara_journal:False",
+      "obj_cabinet_on",
+      "Active"
+    ],
+    [
+      "mark_mara_journal",
+      "obj_cabinet_on",
+      "Active"
+    ],
+    [
+      "guard_splinter:True",
+      "take_chip",
+      "chip_in"
+    ],
+    [
+      "take_chip:chip_done",
+      "give_splinter"
+    ],
+    [
+      "guard_splinter:False",
+      "obj_box_done",
+      "Succeeded"
+    ],
+    [
+      "mark_splinter",
+      "obj_box_done",
+      "Succeeded"
+    ],
+    [
+      "guard_fia_key:True",
+      "give_fia_key"
+    ],
+    [
+      "guard_fia_key:False",
+      "end_hide_on",
+      "Active"
+    ],
+    [
+      "mark_fia_key",
+      "end_hide_on",
+      "Active"
+    ],
+    [
+      "guard_meet_mara:True",
+      "route_mara"
+    ],
+    [
+      "guard_meet_mara:False",
+      "obj_mara_done",
+      "Succeeded"
+    ],
+    [
+      "guard_decide:True",
+      "route_hide"
+    ],
+    [
+      "guard_decide:False",
+      "obj_decide_done",
+      "Succeeded"
+    ],
+    [
+      "box_opened_set",
+      "guard_splinter"
+    ],
+    [
+      "terminal_read_set",
+      "obj_terminal_done",
+      "Succeeded"
+    ],
+    [
+      "desc_end_destroy",
+      "guard_epi_destroy"
+    ],
+    [
+      "guard_epi_destroy:True",
+      "epi_scene_destroy",
+      "epi_destroy_in"
+    ],
+    [
+      "guard_epi_destroy:False",
+      "end_destroy_done",
+      "Succeeded"
+    ],
+    [
+      "epi_scene_destroy:epi_destroy_done",
+      "burn_splinter"
+    ],
+    [
+      "burn_splinter",
+      "mark_epi_destroy"
+    ],
+    [
+      "mark_epi_destroy",
+      "end_destroy_done",
+      "Succeeded"
+    ],
+    [
+      "desc_end_absorb",
+      "guard_epi_absorb"
+    ],
+    [
+      "guard_epi_absorb:True",
+      "epi_scene_absorb",
+      "epi_absorb_in"
+    ],
+    [
+      "guard_epi_absorb:False",
+      "end_absorb_done",
+      "Succeeded"
+    ],
+    [
+      "epi_scene_absorb:epi_absorb_done",
+      "absorb_splinter"
+    ],
+    [
+      "absorb_splinter",
+      "mark_epi_absorb"
+    ],
+    [
+      "mark_epi_absorb",
+      "end_absorb_done",
+      "Succeeded"
+    ],
+    [
+      "desc_end_blueeyes",
+      "guard_epi_sell"
+    ],
+    [
+      "guard_epi_sell:True",
+      "epi_scene_sell",
+      "epi_sell_in"
+    ],
+    [
+      "guard_epi_sell:False",
+      "end_blueeyes_done",
+      "Succeeded"
+    ],
+    [
+      "epi_scene_sell:epi_sell_done",
+      "sell_splinter"
+    ],
+    [
+      "sell_splinter",
+      "pay_blueeyes"
+    ],
+    [
+      "pay_blueeyes",
+      "sms_blueeyes_paid",
+      "Active"
+    ],
+    [
+      "sms_blueeyes_paid",
+      "mark_epi_sell"
+    ],
+    [
+      "mark_epi_sell",
+      "end_blueeyes_done",
+      "Succeeded"
+    ],
+    [
+      "epi_scene_destroy:Default INT",
+      "decide_int_wait"
+    ],
+    [
+      "epi_scene_destroy:Default RET",
+      "decide_ret_wait"
+    ],
+    [
+      "epi_scene_absorb:Default INT",
+      "decide_int_wait"
+    ],
+    [
+      "epi_scene_absorb:Default RET",
+      "decide_ret_wait"
+    ],
+    [
+      "epi_scene_sell:Default INT",
+      "decide_int_wait"
+    ],
+    [
+      "epi_scene_sell:Default RET",
+      "decide_ret_wait"
+    ],
+    [
+      "meet_mara:mara_done",
+      "route_gift"
+    ],
+    [
+      "route_gift:True",
+      "guard_liberty"
+    ],
+    [
+      "route_gift:False",
+      "obj_mara_done",
+      "Succeeded"
+    ],
+    [
+      "guard_liberty:True",
+      "give_liberty"
+    ],
+    [
+      "guard_liberty:False",
+      "obj_mara_done",
+      "Succeeded"
+    ],
+    [
+      "give_liberty",
+      "mark_liberty"
+    ],
+    [
+      "mark_liberty",
+      "obj_mara_done",
+      "Succeeded"
+    ],
+    [
+      "await_fia_spawned",
+      "route_mara_fight"
+    ],
+    [
+      "route_mara_fight:True",
+      "sms_mara_fight",
+      "Active"
+    ],
+    [
+      "route_mara_fight:False",
+      "sms_mara_fight_cold",
+      "Active"
+    ],
+    [
+      "desc_end_hide",
+      "guard_epi_hide"
+    ],
+    [
+      "guard_epi_hide:True",
+      "epi_scene_hide",
+      "epi_hide_in"
+    ],
+    [
+      "guard_epi_hide:False",
+      "end_hide_done",
+      "Succeeded"
+    ],
+    [
+      "epi_scene_hide:epi_hide_done",
+      "hide_splinter"
+    ],
+    [
+      "hide_splinter",
+      "mark_epi_hide"
+    ],
+    [
+      "mark_epi_hide",
+      "end_hide_done",
+      "Succeeded"
+    ],
+    [
+      "epi_scene_hide:Default INT",
+      "decide_int_wait"
+    ],
+    [
+      "epi_scene_hide:Default RET",
+      "decide_ret_wait"
+    ],
+    [
+      "end_destroy_done",
+      "route_verdict"
+    ],
+    [
+      "end_absorb_done",
+      "route_verdict"
+    ],
+    [
+      "end_blueeyes_done",
+      "route_verdict"
+    ],
+    [
+      "end_hide_done",
+      "route_verdict"
+    ],
+    [
+      "route_verdict:False",
+      "sms_mara_cold",
+      "Active"
+    ],
+    [
+      "route_verdict:True",
+      "br_v_destroy"
+    ],
+    [
+      "br_v_destroy:True",
+      "sms_mara_destroy",
+      "Active"
+    ],
+    [
+      "sms_mara_destroy",
+      "route_break"
+    ],
+    [
+      "br_v_destroy:False",
+      "br_v_absorb"
+    ],
+    [
+      "br_v_absorb:True",
+      "sms_mara_absorb",
+      "Active"
+    ],
+    [
+      "sms_mara_absorb",
+      "route_break"
+    ],
+    [
+      "br_v_absorb:False",
+      "br_v_blueeyes"
+    ],
+    [
+      "br_v_blueeyes:True",
+      "sms_mara_blueeyes",
+      "Active"
+    ],
+    [
+      "sms_mara_blueeyes",
+      "route_break"
+    ],
+    [
+      "br_v_blueeyes:False",
+      "br_v_hide"
+    ],
+    [
+      "br_v_hide:True",
+      "sms_mara_hide",
+      "Active"
+    ],
+    [
+      "sms_mara_hide",
+      "route_break"
+    ],
+    [
+      "br_v_hide:False",
+      "route_break"
+    ],
+    [
+      "route_break:True",
+      "sms_mara_break",
+      "Active"
+    ],
+    [
+      "sms_mara_cold",
+      "guard_holocall"
+    ],
+    [
+      "sms_mara_break",
+      "guard_holocall"
+    ],
+    [
+      "route_break:False",
+      "guard_holocall"
+    ],
+    [
+      "guard_holocall:True",
+      "holo_start"
+    ],
+    [
+      "guard_holocall:False",
+      "route_body_alive"
+    ],
+    [
+      "holo_start",
+      "holo_scene",
+      "holo_in"
+    ],
+    [
+      "holo_scene:holo_done",
+      "holo_end"
+    ],
+    [
+      "holo_end",
+      "mark_holocall"
+    ],
+    [
+      "mark_holocall",
+      "route_body_alive"
+    ],
+    [
+      "route_body_alive:False",
+      "quest_done",
+      "Succeeded"
+    ],
+    [
+      "route_body_alive:True",
+      "route_body_hide"
+    ],
+    [
+      "route_body_hide:False",
+      "quest_done",
+      "Succeeded"
+    ],
+    [
+      "route_body_hide:True",
+      "route_body_destroy"
+    ],
+    [
+      "route_body_destroy:False",
+      "quest_done",
+      "Succeeded"
+    ],
+    [
+      "guard_body:True",
+      "sms_mara_ncpd",
+      "Active"
+    ],
+    [
+      "sms_mara_ncpd",
+      "mark_body"
+    ],
+    [
+      "mark_body",
+      "obj_landfill_on",
+      "Active"
+    ],
+    [
+      "guard_body:False",
+      "obj_landfill_on",
+      "Active"
+    ],
+    [
+      "obj_landfill_on",
+      "desc_landfill",
+      "Active"
+    ],
+    [
+      "desc_landfill",
+      "wait_landfill"
+    ],
+    [
+      "wait_landfill",
+      "guard_autopsy"
+    ],
+    [
+      "guard_autopsy:False",
+      "obj_landfill_done",
+      "Succeeded"
+    ],
+    [
+      "guard_autopsy:True",
+      "route_wound"
+    ],
+    [
+      "route_wound:True",
+      "give_autopsy_shot"
+    ],
+    [
+      "route_wound:False",
+      "give_autopsy_cut"
+    ],
+    [
+      "give_autopsy_shot",
+      "mark_autopsy"
+    ],
+    [
+      "give_autopsy_cut",
+      "mark_autopsy"
+    ],
+    [
+      "mark_autopsy",
+      "obj_landfill_done",
+      "Succeeded"
+    ],
+    [
+      "obj_landfill_done",
+      "desc_landfill_off",
+      "Inactive"
+    ],
+    [
+      "desc_landfill_off",
+      "quest_done",
+      "Succeeded"
+    ],
+    [
+      "route_body_destroy:True",
+      "route_body_absorb"
+    ],
+    [
+      "route_body_absorb:True",
+      "desc_end_absorb_off",
+      "Inactive"
+    ],
+    [
+      "route_body_absorb:False",
+      "route_body_blueeyes"
+    ],
+    [
+      "route_body_blueeyes:True",
+      "desc_end_blueeyes_off",
+      "Inactive"
+    ],
+    [
+      "route_body_blueeyes:False",
+      "quest_done",
+      "Succeeded"
+    ],
+    [
+      "desc_end_absorb_off",
+      "guard_body"
+    ],
+    [
+      "desc_end_blueeyes_off",
+      "guard_body"
+    ],
+    [
+      "desc_talk_mara_off",
+      "wait_terminal"
+    ],
+    [
+      "wait_terminal",
+      "progress_5"
+    ],
+    [
+      "shaft_scene:shaft_descend",
+      "tp_cyn_down"
+    ],
+    [
+      "tp_cyn_down",
+      "set_cyn_descended"
+    ],
+    [
+      "set_cyn_descended",
+      "set_cyn_phase_entry"
+    ],
+    [
+      "set_cyn_phase_entry",
+      "reset_cyn_escaped"
+    ],
+    [
+      "reset_cyn_escaped",
+      "wait_cyn_escape"
+    ],
+    [
+      "wait_cyn_escape",
+      "tp_cyn_up"
+    ],
+    [
+      "tp_cyn_up",
+      "shaft_scene",
+      "shaft_return"
+    ]
+  ]
+}

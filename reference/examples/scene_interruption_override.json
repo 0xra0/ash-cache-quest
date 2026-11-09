@@ -1,0 +1,113 @@
+{
+ "_source": "base/quest/prologue/q001/q001_ripperdoc.questphase, questSceneNodeDefinition id 16 (V's first visit to Viktor Vector). The .scene ships a Default interruption scenario; the QUEST node overrides its conditions for this playthrough.",
+ "_scene": "base\\quest\\main_quests\\prologue\\q001\\scenes\\q001_04_ripperdoc.scene",
+ "interruptionOperations": [
+  {
+   "HandleId": "34",
+   "Data": {
+    "$type": "scnToggleInterruption_InterruptionOperation",
+    "enable": 1
+   }
+  },
+  {
+   "HandleId": "35",
+   "Data": {
+    "$type": "scnOverrideInterruptionScenario_InterruptionOperation",
+    "scenarioId": {
+     "$type": "scnInterruptionScenarioId",
+     "id": 0
+    },
+    "scenarioOperations": [
+     {
+      "HandleId": "36",
+      "Data": {
+       "$type": "scnOverrideInterruptConditions_InterruptionScenarioOperation",
+       "interruptConditions": [
+        {
+         "HandleId": "37",
+         "Data": {
+          "$type": "scnCheckPlayerTargetEntityDistanceInterruptCondition",
+          "params": {
+           "$type": "scnCheckPlayerTargetEntityDistanceInterruptConditionParams",
+           "comparisonType": "Greater",
+           "distance": 17,
+           "targetEntity": {
+            "$type": "gameEntityReference",
+            "dynamicEntityUniqueName": {
+             "$type": "CName",
+             "$storage": "string",
+             "$value": "None"
+            },
+            "names": [],
+            "reference": {
+             "$type": "NodeRef",
+             "$storage": "string",
+             "$value": "#victor_vector"
+            },
+            "sceneActorContextName": {
+             "$type": "CName",
+             "$storage": "string",
+             "$value": "None"
+            },
+            "slotName": {
+             "$type": "CName",
+             "$storage": "string",
+             "$value": "None"
+            },
+            "type": "EntityRef"
+           }
+          }
+         }
+        }
+       ]
+      }
+     },
+     {
+      "HandleId": "38",
+      "Data": {
+       "$type": "scnOverrideReturnConditions_InterruptionScenarioOperation",
+       "returnConditions": [
+        {
+         "HandleId": "39",
+         "Data": {
+          "$type": "scnCheckPlayerTargetEntityDistanceReturnCondition",
+          "params": {
+           "$type": "scnCheckPlayerTargetEntityDistanceReturnConditionParams",
+           "comparisonType": "Less",
+           "distance": 16,
+           "targetEntity": {
+            "$type": "gameEntityReference",
+            "dynamicEntityUniqueName": {
+             "$type": "CName",
+             "$storage": "string",
+             "$value": "None"
+            },
+            "names": [],
+            "reference": {
+             "$type": "NodeRef",
+             "$storage": "string",
+             "$value": "#victor_vector"
+            },
+            "sceneActorContextName": {
+             "$type": "CName",
+             "$storage": "string",
+             "$value": "None"
+            },
+            "slotName": {
+             "$type": "CName",
+             "$storage": "string",
+             "$value": "None"
+            },
+            "type": "EntityRef"
+           }
+          }
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

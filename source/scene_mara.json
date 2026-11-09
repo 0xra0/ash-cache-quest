@@ -1,0 +1,601 @@
+{
+  "_comment": [
+    "Mara Voss confronts V moments after the black box is opened (Act 3).",
+    "Subtitle text lives HERE, next to the character who says it, not in strings.json:",
+    "a scene reads as a script, and splitting the words from the speaker makes it",
+    "unreviewable. strings.json stays the home of journal/UI text, which uses a",
+    "completely different id namespace (LocKey vs locstring ruid).",
+    "",
+    "Every line and option needs a stable 'id' - tools/alloc_subtitle_ids.py maps it",
+    "to a locstring ruid, append-only, and tools/gen_subtitles.py emits the lookup",
+    "resource the engine reads.",
+    "",
+    "'actor' on a line names someone in the cast below and becomes that line's speaker.",
+    "It stays optional: Hot Fuzz leaves 17 of its 22 lines unset (0xFFFFFFFF) and sets a",
+    "real speaker on the other 5, so a scene plays either way - but an unset speaker has",
+    "no nameplate and nobody to look at, which is most of what an actor is for.",
+    "",
+    "The addressee is filled in automatically as the other party in a two-hander, which",
+    "is how Hot Fuzz's set lines read. Add \"to\": \"<name>\" to a line to override it.",
+    "",
+    "Why TWO entry points, same as scene_decision.json (D14): the fourth micro-choice",
+    "quotes Mara's own journal back at her, so it may only be offered to a player who",
+    "read the shard. The obvious expression is a questCondition on the option, and no",
+    "extracted scene ships a non-null one - rule 8 makes that a TODO, not a design. So",
+    "the branch lives in the .questphase instead, where rule 1 wants quest logic: the",
+    "graph's route_mara reads ashcache_journal_read and enters at mara_meet_in or",
+    "mara_meet_in_journal. Same player-facing result, only proven machinery.",
+    "",
+    "The two openings are not the same lines twice. On the journal path she can SEE the",
+    "shard in V's hands, which is why she opens defensive and short - and why the fourth",
+    "option has any ground to stand on."
+  ],
+  "scene": {
+    "id": "ash_cache_mara",
+    "categoryTag": "sideQuests",
+    "_categoryTag": "scnSceneCategoryTag. Ash Cache is a SideQuest; the Undermine template shipped 'vendorsOpenWorld' only because it was cloned from a vendor scene."
+  },
+  "actors": [
+    "mara"
+  ],
+  "_actors": "Character ids from source/characters.json, in the order their actor ids are assigned. Each becomes a scnActorDef: a spawn instruction that puts that TweakDB record at its world marker when the scene starts and takes it away when the scene ends. V is never listed here - the player is appended automatically as a scnPlayerActorDef holding the LAST actor id, matching both reference scenes.",
+  "entryPoints": [
+    {
+      "name": "mara_meet_in",
+      "node": "start"
+    },
+    {
+      "name": "mara_meet_in_journal",
+      "node": "start_journal"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "mara_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "id": "start_journal",
+      "type": "start"
+    },
+    {
+      "id": "tier_on",
+      "_comment": "Locks V in place for the confrontation and holsters the weapon. Tier3_LimitedGameplay is the first rung that actually stops movement - Tier2 keeps ordinary locomotion and only caps speed - and it is what 215 vanilla scenes use. Tier4/Tier5 would hand the camera to a cinematic camera this project does not animate. Paired with 'tier_off'; if you delete one, delete both, and see the INT/RET wiring in quest_graph.json.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier3_LimitedGameplay",
+        "emptyHands": true
+      }
+    },
+    {
+      "id": "protect_mara",
+      "_comment": "Mara cannot be killed, by the player or by the FIA cleanup, and the protection is deliberately NEVER released - which is why there is no matching Mortal node. All 211 vanilla scenes that set mortality do release it; this one does not, because she has to survive past the end of the quest. 'source' names this claim so releasing some other system's protection cannot release hers.",
+      "type": "quest",
+      "node": {
+        "type": "set_mortality",
+        "character": "#ac_mara",
+        "state": "Immortal",
+        "source": "ash_cache_mara_protected"
+      }
+    },
+    {
+      "id": "tier_on_j",
+      "_comment": "Locks V in place for the confrontation and holsters the weapon. Tier3_LimitedGameplay is the first rung that actually stops movement - Tier2 keeps ordinary locomotion and only caps speed - and it is what 215 vanilla scenes use. Tier4/Tier5 would hand the camera to a cinematic camera this project does not animate. Paired with 'tier_off'; if you delete one, delete both, and see the INT/RET wiring in quest_graph.json. Journal-route copy of 'tier_on'.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier3_LimitedGameplay",
+        "emptyHands": true
+      }
+    },
+    {
+      "id": "protect_mara_j",
+      "_comment": "Mara cannot be killed, by the player or by the FIA cleanup, and the protection is deliberately NEVER released - which is why there is no matching Mortal node. All 211 vanilla scenes that set mortality do release it; this one does not, because she has to survive past the end of the quest. 'source' names this claim so releasing some other system's protection cannot release hers. Journal-route copy of 'protect_mara'.",
+      "type": "quest",
+      "node": {
+        "type": "set_mortality",
+        "character": "#ac_mara",
+        "state": "Immortal",
+        "source": "ash_cache_mara_protected"
+      }
+    },
+    {
+      "id": "sec_open",
+      "type": "section",
+      "lines": [
+        {
+          "id": "mara_open_1",
+          "actor": "Mara",
+          "emotion": "anger/defensive",
+          "en-us": "Don't turn around. That case in your hands has my name in it, under six layers of somebody else's.",
+          "ua-ua": "Не обертайся. У кейсі, що в тебе в руках, є моє ім'я — під шістьма шарами чужих."
+        },
+        {
+          "id": "mara_open_2",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "I'm the one who put it in that wall. Nine years ago. Spent every one of them hoping nobody'd be stupid enough to dig it back out.",
+          "ua-ua": "Це я замурувала його в ту стіну. Дев'ять років тому. І всі ці роки сподівалася, що ніхто не буде настільки дурним, щоб його викопати."
+        },
+        {
+          "id": "mara_open_3",
+          "actor": "Mara",
+          "emotion": "fear/worried",
+          "en-us": "Congratulations. Hale's already moving. We've got twenty minutes, maybe.",
+          "ua-ua": "Вітаю. Гейл уже виїхав. У нас хвилин двадцять, не більше."
+        }
+      ]
+    },
+    {
+      "id": "hub",
+      "type": "choice",
+      "options": [
+        {
+          "id": "opt_level",
+          "goto": "sec_trust",
+          "en-us": "Then start talking. What's in the box?",
+          "ua-ua": "Тоді починай говорити. Що в кейсі?"
+        },
+        {
+          "id": "opt_hostile",
+          "goto": "sec_hostile",
+          "en-us": "You're FIA. That's all I need to know.",
+          "ua-ua": "Ти з ФІА. Більше мені знати не треба."
+        },
+        {
+          "id": "opt_price",
+          "goto": "sec_deal",
+          "en-us": "What's your cut in this?",
+          "ua-ua": "А тобі з цього що?"
+        }
+      ]
+    },
+    {
+      "_comment": "The journal-path opening. Three lines like sec_open, and deliberately not the same three: she can see the shard, so the beat she spends on 'I am the one who hid it' in sec_open is already spent - V read it. What she buys with the saved line is the admission that she left her own name lying around, which is the crack the fourth option widens.",
+      "id": "sec_open_j",
+      "type": "section",
+      "lines": [
+        {
+          "id": "mara_openj_1",
+          "actor": "Mara",
+          "emotion": "anger/defensive",
+          "en-us": "Don't turn around. And don't palm that shard - I can see the read light from here.",
+          "ua-ua": "Не обертайся. І не ховай той шард — я звідси бачу індикатор зчитування."
+        },
+        {
+          "id": "mara_openj_2",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "Nine years I kept that case inside a wall, and I left my own name lying on a desk. That's what nine years does to you.",
+          "ua-ua": "Дев'ять років я тримала той кейс у стіні — і залишила власне ім'я лежати на столі. Ось що роблять із людиною дев'ять років."
+        },
+        {
+          "id": "mara_openj_3",
+          "actor": "Mara",
+          "emotion": "fear/worried",
+          "en-us": "Hale's already moving. Twenty minutes, maybe. Ask me fast.",
+          "ua-ua": "Гейл уже виїхав. Хвилин двадцять, не більше. Питай швидко."
+        }
+      ]
+    },
+    {
+      "_comment": "The same three options as 'hub' plus the journal confrontation. The ids carry a '_j' because a locstring ruid is allocated per option id and two hubs cannot share one - the same reason scene_decision.json's hide hub suffixes '_h'. The three shared options route to the SAME sections; only the openings and the fourth branch differ.",
+      "id": "hub_journal",
+      "type": "choice",
+      "options": [
+        {
+          "id": "opt_level_j",
+          "goto": "sec_trust",
+          "en-us": "Then start talking. What's in the box?",
+          "ua-ua": "Тоді починай говорити. Що в кейсі?"
+        },
+        {
+          "id": "opt_hostile_j",
+          "goto": "sec_hostile",
+          "en-us": "You're FIA. That's all I need to know.",
+          "ua-ua": "Ти з ФІА. Більше мені знати не треба."
+        },
+        {
+          "id": "opt_price_j",
+          "goto": "sec_deal",
+          "en-us": "What's your cut in this?",
+          "ua-ua": "А тобі з цього що?"
+        },
+        {
+          "id": "opt_break_j",
+          "goto": "sec_break",
+          "en-us": "Your journal doesn't say \"it\". It says \"she\".",
+          "ua-ua": "У твоєму щоденнику не написано «воно». Там написано «вона»."
+        }
+      ]
+    },
+    {
+      "_comment": "The break. Every other route to trust is Mara deciding how much to tell V; this one is V catching her in the gap between what she writes down and what she says out loud, and her not being able to close it. It ends on the same trusted/choice_made pair as the others - breaking her is a WAY of earning her, not a fifth disposition.",
+      "id": "sec_break",
+      "type": "section",
+      "lines": [
+        {
+          "id": "break_1",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "Four hundred readings. You get to know a voice.",
+          "ua-ua": "Чотириста прочитань. Голос починаєш упізнавати."
+        },
+        {
+          "id": "break_2",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "I told myself I was preserving evidence. I was keeping her company.",
+          "ua-ua": "Я казала собі, що зберігаю доказ. Насправді я складала їй компанію."
+        },
+        {
+          "id": "break_3",
+          "actor": "V",
+          "en-us": "So which is it. Evidence, or a person?",
+          "ua-ua": "То що ж це. Доказ чи людина?"
+        },
+        {
+          "id": "break_4",
+          "actor": "Mara",
+          "emotion": "anger/full",
+          "en-us": "If I say person out loud, then I should have done something about it nine years ago. So I say case. Say it long enough and you can sleep.",
+          "ua-ua": "Якщо сказати «людина» вголос — виходить, дев'ять років тому я мала щось зробити. Тому я кажу «кейс». Кажи так досить довго — і зможеш спати."
+        },
+        {
+          "id": "break_5",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "You've got the same choice I had, V. And a lot less time. Don't spend nine years on it.",
+          "ua-ua": "У тебе той самий вибір, що був у мене, Ві. І значно менше часу. Не витрачай на нього дев'ять років."
+        }
+      ]
+    },
+    {
+      "id": "sec_trust",
+      "type": "section",
+      "lines": [
+        {
+          "id": "trust_1",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "A prediction. Grown off a Cynosure scan — yours, if the timestamps aren't lying. It knows what you do next.",
+          "ua-ua": "Прогноз. Виріс зі сканування Кіносюри — твого, якщо мітки часу не брешуть. Він знає, що ти зробиш далі."
+        },
+        {
+          "id": "trust_2",
+          "actor": "Mara",
+          "emotion": "disgust",
+          "en-us": "That's what Hale wants. Not the tech. The certainty.",
+          "ua-ua": "Ось чого хоче Гейл. Не технології. Впевненості."
+        },
+        {
+          "id": "trust_3",
+          "actor": "V",
+          "en-us": "And you?",
+          "ua-ua": "А ти?"
+        },
+        {
+          "id": "trust_4",
+          "actor": "Mara",
+          "emotion": "interested/confident",
+          "en-us": "I want it gone. But I don't get to choose. You do.",
+          "ua-ua": "Я хочу, щоб його не стало. Але вибирати не мені. Тобі."
+        }
+      ]
+    },
+    {
+      "id": "sec_hostile",
+      "type": "section",
+      "lines": [
+        {
+          "id": "hostile_1",
+          "actor": "Mara",
+          "emotion": "joy/fake_smile",
+          "en-us": "Fair. I'd say the same in your place.",
+          "ua-ua": "Справедливо. На твоєму місці я б сказала те саме."
+        },
+        {
+          "id": "hostile_2",
+          "actor": "Mara",
+          "emotion": "anger",
+          "en-us": "So I'll keep it short. That case predicts you. Hale is coming for it. Do what you like with both of those.",
+          "ua-ua": "Тоді коротко. Цей кейс передбачає тебе. Гейл їде по нього. Роби з цими двома фактами що хочеш."
+        }
+      ]
+    },
+    {
+      "id": "sec_deal",
+      "type": "section",
+      "lines": [
+        {
+          "id": "deal_1",
+          "actor": "Mara",
+          "emotion": "joy",
+          "en-us": "Honest question. I like it better than the other one.",
+          "ua-ua": "Чесне питання. Воно мені подобається більше за попереднє."
+        },
+        {
+          "id": "deal_2",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "My cut is I stop waking up at three in the morning. That's the whole price.",
+          "ua-ua": "Мій зиск — я перестану прокидатися о третій ночі. Ось і вся ціна."
+        },
+        {
+          "id": "deal_3",
+          "actor": "Mara",
+          "emotion": "fear/worried",
+          "en-us": "It grew off your own Cynosure scan, V. It predicts you. Hale wants that more than he wants me breathing.",
+          "ua-ua": "Він виріс із твого власного сканування Кіносюри, Ві. Він передбачає тебе. Гейл хоче цього більше, ніж хоче бачити мене живою."
+        }
+      ]
+    },
+    {
+      "_comment": [
+        "D121. The last thing she does on every route that did not tell her to get",
+        "lost, and the answer to the question this scene used to leave hanging: in",
+        "forty seconds Hale's crew arrives, and Mara - who has been standing here",
+        "warning V about exactly that - does nothing about it. She stood through the",
+        "whole firefight like a coat rack.",
+        "",
+        "She does nothing because she cannot, she knows she cannot, and she says so",
+        "while handing over the one thing that would have helped. That turns an",
+        "engine limitation (her character record is a non-combat scene NPC with no",
+        "weapon and no archetypeData - see the _enemies note in characters.json)",
+        "into the most in-character moment she has.",
+        "",
+        "The gun itself is granted by the GRAPH, not here, for the reason D120 gives",
+        "for the ending item removals: every grant in this quest lives on the other",
+        "side of a scene exit where the re-entry guards can see it. The scene says",
+        "she hands it over; the graph is what puts it in the backpack.",
+        "",
+        "'Keep your phone on' is a setup with a payoff six seconds into the next act",
+        "- ac_msg_mara_01 is her keeping this promise while V is being shot at."
+      ],
+      "id": "sec_gift",
+      "type": "section",
+      "lines": [
+        {
+          "id": "mara_gift_1",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "Before you go. Take this.",
+          "ua-ua": "Поки не пішов — візьми."
+        },
+        {
+          "id": "mara_gift_2",
+          "actor": "V",
+          "en-us": "That's a Liberty. Federal issue.",
+          "ua-ua": "Це ж «Ліберті». Федеральний зразок."
+        },
+        {
+          "id": "mara_gift_3",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "Nine years under my coat. I've drawn it twice. Both times at a range, both times badly.",
+          "ua-ua": "Дев'ять років під пальтом. Діставала його двічі. Обидва рази в тирі — і обидва рази погано."
+        },
+        {
+          "id": "mara_gift_4",
+          "actor": "Mara",
+          "emotion": "interested/confident",
+          "en-us": "I'm no good in a firefight and I'm not going to stand here pretending otherwise. What I'm good at is that clinic's node. By the time Hale's people file a report, you were never in this building.",
+          "ua-ua": "У перестрілці з мене толку нема, і я не вдаватиму інакше. На чому я знаюся — то це на вузлі цієї клініки. Поки люди Гейла складуть рапорт, тебе в цій будівлі ніколи не було."
+        },
+        {
+          "id": "mara_gift_5",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "Keep your phone on. I'll count them for you.",
+          "ua-ua": "Тримай телефон увімкненим. Я їх для тебе порахую."
+        }
+      ]
+    },
+    {
+      "_comment": [
+        "D121. The hostile route's counterpart to sec_gift, and the only place the",
+        "intimidate branch has ever had a consequence of its own: ashcache_mara_hostile",
+        "was set and then read by nothing.",
+        "",
+        "She does not argue, does not plead, and does not withhold the one thing she",
+        "can still do for someone who just told her she was nothing but her agency.",
+        "Taking V's name off the sign-in on the way out is the same act she performs",
+        "on the trusted route - she simply does not get to be thanked for it. That is",
+        "the characterisation: the help is not a reward for being nice to her.",
+        "",
+        "No gun. A present is a present; she is not buying anyone."
+      ],
+      "id": "sec_cold",
+      "type": "section",
+      "lines": [
+        {
+          "id": "mara_cold_1",
+          "actor": "Mara",
+          "emotion": "anger",
+          "en-us": "Understood.",
+          "ua-ua": "Зрозуміло."
+        },
+        {
+          "id": "mara_cold_2",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "I'll be in the back, on the clinic's node, when they get here. Don't come looking for me.",
+          "ua-ua": "Коли вони приїдуть, я буду в підсобці, біля вузла клініки. Не шукай мене."
+        },
+        {
+          "id": "mara_cold_3",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "Your name's on the clinic's sign-in. I'm taking it with me on the way out. Not for you — so they can't have it.",
+          "ua-ua": "Твоє ім'я — у журналі відвідувань клініки. Я заберу його, коли йтиму. Не заради тебе — просто щоб воно не дісталося їм."
+        }
+      ]
+    },
+    {
+      "id": "fact_trusted",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_mara_trusted",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "The intimidate branch's counterpart to fact_trusted. facts.json has always said this fact is set by micro-choice B, and until now nothing set it: the hostile path ran straight to fact_made, so the cleanup encounter had no way to know V had told an FIA agent to get lost. OI-1 depends on being able to tell - when hostile she is not in the fight at all.",
+      "id": "fact_hostile",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_mara_hostile",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "Set on the journal route only, and set ALONGSIDE fact_trusted rather than instead of it - facts.json has always read 'micro-choice A, or C' for trusted and 'micro-choice C only' for break. Whatever eventually tells the two apart (her behaviour in the cleanup, an epilogue line) needs both bits: broke her is a kind of trusted, not an alternative to it.",
+      "id": "fact_break",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_mara_break",
+        "value": 1
+      }
+    },
+    {
+      "id": "fact_made",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_mara_choice_made",
+        "value": 1
+      }
+    },
+    {
+      "id": "tier_off",
+      "_comment": "Hands full control back. forceEmptyHands 0 lets V draw a weapon again. Mortality is NOT restored here - see 'protect_mara'.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier1_FullGameplay",
+        "emptyHands": false
+      }
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [
+      "start",
+      "tier_on"
+    ],
+    [
+      "tier_on",
+      "protect_mara"
+    ],
+    [
+      "protect_mara",
+      "sec_open"
+    ],
+    [
+      "sec_open",
+      "hub"
+    ],
+    [
+      "start_journal",
+      "tier_on_j"
+    ],
+    [
+      "tier_on_j",
+      "protect_mara_j"
+    ],
+    [
+      "protect_mara_j",
+      "sec_open_j"
+    ],
+    [
+      "sec_open_j",
+      "hub_journal"
+    ],
+    [
+      "hub:opt_level",
+      "sec_trust"
+    ],
+    [
+      "hub:opt_hostile",
+      "sec_hostile"
+    ],
+    [
+      "hub:opt_price",
+      "sec_deal"
+    ],
+    [
+      "hub_journal:opt_level_j",
+      "sec_trust"
+    ],
+    [
+      "hub_journal:opt_hostile_j",
+      "sec_hostile"
+    ],
+    [
+      "hub_journal:opt_price_j",
+      "sec_deal"
+    ],
+    [
+      "hub_journal:opt_break_j",
+      "sec_break"
+    ],
+    [
+      "sec_trust",
+      "sec_gift"
+    ],
+    [
+      "sec_deal",
+      "sec_gift"
+    ],
+    [
+      "sec_break",
+      "fact_break"
+    ],
+    [
+      "fact_break",
+      "sec_gift"
+    ],
+    [
+      "sec_gift",
+      "fact_trusted"
+    ],
+    [
+      "fact_trusted",
+      "fact_made"
+    ],
+    [
+      "sec_hostile",
+      "sec_cold"
+    ],
+    [
+      "sec_cold",
+      "fact_hostile"
+    ],
+    [
+      "fact_hostile",
+      "fact_made"
+    ],
+    [
+      "fact_made",
+      "tier_off"
+    ],
+    [
+      "tier_off",
+      "end"
+    ]
+  ]
+}

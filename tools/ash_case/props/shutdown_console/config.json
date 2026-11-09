@@ -1,0 +1,42 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_Emergency shutdown console.png",
+ "band": [
+  135,
+  790
+ ],
+ "xrange": [
+  35,
+  1090
+ ],
+ "views": [
+  "front",
+  "back",
+  "left",
+  "right"
+ ],
+ "height_m": 1.1,
+ "bg": "dark",
+ "thr": 45,
+ "name": "shutdown_console",
+ "atlas": 2048,
+ "simplify": 2.0,
+ "boxes": {
+  "front": [
+   5,
+   325
+  ],
+  "back": [
+   390,
+   680
+  ],
+  "left": [
+   770,
+   840
+  ],
+  "right": [
+   955,
+   1045
+  ]
+ },
+ "close": 10
+}

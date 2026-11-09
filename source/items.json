@@ -1,0 +1,316 @@
+{
+  "_comment": [
+    "Every item the quest puts in the player's hands. Becomes TweakXL records in",
+    "the same loose r6/tweaks/ash_cache.yaml as the character records - one file,",
+    "because TweakXL reads a directory and a rename that split them would let the",
+    "graph grant an item nothing defines.",
+    "",
+    "Two shapes, both taken from shipping mods rather than invented:",
+    "",
+    "  kind 'item'   Lucy's Dedra_LucyEncryptedCoordinates: inherit a vanilla item",
+    "                with $base and override the name. Two lines. For things the",
+    "                player carries but never opens.",
+    "  kind 'shard'  Aldecaldos High Stakes' sq_hs_regina_shard: a full",
+    "                gamedataItem_Record with itemType Gen_Readable, a Readable tag",
+    "                and an inline gamedataItemAction_Record whose journalEntry",
+    "                points at an onscreen entry holding the text. Vanilla's own",
+    "                mq006_body_shard has exactly this pair of records, so the",
+    "                mod shape is the game's shape.",
+    "",
+    "Every 'base' is verified to exist in the game's TweakDB by tools/validate.py",
+    "(D11), as is the absence of every 'record' - a record name that already exists",
+    "would overwrite a vanilla item rather than add one.",
+    "",
+    "A shard's text lives in source/strings.json like all other text and is",
+    "delivered as an onscreen journal entry, which is why it gets a title AND a",
+    "body: the title is the shard's header in the UI, the body is the read view."
+  ],
+
+  "items": [
+    {
+      "id": "splinter",
+      "record": "ashcache_splinter",
+      "kind": "item",
+      "base": "Items.q003_chip",
+      "displayName": "item_splinter_name",
+      "description": "item_splinter_desc",
+      "_casting": [
+        "The quest object. Three of the four endings are literally 'do something",
+        "with the splinter', so it has to be a thing in the inventory rather than a",
+        "fact - and a thing the player cannot lose.",
+        "",
+        "q003_chip is the Flathead from The Pickup: the game's own plot MacGuffin.",
+        "Reading its record is what settled this. It is Gen_Misc, ItemCategory.General,",
+        "isSingleInstance, tagged 'Quest', and its objectActions list contains NEITHER",
+        "Drop NOR Disassemble - so the player cannot throw the plot away.",
+        "",
+        "The first draft of this file used Items.MilitechJunkItem3, copied from Lucy's",
+        "mod. That record is ItemType.Gen_Junk, tagged Junk, and carries",
+        "ItemAction.JunkDisassemble - one 'disassemble all junk' click and the quest",
+        "object is gone. Fine for Lucy's collectible; wrong for this."
+      ]
+    },
+
+    {
+      "id": "mara_journal",
+      "record": "ashcache_mara_journal",
+      "kind": "shard",
+      "displayName": "item_mara_journal_name",
+      "description": "item_mara_journal_desc",
+      "onscreen": { "group": "ash_cache", "entry": "mara_journal",
+                    "title": "shard_mara_journal_title",
+                    "body": "shard_mara_journal_body" }
+    },
+
+    {
+      "id": "clinic_archive",
+      "record": "ashcache_clinic_archive",
+      "kind": "shard",
+      "displayName": "item_clinic_archive_name",
+      "description": "item_clinic_archive_desc",
+      "onscreen": { "group": "ash_cache", "entry": "clinic_archive",
+                    "title": "shard_clinic_archive_title",
+                    "body": "shard_clinic_archive_body" },
+      "_casting": [
+        "D119. What the terminal download actually hands over. Before it, the",
+        "terminal beat set a fact and nothing else - the player pressed Use, the",
+        "objective ticked, and the records the objective is ABOUT were never seen.",
+        "",
+        "A shard rather than a plain item because the text is the point: kind",
+        "'shard' is the pair of records that gives an item a Readable action and",
+        "an onscreen journal entry, so this one can be opened and read like any",
+        "shard in the game, in either locale, forever after."
+      ]
+    },
+
+    {
+      "id": "courier_log",
+      "record": "ashcache_courier_log",
+      "kind": "shard",
+      "displayName": "item_courier_log_name",
+      "description": "item_courier_log_desc",
+      "onscreen": { "group": "ash_cache", "entry": "courier_log",
+                    "title": "shard_courier_log_title",
+                    "body": "shard_courier_log_body" }
+    },
+
+    {
+      "id": "fia_master_key",
+      "record": "ashcache_fia_master_key",
+      "kind": "item",
+      "base": "Items.q003_chip",
+      "displayName": "item_fia_key_name",
+      "description": "item_fia_key_desc",
+      "_casting": [
+        "Mara hands this over in the Hide ending only (OI-1 - she has to be alive",
+        "to do it). Same base as the splinter, for the same reason: it is a quest",
+        "object, not loot, and it must not be droppable or sellable.",
+        "",
+        "Items.q001_secret_room_keycard looked like the obvious pick and is not: its",
+        "tags are empty and its objectActions are Drop + Disassemble, so it is an",
+        "ordinary carryable that happens to be named after a quest."
+      ]
+    },
+
+    {
+      "id": "mara_liberty",
+      "record": "ashcache_mara_liberty",
+      "kind": "item",
+      "base": "Items.Preset_Liberty_Default",
+      "displayName": "item_mara_liberty_name",
+      "description": "item_mara_liberty_desc",
+      "_casting": [
+        "D121. The only thing Mara ever physically hands over on the three routes",
+        "where V does not tell her to get lost, and the answer to a question the",
+        "scene could not answer before: why does she stand there while Hale's crew",
+        "shoots the place up? Because she is an analyst who has drawn a gun twice in",
+        "nine years, she knows it, and she says so while giving it to someone who",
+        "will do better with it. Her not fighting stops being an engine limitation",
+        "and becomes the character.",
+        "",
+        "The Liberty is Militech's federal sidearm - what a NUSA agent is issued.",
+        "Casting it as HERS is the whole joke: nine years undercover carrying the",
+        "one object that would have identified her instantly.",
+        "",
+        "The FIRST item in this file that is a weapon rather than a quest object, so",
+        "it is also the first whose displayName override has to survive a weapon",
+        "record's own name resolution. If the override does not stick in game it",
+        "degrades to an ordinary Liberty - a working pistol with the wrong name, not",
+        "a broken grant. Worth an eyeball in the inventory.",
+        "",
+        "Deliberately NOT undroppable, unlike the splinter and the master key. Those",
+        "are the plot; this is a present. A present the player is not allowed to",
+        "sell is a debt."
+      ]
+    },
+    {
+      "id": "mara_trophy",
+      "record": "ashcache_mara_trophy",
+      "kind": "item",
+      "base": "Items.Preset_Liberty_Default",
+      "displayName": "item_mara_trophy_name",
+      "description": "item_mara_trophy_desc",
+      "keep_actions": true,
+      "granted_by": "source/scripts/AshCacheTrophy.reds",
+      "stats": [
+        [
+          "CritChance",
+          "Additive",
+          15
+        ],
+        [
+          "CritDamage",
+          "Additive",
+          35
+        ],
+        [
+          "HeadshotDamageMultiplier",
+          "Additive",
+          0.5
+        ],
+        [
+          "MagazineCapacityBase",
+          "Additive",
+          4
+        ],
+        [
+          "DamagePerHit",
+          "AdditiveMultiplier",
+          0.3
+        ]
+      ],
+      "quality": "Quality.LegendaryPlusPlus",
+      "tweak": [
+        "  blueprint: Items.Iconic__Power_Handgun_Blueprint",
+        "  tags: [Weapon, RangedWeapon, OneHandedRangedWeapon, DriverCombatRangedWeapon, DriverCombatBikeWeapon, PowerWeapon, Preload, Handgun, Liberty, IconicWeapon]",
+        "  statModifierGroups:",
+        "    - Items.IconicQualityRandomization",
+        "    - Items.Base_Weapon_Damage_Type_Min_Max",
+        "    - Items.Base_Weapon_Damage_Type_Physical",
+        "    - Items.Base_Handgun_RPG_Stats",
+        "    - Items.Base_Handgun_Misc_Stats",
+        "    - Items.Base_Handgun_Sway_Stats",
+        "    - Items.Base_PlayerState_Spread_Stats",
+        "    - Items.Base_Power_Stats",
+        "    - Items.Base_Power_Handgun_Mult_Stats",
+        "    - Items.Base_Power_Handgun_Stats",
+        "    - Items.Base_Handgun_DeadReckoning_Stats",
+        "    - Items.Base_Liberty_Technical_Stats",
+        "    - Items.Base_Liberty_Handling_Stats",
+        "    - Items.Base_Liberty_Recoil_Stats",
+        "    - Items.Base_Liberty_Spread_Stats",
+        "    - Items.Base_Liberty_Aim_Stats",
+        "    - Items.Base_Liberty_Constant_Stats",
+        "    - Items.Base_Liberty_Damage_Stats",
+        "    - Items.Base_Weapon_Status_Effect_Application_Stats",
+        "    - Items.WHC_StatModifierGroup_Ranged",
+        "    - Items.ashcache_mara_trophy_stats"
+      ],
+      "_casting": [
+        "D186. The Liberty on the ground beside her body, made a real pickup: a trophy.",
+        "Only on the routes where she had a gun (ashcache_mara_liberty_given), same as",
+        "the prop it replaces. AshCacheTrophy.reds drops it as a vanilla loot item once V",
+        "is near her and the glue's visual prop goes away on the same fact.",
+        "",
+        "Built like Dex's Plan B (Preset_Liberty_Dex, read live 2026-09-26): the iconic",
+        "blueprint, the IconicWeapon tag, IconicQualityRandomization in place of the",
+        "random-quality and random-mod groups, Quality.IconicItem in statModifiers. It",
+        "keeps the DEFAULT visualTags so it looks like the gun that was lying there.",
+        "keep_actions: an iconic is a present too - droppable, not a quest object.",
+        "The stat numbers are repeated in item_mara_trophy_desc; change both."
+      ]
+    },
+    {
+      "id": "mara_autopsy_shot",
+      "record": "ashcache_mara_autopsy_shot",
+      "kind": "shard",
+      "displayName": "item_mara_autopsy_name",
+      "description": "item_mara_autopsy_desc",
+      "onscreen": {
+        "group": "ash_cache",
+        "entry": "mara_autopsy_shot",
+        "title": "shard_mara_autopsy_title",
+        "body": "shard_mara_autopsy_shot_body"
+      },
+      "_casting": [
+        "D122. Two records, one shard. Exactly one is ever granted: the graph picks",
+        "on ashcache_mara_liberty_given at the moment V reaches the body, so a save",
+        "can never hold both and the player can never see the other ending's wound.",
+        "",
+        "They share displayName, description and shard title on purpose - same case,",
+        "same clerk, same four closing words - so that the ONLY thing that differs",
+        "between two playthroughs is the one paragraph that says how she died. A",
+        "player who compares two saves is meant to find that paragraph and nothing",
+        "else."
+      ]
+    },
+    {
+      "id": "mara_autopsy_cut",
+      "record": "ashcache_mara_autopsy_cut",
+      "kind": "shard",
+      "displayName": "item_mara_autopsy_name",
+      "description": "item_mara_autopsy_desc",
+      "onscreen": {
+        "group": "ash_cache",
+        "entry": "mara_autopsy_cut",
+        "title": "shard_mara_autopsy_title",
+        "body": "shard_mara_autopsy_cut_body"
+      },
+      "_casting": [
+        "The hostile route's copy. V told her to get lost, so there was no Liberty",
+        "to recover and her forearms took the defensive wounds instead. See the",
+        "sibling record above for why the two are identical everywhere else."
+      ]
+    },
+    {
+      "id": "cynosure_seal",
+      "record": "ashcache_cynosure_seal",
+      "kind": "shard",
+      "displayName": "item_cynosure_seal_name",
+      "description": "item_cynosure_seal_desc",
+      "onscreen": {
+        "group": "ash_cache",
+        "entry": "cynosure_seal",
+        "title": "shard_cynosure_seal_title",
+        "body": "shard_cynosure_seal_body"
+      },
+      "_casting": [
+        "D129. The only thing V comes away from the shaft head with, and the whole",
+        "payload of the aftermath objective - there is no prop and no interaction,",
+        "because the fiction is that the way down is already welded shut.",
+        "",
+        "It also does the reconciling. Voss says on the phone that the dig runs",
+        "under the Badlands; the game's own geometry puts the outer bunker under",
+        "Dogtown, with the motel inside its footprint. This plate says both are",
+        "true on paper, which turns a contradiction into the reason nobody has",
+        "checked the archive in four years."
+      ]
+    },
+    {
+      "id": "cynosure_survey",
+      "record": "ashcache_cynosure_survey",
+      "kind": "shard",
+      "displayName": "item_cynosure_survey_name",
+      "description": "item_cynosure_survey_desc",
+      "onscreen": {
+        "group": "ash_cache",
+        "entry": "cynosure_survey",
+        "title": "shard_cynosure_survey_title",
+        "body": "shard_cynosure_survey_body"
+      },
+      "_casting": [
+        "D131. What the shaft head is worth to a player who jacks the maintenance",
+        "port instead of just prying the plate off - and the first description of",
+        "Cynosure as a place rather than a word: nine levels, which ones are",
+        "flooded, where the archive is and what is priority-1 powered.",
+        "",
+        "Two lines in it do the work. The pumps log a maintenance cycle every",
+        "eleven days on a facility that was shut four years ago, and the cold",
+        "store is short exactly one item - 0-1140, which is the number stencilled",
+        "on the splinter already in the player's inventory (see hud_absorb_top).",
+        "The carrier who signed it out never signed out at grade, because he got",
+        "as far as a motel wall 250 m above this plate."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_0-1140 containment cradle.png",
+ "band": [
+  115,
+  940
+ ],
+ "views": [
+  "front",
+  "back",
+  "left",
+  "right"
+ ],
+ "height_m": 0.9,
+ "name": "o1140_cradle",
+ "atlas": 2048
+}

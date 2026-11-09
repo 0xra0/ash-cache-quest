@@ -1,0 +1,130 @@
+edl: 1
+id: cyn_kit_preview
+name: Cynosure kit preview (temp)
+origin:
+  position:
+  - -1908
+  - -2470
+  - -300
+  yaw: 0
+objects:
+- id: wall_l600
+  resource: ep1\environment\architecture\common\int\int_mlt_bunker_a\int_mlt_bunker_a_corridor_wall_l600.mesh
+  appearance: default
+  at:
+  - -11
+  - 62
+  - 0
+  yaw: 0
+- id: wall_detail
+  resource: ep1\environment\architecture\common\int\int_mlt_bunker_a\int_mlt_bunker_a_corridor_wall_detail.mesh
+  appearance: default
+  at:
+  - -5
+  - 62
+  - 3
+  yaw: 0
+- id: wall_l900
+  resource: ep1\environment\architecture\common\int\int_mlt_bunker_a\int_mlt_bunker_a_corridor_wall_l900.mesh
+  appearance: default
+  at:
+  - 0
+  - 60
+  - 3
+  yaw: 0
+- id: pillar_base
+  resource: ep1\environment\architecture\common\int\int_mlt_bunker_a\int_mlt_bunker_a_tunnel_pillar_base.mesh
+  appearance: default
+  at:
+  - 5
+  - 62
+  - 0
+  yaw: 0
+- id: pillar_h300
+  resource: ep1\environment\architecture\common\int\int_mlt_bunker_a\int_mlt_bunker_a_tunnel_pillar_h300.mesh
+  appearance: default
+  at:
+  - 8
+  - 62
+  - 0
+  yaw: 0
+- id: pattern
+  resource: ep1\environment\architecture\common\int\int_mlt_bunker_a\int_mlt_bunker_a_wall_pattern_a_l600_w500.mesh
+  appearance: default
+  at:
+  - 9
+  - 64
+  - 0
+  yaw: 0
+- id: door_a
+  resource: ep1\environment\decoration\doors\unique\cynosure\door_int_mlt_bunker_a.mesh
+  appearance: default
+  at:
+  - -9
+  - 74
+  - 0
+  yaw: 0
+- id: door_a_hinge
+  resource: ep1\environment\decoration\doors\unique\cynosure\door_int_mlt_bunker_a_hinges_a.mesh
+  appearance: default
+  at:
+  - -9
+  - 74
+  - 0
+  yaw: 0
+- id: door_b
+  resource: ep1\environment\decoration\doors\unique\cynosure\door_int_mlt_bunker_b.mesh
+  appearance: default
+  at:
+  - -2
+  - 74
+  - 0
+  yaw: 0
+- id: light_a
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_light_box_a.mesh
+  appearance: default
+  at:
+  - 3
+  - 74
+  - 2
+  yaw: 0
+- id: sign_a
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_a_plate_a.mesh
+  appearance: default
+  at:
+  - 7
+  - 74
+  - 1.6
+  yaw: 0
+- id: sign_a_d
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_a_decals_a.mesh
+  appearance: default
+  at:
+  - 7
+  - 73.99
+  - 1.6
+  yaw: 0
+- id: sign_b
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_b_plate_a.mesh
+  appearance: default
+  at:
+  - 10
+  - 74
+  - 1.6
+  yaw: 0
+- id: sign_b_d
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_b_decals_a.mesh
+  appearance: default
+  at:
+  - 10
+  - 73.99
+  - 1.6
+  yaw: 0
+- id: sign_e
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_e.mesh
+  appearance: default
+  at:
+  - 5
+  - 74
+  - 3.0
+  yaw: 0

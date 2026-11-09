@@ -1,0 +1,577 @@
+{
+  "_comment": "One entry per symbolic string id. 'note' becomes the onscreens secondaryKey (a human-readable label, never shown to the player). ua-ua is a real translation, not an alias.",
+
+  "quest_title":        { "note": "Ash Cache quest title",
+    "en-us": "Ash Cache",
+    "ua-ua": "Попелястий тайник" },
+
+  "obj_goto_dogtown":   { "note": "objective: travel to Dogtown motel",
+    "en-us": "Go to Dogtown. Find the place where dogs sleep.",
+    "ua-ua": "Вирушай у Доґтаун. Знайди місце, де сплять пси." },
+
+  "obj_search_room":    { "note": "objective: search courier room 7",
+    "en-us": "Search the courier's room",
+    "ua-ua": "Обшукай кімнату кур'єра" },
+
+  "obj_search_motel":   { "note": "objective: optional motel sweep",
+    "en-us": "Search the rest of the motel",
+    "ua-ua": "Обшукай решту мотелю" },
+
+  "obj_goto_clinic":    { "note": "objective: find the ripperdoc clinic in Dogtown",
+    "en-us": "Find the ripperdoc's clinic in Dogtown",
+    "ua-ua": "Знайди клініку ріпердока в Доґтауні" },
+
+  "obj_find_box":       { "note": "objective: locate the black box",
+    "en-us": "Find the black box",
+    "ua-ua": "Знайди чорну скриньку" },
+
+  "obj_read_journal":   { "note": "objective: optional, read Mara's journal shard",
+    "en-us": "Read Mara's journal",
+    "ua-ua": "Прочитай щоденник Мари" },
+
+  "obj_open_cabinet":   { "note": "objective: optional, FIA-locked cabinet",
+    "en-us": "Open the FIA-locked cabinet",
+    "ua-ua": "Відчини шафу із замком ФІА" },
+
+  "obj_talk_mara":      { "note": "objective: talk to Mara Voss",
+    "en-us": "Talk to Mara Voss",
+    "ua-ua": "Поговори з Марою Восс" },
+
+  "obj_terminal":       { "note": "objective: access the clinic terminal",
+    "en-us": "Access the clinic terminal",
+    "ua-ua": "Отримай доступ до терміналу клініки" },
+
+  "obj_survive":        { "note": "objective: survive FIA cleanup",
+    "en-us": "Survive the FIA cleanup crew",
+    "ua-ua": "Переживи зачистку ФІА" },
+
+  "obj_decide":         { "note": "objective: final choice",
+    "en-us": "Decide what to do with the splinter",
+    "ua-ua": "Виріши, що робити з осколком" },
+
+  "sms_unknown_title":  { "note": "sms thread title, unknown sender",
+    "en-us": "UNKNOWN",
+    "ua-ua": "НЕВІДОМИЙ" },
+
+  "_sms_unknown_retired": "D126. sms_unknown_01 and sms_unknown_02 lived here: the two messages the quest used to open with. The holocall in source/scene_hookcall.json replaced both, so the text is gone rather than left unreferenced - a string nothing names still ships in all 18 locale files and still reads as live content to the next person who opens this file. Their LocKeys, 77315013 and 77315014, stay allocated in source/lockeys.json and are never reused: that block is append-only because a reused LocKey silently repoints whatever still points at the old one. sms_unknown_title is NOT retired - the contact is still called UNKNOWN, and now uses that string as the subtitle speaker label too.",
+
+  "sms_blueeyes_title": { "note": "sms thread title, Mr. Blue Eyes",
+    "en-us": "NO CALLER ID",
+    "ua-ua": "НОМЕР ПРИХОВАНО" },
+
+  "obj_end_destroy":    { "note": "objective: ending, destroy the splinter",
+    "en-us": "Destroy the splinter",
+    "ua-ua": "Знищ осколок" },
+
+  "obj_end_absorb":     { "note": "objective: ending, absorb the echo",
+    "en-us": "Absorb the echo",
+    "ua-ua": "Поглинь відлуння" },
+
+  "obj_end_blueeyes":   { "note": "objective: ending, hand the splinter to Mr. Blue Eyes",
+    "en-us": "Hand the splinter to the man with blue eyes",
+    "ua-ua": "Віддай осколок чоловікові з блакитними очима" },
+
+  "obj_end_hide":       { "note": "objective: ending, bury the case in the Badlands (gated on Mara trusting V)",
+    "en-us": "Bury the case where the FIA does not look",
+    "ua-ua": "Заховай кейс там, де ФІА не шукає" },
+
+  "sms_blueeyes_courier": { "note": "sms, Blue Eyes after the courier room",
+    "en-us": "The courier was not the thief. He was the lock. Someone picked it.\n\nGo.",
+    "ua-ua": "Кур'єр не був злодієм. Він був замком. Хтось його зламав.\n\nІди." },
+
+  "char_mara_name":     { "note": "NPC nameplate: Mara Voss",
+    "en-us": "Mara Voss",
+    "ua-ua": "Мара Восс" },
+
+  "char_mara_fullname": { "note": "NPC nameplate, long form: Mara Voss, FIA",
+    "en-us": "Mara Voss",
+    "ua-ua": "Мара Восс" },
+
+  "char_recording_name": { "note": "D126. Subtitle speaker for the two seconds of audio the unknown caller plays down the line. Not a name, because nobody in the scene - including the phone - can say whose voice it is. The caller's own speaker label reuses sms_unknown_title.",
+    "en-us": "RECORDING",
+    "ua-ua": "ЗАПИС" },
+
+  "item_splinter_name":   { "note": "item name: the quest object",
+    "en-us": "The Splinter",
+    "ua-ua": "Осколок" },
+
+  "item_splinter_desc":   { "note": "item description: the quest object",
+    "en-us": "A Cynosure black box, nine years inside a motel wall. The casing is cold. Whatever is on it is still running.",
+    "ua-ua": "Чорна скринька «Синозури», дев'ять років у стіні мотелю. Корпус холодний. Те, що всередині, досі працює." },
+
+  "item_mara_journal_name": { "note": "item name: Mara's journal shard",
+    "en-us": "Mara's Journal",
+    "ua-ua": "Щоденник Мари" },
+
+  "item_mara_journal_desc": { "note": "item description: Mara's journal shard",
+    "en-us": "A personal shard, unencrypted. Whoever wrote it had stopped caring who read it.",
+    "ua-ua": "Особистий шард, без шифрування. Той, хто його писав, уже не переймався, хто це прочитає." },
+
+  "shard_mara_journal_title": { "note": "shard header: Mara's journal",
+    "en-us": "Journal \u2014 M. Voss",
+    "ua-ua": "Щоденник \u2014 М. Восс" },
+
+  "shard_mara_journal_body": { "note": "shard body: Mara's journal",
+    "en-us": "Day 2,847 of a six-month posting.\n\nI filed the case as destroyed. Wrote the incineration slip myself, countersigned it in Hale's hand, and carried it out under my coat.\n\nI have read the source file maybe four hundred times. It isn't a weapon. It isn't intelligence. It's a person who hasn't happened yet, grown out of a scan somebody took without asking.\n\nBurn it and she never existed. Hand it up and they finish her.\n\nSo it goes in a wall, and I go on filing reports about a case that is ash.",
+    "ua-ua": "День 2847 із піврічного відрядження.\n\nЯ оформила кейс як знищений. Сама виписала акт про спалення, підробила підпис Гейла і винесла його під пальтом.\n\nЯ перечитала вихідний файл, мабуть, разів чотириста. Це не зброя. Це не розвіддані. Це людина, якої ще не сталося, вирощена зі скану, що його зняли, не спитавши.\n\nСпалю \u2014 і її ніколи не було. Здам нагору \u2014 і її доведуть до кінця.\n\nТож він іде в стіну, а я далі пишу звіти про кейс, який став попелом." },
+
+  "item_courier_log_name": { "note": "item name: the courier's audio log",
+    "en-us": "Courier's Audio Log",
+    "ua-ua": "Аудіозапис кур'єра" },
+
+  "item_courier_log_desc": { "note": "item description: the courier's audio log",
+    "en-us": "Pulled off a personal agent left in a rented room. Forty-one seconds, most of it breathing.",
+    "ua-ua": "Знято з особистого агента, залишеного в орендованій кімнаті. Сорок одна секунда, здебільшого \u2014 дихання." },
+
+  "shard_courier_log_title": { "note": "shard header: the courier's audio log",
+    "en-us": "Audio Log \u2014 Room 7",
+    "ua-ua": "Аудіозапис \u2014 кімната 7" },
+
+  "shard_courier_log_body": { "note": "shard body: the courier's audio log",
+    "en-us": "[41s. Partially corrupted.]\n\n\u2014doesn't matter what's in it. I'm not opening it. Job says carry, so I carry.\n\nOnly thing is, she looked at me when she handed it over. Not at the case. At me. Like she was working out whether I'd fit through the same door twice.\n\nIf you're hearing this, I didn't. Room's paid through Friday. Take the\u2014\n\n[recording ends]",
+    "ua-ua": "[41 с. Частково пошкоджено.]\n\n\u2014байдуже, що всередині. Я не відкриватиму. Робота каже нести \u2014 я несу.\n\nОдне тільки: вона подивилася на мене, коли віддавала. Не на кейс. На мене. Наче прикидала, чи пролізу я в ті самі двері двічі.\n\nЯкщо ти це чуєш \u2014 не проліз. За кімнату сплачено до п'ятниці. Забери\u2014\n\n[запис обірвано]" },
+
+  "item_fia_key_name":    { "note": "item name: FIA master key, Hide ending only",
+    "en-us": "FIA Master Key",
+    "ua-ua": "Майстер-ключ ФІА" },
+
+  "item_fia_key_desc":    { "note": "item description: FIA master key",
+    "en-us": "Voss's field credential. Opens Federal locks that were never meant to open twice.",
+    "ua-ua": "Польове посвідчення Восс. Відмикає федеральні замки, які не мали відмикатися двічі." },
+
+  "_comment_desc": "Journal descriptions (gameJournalQuestDescription). One per spine objective and per ending, in V's voice. This is the paragraph the Journal shows above the objective list - what makes a vanilla quest read as a story rather than a checklist, and what this mod had none of. The engine hands the UI every description whose objective has been reached, so they are written to stack in order, and to avoid gendered past-tense verbs for V, who has no fixed gender.",
+
+  "desc_goto_dogtown": { "note": "journal description: the anonymous message",
+    "en-us": "A message from a number that doesn't exist. Someone knows what Cynosure pulled out of my head, and says a piece of it survived - in Dogtown, on a clock, with the FIA already moving. The sender says to ask for the place where dogs sleep.",
+    "ua-ua": "Повідомлення з номера, якого не існує. Хтось знає, що «Синозура» витягла з моєї голови, і каже, що шматок уцілів — у Доґтауні, час спливає, і ФІА вже йде по нього. Відправник радить питати про місце, де сплять пси." },
+  "desc_search_room": { "note": "journal description: the motel and room 7",
+    "en-us": "The place where dogs sleep is a motel with a dead neon dog over the door. Room 7 was rented to a courier who never checked out. Whatever he was carrying, he was carrying it for somebody else.",
+    "ua-ua": "Місце, де сплять пси, — мотель із мертвим неоновим псом над дверима. Кімнату 7 винаймав кур'єр, який так і не виїхав. Що б він не ніс, ніс він це не для себе." },
+  "desc_goto_clinic": { "note": "journal description: the courier log names the clinic",
+    "en-us": "Forty-one seconds of a dead man breathing. He never opened the case - but he named the woman who handed it to him, and he named where she works. A ripperdoc's clinic, deeper into Dogtown.",
+    "ua-ua": "Сорок одна секунда дихання мерця. Він так і не відкрив кейс — але назвав жінку, яка йому його передала, і назвав, де вона працює. Клініка ріпердока, глибше в Доґтауні." },
+  "desc_find_box": { "note": "journal description: inside the clinic, looking for the case",
+    "en-us": "The clinic is still running, which means somebody is still paying for it. The case should be here. Nine years inside a wall, and it has never once stopped drawing power.",
+    "ua-ua": "Клініка досі працює — отже, хтось досі за неї платить. Кейс має бути тут. Дев'ять років у стіні, і жодного разу не переставав тягнути живлення." },
+  "desc_talk_mara": { "note": "journal description: Mara Voss",
+    "en-us": "Mara Voss. FIA, a six-month posting, nine years ago. She wrote the incineration slip herself, countersigned it in her supervisor's hand, and then carried the case out under her coat. She has been waiting a long time for somebody to come and ask her why.",
+    "ua-ua": "Мара Восс. ФІА, піврічне відрядження, дев'ять років тому. Вона сама виписала акт про спалення, підробила підпис керівника, а тоді винесла кейс під пальтом. Вона дуже довго чекала, щоб хтось прийшов і спитав чому." },
+  "desc_terminal": { "note": "journal description: the clinic terminal",
+    "en-us": "Voss kept records the Agency believes it destroyed. The clinic terminal is where they live. If the echo on that splinter is mine, this is where it says so.",
+    "ua-ua": "Восс зберігала записи, які Агенція вважає знищеними. Вони — у терміналі клініки. Якщо відлуння на тому осколку моє, саме тут це буде сказано." },
+  "desc_survive": { "note": "journal description: the FIA cleanup crew",
+    "en-us": "The Agency does not send a courier twice. It sent a cleanup crew, and they are already inside.",
+    "ua-ua": "Агенція не надсилає кур'єра двічі. Вона надіслала бригаду зачистки, і та вже всередині." },
+  "desc_decide": { "note": "journal description: the final choice",
+    "en-us": "It is my voice on that splinter, saying words I never said. Nine years old, and still asking not to be deleted. Whatever happens to it next, there is no second time.",
+    "ua-ua": "На тому осколку — мій голос. Чужі слова. Йому дев'ять років, і він досі просить не стирати його. Що б із ним не сталося далі — другого разу не буде." },
+  "desc_end_destroy": { "note": "journal description: ending, destroy",
+    "en-us": "The echo is not me. It is a recording a machine took of me and then refused to let go of. It should not exist.",
+    "ua-ua": "Відлуння — не я. Це запис, який машина зняла з мене й відмовилася відпустити. Його не має бути." },
+  "desc_end_absorb": { "note": "journal description: ending, absorb",
+    "en-us": "Nine years of me, sealed in a box, still talking. If there is anything in there worth keeping, there is only one place left to keep it.",
+    "ua-ua": "Дев'ять років мене, запечатані в коробці, і воно досі говорить. Якщо там є щось варте збереження, лишилося тільки одне місце, де його тримати." },
+  "desc_end_blueeyes": { "note": "journal description: ending, hand it to Mr. Blue Eyes",
+    "en-us": "The man with blue eyes was on this before I was. He never asked for the splinter. He simply assumed I would bring it.",
+    "ua-ua": "Чоловік із блакитними очима займався цим ще до мене. Він не просив осколок. Він просто виходив із того, що я його принесу." },
+  "desc_end_hide": { "note": "journal description: ending, bury it in the Badlands",
+    "en-us": "Voss kept it out of the fire for nine years by being the only person alive who knew where it was. The Badlands are bigger than her coat.",
+    "ua-ua": "Восс дев'ять років тримала його подалі від вогню, бо єдина в світі знала, де він. Пустка більша за її пальто." },
+
+  "chip_tree_name": { "note": "chip tree: tab name",
+    "en-us": "The Splinter",
+    "ua-ua": "Осколок" },
+
+  "chip_tree_tagline": { "note": "chip tree: tab tagline",
+    "en-us": "Nine years in a wall. Still running.",
+    "ua-ua": "Дев'ять років у стіні. Досі працює." },
+
+  "chip_points": { "note": "chip tree: header, points left",
+    "en-us": "Echo points",
+    "ua-ua": "Очки відлуння" },
+
+  "chip_reset": { "note": "chip tree: reset button",
+    "en-us": "Reset",
+    "ua-ua": "Скинути" },
+
+  "chip_dormant": { "note": "chip tree: before the decision",
+    "en-us": "The splinter is silent. Decide what to do with it.",
+    "ua-ua": "Осколок мовчить. Виріши, що з ним робити." },
+
+  "chip_burned": { "note": "chip tree: Burn ending",
+    "en-us": "You burned it. Nothing left to hear.",
+    "ua-ua": "Ти його спалив. Слухати більше нічого." },
+
+  "chip_partial": { "note": "chip tree: partial unlock footer",
+    "en-us": "Only an echo stayed with you. The last tier needs a full jack-in.",
+    "ua-ua": "З тобою лишилось тільки відлуння. Останній рівень потребує повного підключення." },
+
+  "chip_locked_prev": { "note": "chip tree: node needs previous tier",
+    "en-us": "Requires the previous tier",
+    "ua-ua": "Потрібен попередній рівень" },
+
+  "chip_locked_full": { "note": "chip tree: node needs full jack-in",
+    "en-us": "Requires a full jack-in",
+    "ua-ua": "Потрібне повне підключення" },
+
+  "chip_locked_points": { "note": "chip tree: not enough points",
+    "en-us": "Not enough echo points",
+    "ua-ua": "Бракує очок відлуння" },
+
+  "chip_owned": { "note": "chip tree: node bought",
+    "en-us": "Installed",
+    "ua-ua": "Встановлено" },
+
+  "chip_buy_hint": { "note": "chip tree: node can be bought",
+    "en-us": "Click to install",
+    "ua-ua": "Натисни, щоб встановити" },
+
+  "chip_unlocked_msg": { "note": "onscreen message when the tree unlocks",
+    "en-us": "The splinter is awake. Character -> Additional Perk Trees -> The Splinter",
+    "ua-ua": "Осколок прокинувся. Персонаж -> Additional Perk Trees -> Осколок" },
+
+  "chip_frag_msg": { "note": "onscreen message when an echo fragment is absorbed; script appends \" N/6\"",
+    "en-us": "Echo fragment absorbed",
+    "ua-ua": "Уламок відлуння поглинуто" },
+
+  "chip_branch_ghost": { "note": "branch name",
+    "en-us": "Ghost",
+    "ua-ua": "Привид" },
+
+  "chip_branch_echo": { "note": "branch name",
+    "en-us": "Echo",
+    "ua-ua": "Відлуння" },
+
+  "chip_branch_ash": { "note": "branch name",
+    "en-us": "Ash",
+    "ua-ua": "Попіл" },
+
+  "chip_ghost_1_name": { "note": "perk",
+    "en-us": "Whisper in the Net",
+    "ua-ua": "Шепіт у мережі" },
+
+  "chip_ghost_1_desc": { "note": "perk",
+    "en-us": "+2 RAM.",
+    "ua-ua": "+2 RAM." },
+
+  "chip_ghost_2_name": { "note": "perk",
+    "en-us": "Borrowed Memory",
+    "ua-ua": "Чужа пам'ять" },
+
+  "chip_ghost_2_desc": { "note": "perk",
+    "en-us": "+25% RAM recovery rate.",
+    "ua-ua": "+25% до швидкості відновлення RAM." },
+
+  "chip_ghost_3_name": { "note": "perk",
+    "en-us": "Where Nobody Looks",
+    "ua-ua": "Там, де не шукають" },
+
+  "chip_ghost_3_desc": { "note": "perk",
+    "en-us": "+15% quickhack damage. +2 RAM.",
+    "ua-ua": "+15% до шкоди від швидкозламів. +2 RAM." },
+
+  "chip_echo_1_name": { "note": "perk",
+    "en-us": "Second Heartbeat",
+    "ua-ua": "Друге серцебиття" },
+
+  "chip_echo_1_desc": { "note": "perk",
+    "en-us": "+50 Health. +30 Armor.",
+    "ua-ua": "+50 здоров'я. +30 броні." },
+
+  "chip_echo_2_name": { "note": "perk",
+    "en-us": "Warm Casing",
+    "ua-ua": "Теплий корпус" },
+
+  "chip_echo_2_desc": { "note": "perk",
+    "en-us": "10% damage reduction.",
+    "ua-ua": "Зменшення отриманої шкоди на 10%." },
+
+  "chip_echo_3_name": { "note": "perk",
+    "en-us": "Nine Years",
+    "ua-ua": "Дев'ять років" },
+
+  "chip_echo_3_desc": { "note": "perk",
+    "en-us": "Restore 15% Health on every kill.",
+    "ua-ua": "Відновлює 15% здоров'я за кожне вбивство." },
+
+  "chip_ash_1_name": { "note": "perk",
+    "en-us": "Heat",
+    "ua-ua": "Жар" },
+
+  "chip_ash_1_desc": { "note": "perk",
+    "en-us": "+10% Crit Chance.",
+    "ua-ua": "+10% до шансу критичного удару." },
+
+  "chip_ash_2_name": { "note": "perk",
+    "en-us": "No Hesitation",
+    "ua-ua": "Без вагань" },
+
+  "chip_ash_2_desc": { "note": "perk",
+    "en-us": "+25% headshot damage.",
+    "ua-ua": "+25% до шкоди в голову." },
+
+  "chip_ash_3_name": { "note": "perk",
+    "en-us": "Ashes to Ashes",
+    "ua-ua": "Попіл до попелу" },
+
+  "chip_ash_3_desc": { "note": "perk",
+    "en-us": "+35% Crit Damage. +50 Armor.",
+    "ua-ua": "+35% до критичної шкоди. +50 броні." },
+
+  "_d119": "The clinic terminal, D119. The four hud_* ids are the first strings a QUEST NODE reads rather than the journal or TweakDB: questProgressBar and questWarningMessage take LocKey references, so these are written here like everything else and resolved by tools/gen_questphase.py.",
+
+  "hud_dl_top": { "note": "progress bar, top line: the archive download at the clinic terminal",
+    "en-us": "DOWNLOADING — CLINIC NODE 7",
+    "ua-ua": "ЗАВАНТАЖЕННЯ — ВУЗОЛ 7 КЛІНІКИ" },
+
+  "hud_dl_bottom": { "note": "progress bar, bottom line: what is being copied, and what is not there to copy",
+    "en-us": "voss_archive.dat  —  212 files withheld",
+    "ua-ua": "voss_archive.dat  —  212 файлів вилучено" },
+
+  "hud_dl_done": { "note": "warning message: the download finishes",
+    "en-us": "TRANSFER COMPLETE",
+    "ua-ua": "ПЕРЕДАЧУ ЗАВЕРШЕНО" },
+
+  "hud_terminal_audit": { "note": "warning message: the optional audit-trail read at the terminal",
+    "en-us": "AUDIT TRAIL — 212 FILES PURGED, FIA ORDER 7",
+    "ua-ua": "ЖУРНАЛ АУДИТУ — 212 ФАЙЛІВ ВИДАЛЕНО, НАКАЗ ФІА-7" },
+
+  "item_clinic_archive_name": { "note": "item name: what the terminal download leaves in V's inventory",
+    "en-us": "Clinic Archive Copy",
+    "ua-ua": "Копія архіву клініки" },
+
+  "item_clinic_archive_desc": { "note": "item description: the archive copy",
+    "en-us": "Everything Voss's terminal still had. Mostly an index of what it no longer has.",
+    "ua-ua": "Усе, що ще лишалося в терміналі Восс. Переважно — покажчик того, чого вже немає." },
+
+  "shard_clinic_archive_title": { "note": "shard header: the clinic archive",
+    "en-us": "Clinic Archive — Admission 0-1140",
+    "ua-ua": "Архів клініки — запис 0-1140" },
+
+  "shard_clinic_archive_body": { "note": "shard body: Voss's own record of the intake, and the hole where the rest of it was",
+    "en-us": "[VOSS/private. Pulled from clinic node 7. 212 files withheld — index only.]\n\nADMISSION 0-1140. Sample logged as unclaimed. No next of kin. No biometric match filed with NCPD. Agency courier signed for the splinter eleven minutes after intake — before the scan finished running.\n\nPersonal note. They keep telling me the pattern on this one is a copy. A copy of what. The original walked in here on its own legs and signed the form in its own hand, and I watched it do that.\n\nWhoever reads this after me: the index is the evidence, not the files. Count what is missing.",
+    "ua-ua": "[VOSS/приватне. Знято з вузла 7 клініки. 212 файлів вилучено — лишився тільки покажчик.]\n\nЗАПИС 0-1140. Зразок зареєстровано як безхазяйний. Родичів немає. Біометричної відповідності в NCPD не подано. Кур'єр Агенції підписався за осколок через одинадцять хвилин після прийому — ще до того, як завершилося сканування.\n\nОсобиста нотатка. Мені й далі повторюють, що патерн на цьому — копія. Копія чого. Оригінал зайшов сюди на власних ногах і підписав форму власною рукою, і я бачила, як він це робив.\n\nХто прочитає це після мене: доказ — покажчик, а не файли. Порахуйте те, чого немає." },
+
+  "_d120": "The endings, D120. Until now every ending set a fact and the objective ticked in the same frame; these are the strings for the beats that now sit in between. The hud_* ids are LocKey-resolved quest-node strings (see _d119), the sms_ id is a phone message, and the spoken lines live inline in source/scene_epilogue.json like every other subtitle.",
+
+  "hud_absorb_top": { "note": "progress bar, top line: V jacks the splinter into her own head",
+    "en-us": "NEURAL LINK — SPLINTER 0-1140",
+    "ua-ua": "НЕЙРОЗВ'ЯЗОК — ОСКОЛОК 0-1140" },
+
+  "hud_absorb_bottom": { "note": "progress bar, bottom line: what the read is doing to her",
+    "en-us": "personal link active  —  do not disconnect",
+    "ua-ua": "персональний лінк активний  —  не від'єднуйся" },
+
+  "hud_absorb_done": { "note": "warning message: the echo finishes loading",
+    "en-us": "ECHO INTEGRATED",
+    "ua-ua": "ВІДЛУННЯ ІНТЕГРОВАНО" },
+
+  "hud_burn_lost": { "note": "warning message: the splinter's last transmission as it burns",
+    "en-us": "SIGNAL LOST — 0-1140",
+    "ua-ua": "СИГНАЛ ВТРАЧЕНО — 0-1140" },
+
+  "sms_blueeyes_paid": { "note": "sms, Mr. Blue Eyes once the splinter is in the drop box and the money is in V's account",
+    "en-us": "Counted and paid. Don't count it again in the open.\n\nYou were never in that clinic. I was never on this number.",
+    "ua-ua": "Пораховано й сплачено. Не перераховуй це на видноті.\n\nТебе ніколи не було в тій клініці. Мене ніколи не було на цьому номері." },
+
+  "_d121": [
+    "Mara, D121. She used to exist for one conversation: she warned V that Hale was",
+    "twenty minutes out, and then stood in the clinic while the firefight, the",
+    "decision and all four endings happened around her. Nothing she said had a",
+    "consequence and nothing V chose about her changed anything except one gate.",
+    "",
+    "These are the strings for the three places she now acts. The gun is an item",
+    "record (source/items.json); the rest is one phone thread, because a woman who",
+    "spent nine years not being seen helps from off-screen - and because that is the",
+    "one way a character can keep acting in a quest without an NPC that has to be",
+    "spawned, animated and kept alive to do it.",
+    "",
+    "Every ending message has a trusted version and ONE cold version shared by all",
+    "four. That is deliberate: told to get lost, she still pulls V's name off the",
+    "clinic's node and still sends the count, and the fact that she sends the SAME",
+    "four words whatever V did with the splinter is the point - she is helping a",
+    "stranger, not talking to a friend."
+  ],
+
+  "item_mara_liberty_name": { "note": "item name: the sidearm Mara hands V before the cleanup (trusted routes only)",
+    "en-us": "Voss's Liberty",
+    "ua-ua": "«Ліберті» Восс" },
+
+  "item_mara_liberty_desc": { "note": "item description: Mara's federal-issue sidearm, carried nine years and never fired in anger",
+    "en-us": "Militech Liberty, federal issue, serial filed to a depth that took patience.\n\nCarried under a coat for nine years by a woman who drew it twice, both times at a range, both times badly. The grip has worn smooth on one side from being held and never used.",
+    "ua-ua": "«Мілітек Ліберті», федеральний зразок, серійний номер сточено так глибоко, що на це знадобилося терпіння.\n\nДев'ять років його носила під пальтом жінка, яка діставала його двічі — обидва рази в тирі й обидва рази погано. Руків'я з одного боку затерлося до гладкості: його тримали, але так і не використали." },
+
+  "item_mara_trophy_name": { "note": "item name (D186): the Liberty lying next to Mara's body, picked up at the landfill (trusted routes only). The one she emptied.",
+    "en-us": "Last Word",
+    "ua-ua": "«Останнє слово»" },
+
+  "item_mara_trophy_desc": { "note": "item description (D186): the trophy Liberty. Stats are real and set in items.json - keep the numbers in this text in step with them.",
+    "en-us": "Militech Liberty, federal issue. Found in the mud beside Mara Voss, slide locked back, every round spent.\n\nNine years she never fired it in anger. At the end she did not miss once.\n\n+30% Damage. +15% Crit Chance. +35% Crit Damage. +50% Headshot Damage. +4 Magazine Capacity.",
+    "ua-ua": "«Мілітек Ліберті», федеральний зразок. Знайдений у багнюці поряд із Марою Восс: затвор у задньому положенні, жодного патрона.\n\nДев'ять років вона не стріляла з нього всерйоз. Наприкінці не схибила жодного разу.\n\n+30% шкоди. +15% шанс критичного удару. +35% критичної шкоди. +50% шкоди в голову. +4 до місткості магазина." },
+
+  "sms_mara_title": { "note": "sms thread title, Mara Voss's burner. Not her name: she does not give one out, and V only knows it because she said it.",
+    "en-us": "M. VOSS",
+    "ua-ua": "М. ВОСС" },
+
+  "sms_mara_fight": { "note": "sms, during the FIA cleanup, trusted routes - she said she would count them and she does",
+    "en-us": "Three on the street, one staying with the car.\n\nThe one hanging back has a deck, not a rifle. He's the one who can reach your optics. Take him first.",
+    "ua-ua": "Троє на вулиці, один лишився біля машини.\n\nУ того, хто тримається позаду, дека, а не гвинтівка. Саме він дістане твою оптику. Почни з нього." },
+
+  "sms_mara_fight_cold": { "note": "sms, during the FIA cleanup, hostile route - she helps anyway and refuses the conversation",
+    "en-us": "Three. One by the car. The one hanging back is a netrunner.\n\nDon't write back.",
+    "ua-ua": "Троє. Один біля машини. Той, що позаду, — нетранер.\n\nНе відписуй." },
+
+  "sms_mara_end_destroy": { "note": "sms, her verdict on the burn ending (trusted)",
+    "en-us": "You burned it.\n\nNine years I called it evidence so I wouldn't have to call it anything else. You did in one night what I couldn't do in nine.\n\nI'm not going to thank you for that. But I slept.",
+    "ua-ua": "Осколок згорів.\n\nДев'ять років я називала це доказом, щоб не довелося називати інакше. Одна ніч — і зроблено те, чого я не змогла за дев'ять років.\n\nДякувати не буду. Але я поспала." },
+
+  "sms_mara_end_absorb": { "note": "sms, her verdict on the absorb ending (trusted) - the only one where she is frightened for V",
+    "en-us": "You put it in your head.\n\nI sat with four hundred of her sessions. She asks for things. Quietly at first.\n\nIf something in there ever starts sounding like your own idea — that's the part to be afraid of. Call me. I mean that.",
+    "ua-ua": "Осколок тепер у твоїй голові.\n\nЯ просиділа над чотирмастами її сеансів. Вона просить. Спершу тихо.\n\nЯкщо колись щось там почне звучати як твоя власна думка — ось цього й бійся. Подзвони мені. Я серйозно." },
+
+  "sms_mara_end_blueeyes": { "note": "sms, her verdict on the Blue Eyes ending (trusted) - disappointment without a lecture, because she has no standing to give one",
+    "en-us": "It's moving. Two hours after you handed it over, three flags I haven't been able to clear in nine years lit up at once.\n\nI'm not going to tell you what you should have done. I had nine years and I did nothing.\n\nJust don't be surprised when it comes back wearing your face.",
+    "ua-ua": "Він у русі. За дві години після передачі одразу засвітилися три позначки, які я дев'ять років не могла зняти.\n\nНе казатиму тобі, як треба було вчинити. У мене було дев'ять років — і я не зробила нічого.\n\nПросто не дивуйся, коли він повернеться з твоїм обличчям." },
+
+  "sms_mara_end_hide": { "note": "sms, her verdict on the Badlands ending - the ending gated on her trust, and the only one she is physically in",
+    "en-us": "Plate's back on, two metres of caliche on top, and the key's yours now. Not mine. That's on purpose.\n\nAnyone comes asking, you bought a car off me and we never talked.\n\nThank you for letting me be the one to close the wall.",
+    "ua-ua": "Плиту повернуто на місце, зверху два метри сухої глини, і ключ тепер твій. Не мій. Це навмисно.\n\nЯкщо хтось питатиме — між нами була угода про машину, і ми ніколи не розмовляли.\n\nДякую, що закрити ту стіну випало саме мені." },
+
+  "sms_mara_end_cold": { "note": "sms, hostile route, sent whatever V did with the splinter. The sameness is the characterisation: she is squaring a debt, not having a conversation.",
+    "en-us": "It's off the network, whatever you did with it. Good.\n\nYour name isn't in the clinic's node. I pulled it on my way out. You don't have to like me for that.\n\nDon't call this number.",
+    "ua-ua": "Його немає в мережі — байдуже, куди він подівся. Добре.\n\nТвого імені немає у вузлі клініки. Я стерла його, коли йшла. Любити мене за це не обов'язково.\n\nНа цей номер не дзвони." },
+
+  "sms_mara_break": { "note": "sms, extra message sent only if V broke her with the journal line - the payoff for the hardest option in the conversation",
+    "en-us": "One more and then I'll leave you alone.\n\nYou asked me which it was. Evidence, or a person.\n\nI've started saying person. Out loud, to people. It's worse, and it's right.",
+    "ua-ua": "Ще одне — і я від тебе відчеплюся.\n\nТвоє питання було: доказ чи людина.\n\nЯ почала казати «людина». Вголос, при людях. Так гірше — і так правильно." },
+
+  "_d122": [
+    "D122. The landfill. Mara turns up dead in the two endings where the cache",
+    "SURVIVES - absorb, because it is in V's head and she is the only other",
+    "person who can say what it was, and blueeyes, because V sold the trail",
+    "along with the data. Burn it or bury it and nobody has a reason to go",
+    "looking for her. That rule is never stated anywhere in the text; it is",
+    "meant to be worked out from the two saves where she lives.",
+    "",
+    "The wound is the D121 sidearm coming back. V who handed her the Liberty",
+    "gets the coroner's note that says she emptied it; V who told her to get",
+    "lost gets the one that says her forearms were cut and her hands were",
+    "empty. Same case number, same four closing words, one paragraph different.",
+    "",
+    "Nothing here is written in her voice, and that is the point of the beat:",
+    "the thread that spent D121 learning to sound like a person ends in the",
+    "flattest municipal prose in the project."
+  ],
+
+  "sms_mara_ncpd":      { "note": "sms, the last message on the M. VOSS thread - an automated NCPD notice, not from her",
+    "en-us": "NCPD AUTOMATED NOTICE\nCase 2077-SD-4471. Unclaimed decedent, municipal landfill.\n\nThis number appears in the decedent's recent contacts. Claim window: 72 hours.\n\nNo response is required.",
+    "ua-ua": "АВТОМАТИЧНЕ ПОВІДОМЛЕННЯ NCPD\nСправа 2077-SD-4471. Незатребуване тіло, міське сміттєзвалище.\n\nЦей номер є в списку останніх контактів покійної. Термін звернення — 72 години.\n\nВідповідь не потрібна." },
+
+  "obj_landfill":       { "note": "objective: go to the landfill after the NCPD notice",
+    "en-us": "Find Voss at the landfill",
+    "ua-ua": "Знайди Восс на звалищі" },
+
+  "desc_landfill":      { "note": "journal description: the landfill",
+    "en-us": "The message came from her number. It was not from her.\n\nSeventy-two hours, an automated case file, and a heap of the city's garbage with a woman in it who spent nine years making sure nobody could find her.",
+    "ua-ua": "Повідомлення прийшло з її номера. Воно було не від неї.\n\nСімдесят дві години, автоматична справа — і купа міського сміття, в якій лежить жінка, що дев'ять років робила все, аби її ніхто не знайшов." },
+
+  "item_mara_autopsy_name": { "note": "item name: the coroner's note taken off the body bag (both wound variants share it)",
+    "en-us": "Coroner's Note",
+    "ua-ua": "Нотатка коронера" },
+
+  "item_mara_autopsy_desc": { "note": "item description: the coroner's note",
+    "en-us": "Municipal case file, copied off the tag on a body bag at the landfill.",
+    "ua-ua": "Копія міської справи, знята з бирки на мішку для тіла на звалищі." },
+
+  "shard_mara_autopsy_title": { "note": "shard title, shared by both wound variants - the case number is the same either way",
+    "en-us": "Coroner's Note - Case 2077-SD-4471",
+    "ua-ua": "Нотатка коронера — справа 2077-SD-4471" },
+
+  "shard_mara_autopsy_shot_body": { "note": "shard body: she had the Liberty and used it (liberty_given == 1)",
+    "en-us": "Decedent: female, forties, no chrome of note.\n\nCause: three gunshot wounds, torso, grouped. Two more rounds in the ground beside her - the shooters were behind cover, which means she gave them a reason to be.\n\nA handgun was recovered under the body. Militech Liberty, federal issue, slide locked back, magazine empty. Serial filed to the Agency. She fired all of it.\n\nNo suspects. No witnesses. File closed pending.",
+    "ua-ua": "Покійна: жінка, близько сорока, без помітної хромованої імплантації.\n\nПричина: три вогнепальні поранення тулуба, купно. Ще два набої — у ґрунті поруч: стрільці били з укриття, тобто вона дала їм привід ховатися.\n\nПід тілом знайдено пістолет. Militech Liberty, федеральний зразок, затвор на затримці, магазин порожній. Серійний номер зареєстровано на Агентство. Вона витратила все.\n\nПідозрюваних немає. Свідків немає. Справу закрито до з'ясування." },
+
+  "shard_mara_autopsy_cut_body": { "note": "shard body: V told her to get lost, so she had nothing (liberty_given == 0)",
+    "en-us": "Decedent: female, forties, no chrome of note.\n\nCause: sharp-force trauma, neck and forearms. The forearm wounds are defensive. She had nothing in her hands.\n\nNo firearm recovered. No casings within thirty metres. Whoever did this stood close enough to be recognised and did not care.\n\nNo suspects. No witnesses. File closed pending.",
+    "ua-ua": "Покійна: жінка, близько сорока, без помітної хромованої імплантації.\n\nПричина: колото-різані поранення шиї та передпліч. Поранення передпліч — захисні. У руках вона не мала нічого.\n\nВогнепальної зброї не знайдено. Гільз у радіусі тридцяти метрів немає. Той, хто це зробив, стояв достатньо близько, щоб його впізнали, і йому було байдуже.\n\nПідозрюваних немає. Свідків немає. Справу закрито до з'ясування." },
+
+  "obj_cynosure": { "note": "objective: after the quest, find the way down into Cynosure",
+    "en-us": "Find the way down into Cynosure",
+    "ua-ua": "Знайди шлях униз, у «Синозуру»" },
+
+  "desc_cynosure": { "note": "journal description: the shaft head, under Dogtown rather than under the Badlands",
+    "en-us": "Voss gave me an address I already had.\n\nThe dig does not run under the Badlands. It runs under Dogtown - under the strip of it I spent a week walking across. That box sat in a motel wall for nine years, two hundred and fifty metres above the hole it came out of.\n\nWhoever was carrying it never got off the site.",
+    "ua-ua": "Восс дала адресу, яку я вже мав.\n\nРозкоп іде не під Пустками. Він іде під Доґтауном — під тією смугою, якою я тиждень ходив. Та скринька дев'ять років пролежала в стіні мотелю, за двісті п'ятдесят метрів над дірою, з якої її дістали.\n\nТой, хто її ніс, так і не вийшов з майданчика." },
+
+  "item_cynosure_seal_name": { "note": "item name: the closure plate pulled off the shaft head",
+    "en-us": "Shaft Closure Order",
+    "ua-ua": "Припис про закриття шахти" },
+
+  "item_cynosure_seal_desc": { "note": "item description: the closure plate",
+    "en-us": "A stencilled steel plate off a maintenance shaft head in Dogtown. The Agency mark is newer than the weld under it.",
+    "ua-ua": "Сталева табличка з трафаретом, знята з оголовка технічної шахти в Доґтауні. Позначка федералів новіша за шов під нею." },
+
+  "shard_cynosure_seal_title": { "note": "shard title: the closure order",
+    "en-us": "Site Services - Shaft 14, Closure Order",
+    "ua-ua": "Служба об'єктів — шахта 14, припис про закриття" },
+
+  "shard_cynosure_seal_body": { "note": "shard body: why the listed address is the Badlands while the real way down is here, and that the archive below is untouched",
+    "en-us": "FEDERAL INTELLIGENCE AGENCY - SITE SERVICES\nCLOSURE ORDER: SHAFT 14 (MAINTENANCE), PACIFICA GRID\n\nShaft 14 is sealed at grade pending structural review. All personnel are directed to the listed approach.\n\nFOR THE RECORD, AGAIN: the listed approach is the Badlands portal, and the Badlands portal has been nine kilometres of collapsed service tunnel since '69. Every survey run in the last four years went down Shaft 14 and was filed as a Badlands entry, because the form has one field and the field has one answer.\n\nSite Services has raised this four times.\n\nInventory below is intact. Tier 3 and up is filed where it was left, originals included. Nothing has been removed from the archive.\n\nNothing has been added to it either. Somebody upstairs should read that line twice.",
+    "ua-ua": "ФЕДЕРАЛЬНЕ РОЗВІДУВАЛЬНЕ АГЕНТСТВО — СЛУЖБА ОБ'ЄКТІВ\nПРИПИС ПРО ЗАКРИТТЯ: ШАХТА 14 (ТЕХНІЧНА), СЕКТОР «ПАСИФІКА»\n\nШахту 14 загерметизовано на рівні землі до структурного обстеження. Весь персонал скеровується на зазначений підхід.\n\nДО ПРОТОКОЛУ, ЗНОВУ: зазначений підхід — це портал у Пустках, а портал у Пустках від 69-го року є дев'ятьма кілометрами обваленого службового тунелю. Усі обстеження за останні чотири роки йшли вниз шахтою 14 і оформлялися як вхід із Пусток, бо у формі одне поле, а в полі одна відповідь.\n\nСлужба об'єктів порушувала це питання чотири рази.\n\nОпис майна внизу без змін. Третій рівень і вище лежить там, де його лишили, разом з оригіналами. З архіву нічого не вилучено.\n\nІ нічого до нього не додано. Комусь нагорі варто перечитати цей рядок двічі." },
+
+  "item_cynosure_survey_name": { "note": "item name: the survey abstract pulled off the shaft head's maintenance port",
+    "en-us": "Site Survey Abstract",
+    "ua-ua": "Витяг з обстеження об'єкта" },
+
+  "item_cynosure_survey_desc": { "note": "item description: the survey abstract",
+    "en-us": "Forty-one pages of maintenance reporting, pulled off a live port on a facility that closed four years ago.",
+    "ua-ua": "Сорок одна сторінка технічної звітності, знята з живого порту об'єкта, який закрили чотири роки тому." },
+
+  "shard_cynosure_survey_title": { "note": "shard title: the survey abstract",
+    "en-us": "Site Services - Cynosure, Survey Abstract",
+    "ua-ua": "Служба об'єктів — «Синозура», витяг з обстеження" },
+
+  "shard_cynosure_survey_body": { "note": "shard body: the facility floor by floor, the pumps that nobody schedules, and the one item missing from the cold store - 0-1140, the splinter in V's own inventory",
+    "en-us": "FEDERAL INTELLIGENCE AGENCY - SITE SERVICES\nCYNOSURE - SURVEY ABSTRACT, SHAFT 14 DESCENT\n\n-1  LANDING. Pumps 1-4 nominal. Lighting on grid.\n-2  Spoil galleries, Militech era. Uncatalogued.\n-3  COLD STORE. Sample vault. Power priority 1.\n-4 to -6  Flooded to the ceiling since '71. Do not schedule.\n-7  ARCHIVE. Tier 3 and above. Originals held here.\n-8  Containment bay. Sealed from the inside. Not ours.\n-9  Heat exchange. No access logged since commissioning.\n\nPUMPS: the landing set continues to run on the facility's own draw and logs a maintenance cycle every eleven days. Site Services neither schedules these cycles nor can stop them. Raised with Operations; no reply on file.\n\nCOLD STORE (-3), OUTSTANDING ITEMS: one (1). Item 0-1140. Cutting, human neural tissue. Source scan held at ARCHIVE (-7), Tier 3, originals included. Signed out nine years ago on a Tier 3 badge that does not resolve to a person. The carrier did not sign out at grade and is not recorded as having left the site.\n\nDescent is by Shaft 14. The listed approach is the Badlands portal - see the closure order, and the four memos filed behind it.",
+    "ua-ua": "ФЕДЕРАЛЬНЕ РОЗВІДУВАЛЬНЕ АГЕНТСТВО — СЛУЖБА ОБ'ЄКТІВ\n«СИНОЗУРА» — ВИТЯГ З ОБСТЕЖЕННЯ, СПУСК ШАХТОЮ 14\n\n-1  МАЙДАНЧИК. Насоси 1-4 у нормі. Освітлення від мережі.\n-2  Породні галереї, доба «Мілітеку». Не внесено до опису.\n-3  ХОЛОДНЕ СХОВИЩЕ. Сховище зразків. Живлення, пріоритет 1.\n-4 — -6  Затоплені під стелю з 71-го. Робіт не планувати.\n-7  АРХІВ. Третій рівень доступу й вище. Тут лежать оригінали.\n-8  Відсік ізоляції. Замкнений зсередини. Не наш.\n-9  Теплообмін. Доступ не фіксувався від уведення в експлуатацію.\n\nНАСОСИ: набір на майданчику далі працює від власного живлення об'єкта й відмічає технічний цикл кожні одинадцять днів. Служба об'єктів цих циклів не планує і зупинити їх не може. Питання порушено перед Операційним відділом; відповіді у справі немає.\n\nХОЛОДНЕ СХОВИЩЕ (-3), НЕПОВЕРНУТІ ОДИНИЦІ: одна (1). Одиниця 0-1140. Живець, людська нервова тканина. Вихідний скан зберігається в АРХІВІ (-7), третій рівень, разом з оригіналами. Виписано дев'ять років тому за перепусткою третього рівня, яка не виводить на жодну особу. Носій не відмітився на виході й не значиться таким, що залишив об'єкт.\n\nСпуск — шахтою 14. Зазначений підхід — портал у Пустках; див. припис про закриття і чотири службові записки, підшиті за ним." },
+
+  "hud_shaft_pry_top": { "note": "progress bar, top line: V works the closure plate off the shaft head",
+    "en-us": "REMOVING — CLOSURE PLATE",
+    "ua-ua": "ЗНЯТТЯ — ТАБЛИЧКА ПРО ЗАКРИТТЯ" },
+
+  "hud_shaft_pry_bottom": { "note": "progress bar, bottom line: what the plate is bolted to",
+    "en-us": "SHAFT 14 / SITE SERVICES",
+    "ua-ua": "ШАХТА 14 / СЛУЖБА ОБ'ЄКТІВ" },
+
+  "hud_shaft_sealed": { "note": "warning message: what is stencilled on the plate once it is off",
+    "en-us": "SHAFT 14 — SEALED AT GRADE",
+    "ua-ua": "ШАХТА 14 — ЗАГЕРМЕТИЗОВАНО НА РІВНІ ЗЕМЛІ" },
+
+  "hud_shaft_port_top": { "note": "progress bar, top line: V jacks into the riser's maintenance port",
+    "en-us": "MAINTENANCE PORT — SITE SERVICES",
+    "ua-ua": "ТЕХНІЧНИЙ ПОРТ — СЛУЖБА ОБ'ЄКТІВ" },
+
+  "hud_shaft_port_bottom": { "note": "progress bar, bottom line: what is being pulled",
+    "en-us": "PULLING SURVEY ABSTRACT",
+    "ua-ua": "ВИВАНТАЖЕННЯ ВИТЯГУ З ОБСТЕЖЕННЯ" },
+
+  "hud_shaft_port_done": { "note": "warning message: the abstract lands",
+    "en-us": "SURVEY ABSTRACT — LEVELS -1 TO -9",
+    "ua-ua": "ВИТЯГ З ОБСТЕЖЕННЯ — РІВНІ -1 … -9" },
+
+  "hud_shaft_air": { "note": "warning message: V's optics read the seam he has his hand on",
+    "en-us": "AIRFLOW: OUTWARD 0.6 M/S — 14°C",
+    "ua-ua": "ПОТІК ПОВІТРЯ: НАЗОВНІ 0,6 М/С — 14°C" },
+
+  "obj_blueeyes_meet": { "note": "objective: after the shaft head, meet the man with blue eyes",
+    "en-us": "Meet the man with blue eyes",
+    "ua-ua": "Зустрінься з чоловіком із блакитними очима" },
+
+  "desc_blueeyes_meet": { "note": "journal description: the meeting, written the moment the message lands",
+    "en-us": "A number with no name texted me eleven minutes after I put my hand on a door somebody welded shut in '69.\n\nHe isn't asking what I did with the splinter. He already knows what I did with the splinter.\n\nSame lot where this started. Of course it is.",
+    "ua-ua": "Номер без імені написав мені за одинадцять хвилин після того, як я поклав руку на двері, які хтось заварив у 69-му.\n\nВін не питає, що я зробив з осколком. Він уже знає, що я зробив з осколком.\n\nТой самий майданчик, з якого все почалося. Ну звісно." },
+
+  "sms_blueeyes_meet": { "note": "sms, Mr. Blue Eyes asking for ten minutes once V has stood on the shaft head",
+    "en-us": "You stood on it.\n\nTen minutes, where this started. I'll be there before you are.",
+    "ua-ua": "Ти на ньому постояв.\n\nДесять хвилин — там, де все почалося. Я буду там раніше за тебе." }
+}

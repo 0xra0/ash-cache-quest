@@ -1,0 +1,237 @@
+# Cynosure M1 greybox (docs/cynosure_import/CYNOSURE_IMPLEMENTATION.md, "M1 — Greybox Vertical Slice").
+# Frame CYN: origin 300 m under the motel lot, +Y is the canonical route forward.
+# Main rooms sit on x=0 end to end along +Y; side rooms hang off east/west walls.
+# Every door offset is 0 because each connected pair shares a centre line.
+# Room sizes follow the concept images (sc_cynosure_desing_locations_1..8).
+edl: 1
+id: cynosure_m1
+name: Cynosure M1 Greybox
+origin:
+  position: [-1908, -2470, -300]
+  yaw: 0
+materials:
+  room_kit: bunker_large   # 12x8 m floor tiles, 8 m wall spans (see LS room_kits.lua)
+streaming:
+  category: interior
+  level: 1
+  cell: [64, 64, 32]
+  range: 400
+templates:
+  work_light:        # amber strip light, images 2/3/5
+    color: [1.0, 0.72, 0.35]
+    intensity: 80
+    radius: 12
+  cold_light:        # blue-white facility light, images 4/8
+    color: [0.7, 0.85, 1.0]
+    intensity: 90
+    radius: 14
+  core_light:        # purple core glow, images 1/6/7
+    color: [0.7, 0.35, 1.0]
+    intensity: 220
+    radius: 30
+floors:
+  - id: cyn
+    elevation: 0
+    height: 5
+    rooms:
+      - id: CYN_ROOM_01_ENTRY
+        name: Entry (Shaft 14 landing)
+        at: [0, 5]
+        size: [8, 10]
+        doors: [{wall: north, offset: 0, width: 2}]
+        lights: [{id: entry_l, use: work_light, at: [0, 0, 4.5]}]
+      - id: CYN_ROOM_02_CHECKPOINT
+        name: Checkpoint
+        at: [0, 20]
+        size: [8, 20]
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}]
+        lights:
+          - {id: checkpoint_l, use: work_light, at: [0, -6, 4.5], repeat: {count: 3, step: [0, 6, 0]}}
+      - id: CYN_ROOM_03_FLOODED
+        name: Flooded Maintenance
+        at: [0, 40]
+        size: [14, 20]
+        height: 6
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}, {wall: east, offset: 0, width: 2}]
+        lights: [{id: flooded_l, use: work_light, at: [0, 0, 5.5], intensity: 50}]
+      - id: CYN_ROOM_03A_MAINT_SIDE
+        name: Maintenance Side
+        at: [11, 40]
+        size: [8, 10]
+        doors: [{wall: west, offset: 0, width: 2}]
+        lights: [{id: maint_l, use: work_light, at: [0, 0, 4.5], intensity: 40}]
+      - id: CYN_ROOM_04_PUMP
+        name: Pump Hall
+        at: [0, 65]
+        size: [25, 30]
+        height: 14
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}]
+        lights:
+          - {id: pump_l, use: work_light, at: [-8, -8, 13], radius: 18, repeat: {count: 2, step: [16, 0, 0]}}
+          - {id: pump_l2, use: work_light, at: [-8, 8, 13], radius: 18, repeat: {count: 2, step: [16, 0, 0]}}
+      - id: CYN_ROOM_05_SECURITY
+        name: Security Spine
+        at: [0, 89]
+        size: [12, 18]
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}, {wall: east, offset: 0, width: 2}]
+        lights: [{id: security_l, use: cold_light, at: [0, 0, 4.5]}]
+      - id: CYN_ROOM_05A_SECURITY_OFFICE
+        name: Security Office
+        at: [10, 89]
+        size: [8, 10]
+        doors: [{wall: west, offset: 0, width: 2}]
+        lights: [{id: office_l, use: work_light, at: [0, 0, 4.5]}]
+      - id: CYN_ROOM_06_BIOMETRIC
+        name: Biometric Gate
+        at: [0, 104]
+        size: [10, 12]
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}]
+        lights: [{id: bio_l, use: cold_light, at: [0, 0, 4.5], color: [1.0, 0.3, 0.25]}]
+      - id: CYN_ROOM_07_OBSERVATION
+        name: Observation Lab
+        at: [0, 116]
+        size: [10, 12]
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}, {wall: west, offset: 0, width: 2}]
+        lights: [{id: obs_l, use: cold_light, at: [0, 0, 4.5], intensity: 60}]
+      - id: CYN_ROOM_07A_SUBJECT_RECORDS
+        name: Subject Records
+        at: [-9, 116]
+        size: [8, 8]
+        doors: [{wall: east, offset: 0, width: 2}]
+        lights: [{id: records_l, use: cold_light, at: [0, 0, 4.5], intensity: 40}]
+      - id: CYN_ROOM_08_ARCHIVE
+        name: Personality Archive
+        at: [0, 142]
+        size: [20, 40]
+        height: 20
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}, {wall: east, offset: 0, width: 2}]
+        lights:
+          - {id: archive_l, use: cold_light, at: [0, -15, 19], radius: 20, repeat: {count: 4, step: [0, 10, 0]}}
+      - id: CYN_ROOM_08A_PURGE_ARCHIVE
+        name: Purge Archive
+        at: [15, 142]
+        size: [10, 10]
+        doors: [{wall: west, offset: 0, width: 2}]
+        lights: [{id: purge_l, use: work_light, at: [0, 0, 4.5], color: [1.0, 0.25, 0.2]}]
+      - id: CYN_ROOM_09_PREDICTION
+        name: Prediction Hall
+        at: [0, 174]
+        size: [24, 24]
+        height: 14
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}, {wall: east, offset: 0, width: 2}]
+        lights:
+          - {id: prediction_core, use: core_light, at: [0, 0, 6]}
+          - {id: prediction_l, use: work_light, at: [-9, -9, 13], repeat: {count: 2, step: [18, 0, 0]}}
+      - id: CYN_ROOM_09A_ECHO_ANALYSIS
+        name: Echo Analysis
+        at: [17, 174]
+        size: [10, 10]
+        doors: [{wall: west, offset: 0, width: 2}]
+        lights: [{id: echo_l, use: core_light, at: [0, 0, 4.5], intensity: 60, radius: 8}]
+      - id: CYN_ROOM_10_BRANCH_COFFINS
+        name: Branch Coffins
+        at: [0, 195]
+        size: [18, 18]
+        height: 8
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}]
+        lights: [{id: coffins_l, use: core_light, at: [0, 0, 7], intensity: 120, radius: 16}]
+      - id: CYN_ROOM_11_COMPARISON
+        name: Comparison Lab
+        at: [0, 211]
+        size: [10, 14]
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}]
+        lights: [{id: comparison_l, use: cold_light, at: [0, 0, 4.5]}]
+      - id: CYN_ROOM_12_SERVER_VAULT
+        name: ASH Server Vault
+        at: [0, 248]
+        size: [12, 60]
+        height: 25
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}]
+        lights:
+          - {id: vault_l, use: work_light, at: [0, -25, 3], repeat: {count: 6, step: [0, 10, 0]}}
+          - {id: vault_top, use: cold_light, at: [0, 0, 24], radius: 30}
+      - id: CYN_ROOM_13_CORE_ANTE
+        name: Core Antechamber
+        at: [0, 284]
+        size: [12, 12]
+        height: 6
+        doors: [{wall: south, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}]
+        lights: [{id: ante_l, use: core_light, at: [0, 0, 5.5], intensity: 80, radius: 10}]
+      - id: CYN_ROOM_14_CORE
+        name: Predictive Core
+        at: [0, 310]
+        size: [40, 40]
+        height: 30
+        doors: [{wall: south, offset: 0, width: 2}, {wall: east, offset: 0, width: 2}]
+        lights:
+          - {id: core_column, use: core_light, at: [0, 0, 3], intensity: 300, radius: 35}
+          - {id: core_top, use: cold_light, at: [0, 0, 28], radius: 40}
+          - {id: core_ring, use: work_light, at: [-15, -15, 10], radius: 16, repeat: {count: 2, step: [30, 0, 0]}}
+          - {id: core_ring2, use: work_light, at: [-15, 15, 10], radius: 16, repeat: {count: 2, step: [30, 0, 0]}}
+      - id: CYN_ROOM_15_ENDING_CONTROL
+        name: Ending Control
+        at: [25, 310]
+        size: [10, 14]
+        doors: [{wall: west, offset: 0, width: 2}, {wall: north, offset: 0, width: 2}]
+        lights: [{id: ending_l, use: cold_light, at: [0, 0, 4.5]}]
+      - id: CYN_ROOM_16_ESCAPE
+        name: Escape
+        at: [25, 332]
+        size: [8, 30]
+        doors: [{wall: south, offset: 0, width: 2}]
+        lights:
+          - {id: escape_l, use: work_light, at: [0, -10, 4.5], color: [1.0, 0.3, 0.2], repeat: {count: 3, step: [0, 10, 0]}}
+cameras:
+  - {id: cyn_cam_checkpoint, at: [0, 11, 1.7], look_at: [0, 30, 1.5], fov: 70}
+  - {id: cyn_cam_pump, at: [-10, 52, 2], look_at: [5, 75, 4], fov: 70}
+  - {id: cyn_cam_observation, at: [3, 111, 1.7], look_at: [0, 122, 1.5], fov: 70}
+  - {id: cyn_cam_archive, at: [0, 124, 1.7], look_at: [0, 160, 8], fov: 70}
+  - {id: cyn_cam_prediction, at: [-9, 164, 2], look_at: [0, 174, 4], fov: 70}
+  - {id: cyn_cam_coffins, at: [0, 188, 1.7], look_at: [0, 198, 1], fov: 70}
+  - {id: cyn_cam_vault, at: [0, 220, 1.7], look_at: [0, 275, 10], fov: 70}
+  - {id: cyn_cam_core, at: [-15, 293, 3], look_at: [0, 310, 10], fov: 75}
+navigation:
+  nodes:
+    - {id: n01, at: [0, 5, 0]}
+    - {id: n02, at: [0, 20, 0]}
+    - {id: n03, at: [0, 40, 0]}
+    - {id: n03a, at: [11, 40, 0]}
+    - {id: n04, at: [0, 65, 0]}
+    - {id: n05, at: [0, 89, 0]}
+    - {id: n05a, at: [10, 89, 0]}
+    - {id: n06, at: [0, 104, 0]}
+    - {id: n07, at: [0, 116, 0]}
+    - {id: n07a, at: [-9, 116, 0]}
+    - {id: n08, at: [0, 142, 0]}
+    - {id: n08a, at: [15, 142, 0]}
+    - {id: n09, at: [0, 174, 0]}
+    - {id: n09a, at: [17, 174, 0]}
+    - {id: n10, at: [0, 195, 0]}
+    - {id: n11, at: [0, 211, 0]}
+    - {id: n12, at: [0, 248, 0]}
+    - {id: n13, at: [0, 284, 0]}
+    - {id: n14, at: [0, 310, 0]}
+    - {id: n15, at: [25, 310, 0]}
+    - {id: n16, at: [25, 340, 0]}
+  edges:
+    - {from: n01, to: n02, kind: door}
+    - {from: n02, to: n03, kind: door}
+    - {from: n03, to: n03a, kind: door}
+    - {from: n03, to: n04, kind: door}
+    - {from: n04, to: n05, kind: door}
+    - {from: n05, to: n05a, kind: door}
+    - {from: n05, to: n06, kind: door}
+    - {from: n06, to: n07, kind: door}
+    - {from: n07, to: n07a, kind: door}
+    - {from: n07, to: n08, kind: door}
+    - {from: n08, to: n08a, kind: door}
+    - {from: n08, to: n09, kind: door}
+    - {from: n09, to: n09a, kind: door}
+    - {from: n09, to: n10, kind: door}
+    - {from: n10, to: n11, kind: door}
+    - {from: n11, to: n12, kind: door}
+    - {from: n12, to: n13, kind: door}
+    - {from: n13, to: n14, kind: door}
+    - {from: n14, to: n15, kind: door}
+    - {from: n15, to: n16, kind: door}
+scene: {name: Cynosure M1 Greybox, activate: false}

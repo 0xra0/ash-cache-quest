@@ -1,0 +1,70 @@
+{
+  "_comment": [
+    "The courier's audio log in motel room 7 (Act 1, D110). Same mechanism as scene_box.json",
+    "(D102): the shard prop (ac_courier_shard in source/world.json) is scenery, and this",
+    "scene hangs one Take prompt on it with an attachToWorld choice hub.",
+    "",
+    "The quest graph's take_courier_log node blocks on this scene until the option is",
+    "picked, then give_courier_log puts the shard in V's inventory. Reading it sets",
+    "ashcache_courier_log_played (glue.json, journal Visited), which releases await_room."
+  ],
+  "scene": {
+    "id": "ash_cache_courier_shard",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [],
+  "entryPoints": [
+    {
+      "name": "shard_in",
+      "node": "start"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "shard_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "id": "hub_take",
+      "type": "choice",
+      "_attachToWorld": "offset is relative to the scene location #ac_shard_origin, which sits on the shard itself; 0.1 m up keeps the prompt on it. range is vanilla hub 4162's 2 m.",
+      "attachToWorld": {
+        "offset": [
+          0,
+          0,
+          0.1
+        ],
+        "range": 2
+      },
+      "options": [
+        {
+          "id": "opt_take",
+          "goto": "end",
+          "en-us": "Take shard",
+          "ua-ua": "Взяти скіпку"
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [
+      "start",
+      "hub_take"
+    ],
+    [
+      "hub_take:opt_take",
+      "end"
+    ]
+  ]
+}

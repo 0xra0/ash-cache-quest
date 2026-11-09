@@ -1,0 +1,8390 @@
+edl: 1
+id: cynosure_m1
+name: Cynosure M3
+origin:
+  position:
+  - -1908
+  - -2470
+  - -300
+  yaw: 0
+materials:
+  room_kit: bunker_large
+streaming:
+  category: interior
+  level: 1
+  cell:
+  - 64
+  - 64
+  - 32
+  range: 400
+templates:
+  work_light:
+    color:
+    - 1.0
+    - 0.72
+    - 0.35
+    intensity: 80
+    radius: 12
+  cold_light:
+    color:
+    - 0.7
+    - 0.85
+    - 1.0
+    intensity: 90
+    radius: 14
+  core_light:
+    color:
+    - 0.7
+    - 0.35
+    - 1.0
+    intensity: 220
+    radius: 30
+floors:
+- id: cyn
+  elevation: 0
+  height: 5
+  rooms:
+  - id: CYN_ROOM_01_ENTRY
+    name: Entry (Shaft 14 landing)
+    at:
+    - 0
+    - 5
+    size:
+    - 8
+    - 10
+    doors:
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: entry_l
+      use: work_light
+      at:
+      - 0
+      - 0
+      - 4.5
+  - id: CYN_ROOM_02_CHECKPOINT
+    name: Checkpoint
+    at:
+    - 0
+    - 20
+    size:
+    - 8
+    - 20
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: checkpoint_l
+      use: work_light
+      at:
+      - 0
+      - -6
+      - 4.5
+      repeat:
+        count: 3
+        step:
+        - 0
+        - 6
+        - 0
+  - id: CYN_ROOM_03_FLOODED
+    name: Flooded Maintenance
+    at:
+    - 0
+    - 40
+    size:
+    - 14
+    - 20
+    height: 6
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    - wall: east
+      offset: 0
+      width: 2
+    lights:
+    - id: flooded_l
+      use: work_light
+      at:
+      - 0
+      - 0
+      - 5.5
+      intensity: 50
+  - id: CYN_ROOM_03A_MAINT_SIDE
+    name: Maintenance Side
+    at:
+    - 11
+    - 40
+    size:
+    - 8
+    - 10
+    doors:
+    - wall: west
+      offset: 0
+      width: 2
+    lights:
+    - id: maint_l
+      use: work_light
+      at:
+      - 0
+      - 0
+      - 4.5
+      intensity: 40
+  - id: CYN_ROOM_04_PUMP
+    name: Pump Hall
+    at:
+    - 0
+    - 65
+    size:
+    - 25
+    - 30
+    height: 14
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: pump_l
+      use: work_light
+      at:
+      - -8
+      - -8
+      - 13
+      radius: 18
+      repeat:
+        count: 2
+        step:
+        - 16
+        - 0
+        - 0
+    - id: pump_l2
+      use: work_light
+      at:
+      - -8
+      - 8
+      - 13
+      radius: 18
+      repeat:
+        count: 2
+        step:
+        - 16
+        - 0
+        - 0
+  - id: CYN_ROOM_05_SECURITY
+    name: Security Spine
+    at:
+    - 0
+    - 89
+    size:
+    - 12
+    - 18
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    - wall: east
+      offset: 0
+      width: 2
+    lights:
+    - id: security_l
+      use: cold_light
+      at:
+      - 0
+      - 0
+      - 4.5
+  - id: CYN_ROOM_05A_SECURITY_OFFICE
+    name: Security Office
+    at:
+    - 10
+    - 89
+    size:
+    - 8
+    - 10
+    doors:
+    - wall: west
+      offset: 0
+      width: 2
+    lights:
+    - id: office_l
+      use: work_light
+      at:
+      - 0
+      - 0
+      - 4.5
+  - id: CYN_ROOM_06_BIOMETRIC
+    name: Biometric Gate
+    at:
+    - 0
+    - 104
+    size:
+    - 10
+    - 12
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: bio_l
+      use: cold_light
+      at:
+      - 0
+      - 0
+      - 4.5
+      color:
+      - 1.0
+      - 0.3
+      - 0.25
+  - id: CYN_ROOM_07_OBSERVATION
+    name: Observation Lab
+    at:
+    - 0
+    - 116
+    size:
+    - 10
+    - 12
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    - wall: west
+      offset: 0
+      width: 2
+    lights:
+    - id: obs_l
+      use: cold_light
+      at:
+      - 0
+      - 0
+      - 4.5
+      intensity: 60
+  - id: CYN_ROOM_07A_SUBJECT_RECORDS
+    name: Subject Records
+    at:
+    - -9
+    - 116
+    size:
+    - 8
+    - 8
+    doors:
+    - wall: east
+      offset: 0
+      width: 2
+    lights:
+    - id: records_l
+      use: cold_light
+      at:
+      - 0
+      - 0
+      - 4.5
+      intensity: 40
+  - id: CYN_ROOM_08_ARCHIVE
+    name: Personality Archive
+    at:
+    - 0
+    - 142
+    size:
+    - 20
+    - 40
+    height: 20
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    - wall: east
+      offset: 0
+      width: 2
+    lights:
+    - id: archive_l
+      use: cold_light
+      at:
+      - 0
+      - -15
+      - 19
+      radius: 20
+      repeat:
+        count: 4
+        step:
+        - 0
+        - 10
+        - 0
+  - id: CYN_ROOM_08A_PURGE_ARCHIVE
+    name: Purge Archive
+    at:
+    - 15
+    - 142
+    size:
+    - 10
+    - 10
+    doors:
+    - wall: west
+      offset: 0
+      width: 2
+    lights:
+    - id: purge_l
+      use: work_light
+      at:
+      - 0
+      - 0
+      - 4.5
+      color:
+      - 1.0
+      - 0.25
+      - 0.2
+  - id: CYN_ROOM_09_PREDICTION
+    name: Prediction Hall
+    at:
+    - 0
+    - 174
+    size:
+    - 24
+    - 24
+    height: 14
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    - wall: east
+      offset: 0
+      width: 2
+    lights:
+    - id: prediction_core
+      use: core_light
+      at:
+      - 0
+      - 0
+      - 6
+    - id: prediction_l
+      use: work_light
+      at:
+      - -9
+      - -9
+      - 13
+      repeat:
+        count: 2
+        step:
+        - 18
+        - 0
+        - 0
+  - id: CYN_ROOM_09A_ECHO_ANALYSIS
+    name: Echo Analysis
+    at:
+    - 17
+    - 174
+    size:
+    - 10
+    - 10
+    doors:
+    - wall: west
+      offset: 0
+      width: 2
+    lights:
+    - id: echo_l
+      use: core_light
+      at:
+      - 0
+      - 0
+      - 4.5
+      intensity: 60
+      radius: 8
+  - id: CYN_ROOM_10_BRANCH_COFFINS
+    name: Branch Coffins
+    at:
+    - 0
+    - 195
+    size:
+    - 18
+    - 18
+    height: 8
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: coffins_l
+      use: core_light
+      at:
+      - 0
+      - 0
+      - 7
+      intensity: 120
+      radius: 16
+  - id: CYN_ROOM_11_COMPARISON
+    name: Comparison Lab
+    at:
+    - 0
+    - 211
+    size:
+    - 10
+    - 14
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: comparison_l
+      use: cold_light
+      at:
+      - 0
+      - 0
+      - 4.5
+  - id: CYN_ROOM_12_SERVER_VAULT
+    name: ASH Server Vault
+    at:
+    - 0
+    - 248
+    size:
+    - 12
+    - 60
+    height: 25
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: vault_l
+      use: work_light
+      at:
+      - 0
+      - -25
+      - 3
+      repeat:
+        count: 6
+        step:
+        - 0
+        - 10
+        - 0
+    - id: vault_top
+      use: cold_light
+      at:
+      - 0
+      - 0
+      - 24
+      radius: 30
+  - id: CYN_ROOM_13_CORE_ANTE
+    name: Core Antechamber
+    at:
+    - 0
+    - 284
+    size:
+    - 12
+    - 12
+    height: 6
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: ante_l
+      use: core_light
+      at:
+      - 0
+      - 0
+      - 5.5
+      intensity: 80
+      radius: 10
+  - id: CYN_ROOM_14_CORE
+    name: Predictive Core
+    at:
+    - 0
+    - 310
+    size:
+    - 40
+    - 40
+    height: 30
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    - wall: east
+      offset: 0
+      width: 2
+    lights:
+    - id: core_column
+      use: core_light
+      at:
+      - 0
+      - 0
+      - 3
+      intensity: 300
+      radius: 35
+    - id: core_top
+      use: cold_light
+      at:
+      - 0
+      - 0
+      - 28
+      radius: 40
+    - id: core_ring
+      use: work_light
+      at:
+      - -11
+      - -11
+      - 10
+      radius: 16
+      repeat:
+        count: 2
+        step:
+        - 22
+        - 0
+        - 0
+    - id: core_ring2
+      use: work_light
+      at:
+      - -11
+      - 11
+      - 10
+      radius: 16
+      repeat:
+        count: 2
+        step:
+        - 22
+        - 0
+        - 0
+  - id: CYN_ROOM_15_ENDING_CONTROL
+    name: Ending Control
+    at:
+    - 25
+    - 310
+    size:
+    - 10
+    - 14
+    doors:
+    - wall: west
+      offset: 0
+      width: 2
+    - wall: north
+      offset: 0
+      width: 2
+    lights:
+    - id: ending_l
+      use: cold_light
+      at:
+      - 0
+      - 0
+      - 4.5
+  - id: CYN_ROOM_16_ESCAPE
+    name: Escape
+    at:
+    - 25
+    - 332
+    size:
+    - 8
+    - 30
+    doors:
+    - wall: south
+      offset: 0
+      width: 2
+    lights:
+    - id: escape_l
+      use: work_light
+      at:
+      - 0
+      - -10
+      - 4.5
+      color:
+      - 1.0
+      - 0.3
+      - 0.2
+      repeat:
+        count: 3
+        step:
+        - 0
+        - 10
+        - 0
+cameras:
+- id: cyn_cam_checkpoint
+  at:
+  - 0
+  - 11
+  - 1.7
+  look_at:
+  - 0
+  - 30
+  - 1.5
+  fov: 70
+- id: cyn_cam_pump
+  at:
+  - -10
+  - 52
+  - 2
+  look_at:
+  - 5
+  - 75
+  - 4
+  fov: 70
+- id: cyn_cam_observation
+  at:
+  - 3
+  - 111
+  - 1.7
+  look_at:
+  - 0
+  - 122
+  - 1.5
+  fov: 70
+- id: cyn_cam_archive
+  at:
+  - 0
+  - 124
+  - 1.7
+  look_at:
+  - 0
+  - 160
+  - 8
+  fov: 70
+- id: cyn_cam_prediction
+  at:
+  - -9
+  - 164
+  - 2
+  look_at:
+  - 0
+  - 174
+  - 4
+  fov: 70
+- id: cyn_cam_coffins
+  at:
+  - 0
+  - 188
+  - 1.7
+  look_at:
+  - 0
+  - 198
+  - 1
+  fov: 70
+- id: cyn_cam_vault
+  at:
+  - 0
+  - 220
+  - 1.7
+  look_at:
+  - 0
+  - 275
+  - 10
+  fov: 70
+- id: cyn_cam_core
+  at:
+  - -9
+  - 299
+  - 3
+  look_at:
+  - 0
+  - 310
+  - 10
+  fov: 75
+navigation:
+  nodes:
+  - id: n01
+    at:
+    - 0
+    - 5
+    - 0
+  - id: n02
+    at:
+    - 0
+    - 20
+    - 0
+  - id: n03
+    at:
+    - 0
+    - 40
+    - 0
+  - id: n03a
+    at:
+    - 11
+    - 40
+    - 0
+  - id: n04
+    at:
+    - 0
+    - 65
+    - 0
+  - id: n05
+    at:
+    - 0
+    - 89
+    - 0
+  - id: n05a
+    at:
+    - 10
+    - 89
+    - 0
+  - id: n06
+    at:
+    - 0
+    - 104
+    - 0
+  - id: n07
+    at:
+    - 0
+    - 116
+    - 0
+  - id: n07a
+    at:
+    - -9
+    - 116
+    - 0
+  - id: n08
+    at:
+    - 0
+    - 142
+    - 0
+  - id: n08a
+    at:
+    - 15
+    - 142
+    - 0
+  - id: n09
+    at:
+    - 0
+    - 174
+    - 0
+  - id: n09a
+    at:
+    - 17
+    - 174
+    - 0
+  - id: n10
+    at:
+    - 0
+    - 195
+    - 0
+  - id: n11
+    at:
+    - 0
+    - 211
+    - 0
+  - id: n12
+    at:
+    - 0
+    - 248
+    - 0
+  - id: n13
+    at:
+    - 0
+    - 284
+    - 0
+  - id: n14
+    at:
+    - 0
+    - 310
+    - 0
+  - id: n15
+    at:
+    - 25
+    - 310
+    - 0
+  - id: n16
+    at:
+    - 25
+    - 340
+    - 0
+  edges:
+  - from: n01
+    to: n02
+    kind: door
+  - from: n02
+    to: n03
+    kind: door
+  - from: n03
+    to: n03a
+    kind: door
+  - from: n03
+    to: n04
+    kind: door
+  - from: n04
+    to: n05
+    kind: door
+  - from: n05
+    to: n05a
+    kind: door
+  - from: n05
+    to: n06
+    kind: door
+  - from: n06
+    to: n07
+    kind: door
+  - from: n07
+    to: n07a
+    kind: door
+  - from: n07
+    to: n08
+    kind: door
+  - from: n08
+    to: n08a
+    kind: door
+  - from: n08
+    to: n09
+    kind: door
+  - from: n09
+    to: n09a
+    kind: door
+  - from: n09
+    to: n10
+    kind: door
+  - from: n10
+    to: n11
+    kind: door
+  - from: n11
+    to: n12
+    kind: door
+  - from: n12
+    to: n13
+    kind: door
+  - from: n13
+    to: n14
+    kind: door
+  - from: n14
+    to: n15
+    kind: door
+  - from: n15
+    to: n16
+    kind: door
+scene:
+  name: Cynosure M2
+  activate: false
+objects:
+- id: door_01_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 10.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_01_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 10.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_02_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 10.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_02_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 10.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_02_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 30.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_02_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 30.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_03_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 30.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_03_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 30.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 0.579
+- id: door_03_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 50.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_03_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 50.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.579
+- id: door_03_e
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 7.0
+  - 41.0
+  - 0
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_03_e_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 7.0
+  - 41.0
+  - 3.8
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 0.579
+- id: door_03A_w
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 7.0
+  - 39.0
+  - 0
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_03A_w_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 7.0
+  - 39.0
+  - 3.8
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_04_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 50.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_04_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 50.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 2.684
+- id: door_04_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 80.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_04_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 80.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 2.684
+- id: door_05_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 80.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_05_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 80.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_05_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 98.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_05_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 98.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_05_e
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 6.0
+  - 90.0
+  - 0
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_05_e_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 6.0
+  - 90.0
+  - 3.8
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_05A_w
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 6.0
+  - 88.0
+  - 0
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_05A_w_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 6.0
+  - 88.0
+  - 3.8
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_06_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 98.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_06_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 98.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_06_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 110.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_06_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 110.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_07_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 110.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_07_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 110.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_07_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 122.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_07_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 122.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_07_w
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -5.0
+  - 115.0
+  - 0
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_07_w_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -5.0
+  - 115.0
+  - 3.8
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_07A_e
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -5.0
+  - 117.0
+  - 0
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_07A_e_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -5.0
+  - 117.0
+  - 3.8
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_08_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 122.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_08_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 122.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 4.263
+- id: door_08_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 162.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_08_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 162.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 4.263
+- id: door_08_e
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 10.0
+  - 143.0
+  - 0
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_08_e_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 10.0
+  - 143.0
+  - 3.8
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 4.263
+- id: door_08A_w
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 10.0
+  - 141.0
+  - 0
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_08A_w_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 10.0
+  - 141.0
+  - 3.8
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_09_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 162.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_09_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 162.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 2.684
+- id: door_09_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 186.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_09_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 186.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 2.684
+- id: door_09_e
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 12.0
+  - 175.0
+  - 0
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_09_e_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 12.0
+  - 175.0
+  - 3.8
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 2.684
+- id: door_09A_w
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 12.0
+  - 173.0
+  - 0
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_09A_w_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 12.0
+  - 173.0
+  - 3.8
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_10_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 186.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_10_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 186.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.105
+- id: door_10_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 204.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_10_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 204.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.105
+- id: door_11_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 204.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_11_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 204.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_11_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 218.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_11_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 218.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_12_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 218.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_12_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 218.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 5.579
+- id: door_12_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 278.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_12_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 278.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 5.579
+- id: door_13_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 278.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_13_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 278.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 0.579
+- id: door_13_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 290.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_13_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - 290.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.579
+- id: door_14_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 290.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_14_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 290.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 6.895
+- id: door_14_e
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 20.0
+  - 311.0
+  - 0
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_14_e_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 20.0
+  - 311.0
+  - 3.8
+  yaw: 90
+  scale:
+  - 1.0
+  - 1
+  - 6.895
+- id: door_15_w
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 20.0
+  - 309.0
+  - 0
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_15_w_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 20.0
+  - 309.0
+  - 3.8
+  yaw: -90
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_15_n
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 24.0
+  - 317.0
+  - 0
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_15_n_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 24.0
+  - 317.0
+  - 3.8
+  yaw: 180
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: door_16_s
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 26.0
+  - 317.0
+  - 0
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+- id: door_16_s_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 26.0
+  - 317.0
+  - 3.8
+  yaw: 0
+  scale:
+  - 1.0
+  - 1
+  - 0.316
+- id: ring_00_door
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 19.2
+  - 1.0
+  - 0
+  yaw: 90.0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+  room: CYN_ROOM_14_CORE
+- id: ring_00_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 19.2
+  - 1.911
+  - 3.8
+  yaw: 90.0
+  scale:
+  - 1.911
+  - 1
+  - 6.895
+  room: CYN_ROOM_14_CORE
+- id: ring_00_a
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 19.2
+  - 1.911
+  - 0
+  yaw: 90.0
+  scale:
+  - 0.456
+  - 1
+  - 1.0
+  room: CYN_ROOM_14_CORE
+- id: ring_00_b
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 19.2
+  - -1.0
+  - 0
+  yaw: 90.0
+  scale:
+  - 0.456
+  - 1
+  - 1.0
+  room: CYN_ROOM_14_CORE
+- id: ring_01
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 18.458
+  - 5.62
+  - 0
+  yaw: 101.25
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_02
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 17.007
+  - 9.113
+  - 0
+  yaw: 112.5
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_03
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 14.903
+  - 12.256
+  - 0
+  yaw: 123.75
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_04
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 12.225
+  - 14.928
+  - 0
+  yaw: 135.0
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_05
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 9.078
+  - 17.026
+  - 0
+  yaw: 146.25
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_06
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 5.582
+  - 18.47
+  - 0
+  yaw: 157.5
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_07
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.871
+  - 19.204
+  - 0
+  yaw: 168.75
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_08
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.911
+  - 19.2
+  - 0
+  yaw: 180.0
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_09
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -5.62
+  - 18.458
+  - 0
+  yaw: 191.25
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_10
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -9.113
+  - 17.007
+  - 0
+  yaw: 202.5
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_11
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -12.256
+  - 14.903
+  - 0
+  yaw: 213.75
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_12
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -14.928
+  - 12.225
+  - 0
+  yaw: 225.0
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_13
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -17.026
+  - 9.078
+  - 0
+  yaw: 236.25
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_14
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -18.47
+  - 5.582
+  - 0
+  yaw: 247.5
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_15
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -19.204
+  - 1.871
+  - 0
+  yaw: 258.75
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_16
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -19.2
+  - -1.911
+  - 0
+  yaw: 270.0
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_17
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -18.458
+  - -5.62
+  - 0
+  yaw: 281.25
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_18
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -17.007
+  - -9.113
+  - 0
+  yaw: 292.5
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_19
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -14.903
+  - -12.256
+  - 0
+  yaw: 303.75
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_20
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -12.225
+  - -14.928
+  - 0
+  yaw: 315.0
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_21
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -9.078
+  - -17.026
+  - 0
+  yaw: 326.25
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_22
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -5.582
+  - -18.47
+  - 0
+  yaw: 337.5
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_23
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.871
+  - -19.204
+  - 0
+  yaw: 348.75
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_24_door
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_door_single_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - -19.2
+  - 0
+  yaw: 360.0
+  scale:
+  - 1.0
+  - 1
+  - 1.0
+  room: CYN_ROOM_14_CORE
+- id: ring_24_above
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.911
+  - -19.2
+  - 3.8
+  yaw: 360.0
+  scale:
+  - 1.911
+  - 1
+  - 6.895
+  room: CYN_ROOM_14_CORE
+- id: ring_24_a
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 1.911
+  - -19.2
+  - 0
+  yaw: 360.0
+  scale:
+  - 0.456
+  - 1
+  - 1.0
+  room: CYN_ROOM_14_CORE
+- id: ring_24_b
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -1.0
+  - -19.2
+  - 0
+  yaw: 360.0
+  scale:
+  - 0.456
+  - 1
+  - 1.0
+  room: CYN_ROOM_14_CORE
+- id: ring_25
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 5.62
+  - -18.458
+  - 0
+  yaw: 371.25
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_26
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 9.113
+  - -17.007
+  - 0
+  yaw: 382.5
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_27
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 12.256
+  - -14.903
+  - 0
+  yaw: 393.75
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_28
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 14.928
+  - -12.225
+  - 0
+  yaw: 405.0
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_29
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 17.026
+  - -9.078
+  - 0
+  yaw: 416.25
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_30
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 18.47
+  - -5.582
+  - 0
+  yaw: 427.5
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: ring_31
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 19.204
+  - -1.871
+  - 0
+  yaw: 438.75
+  scale:
+  - 1.911
+  - 1
+  - 7.895
+  room: CYN_ROOM_14_CORE
+- id: pass_0_a
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 19.2
+  - 0.76
+  - 0
+  yaw: 180
+  scale:
+  - 0.285
+  - 1
+  - 0.684
+  room: CYN_ROOM_14_CORE
+- id: pass_0_b
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 19.77
+  - -0.76
+  - 0
+  yaw: 0
+  scale:
+  - 0.285
+  - 1
+  - 0.684
+  room: CYN_ROOM_14_CORE
+- id: pass_0_ceil
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_ceiling_tiles_b_l300_w200_a.mesh
+  appearance: default
+  at:
+  - 19.77
+  - 0.84
+  - 2.5
+  yaw: 0
+  scale:
+  - 0.19
+  - 0.84
+  - 1
+  room: CYN_ROOM_14_CORE
+- id: pass_270_a
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - 0.76
+  - -19.2
+  - 0
+  yaw: 450
+  scale:
+  - 0.285
+  - 1
+  - 0.684
+  room: CYN_ROOM_14_CORE
+- id: pass_270_b
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_wall_h400_l200_a.mesh
+  appearance: default
+  at:
+  - -0.76
+  - -19.77
+  - 0
+  yaw: 270
+  scale:
+  - 0.285
+  - 1
+  - 0.684
+  room: CYN_ROOM_14_CORE
+- id: pass_270_ceil
+  resource: base\environment\architecture\common\int\int_common_a\int_common_a_ceiling_tiles_b_l300_w200_a.mesh
+  appearance: default
+  at:
+  - 0.84
+  - -19.2
+  - 2.5
+  yaw: 0
+  scale:
+  - 0.56
+  - 0.285
+  - 1
+  room: CYN_ROOM_14_CORE
+- id: sf_01_elvindsm_bot01_01
+  resource: mod\ash_cache\sf\elvindsm_bot01\elvindsm_bot01.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -2.7
+  - 0.33
+  yaw: 0.0
+  room: CYN_ROOM_01_ENTRY
+- id: sf_01_chemical_canisters_01_01
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - -3.639
+  - 1.799
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_01_ENTRY
+- id: sf_01_chemical_canisters_01_02
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - -3.639
+  - 2.614
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_01_ENTRY
+- id: sf_01_chemical_canisters_01_03
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - -3.639
+  - 3.428
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_01_ENTRY
+- id: sf_01_securitycamera_a01_01
+  resource: mod\ash_cache\sf\securitycamera_a01\securitycamera_a01.mesh
+  appearance: default
+  at:
+  - 3.385
+  - 3.5
+  - 3.6
+  yaw: 270.0
+  room: CYN_ROOM_01_ENTRY
+- id: sf_02_na_spaceport_bodyscanneroverhead_01_01
+  resource: mod\ash_cache\sf\na_spaceport_bodyscanneroverhead_01\na_spaceport_bodyscanneroverhead_01.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 2.0
+  - 3.8
+  yaw: 90.0
+  room: CYN_ROOM_02_CHECKPOINT
+- id: sf_02_consolekit_terminalshortfull01_01
+  resource: mod\ash_cache\sf\consolekit_terminalshortfull01\consolekit_terminalshortfull01.mesh
+  appearance: default
+  at:
+  - -3.527
+  - -1.499
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_02_CHECKPOINT
+- id: sf_02_genmachinery_serverb01_01
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - 3.449
+  - -6.7
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_02_CHECKPOINT
+- id: sf_02_genmachinery_serverb01_02
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - 3.449
+  - -4.0
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_02_CHECKPOINT
+- id: sf_02_securitycamera_a01_01
+  resource: mod\ash_cache\sf\securitycamera_a01\securitycamera_a01.mesh
+  appearance: default
+  at:
+  - 2.5
+  - 9.385
+  - 3.6
+  yaw: 0.0
+  room: CYN_ROOM_02_CHECKPOINT
+- id: sf_03_storagetank_vert_01_01
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - -6.052
+  - -7.987
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_03_FLOODED
+- id: sf_03_storagetank_vert_01_02
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - -6.052
+  - -4.851
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_03_FLOODED
+- id: sf_03_storagetank_vert_01_03
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - -6.052
+  - -1.714
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_03_FLOODED
+- id: sf_03_storagetank_vert_01_04
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - -6.052
+  - 1.422
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_03_FLOODED
+- id: sf_03_storagetank_vert_01_05
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - -6.052
+  - 4.558
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_03_FLOODED
+- id: sf_03_storagetank_vert_01_06
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - -6.052
+  - 7.695
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_03_FLOODED
+- id: sf_03_trap_pipeindlg_cryogenic01_01
+  resource: mod\ash_cache\sf\trap_pipeindlg_cryogenic01\trap_pipeindlg_cryogenic01.mesh
+  appearance: default
+  at:
+  - 6.499
+  - 5.001
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_03_FLOODED
+- id: sf_03_genericmachines_a01_01
+  resource: mod\ash_cache\sf\genericmachines_a01\genericmachines_a01.mesh
+  appearance: default
+  at:
+  - 6.057
+  - -8.101
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_03_FLOODED
+- id: sf_03a_genericmachines_c01_01
+  resource: mod\ash_cache\sf\genericmachines_c01\genericmachines_c01.mesh
+  appearance: default
+  at:
+  - 3.269
+  - -3.289
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_03A_MAINT_SIDE
+- id: sf_03a_chemical_canisters_01_01
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - -3.201
+  - 4.639
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_03A_MAINT_SIDE
+- id: sf_03a_chemical_canisters_01_02
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - -2.286
+  - 4.639
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_03A_MAINT_SIDE
+- id: sf_04_genericmachines_a01_01
+  resource: mod\ash_cache\sf\genericmachines_a01\genericmachines_a01.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 2.0
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_e01_01
+  resource: mod\ash_cache\sf\genericmachines_e01\genericmachines_e01.mesh
+  appearance: default
+  at:
+  - -11.182
+  - -12.39
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_g01_01
+  resource: mod\ash_cache\sf\genericmachines_g01\genericmachines_g01.mesh
+  appearance: default
+  at:
+  - -11.532
+  - -9.938
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_e01_02
+  resource: mod\ash_cache\sf\genericmachines_e01\genericmachines_e01.mesh
+  appearance: default
+  at:
+  - -11.182
+  - -7.729
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_g01_02
+  resource: mod\ash_cache\sf\genericmachines_g01\genericmachines_g01.mesh
+  appearance: default
+  at:
+  - -11.532
+  - -5.277
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_e01_03
+  resource: mod\ash_cache\sf\genericmachines_e01\genericmachines_e01.mesh
+  appearance: default
+  at:
+  - -11.182
+  - -3.068
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_g01_03
+  resource: mod\ash_cache\sf\genericmachines_g01\genericmachines_g01.mesh
+  appearance: default
+  at:
+  - -11.532
+  - -0.616
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_e01_04
+  resource: mod\ash_cache\sf\genericmachines_e01\genericmachines_e01.mesh
+  appearance: default
+  at:
+  - -11.182
+  - 1.593
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_g01_04
+  resource: mod\ash_cache\sf\genericmachines_g01\genericmachines_g01.mesh
+  appearance: default
+  at:
+  - -11.532
+  - 4.046
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_e01_05
+  resource: mod\ash_cache\sf\genericmachines_e01\genericmachines_e01.mesh
+  appearance: default
+  at:
+  - -11.182
+  - 6.254
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_g01_05
+  resource: mod\ash_cache\sf\genericmachines_g01\genericmachines_g01.mesh
+  appearance: default
+  at:
+  - -11.532
+  - 8.707
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_genericmachines_e01_06
+  resource: mod\ash_cache\sf\genericmachines_e01\genericmachines_e01.mesh
+  appearance: default
+  at:
+  - -11.182
+  - 10.916
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_storagetank_vert_01_01
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - 11.552
+  - -12.077
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_storagetank_vert_01_02
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - 11.552
+  - -8.64
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_storagetank_vert_01_03
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - 11.552
+  - -5.204
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_storagetank_vert_01_04
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - 11.552
+  - -1.767
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_storagetank_vert_01_05
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - 11.552
+  - 1.669
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_storagetank_vert_01_06
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - 11.552
+  - 5.105
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_storagetank_vert_01_07
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - 11.552
+  - 8.542
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_storagetank_vert_01_08
+  resource: mod\ash_cache\sf\storagetank_vert_01\storagetank_vert_01.mesh
+  appearance: default
+  at:
+  - 11.552
+  - 11.978
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_04_cylindertank_cryotanksmall_01_01
+  resource: mod\ash_cache\sf\cylindertank_cryotanksmall_01\cylindertank_cryotanksmall_01.mesh
+  appearance: default
+  at:
+  - 5.0
+  - -8.0
+  - 0.0
+  yaw: 30.0
+  room: CYN_ROOM_04_PUMP
+- id: sf_05_genmachinery_servera01_01
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - -6.75
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_05_SECURITY
+- id: sf_05_genmachinery_serverb01_01
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -4.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_05_SECURITY
+- id: sf_05_genmachinery_servera01_02
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - -1.35
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_05_SECURITY
+- id: sf_05_genmachinery_serverb01_02
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 1.4
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_05_SECURITY
+- id: sf_05_genmachinery_servera01_03
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - 4.05
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_05_SECURITY
+- id: sf_05_consolekit_terminaltallfull01_01
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - 5.422
+  - -7.499
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_05_SECURITY
+- id: sf_05_consolekit_terminaltallfull01_02
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - 5.422
+  - -5.896
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_05_SECURITY
+- id: sf_05_securitycamera_a01_01
+  resource: mod\ash_cache\sf\securitycamera_a01\securitycamera_a01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - -8.385
+  - 3.8
+  yaw: 180.0
+  room: CYN_ROOM_05_SECURITY
+- id: sf_05a_terminala01_01
+  resource: mod\ash_cache\sf\terminala01\terminala01.mesh
+  appearance: default
+  at:
+  - 3.762
+  - -2.584
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+- id: sf_05a_genmachinery_serverc01_01
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -2.2
+  - 4.449
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+- id: sf_05a_genmachinery_serverc01_02
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - 0.5
+  - 4.449
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+- id: sf_05a_filingstoragebox01static_01
+  resource: mod\ash_cache\sf\filingstoragebox01static\filingstoragebox01static.mesh
+  appearance: default
+  at:
+  - -1.5
+  - -3.5
+  - 0.0
+  yaw: 20.0
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+- id: sf_05a_filingstoragebox01static_02
+  resource: mod\ash_cache\sf\filingstoragebox01static\filingstoragebox01static.mesh
+  appearance: default
+  at:
+  - -1.0
+  - -3.6
+  - 0.0
+  yaw: 350.0
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+- id: sf_06_laserscanner01_static01_01
+  resource: mod\ash_cache\sf\laserscanner01_static01\laserscanner01_static01.mesh
+  appearance: default
+  at:
+  - 1.6
+  - 5.904
+  - 1.4
+  yaw: 0.0
+  room: CYN_ROOM_06_BIOMETRIC
+- id: sf_06_stand_alone_terminal_01_01
+  resource: mod\ash_cache\sf\stand_alone_terminal_01\stand_alone_terminal_01.mesh
+  appearance: default
+  at:
+  - -4.685
+  - -0.695
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_06_BIOMETRIC
+- id: sf_06_securitycamera_a01_01
+  resource: mod\ash_cache\sf\securitycamera_a01\securitycamera_a01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - 5.385
+  - 3.8
+  yaw: 0.0
+  room: CYN_ROOM_06_BIOMETRIC
+- id: sf_07_autopsytable01_01
+  resource: mod\ash_cache\sf\autopsytable01\autopsytable01.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 0.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_07_OBSERVATION
+- id: sf_07_medicalivstand01static_01
+  resource: mod\ash_cache\sf\medicalivstand01static\medicalivstand01static.mesh
+  appearance: default
+  at:
+  - 1.2
+  - 1.2
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_07_OBSERVATION
+- id: sf_07_medicalgencart01static_01
+  resource: mod\ash_cache\sf\medicalgencart01static\medicalgencart01static.mesh
+  appearance: default
+  at:
+  - 4.771
+  - -4.657
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_07_OBSERVATION
+- id: sf_07_medicalgencart01static_02
+  resource: mod\ash_cache\sf\medicalgencart01static\medicalgencart01static.mesh
+  appearance: default
+  at:
+  - 4.771
+  - -2.972
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_07_OBSERVATION
+- id: sf_07_uvirradiator01on_01
+  resource: mod\ash_cache\sf\uvirradiator01on\uvirradiator01on.mesh
+  appearance: default
+  at:
+  - 4.61
+  - 2.308
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_07_OBSERVATION
+- id: sf_07_containmenttank_specimen_sm01_01
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.8
+  - 4.4
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_07_OBSERVATION
+- id: sf_07_scienceglass_vialtray01_01
+  resource: mod\ash_cache\sf\scienceglass_vialtray01\scienceglass_vialtray01.mesh
+  appearance: default
+  at:
+  - -3.8
+  - -4.5
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_07_OBSERVATION
+- id: sf_07a_genmachinery_serverc01_01
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -3.449
+  - -2.2
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+- id: sf_07a_genmachinery_serverc01_02
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -3.449
+  - 0.5
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+- id: sf_07a_genmachinery_serverd01_01
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - -2.2
+  - 3.449
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+- id: sf_07a_genmachinery_serverd01_02
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 0.5
+  - 3.449
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+- id: sf_07a_terminala01_01
+  resource: mod\ash_cache\sf\terminala01\terminala01.mesh
+  appearance: default
+  at:
+  - -0.584
+  - -3.762
+  - 0.0
+  yaw: 180.0
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+- id: sf_08_containmenttank_specimen_sm01_01
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - -18.236
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_02
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - -15.74
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_03
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - -13.244
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_04
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - -10.748
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_05
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - -8.253
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_06
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - -5.757
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_07
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - -3.261
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_08
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - -0.766
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_09
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - 1.73
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_10
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - 4.226
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_11
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - 6.721
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_12
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - 9.217
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_13
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - 11.713
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_14
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - 14.208
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_15
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -9.342
+  - 16.704
+  - 0.32
+  yaw: 90.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_16
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - -18.469
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_17
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - -15.973
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_18
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - -13.477
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_19
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - -10.982
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_20
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - -8.486
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_21
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - -5.99
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_22
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - -3.495
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_23
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - 2.331
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_24
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - 4.827
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_25
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - 7.323
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_26
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - 9.818
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_27
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - 12.314
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_28
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - 14.81
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_29
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 9.342
+  - 17.305
+  - 0.32
+  yaw: 270.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_30
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - -16.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_31
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - -12.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_32
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - -8.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_33
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - -4.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_34
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - 0.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_35
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - 4.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_36
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - 8.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_37
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - 12.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_38
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - -3.0
+  - 16.0
+  - 0.32
+  yaw: 0.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_39
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - -16.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_40
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - -12.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_41
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - -8.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_42
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - -4.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_43
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - 0.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_44
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - 4.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_45
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - 8.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_46
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - 12.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08_containmenttank_specimen_sm01_47
+  resource: mod\ash_cache\sf\containmenttank_specimen_sm01\containmenttank_specimen_sm01.mesh
+  appearance: default
+  at:
+  - 3.0
+  - 16.0
+  - 0.32
+  yaw: 180.0
+  room: CYN_ROOM_08_ARCHIVE
+- id: sf_08a_chemical_canisters_01_01
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - -4.185
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_02
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - -3.27
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_03
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - -2.356
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_04
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - -1.442
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_05
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - -0.527
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_06
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - 0.387
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_07
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - 1.302
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_08
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - 2.216
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_09
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - 3.13
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_chemical_canisters_01_10
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 4.639
+  - 4.045
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_08a_storagetank_horiz_01_01
+  resource: mod\ash_cache\sf\storagetank_horiz_01\storagetank_horiz_01.mesh
+  appearance: default
+  at:
+  - -3.086
+  - 4.144
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+- id: sf_09_digitaltable01a_01
+  resource: mod\ash_cache\sf\digitaltable01a\digitaltable01a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 0.0
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_09_PREDICTION
+- id: sf_09_displaymegascreen1_01
+  resource: mod\ash_cache\sf\displaymegascreen1\displaymegascreen1.mesh
+  appearance: default
+  at:
+  - -11.946
+  - -0.001
+  - 2.5
+  yaw: 90.0
+  room: CYN_ROOM_09_PREDICTION
+- id: sf_09_consolekit_terminalshortfull01_01
+  resource: mod\ash_cache\sf\consolekit_terminalshortfull01\consolekit_terminalshortfull01.mesh
+  appearance: default
+  at:
+  - 3.536
+  - 3.536
+  - 0.0
+  yaw: 315.0
+  room: CYN_ROOM_09_PREDICTION
+- id: sf_09_consolekit_terminalshortfull01_02
+  resource: mod\ash_cache\sf\consolekit_terminalshortfull01\consolekit_terminalshortfull01.mesh
+  appearance: default
+  at:
+  - -3.536
+  - 3.536
+  - 0.0
+  yaw: 45.0
+  room: CYN_ROOM_09_PREDICTION
+- id: sf_09_consolekit_terminalshortfull01_03
+  resource: mod\ash_cache\sf\consolekit_terminalshortfull01\consolekit_terminalshortfull01.mesh
+  appearance: default
+  at:
+  - -3.536
+  - -3.536
+  - 0.0
+  yaw: 135.0
+  room: CYN_ROOM_09_PREDICTION
+- id: sf_09_consolekit_terminalshortfull01_04
+  resource: mod\ash_cache\sf\consolekit_terminalshortfull01\consolekit_terminalshortfull01.mesh
+  appearance: default
+  at:
+  - 3.536
+  - -3.536
+  - 0.0
+  yaw: 225.0
+  room: CYN_ROOM_09_PREDICTION
+- id: sf_09a_medicalscanner01_01
+  resource: mod\ash_cache\sf\medicalscanner01\medicalscanner01.mesh
+  appearance: default
+  at:
+  - 0.5
+  - 0.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_09A_ECHO_ANALYSIS
+- id: sf_09a_stand_alone_terminal_01_01
+  resource: mod\ash_cache\sf\stand_alone_terminal_01\stand_alone_terminal_01.mesh
+  appearance: default
+  at:
+  - -2.695
+  - 4.685
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_09A_ECHO_ANALYSIS
+- id: sf_10_cyn_branch_coffin_01
+  resource: mod\ash_cache\sf\cyn_branch_coffin\cyn_branch_coffin.mesh
+  appearance: default
+  at:
+  - -5.0
+  - -6.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_cyn_branch_coffin_02
+  resource: mod\ash_cache\sf\cyn_branch_coffin\cyn_branch_coffin.mesh
+  appearance: default
+  at:
+  - -5.0
+  - -2.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_cyn_branch_coffin_03
+  resource: mod\ash_cache\sf\cyn_branch_coffin\cyn_branch_coffin.mesh
+  appearance: default
+  at:
+  - -5.0
+  - 2.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_cyn_branch_coffin_04
+  resource: mod\ash_cache\sf\cyn_branch_coffin\cyn_branch_coffin.mesh
+  appearance: default
+  at:
+  - -5.0
+  - 6.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_cyn_branch_coffin_05
+  resource: mod\ash_cache\sf\cyn_branch_coffin\cyn_branch_coffin.mesh
+  appearance: default
+  at:
+  - 5.0
+  - -6.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_cyn_branch_coffin_06
+  resource: mod\ash_cache\sf\cyn_branch_coffin\cyn_branch_coffin.mesh
+  appearance: default
+  at:
+  - 5.0
+  - -2.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_cyn_branch_coffin_07
+  resource: mod\ash_cache\sf\cyn_branch_coffin\cyn_branch_coffin.mesh
+  appearance: default
+  at:
+  - 5.0
+  - 2.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_cyn_branch_coffin_08
+  resource: mod\ash_cache\sf\cyn_branch_coffin\cyn_branch_coffin.mesh
+  appearance: default
+  at:
+  - 5.0
+  - 6.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_uvirradiator02_01
+  resource: mod\ash_cache\sf\uvirradiator02\uvirradiator02.mesh
+  appearance: default
+  at:
+  - -2.2
+  - 0.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_10_consolekit_terminalshortfull01_01
+  resource: mod\ash_cache\sf\consolekit_terminalshortfull01\consolekit_terminalshortfull01.mesh
+  appearance: default
+  at:
+  - 2.2
+  - 0.0
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_10_BRANCH_COFFINS
+- id: sf_11_medicalscanner01_01
+  resource: mod\ash_cache\sf\medicalscanner01\medicalscanner01.mesh
+  appearance: default
+  at:
+  - -2.5
+  - 0.0
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_11_COMPARISON
+- id: sf_11_medicalscanner01_02
+  resource: mod\ash_cache\sf\medicalscanner01\medicalscanner01.mesh
+  appearance: default
+  at:
+  - 2.5
+  - 0.0
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_11_COMPARISON
+- id: sf_11_consolekit_terminalshortfull01_01
+  resource: mod\ash_cache\sf\consolekit_terminalshortfull01\consolekit_terminalshortfull01.mesh
+  appearance: default
+  at:
+  - -4.527
+  - -5.499
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_11_COMPARISON
+- id: sf_12_genmachinery_servera01_01
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - -26.75
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverb01_01
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -24.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverc01_01
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -21.3
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servera01_02
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - -18.65
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverb01_02
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -15.9
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverc01_02
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -13.2
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servera01_03
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - -10.55
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverb01_03
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -7.8
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverc01_03
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -5.1
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servera01_04
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - -2.45
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverb01_04
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 0.3
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverc01_04
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 3.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servera01_05
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - 5.65
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverb01_05
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 8.4
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverc01_05
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 11.1
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servera01_06
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - 13.75
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverb01_06
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 16.5
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverc01_06
+  resource: mod\ash_cache\sf\genmachinery_serverc01\genmachinery_serverc01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 19.2
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servera01_07
+  resource: mod\ash_cache\sf\genmachinery_servera01\genmachinery_servera01.mesh
+  appearance: default
+  at:
+  - -5.2
+  - 21.85
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverb01_07
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 24.6
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_01
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -26.7
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_01
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -24.65
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_01
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -23.55
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_02
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -21.8
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_02
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -19.75
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_02
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -18.65
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_03
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -16.9
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_03
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -14.85
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_03
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -13.75
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_04
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -12.0
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_04
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -9.95
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_04
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -8.85
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_05
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -7.1
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_05
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -5.05
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_05
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -3.95
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_06
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -2.2
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_06
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - -0.15
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_06
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 0.95
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_07
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 2.7
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_07
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 4.75
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_07
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 5.85
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_08
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 7.6
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_08
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 9.65
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_08
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 10.75
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_09
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 12.5
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_09
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 14.55
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_09
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 15.65
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_10
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 17.4
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_10
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 19.45
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_10
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 20.55
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverd01_11
+  resource: mod\ash_cache\sf\genmachinery_serverd01\genmachinery_serverd01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 22.3
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_servere01_11
+  resource: mod\ash_cache\sf\genmachinery_servere01\genmachinery_servere01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 24.35
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_12_genmachinery_serverf01_11
+  resource: mod\ash_cache\sf\genmachinery_serverf01\genmachinery_serverf01.mesh
+  appearance: default
+  at:
+  - 5.449
+  - 25.45
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_12_SERVER_VAULT
+- id: sf_13_genmachinery_serverb01_01
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -3.7
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_13_CORE_ANTE
+- id: sf_13_genmachinery_serverb01_02
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - -1.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_13_CORE_ANTE
+- id: sf_13_genmachinery_serverb01_03
+  resource: mod\ash_cache\sf\genmachinery_serverb01\genmachinery_serverb01.mesh
+  appearance: default
+  at:
+  - -5.449
+  - 1.7
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_13_CORE_ANTE
+- id: sf_13_uvirradiator02_01
+  resource: mod\ash_cache\sf\uvirradiator02\uvirradiator02.mesh
+  appearance: default
+  at:
+  - 5.61
+  - -4.692
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_13_CORE_ANTE
+- id: sf_13_uvirradiator02_02
+  resource: mod\ash_cache\sf\uvirradiator02\uvirradiator02.mesh
+  appearance: default
+  at:
+  - 5.61
+  - -2.076
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_13_CORE_ANTE
+- id: sf_13_uvirradiator02_03
+  resource: mod\ash_cache\sf\uvirradiator02\uvirradiator02.mesh
+  appearance: default
+  at:
+  - 5.61
+  - 0.54
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_13_CORE_ANTE
+- id: sf_13_uvirradiator02_04
+  resource: mod\ash_cache\sf\uvirradiator02\uvirradiator02.mesh
+  appearance: default
+  at:
+  - 5.61
+  - 3.156
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_13_CORE_ANTE
+- id: sf_14_containmenttankmed_bot01_01
+  resource: mod\ash_cache\sf\containmenttankmed_bot01\containmenttankmed_bot01.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 0.0
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_containmenttankmed_mid01_01
+  resource: mod\ash_cache\sf\containmenttankmed_mid01\containmenttankmed_mid01.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 0.0
+  - 0.337
+  yaw: 0.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_containmenttankmed_mid01_02
+  resource: mod\ash_cache\sf\containmenttankmed_mid01\containmenttankmed_mid01.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 0.0
+  - 4.396
+  yaw: 0.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_containmenttankmed_top01_01
+  resource: mod\ash_cache\sf\containmenttankmed_top01\containmenttankmed_top01.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 0.0
+  - 8.455
+  yaw: 0.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_cyn_core_insert_01
+  resource: mod\ash_cache\sf\cyn_core_insert\cyn_core_insert.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 0.0
+  - 0.0
+  yaw: 0.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_consolekit_terminaltallfull01_01
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - 5.0
+  - 8.66
+  - 0.0
+  yaw: 150.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_consolekit_terminaltallfull01_02
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - -5.0
+  - 8.66
+  - 0.0
+  yaw: 210.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_consolekit_terminaltallfull01_03
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - -10.0
+  - 0.0
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_consolekit_terminaltallfull01_04
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - -5.0
+  - -8.66
+  - 0.0
+  yaw: 330.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_consolekit_terminaltallfull01_05
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - 5.0
+  - -8.66
+  - 0.0
+  yaw: 30.0
+  room: CYN_ROOM_14_CORE
+- id: sf_14_consolekit_terminaltallfull01_06
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - 10.0
+  - -0.0
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_14_CORE
+- id: sf_15_consolekit_terminaltallfull01_01
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - 4.422
+  - -5.499
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_15_ENDING_CONTROL
+- id: sf_15_consolekit_terminaltallfull01_02
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - 4.422
+  - -3.996
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_15_ENDING_CONTROL
+- id: sf_15_consolekit_terminaltallfull01_03
+  resource: mod\ash_cache\sf\consolekit_terminaltallfull01\consolekit_terminaltallfull01.mesh
+  appearance: default
+  at:
+  - 4.422
+  - -2.493
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_15_ENDING_CONTROL
+- id: sf_15_displaymegascreen1_01
+  resource: mod\ash_cache\sf\displaymegascreen1\displaymegascreen1.mesh
+  appearance: default
+  at:
+  - 0.001
+  - -6.946
+  - 2.2
+  yaw: 180.0
+  room: CYN_ROOM_15_ENDING_CONTROL
+- id: sf_16_storagetank_horiz_01_01
+  resource: mod\ash_cache\sf\storagetank_horiz_01\storagetank_horiz_01.mesh
+  appearance: default
+  at:
+  - -3.144
+  - -12.586
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_storagetank_horiz_01_02
+  resource: mod\ash_cache\sf\storagetank_horiz_01\storagetank_horiz_01.mesh
+  appearance: default
+  at:
+  - -3.144
+  - -6.757
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_storagetank_horiz_01_03
+  resource: mod\ash_cache\sf\storagetank_horiz_01\storagetank_horiz_01.mesh
+  appearance: default
+  at:
+  - -3.144
+  - -0.928
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_storagetank_horiz_01_04
+  resource: mod\ash_cache\sf\storagetank_horiz_01\storagetank_horiz_01.mesh
+  appearance: default
+  at:
+  - -3.144
+  - 4.901
+  - 0.0
+  yaw: 90.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_01
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - -13.685
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_02
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - -11.07
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_03
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - -8.456
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_04
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - -5.842
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_05
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - -3.227
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_06
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - -0.613
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_07
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - 2.002
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_08
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - 4.616
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+- id: sf_16_chemical_canisters_01_09
+  resource: mod\ash_cache\sf\chemical_canisters_01\chemical_canisters_01.mesh
+  appearance: default
+  at:
+  - 3.639
+  - 7.23
+  - 0.0
+  yaw: 270.0
+  room: CYN_ROOM_16_ESCAPE
+collisions:
+- id: col_01_n_l
+  shape: box
+  at:
+  - -0.87
+  - 10.0
+  - 2.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_01_n_r
+  shape: box
+  at:
+  - 0.87
+  - 10.0
+  - 2.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_01_n_top
+  shape: box
+  at:
+  - 0
+  - 10.0
+  - 3.75
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 2.5
+- id: col_02_n_l
+  shape: box
+  at:
+  - -0.87
+  - 30.0
+  - 3.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 6
+- id: col_02_n_r
+  shape: box
+  at:
+  - 0.87
+  - 30.0
+  - 3.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 6
+- id: col_02_n_top
+  shape: box
+  at:
+  - 0
+  - 30.0
+  - 4.25
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 3.5
+- id: col_03_n_l
+  shape: box
+  at:
+  - -0.87
+  - 50.0
+  - 7.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 14
+- id: col_03_n_r
+  shape: box
+  at:
+  - 0.87
+  - 50.0
+  - 7.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 14
+- id: col_03_n_top
+  shape: box
+  at:
+  - 0
+  - 50.0
+  - 8.25
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 11.5
+- id: col_03_e_l
+  shape: box
+  at:
+  - 7.0
+  - 39.13
+  - 3.0
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 6
+- id: col_03_e_r
+  shape: box
+  at:
+  - 7.0
+  - 40.87
+  - 3.0
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 6
+- id: col_03_e_top
+  shape: box
+  at:
+  - 7.0
+  - 40
+  - 4.25
+  yaw: 90
+  size:
+  - 1.48
+  - 0.46
+  - 3.5
+- id: col_04_n_l
+  shape: box
+  at:
+  - -0.87
+  - 80.0
+  - 7.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 14
+- id: col_04_n_r
+  shape: box
+  at:
+  - 0.87
+  - 80.0
+  - 7.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 14
+- id: col_04_n_top
+  shape: box
+  at:
+  - 0
+  - 80.0
+  - 8.25
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 11.5
+- id: col_05_n_l
+  shape: box
+  at:
+  - -0.87
+  - 98.0
+  - 2.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_05_n_r
+  shape: box
+  at:
+  - 0.87
+  - 98.0
+  - 2.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_05_n_top
+  shape: box
+  at:
+  - 0
+  - 98.0
+  - 3.75
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 2.5
+- id: col_05_e_l
+  shape: box
+  at:
+  - 6.0
+  - 88.13
+  - 2.5
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_05_e_r
+  shape: box
+  at:
+  - 6.0
+  - 89.87
+  - 2.5
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_05_e_top
+  shape: box
+  at:
+  - 6.0
+  - 89
+  - 3.75
+  yaw: 90
+  size:
+  - 1.48
+  - 0.46
+  - 2.5
+- id: col_06_n_l
+  shape: box
+  at:
+  - -0.87
+  - 110.0
+  - 2.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_06_n_r
+  shape: box
+  at:
+  - 0.87
+  - 110.0
+  - 2.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_06_n_top
+  shape: box
+  at:
+  - 0
+  - 110.0
+  - 3.75
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 2.5
+- id: col_07_n_l
+  shape: box
+  at:
+  - -0.87
+  - 122.0
+  - 10.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 20
+- id: col_07_n_r
+  shape: box
+  at:
+  - 0.87
+  - 122.0
+  - 10.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 20
+- id: col_07_n_top
+  shape: box
+  at:
+  - 0
+  - 122.0
+  - 11.25
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 17.5
+- id: col_07_w_l
+  shape: box
+  at:
+  - -5.0
+  - 115.13
+  - 2.5
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_07_w_r
+  shape: box
+  at:
+  - -5.0
+  - 116.87
+  - 2.5
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_07_w_top
+  shape: box
+  at:
+  - -5.0
+  - 116
+  - 3.75
+  yaw: 90
+  size:
+  - 1.48
+  - 0.46
+  - 2.5
+- id: col_08_n_l
+  shape: box
+  at:
+  - -0.87
+  - 162.0
+  - 10.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 20
+- id: col_08_n_r
+  shape: box
+  at:
+  - 0.87
+  - 162.0
+  - 10.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 20
+- id: col_08_n_top
+  shape: box
+  at:
+  - 0
+  - 162.0
+  - 11.25
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 17.5
+- id: col_08_e_l
+  shape: box
+  at:
+  - 10.0
+  - 141.13
+  - 10.0
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 20
+- id: col_08_e_r
+  shape: box
+  at:
+  - 10.0
+  - 142.87
+  - 10.0
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 20
+- id: col_08_e_top
+  shape: box
+  at:
+  - 10.0
+  - 142
+  - 11.25
+  yaw: 90
+  size:
+  - 1.48
+  - 0.46
+  - 17.5
+- id: col_09_n_l
+  shape: box
+  at:
+  - -0.87
+  - 186.0
+  - 7.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 14
+- id: col_09_n_r
+  shape: box
+  at:
+  - 0.87
+  - 186.0
+  - 7.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 14
+- id: col_09_n_top
+  shape: box
+  at:
+  - 0
+  - 186.0
+  - 8.25
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 11.5
+- id: col_09_e_l
+  shape: box
+  at:
+  - 12.0
+  - 173.13
+  - 7.0
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 14
+- id: col_09_e_r
+  shape: box
+  at:
+  - 12.0
+  - 174.87
+  - 7.0
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 14
+- id: col_09_e_top
+  shape: box
+  at:
+  - 12.0
+  - 174
+  - 8.25
+  yaw: 90
+  size:
+  - 1.48
+  - 0.46
+  - 11.5
+- id: col_10_n_l
+  shape: box
+  at:
+  - -0.87
+  - 204.0
+  - 4.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 8
+- id: col_10_n_r
+  shape: box
+  at:
+  - 0.87
+  - 204.0
+  - 4.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 8
+- id: col_10_n_top
+  shape: box
+  at:
+  - 0
+  - 204.0
+  - 5.25
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 5.5
+- id: col_11_n_l
+  shape: box
+  at:
+  - -0.87
+  - 218.0
+  - 12.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 25
+- id: col_11_n_r
+  shape: box
+  at:
+  - 0.87
+  - 218.0
+  - 12.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 25
+- id: col_11_n_top
+  shape: box
+  at:
+  - 0
+  - 218.0
+  - 13.75
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 22.5
+- id: col_12_n_l
+  shape: box
+  at:
+  - -0.87
+  - 278.0
+  - 12.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 25
+- id: col_12_n_r
+  shape: box
+  at:
+  - 0.87
+  - 278.0
+  - 12.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 25
+- id: col_12_n_top
+  shape: box
+  at:
+  - 0
+  - 278.0
+  - 13.75
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 22.5
+- id: col_13_n_l
+  shape: box
+  at:
+  - -0.87
+  - 290.0
+  - 15.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 30
+- id: col_13_n_r
+  shape: box
+  at:
+  - 0.87
+  - 290.0
+  - 15.0
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 30
+- id: col_13_n_top
+  shape: box
+  at:
+  - 0
+  - 290.0
+  - 16.25
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 27.5
+- id: col_14_e_l
+  shape: box
+  at:
+  - 20.0
+  - 309.13
+  - 15.0
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 30
+- id: col_14_e_r
+  shape: box
+  at:
+  - 20.0
+  - 310.87
+  - 15.0
+  yaw: 90
+  size:
+  - 0.26
+  - 0.46
+  - 30
+- id: col_14_e_top
+  shape: box
+  at:
+  - 20.0
+  - 310
+  - 16.25
+  yaw: 90
+  size:
+  - 1.48
+  - 0.46
+  - 27.5
+- id: col_15_n_l
+  shape: box
+  at:
+  - 24.13
+  - 317.0
+  - 2.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_15_n_r
+  shape: box
+  at:
+  - 25.87
+  - 317.0
+  - 2.5
+  yaw: 0
+  size:
+  - 0.26
+  - 0.46
+  - 5
+- id: col_15_n_top
+  shape: box
+  at:
+  - 25
+  - 317.0
+  - 3.75
+  yaw: 0
+  size:
+  - 1.48
+  - 0.46
+  - 2.5
+- id: col_ring_00_a
+  shape: box
+  at:
+  - 19.085
+  - 1.326
+  - 15.0
+  yaw: 90.0
+  size:
+  - 1.171
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_00_b
+  shape: box
+  at:
+  - 19.085
+  - -1.326
+  - 15.0
+  yaw: 90.0
+  size:
+  - 1.171
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_00_top
+  shape: box
+  at:
+  - 19.085
+  - 0.0
+  - 16.25
+  yaw: 90.0
+  size:
+  - 1.48
+  - 0.23
+  - 27.5
+  room: CYN_ROOM_14_CORE
+- id: col_ring_01
+  shape: box
+  at:
+  - 18.718
+  - 3.723
+  - 15.0
+  yaw: 101.25
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_02
+  shape: box
+  at:
+  - 17.632
+  - 7.304
+  - 15.0
+  yaw: 112.5
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_03
+  shape: box
+  at:
+  - 15.869
+  - 10.603
+  - 15.0
+  yaw: 123.75
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_04
+  shape: box
+  at:
+  - 13.495
+  - 13.495
+  - 15.0
+  yaw: 135.0
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_05
+  shape: box
+  at:
+  - 10.603
+  - 15.869
+  - 15.0
+  yaw: 146.25
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_06
+  shape: box
+  at:
+  - 7.304
+  - 17.632
+  - 15.0
+  yaw: 157.5
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_07
+  shape: box
+  at:
+  - 3.723
+  - 18.718
+  - 15.0
+  yaw: 168.75
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_08
+  shape: box
+  at:
+  - 0.0
+  - 19.085
+  - 15.0
+  yaw: 180.0
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_09
+  shape: box
+  at:
+  - -3.723
+  - 18.718
+  - 15.0
+  yaw: 191.25
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_10
+  shape: box
+  at:
+  - -7.304
+  - 17.632
+  - 15.0
+  yaw: 202.5
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_11
+  shape: box
+  at:
+  - -10.603
+  - 15.869
+  - 15.0
+  yaw: 213.75
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_12
+  shape: box
+  at:
+  - -13.495
+  - 13.495
+  - 15.0
+  yaw: 225.0
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_13
+  shape: box
+  at:
+  - -15.869
+  - 10.603
+  - 15.0
+  yaw: 236.25
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_14
+  shape: box
+  at:
+  - -17.632
+  - 7.304
+  - 15.0
+  yaw: 247.5
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_15
+  shape: box
+  at:
+  - -18.718
+  - 3.723
+  - 15.0
+  yaw: 258.75
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_16
+  shape: box
+  at:
+  - -19.085
+  - 0.0
+  - 15.0
+  yaw: 270.0
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_17
+  shape: box
+  at:
+  - -18.718
+  - -3.723
+  - 15.0
+  yaw: 281.25
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_18
+  shape: box
+  at:
+  - -17.632
+  - -7.304
+  - 15.0
+  yaw: 292.5
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_19
+  shape: box
+  at:
+  - -15.869
+  - -10.603
+  - 15.0
+  yaw: 303.75
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_20
+  shape: box
+  at:
+  - -13.495
+  - -13.495
+  - 15.0
+  yaw: 315.0
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_21
+  shape: box
+  at:
+  - -10.603
+  - -15.869
+  - 15.0
+  yaw: 326.25
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_22
+  shape: box
+  at:
+  - -7.304
+  - -17.632
+  - 15.0
+  yaw: 337.5
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_23
+  shape: box
+  at:
+  - -3.723
+  - -18.718
+  - 15.0
+  yaw: 348.75
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_24_a
+  shape: box
+  at:
+  - 1.326
+  - -19.085
+  - 15.0
+  yaw: 360.0
+  size:
+  - 1.171
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_24_b
+  shape: box
+  at:
+  - -1.326
+  - -19.085
+  - 15.0
+  yaw: 360.0
+  size:
+  - 1.171
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_24_top
+  shape: box
+  at:
+  - -0.0
+  - -19.085
+  - 16.25
+  yaw: 360.0
+  size:
+  - 1.48
+  - 0.23
+  - 27.5
+  room: CYN_ROOM_14_CORE
+- id: col_ring_25
+  shape: box
+  at:
+  - 3.723
+  - -18.718
+  - 15.0
+  yaw: 371.25
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_26
+  shape: box
+  at:
+  - 7.304
+  - -17.632
+  - 15.0
+  yaw: 382.5
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_27
+  shape: box
+  at:
+  - 10.603
+  - -15.869
+  - 15.0
+  yaw: 393.75
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_28
+  shape: box
+  at:
+  - 13.495
+  - -13.495
+  - 15.0
+  yaw: 405.0
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_29
+  shape: box
+  at:
+  - 15.869
+  - -10.603
+  - 15.0
+  yaw: 416.25
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_30
+  shape: box
+  at:
+  - 17.632
+  - -7.304
+  - 15.0
+  yaw: 427.5
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_ring_31
+  shape: box
+  at:
+  - 18.718
+  - -3.723
+  - 15.0
+  yaw: 438.75
+  size:
+  - 3.822
+  - 0.23
+  - 30
+  room: CYN_ROOM_14_CORE
+- id: col_pass_0_a
+  shape: box
+  at:
+  - 19.485
+  - 0.86
+  - 1.3
+  yaw: 0
+  size:
+  - 0.67
+  - 0.2
+  - 2.6
+  room: CYN_ROOM_14_CORE
+- id: col_pass_0_b
+  shape: box
+  at:
+  - 19.485
+  - -0.86
+  - 1.3
+  yaw: 0
+  size:
+  - 0.67
+  - 0.2
+  - 2.6
+  room: CYN_ROOM_14_CORE
+- id: col_pass_0_top
+  shape: box
+  at:
+  - 19.485
+  - 0.0
+  - 2.6
+  yaw: 0
+  size:
+  - 0.67
+  - 1.88
+  - 0.2
+  room: CYN_ROOM_14_CORE
+- id: col_pass_270_a
+  shape: box
+  at:
+  - 0.86
+  - -19.485
+  - 1.3
+  yaw: 270
+  size:
+  - 0.67
+  - 0.2
+  - 2.6
+  room: CYN_ROOM_14_CORE
+- id: col_pass_270_b
+  shape: box
+  at:
+  - -0.86
+  - -19.485
+  - 1.3
+  yaw: 270
+  size:
+  - 0.67
+  - 0.2
+  - 2.6
+  room: CYN_ROOM_14_CORE
+- id: col_pass_270_top
+  shape: box
+  at:
+  - -0.0
+  - -19.485
+  - 2.6
+  yaw: 270
+  size:
+  - 0.67
+  - 1.88
+  - 0.2
+  room: CYN_ROOM_14_CORE
+- id: col_sf_01_chemical_canisters_01_01
+  shape: box
+  room: CYN_ROOM_01_ENTRY
+  at:
+  - -3.641
+  - 1.807
+  - 0.602
+  yaw: 90.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_01_chemical_canisters_01_02
+  shape: box
+  room: CYN_ROOM_01_ENTRY
+  at:
+  - -3.641
+  - 2.622
+  - 0.602
+  yaw: 90.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_01_chemical_canisters_01_03
+  shape: box
+  room: CYN_ROOM_01_ENTRY
+  at:
+  - -3.641
+  - 3.436
+  - 0.602
+  yaw: 90.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_02_consolekit_terminalshortfull01_01
+  shape: box
+  room: CYN_ROOM_02_CHECKPOINT
+  at:
+  - -3.475
+  - -1.499
+  - 0.625
+  yaw: 90.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.25
+- id: col_sf_02_genmachinery_serverb01_01
+  shape: box
+  room: CYN_ROOM_02_CHECKPOINT
+  at:
+  - 3.446
+  - -6.7
+  - 1.1
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_02_genmachinery_serverb01_02
+  shape: box
+  room: CYN_ROOM_02_CHECKPOINT
+  at:
+  - 3.446
+  - -4.0
+  - 1.1
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_03_storagetank_vert_01_01
+  shape: box
+  room: CYN_ROOM_03_FLOODED
+  at:
+  - -6.052
+  - -8.032
+  - 1.488
+  yaw: 90.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_03_storagetank_vert_01_02
+  shape: box
+  room: CYN_ROOM_03_FLOODED
+  at:
+  - -6.052
+  - -4.895
+  - 1.488
+  yaw: 90.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_03_storagetank_vert_01_03
+  shape: box
+  room: CYN_ROOM_03_FLOODED
+  at:
+  - -6.052
+  - -1.759
+  - 1.488
+  yaw: 90.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_03_storagetank_vert_01_04
+  shape: box
+  room: CYN_ROOM_03_FLOODED
+  at:
+  - -6.052
+  - 1.377
+  - 1.488
+  yaw: 90.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_03_storagetank_vert_01_05
+  shape: box
+  room: CYN_ROOM_03_FLOODED
+  at:
+  - -6.052
+  - 4.514
+  - 1.488
+  yaw: 90.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_03_storagetank_vert_01_06
+  shape: box
+  room: CYN_ROOM_03_FLOODED
+  at:
+  - -6.052
+  - 7.65
+  - 1.488
+  yaw: 90.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_03_trap_pipeindlg_cryogenic01_01
+  shape: box
+  room: CYN_ROOM_03_FLOODED
+  at:
+  - 6.499
+  - 4.001
+  - 0.0
+  yaw: 270.0
+  size:
+  - 2.003
+  - 0.902
+  - 0.896
+- id: col_sf_03_genericmachines_a01_01
+  shape: box
+  room: CYN_ROOM_03_FLOODED
+  at:
+  - 6.057
+  - -8.246
+  - 1.719
+  yaw: 270.0
+  size:
+  - 1.508
+  - 1.787
+  - 3.439
+- id: col_sf_03a_genericmachines_c01_01
+  shape: box
+  room: CYN_ROOM_03A_MAINT_SIDE
+  at:
+  - 3.276
+  - -3.34
+  - 1.467
+  yaw: 270.0
+  size:
+  - 1.32
+  - 1.347
+  - 2.934
+- id: col_sf_03a_chemical_canisters_01_01
+  shape: box
+  room: CYN_ROOM_03A_MAINT_SIDE
+  at:
+  - -3.193
+  - 4.641
+  - 0.602
+  yaw: 0.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_03a_chemical_canisters_01_02
+  shape: box
+  room: CYN_ROOM_03A_MAINT_SIDE
+  at:
+  - -2.278
+  - 4.641
+  - 0.602
+  yaw: 0.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_04_genericmachines_a01_01
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 0.145
+  - 2.0
+  - 1.719
+  yaw: 0.0
+  size:
+  - 1.508
+  - 1.787
+  - 3.439
+- id: col_sf_04_genericmachines_e01_01
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.182
+  - -12.274
+  - 1.043
+  yaw: 90.0
+  size:
+  - 1.453
+  - 2.537
+  - 2.084
+- id: col_sf_04_genericmachines_g01_01
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.532
+  - -9.943
+  - 0.84
+  yaw: 90.0
+  size:
+  - 1.209
+  - 1.837
+  - 1.679
+- id: col_sf_04_genericmachines_e01_02
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.182
+  - -7.613
+  - 1.043
+  yaw: 90.0
+  size:
+  - 1.453
+  - 2.537
+  - 2.084
+- id: col_sf_04_genericmachines_g01_02
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.532
+  - -5.282
+  - 0.84
+  yaw: 90.0
+  size:
+  - 1.209
+  - 1.837
+  - 1.679
+- id: col_sf_04_genericmachines_e01_03
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.182
+  - -2.951
+  - 1.043
+  yaw: 90.0
+  size:
+  - 1.453
+  - 2.537
+  - 2.084
+- id: col_sf_04_genericmachines_g01_03
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.532
+  - -0.621
+  - 0.84
+  yaw: 90.0
+  size:
+  - 1.209
+  - 1.837
+  - 1.679
+- id: col_sf_04_genericmachines_e01_04
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.182
+  - 1.71
+  - 1.043
+  yaw: 90.0
+  size:
+  - 1.453
+  - 2.537
+  - 2.084
+- id: col_sf_04_genericmachines_g01_04
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.532
+  - 4.041
+  - 0.84
+  yaw: 90.0
+  size:
+  - 1.209
+  - 1.837
+  - 1.679
+- id: col_sf_04_genericmachines_e01_05
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.182
+  - 6.371
+  - 1.043
+  yaw: 90.0
+  size:
+  - 1.453
+  - 2.537
+  - 2.084
+- id: col_sf_04_genericmachines_g01_05
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.532
+  - 8.702
+  - 0.84
+  yaw: 90.0
+  size:
+  - 1.209
+  - 1.837
+  - 1.679
+- id: col_sf_04_genericmachines_e01_06
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - -11.182
+  - 11.032
+  - 1.043
+  yaw: 90.0
+  size:
+  - 1.453
+  - 2.537
+  - 2.084
+- id: col_sf_04_storagetank_vert_01_01
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 11.552
+  - -12.032
+  - 1.488
+  yaw: 270.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_04_storagetank_vert_01_02
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 11.552
+  - -8.595
+  - 1.488
+  yaw: 270.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_04_storagetank_vert_01_03
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 11.552
+  - -5.159
+  - 1.488
+  yaw: 270.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_04_storagetank_vert_01_04
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 11.552
+  - -1.723
+  - 1.488
+  yaw: 270.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_04_storagetank_vert_01_05
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 11.552
+  - 1.714
+  - 1.488
+  yaw: 270.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_04_storagetank_vert_01_06
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 11.552
+  - 5.15
+  - 1.488
+  yaw: 270.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_04_storagetank_vert_01_07
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 11.552
+  - 8.586
+  - 1.488
+  yaw: 270.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_04_storagetank_vert_01_08
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 11.552
+  - 12.023
+  - 1.488
+  yaw: 270.0
+  size:
+  - 1.936
+  - 1.797
+  - 2.965
+- id: col_sf_04_cylindertank_cryotanksmall_01_01
+  shape: box
+  room: CYN_ROOM_04_PUMP
+  at:
+  - 4.996
+  - -7.993
+  - 0.325
+  yaw: 30.0
+  size:
+  - 0.43
+  - 0.43
+  - 0.651
+- id: col_sf_05_genmachinery_servera01_01
+  shape: box
+  room: CYN_ROOM_05_SECURITY
+  at:
+  - -5.197
+  - -6.7
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_05_genmachinery_serverb01_01
+  shape: box
+  room: CYN_ROOM_05_SECURITY
+  at:
+  - -5.446
+  - -4.0
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_05_genmachinery_servera01_02
+  shape: box
+  room: CYN_ROOM_05_SECURITY
+  at:
+  - -5.197
+  - -1.3
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_05_genmachinery_serverb01_02
+  shape: box
+  room: CYN_ROOM_05_SECURITY
+  at:
+  - -5.446
+  - 1.4
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_05_genmachinery_servera01_03
+  shape: box
+  room: CYN_ROOM_05_SECURITY
+  at:
+  - -5.197
+  - 4.1
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_05_consolekit_terminaltallfull01_01
+  shape: box
+  room: CYN_ROOM_05_SECURITY
+  at:
+  - 5.475
+  - -7.499
+  - 0.921
+  yaw: 90.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_05_consolekit_terminaltallfull01_02
+  shape: box
+  room: CYN_ROOM_05_SECURITY
+  at:
+  - 5.475
+  - -5.896
+  - 0.921
+  yaw: 90.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_05a_terminala01_01
+  shape: box
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+  at:
+  - 3.849
+  - -2.584
+  - 0.0
+  yaw: 270.0
+  size:
+  - 0.831
+  - 0.202
+  - 0.463
+- id: col_sf_05a_genmachinery_serverc01_01
+  shape: box
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+  at:
+  - -2.2
+  - 4.446
+  - 0.725
+  yaw: 0.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_05a_genmachinery_serverc01_02
+  shape: box
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+  at:
+  - 0.5
+  - 4.446
+  - 0.725
+  yaw: 0.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_05a_filingstoragebox01static_01
+  shape: box
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+  at:
+  - -1.5
+  - -3.5
+  - 0.13
+  yaw: 20.0
+  size:
+  - 0.335
+  - 0.402
+  - 0.261
+- id: col_sf_05a_filingstoragebox01static_02
+  shape: box
+  room: CYN_ROOM_05A_SECURITY_OFFICE
+  at:
+  - -1.0
+  - -3.6
+  - 0.13
+  yaw: 350.0
+  size:
+  - 0.335
+  - 0.402
+  - 0.261
+- id: col_sf_06_stand_alone_terminal_01_01
+  shape: box
+  room: CYN_ROOM_06_BIOMETRIC
+  at:
+  - -4.734
+  - -0.695
+  - 0.254
+  yaw: 90.0
+  size:
+  - 0.609
+  - 0.432
+  - 0.514
+- id: col_sf_07_autopsytable01_01
+  shape: box
+  room: CYN_ROOM_07_OBSERVATION
+  at:
+  - -0.0
+  - -0.007
+  - 0.655
+  yaw: 90.0
+  size:
+  - 3.0
+  - 0.917
+  - 1.309
+- id: col_sf_07_medicalivstand01static_01
+  shape: box
+  room: CYN_ROOM_07_OBSERVATION
+  at:
+  - 1.198
+  - 1.163
+  - 0.922
+  yaw: 0.0
+  size:
+  - 0.765
+  - 0.735
+  - 1.843
+- id: col_sf_07_medicalgencart01static_01
+  shape: box
+  room: CYN_ROOM_07_OBSERVATION
+  at:
+  - 4.772
+  - -4.657
+  - 0.471
+  yaw: 270.0
+  size:
+  - 0.685
+  - 0.355
+  - 0.942
+- id: col_sf_07_medicalgencart01static_02
+  shape: box
+  room: CYN_ROOM_07_OBSERVATION
+  at:
+  - 4.772
+  - -2.972
+  - 0.471
+  yaw: 270.0
+  size:
+  - 0.685
+  - 0.355
+  - 0.942
+- id: col_sf_07_uvirradiator01on_01
+  shape: box
+  room: CYN_ROOM_07_OBSERVATION
+  at:
+  - 4.591
+  - 2.308
+  - 0.95
+  yaw: 270.0
+  size:
+  - 0.616
+  - 0.717
+  - 1.9
+- id: col_sf_07_containmenttank_specimen_sm01_01
+  shape: box
+  room: CYN_ROOM_07_OBSERVATION
+  at:
+  - -3.917
+  - 4.4
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_07a_genmachinery_serverc01_01
+  shape: box
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+  at:
+  - -3.446
+  - -2.2
+  - 0.725
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_07a_genmachinery_serverc01_02
+  shape: box
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+  at:
+  - -3.446
+  - 0.5
+  - 0.725
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_07a_genmachinery_serverd01_01
+  shape: box
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+  at:
+  - -2.2
+  - 3.449
+  - 0.5
+  yaw: 0.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_07a_genmachinery_serverd01_02
+  shape: box
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+  at:
+  - 0.5
+  - 3.449
+  - 0.5
+  yaw: 0.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_07a_terminala01_01
+  shape: box
+  room: CYN_ROOM_07A_SUBJECT_RECORDS
+  at:
+  - -0.584
+  - -3.849
+  - 0.0
+  yaw: 180.0
+  size:
+  - 0.831
+  - 0.202
+  - 0.463
+- id: col_sf_08_containmenttank_specimen_sm01_01
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - -18.352
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_02
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - -15.856
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_03
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - -13.361
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_04
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - -10.865
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_05
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - -8.369
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_06
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - -5.874
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_07
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - -3.378
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_08
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - -0.882
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_09
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - 1.613
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_10
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - 4.109
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_11
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - 6.605
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_12
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - 9.1
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_13
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - 11.596
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_14
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - 14.092
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_15
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -9.342
+  - 16.588
+  - 1.296
+  yaw: 90.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_16
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - -18.352
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_17
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - -15.856
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_18
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - -13.361
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_19
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - -10.865
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_20
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - -8.369
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_21
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - -5.874
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_22
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - -3.378
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_23
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - 2.448
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_24
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - 4.944
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_25
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - 7.439
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_26
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - 9.935
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_27
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - 12.431
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_28
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - 14.926
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_29
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 9.342
+  - 17.422
+  - 1.296
+  yaw: 270.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_30
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - -16.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_31
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - -12.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_32
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - -8.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_33
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - -4.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_34
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - 0.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_35
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - 4.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_36
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - 8.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_37
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - 12.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_38
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - -3.117
+  - 16.0
+  - 1.296
+  yaw: 0.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_39
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - -16.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_40
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - -12.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_41
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - -8.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_42
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - -4.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_43
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - -0.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_44
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - 4.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_45
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - 8.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_46
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - 12.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08_containmenttank_specimen_sm01_47
+  shape: box
+  room: CYN_ROOM_08_ARCHIVE
+  at:
+  - 3.117
+  - 16.0
+  - 1.296
+  yaw: 180.0
+  size:
+  - 1.296
+  - 1.216
+  - 2.59
+- id: col_sf_08a_chemical_canisters_01_01
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - -4.193
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_02
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - -3.278
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_03
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - -2.364
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_04
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - -1.45
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_05
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - -0.535
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_06
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - 0.379
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_07
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - 1.294
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_08
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - 2.208
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_09
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - 3.122
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_chemical_canisters_01_10
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - 4.641
+  - 4.037
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_08a_storagetank_horiz_01_01
+  shape: box
+  room: CYN_ROOM_08A_PURGE_ARCHIVE
+  at:
+  - -3.086
+  - 4.144
+  - 1.042
+  yaw: 0.0
+  size:
+  - 2.829
+  - 1.612
+  - 2.085
+- id: col_sf_09_digitaltable01a_01
+  shape: box
+  room: CYN_ROOM_09_PREDICTION
+  at:
+  - 0.0
+  - -0.0
+  - 0.577
+  yaw: 0.0
+  size:
+  - 2.057
+  - 2.237
+  - 1.153
+- id: col_sf_09_consolekit_terminalshortfull01_01
+  shape: box
+  room: CYN_ROOM_09_PREDICTION
+  at:
+  - 3.499
+  - 3.499
+  - 0.625
+  yaw: 315.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.25
+- id: col_sf_09_consolekit_terminalshortfull01_02
+  shape: box
+  room: CYN_ROOM_09_PREDICTION
+  at:
+  - -3.499
+  - 3.499
+  - 0.625
+  yaw: 45.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.25
+- id: col_sf_09_consolekit_terminalshortfull01_03
+  shape: box
+  room: CYN_ROOM_09_PREDICTION
+  at:
+  - -3.499
+  - -3.499
+  - 0.625
+  yaw: 135.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.25
+- id: col_sf_09_consolekit_terminalshortfull01_04
+  shape: box
+  room: CYN_ROOM_09_PREDICTION
+  at:
+  - 3.499
+  - -3.499
+  - 0.625
+  yaw: 225.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.25
+- id: col_sf_09a_medicalscanner01_01
+  shape: box
+  room: CYN_ROOM_09A_ECHO_ANALYSIS
+  at:
+  - 0.412
+  - 0.0
+  - 1.693
+  yaw: 90.0
+  size:
+  - 3.337
+  - 3.405
+  - 3.374
+- id: col_sf_09a_stand_alone_terminal_01_01
+  shape: box
+  room: CYN_ROOM_09A_ECHO_ANALYSIS
+  at:
+  - -2.695
+  - 4.734
+  - 0.254
+  yaw: 0.0
+  size:
+  - 0.609
+  - 0.432
+  - 0.514
+- id: col_sf_10_cyn_branch_coffin_01
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - -5.0
+  - -5.771
+  - 0.405
+  yaw: 90.0
+  size:
+  - 2.688
+  - 0.94
+  - 0.81
+- id: col_sf_10_cyn_branch_coffin_02
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - -5.0
+  - -1.771
+  - 0.405
+  yaw: 90.0
+  size:
+  - 2.688
+  - 0.94
+  - 0.81
+- id: col_sf_10_cyn_branch_coffin_03
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - -5.0
+  - 2.229
+  - 0.405
+  yaw: 90.0
+  size:
+  - 2.688
+  - 0.94
+  - 0.81
+- id: col_sf_10_cyn_branch_coffin_04
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - -5.0
+  - 6.229
+  - 0.405
+  yaw: 90.0
+  size:
+  - 2.688
+  - 0.94
+  - 0.81
+- id: col_sf_10_cyn_branch_coffin_05
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - 5.0
+  - -5.771
+  - 0.405
+  yaw: 90.0
+  size:
+  - 2.688
+  - 0.94
+  - 0.81
+- id: col_sf_10_cyn_branch_coffin_06
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - 5.0
+  - -1.771
+  - 0.405
+  yaw: 90.0
+  size:
+  - 2.688
+  - 0.94
+  - 0.81
+- id: col_sf_10_cyn_branch_coffin_07
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - 5.0
+  - 2.229
+  - 0.405
+  yaw: 90.0
+  size:
+  - 2.688
+  - 0.94
+  - 0.81
+- id: col_sf_10_cyn_branch_coffin_08
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - 5.0
+  - 6.229
+  - 0.405
+  yaw: 90.0
+  size:
+  - 2.688
+  - 0.94
+  - 0.81
+- id: col_sf_10_uvirradiator02_01
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - -2.181
+  - -0.0
+  - 0.578
+  yaw: 90.0
+  size:
+  - 0.616
+  - 0.717
+  - 1.156
+- id: col_sf_10_consolekit_terminalshortfull01_01
+  shape: box
+  room: CYN_ROOM_10_BRANCH_COFFINS
+  at:
+  - 2.148
+  - 0.0
+  - 0.625
+  yaw: 270.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.25
+- id: col_sf_11_medicalscanner01_01
+  shape: box
+  room: CYN_ROOM_11_COMPARISON
+  at:
+  - -2.5
+  - 0.088
+  - 1.693
+  yaw: 0.0
+  size:
+  - 3.337
+  - 3.405
+  - 3.374
+- id: col_sf_11_medicalscanner01_02
+  shape: box
+  room: CYN_ROOM_11_COMPARISON
+  at:
+  - 2.5
+  - 0.088
+  - 1.693
+  yaw: 0.0
+  size:
+  - 3.337
+  - 3.405
+  - 3.374
+- id: col_sf_11_consolekit_terminalshortfull01_01
+  shape: box
+  room: CYN_ROOM_11_COMPARISON
+  at:
+  - -4.475
+  - -5.499
+  - 0.625
+  yaw: 90.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.25
+- id: col_sf_12_genmachinery_servera01_01
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.197
+  - -26.7
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_12_genmachinery_serverb01_01
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - -24.0
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_12_genmachinery_serverc01_01
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - -21.3
+  - 0.725
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_12_genmachinery_servera01_02
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.197
+  - -18.6
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_12_genmachinery_serverb01_02
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - -15.9
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_12_genmachinery_serverc01_02
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - -13.2
+  - 0.725
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_12_genmachinery_servera01_03
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.197
+  - -10.5
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_12_genmachinery_serverb01_03
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - -7.8
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_12_genmachinery_serverc01_03
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - -5.1
+  - 0.725
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_12_genmachinery_servera01_04
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.197
+  - -2.4
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_12_genmachinery_serverb01_04
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - 0.3
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_12_genmachinery_serverc01_04
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - 3.0
+  - 0.725
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_12_genmachinery_servera01_05
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.197
+  - 5.7
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_12_genmachinery_serverb01_05
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - 8.4
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_12_genmachinery_serverc01_05
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - 11.1
+  - 0.725
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_12_genmachinery_servera01_06
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.197
+  - 13.8
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_12_genmachinery_serverb01_06
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - 16.5
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_12_genmachinery_serverc01_06
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - 19.2
+  - 0.725
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 1.45
+- id: col_sf_12_genmachinery_servera01_07
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.197
+  - 21.9
+  - 1.125
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.506
+  - 2.25
+- id: col_sf_12_genmachinery_serverb01_07
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - -5.446
+  - 24.6
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_12_genmachinery_serverd01_01
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -26.7
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_01
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -24.65
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_01
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -23.55
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_02
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -21.8
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_02
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -19.75
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_02
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -18.65
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_03
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -16.9
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_03
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -14.85
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_03
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -13.75
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_04
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -12.0
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_04
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -9.95
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_04
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -8.85
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_05
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -7.1
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_05
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -5.05
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_05
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -3.95
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_06
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -2.2
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_06
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - -0.15
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_06
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 0.95
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_07
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 2.7
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_07
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 4.75
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_07
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 5.85
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_08
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 7.6
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_08
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 9.65
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_08
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 10.75
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_09
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 12.5
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_09
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 14.55
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_09
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 15.65
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_10
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 17.4
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_10
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 19.45
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_10
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 20.55
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverd01_11
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 22.3
+  - 0.5
+  yaw: 270.0
+  size:
+  - 2.6
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_servere01_11
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 24.35
+  - 0.5
+  yaw: 270.0
+  size:
+  - 1.3
+  - 1.001
+  - 1.0
+- id: col_sf_12_genmachinery_serverf01_11
+  shape: box
+  room: CYN_ROOM_12_SERVER_VAULT
+  at:
+  - 5.449
+  - 25.45
+  - 0.5
+  yaw: 270.0
+  size:
+  - 0.7
+  - 1.001
+  - 1.0
+- id: col_sf_13_genmachinery_serverb01_01
+  shape: box
+  room: CYN_ROOM_13_CORE_ANTE
+  at:
+  - -5.446
+  - -3.7
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_13_genmachinery_serverb01_02
+  shape: box
+  room: CYN_ROOM_13_CORE_ANTE
+  at:
+  - -5.446
+  - -1.0
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_13_genmachinery_serverb01_03
+  shape: box
+  room: CYN_ROOM_13_CORE_ANTE
+  at:
+  - -5.446
+  - 1.7
+  - 1.1
+  yaw: 90.0
+  size:
+  - 2.6
+  - 1.008
+  - 2.2
+- id: col_sf_13_uvirradiator02_01
+  shape: box
+  room: CYN_ROOM_13_CORE_ANTE
+  at:
+  - 5.591
+  - -4.692
+  - 0.578
+  yaw: 270.0
+  size:
+  - 0.616
+  - 0.717
+  - 1.156
+- id: col_sf_13_uvirradiator02_02
+  shape: box
+  room: CYN_ROOM_13_CORE_ANTE
+  at:
+  - 5.591
+  - -2.076
+  - 0.578
+  yaw: 270.0
+  size:
+  - 0.616
+  - 0.717
+  - 1.156
+- id: col_sf_13_uvirradiator02_03
+  shape: box
+  room: CYN_ROOM_13_CORE_ANTE
+  at:
+  - 5.591
+  - 0.54
+  - 0.578
+  yaw: 270.0
+  size:
+  - 0.616
+  - 0.717
+  - 1.156
+- id: col_sf_13_uvirradiator02_04
+  shape: box
+  room: CYN_ROOM_13_CORE_ANTE
+  at:
+  - 5.591
+  - 3.156
+  - 0.578
+  yaw: 270.0
+  size:
+  - 0.616
+  - 0.717
+  - 1.156
+- id: col_sf_14_containmenttankmed_bot01_01
+  shape: box
+  room: CYN_ROOM_14_CORE
+  at:
+  - 0.0
+  - 0.0
+  - 4.713
+  yaw: 0.0
+  size:
+  - 14.0
+  - 14.0
+  - 9.425
+- id: col_sf_14_consolekit_terminaltallfull01_01
+  shape: box
+  room: CYN_ROOM_14_CORE
+  at:
+  - 5.026
+  - 8.706
+  - 0.921
+  yaw: 150.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_14_consolekit_terminaltallfull01_02
+  shape: box
+  room: CYN_ROOM_14_CORE
+  at:
+  - -5.026
+  - 8.706
+  - 0.921
+  yaw: 210.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_14_consolekit_terminaltallfull01_03
+  shape: box
+  room: CYN_ROOM_14_CORE
+  at:
+  - -10.052
+  - 0.0
+  - 0.921
+  yaw: 270.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_14_consolekit_terminaltallfull01_04
+  shape: box
+  room: CYN_ROOM_14_CORE
+  at:
+  - -5.026
+  - -8.706
+  - 0.921
+  yaw: 330.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_14_consolekit_terminaltallfull01_05
+  shape: box
+  room: CYN_ROOM_14_CORE
+  at:
+  - 5.026
+  - -8.706
+  - 0.921
+  yaw: 30.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_14_consolekit_terminaltallfull01_06
+  shape: box
+  room: CYN_ROOM_14_CORE
+  at:
+  - 10.052
+  - -0.0
+  - 0.921
+  yaw: 90.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_15_consolekit_terminaltallfull01_01
+  shape: box
+  room: CYN_ROOM_15_ENDING_CONTROL
+  at:
+  - 4.475
+  - -5.499
+  - 0.921
+  yaw: 90.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_15_consolekit_terminaltallfull01_02
+  shape: box
+  room: CYN_ROOM_15_ENDING_CONTROL
+  at:
+  - 4.475
+  - -3.996
+  - 0.921
+  yaw: 90.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_15_consolekit_terminaltallfull01_03
+  shape: box
+  room: CYN_ROOM_15_ENDING_CONTROL
+  at:
+  - 4.475
+  - -2.493
+  - 0.921
+  yaw: 90.0
+  size:
+  - 1.003
+  - 0.951
+  - 1.842
+- id: col_sf_16_storagetank_horiz_01_01
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - -3.144
+  - -12.586
+  - 1.042
+  yaw: 90.0
+  size:
+  - 2.829
+  - 1.612
+  - 2.085
+- id: col_sf_16_storagetank_horiz_01_02
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - -3.144
+  - -6.757
+  - 1.042
+  yaw: 90.0
+  size:
+  - 2.829
+  - 1.612
+  - 2.085
+- id: col_sf_16_storagetank_horiz_01_03
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - -3.144
+  - -0.928
+  - 1.042
+  yaw: 90.0
+  size:
+  - 2.829
+  - 1.612
+  - 2.085
+- id: col_sf_16_storagetank_horiz_01_04
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - -3.144
+  - 4.901
+  - 1.042
+  yaw: 90.0
+  size:
+  - 2.829
+  - 1.612
+  - 2.085
+- id: col_sf_16_chemical_canisters_01_01
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - -13.693
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_16_chemical_canisters_01_02
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - -11.078
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_16_chemical_canisters_01_03
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - -8.464
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_16_chemical_canisters_01_04
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - -5.85
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_16_chemical_canisters_01_05
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - -3.235
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_16_chemical_canisters_01_06
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - -0.621
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_16_chemical_canisters_01_07
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - 1.994
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_16_chemical_canisters_01_08
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - 4.608
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203
+- id: col_sf_16_chemical_canisters_01_09
+  shape: box
+  room: CYN_ROOM_16_ESCAPE
+  at:
+  - 3.641
+  - 7.222
+  - 0.602
+  yaw: 270.0
+  size:
+  - 0.614
+  - 0.618
+  - 1.203

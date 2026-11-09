@@ -1,0 +1,164 @@
+{
+  "_comment": [
+    "D124. The first holocall in this quest. Mara rings V once the ending has",
+    "resolved and makes good on the last thing she said out loud in D123:",
+    "'Keep the phone on. One day you'll want the address.' She gives the address.",
+    "",
+    "WHY THIS IS A SCENE AND NOT A MESSAGE: the phone UI is opened by the quest",
+    "graph, not by anything in here - questCallContact_NodeType, wired either side",
+    "of this scene in quest_graph.json. The engine ships NO scene-side phone event",
+    "at all (`strings` on Cyberpunk2077.exe matches nothing for",
+    "^scn.*(Phone|Call|Holo).*$), so the division is fixed: the graph opens and",
+    "closes the call, the scene is only the conversation that happens inside it.",
+    "",
+    "WHY NOBODY SPAWNS: scene.holocall makes every non-player actor a VOICE -",
+    "acquisitionPlan findInContext with contextualName 'Voice', field for field",
+    "with q005_07's penthouse Siri. There is no entity, so there is nothing to",
+    "place, and unlike D123 there is not even a doorway to stand in. It also means",
+    "the keepAlive question that hangs over scene_aftertalk.json cannot arise here:",
+    "a voice actor is not spawned, so a Mara left standing in the clinic is",
+    "irrelevant to it.",
+    "",
+    "WHY NO set_tier: a phone call is not a conversation you stand still for.",
+    "q112_03_infiltration brackets two Takemura calls and contains exactly one tier",
+    "node in the whole phase, Tier1_FullGameplay. So V keeps walking, and the one",
+    "thing to watch in game is whether the choice hub below still draws while they",
+    "do - every other hub in this quest has had Tier3 under it.",
+    "",
+    "The hub does not branch. Both options reach the same answer, for the same",
+    "reason scene_aftertalk.json's does: this is the player's one chance to react,",
+    "not a second decision twenty seconds after the real one. What differs is only",
+    "whether V asks her about herself or about the job.",
+    "",
+    "Deliberately ONE version, no warm/cold split. She is not calling as a friend",
+    "on either route - she is closing a file and squaring a debt with somebody she",
+    "will never speak to again, which is exactly as true after the intimidate route",
+    "as after the others. D121's route_verdict already gives the cold path its own",
+    "SMS; giving it its own call as well would be splitting a beat that has the",
+    "same meaning both ways."
+  ],
+  "scene": {
+    "id": "ash_cache_holocall",
+    "categoryTag": "sideQuests",
+    "holocall": true
+  },
+  "actors": [
+    "mara"
+  ],
+  "entryPoints": [
+    {
+      "name": "holo_in",
+      "node": "start"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "holo_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "id": "sec_open",
+      "type": "section",
+      "lines": [
+        {
+          "id": "holo_open_1",
+          "actor": "Mara",
+          "emotion": "fear/worried",
+          "en-us": "Don't say my name. This line is clean for about ninety seconds and then it's a number in somebody's log.",
+          "ua-ua": "Не називай мого імені. Ця лінія чиста секунд дев'яносто, а потім стане номером у чиємусь лозі."
+        },
+        {
+          "id": "holo_open_2",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "I'm out of the city. No plates, no chip, took the long way. You won't hear this number again.",
+          "ua-ua": "Я вже за містом. Без номерів, без чипа, їхала в об'їзд. Цього номера ти більше не почуєш."
+        }
+      ]
+    },
+    {
+      "id": "hub",
+      "type": "choice",
+      "options": [
+        {
+          "id": "opt_where",
+          "goto": "sec_answer",
+          "en-us": "Where are you?",
+          "ua-ua": "Ти де?"
+        },
+        {
+          "id": "opt_why",
+          "goto": "sec_answer",
+          "en-us": "Then why call at all?",
+          "ua-ua": "То навіщо тоді дзвониш?"
+        }
+      ]
+    },
+    {
+      "id": "sec_answer",
+      "type": "section",
+      "lines": [
+        {
+          "id": "holo_answer_1",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "Because I said you'd want the address, and I don't like owing people. So here it is, and then we're square.",
+          "ua-ua": "Бо я сказала, що ти попросиш адресу, а я не люблю бути винною. Тож ось вона — і ми квити."
+        },
+        {
+          "id": "holo_answer_2",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "Cynosure. The dig runs under the Badlands, north-west of the solar farm. Militech sank it, the FIA kept the lights on.",
+          "ua-ua": "Сайносур. Шахта тягнеться під Пустищем, на північний захід від сонячної ферми. «Мілітех» її пробив, ФІА лишило світло ввімкненим."
+        },
+        {
+          "id": "holo_answer_3",
+          "actor": "Mara",
+          "emotion": "fear/worried",
+          "en-us": "Whatever your splinter was cut from is still on a rack down there. Still running. Nobody ever turned it off, they just stopped writing it down.",
+          "ua-ua": "Те, з чого зрізали твій скалок, і досі лежить там на стелажі. І досі працює. Його ніхто не вимкнув — просто перестали записувати."
+        }
+      ]
+    },
+    {
+      "id": "sec_close",
+      "type": "section",
+      "lines": [
+        {
+          "id": "holo_close_1",
+          "actor": "Mara",
+          "emotion": "interested/confident",
+          "en-us": "That's all of it. If you're going, go before somebody reads my resignation. After that the shaft gets a new lock and I can't help you.",
+          "ua-ua": "Це все, що маю. Якщо підеш — іди, доки хтось не прочитав мою заяву. Після цього на шахті зміниться замок, і я вже не допоможу."
+        },
+        {
+          "id": "holo_close_2",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "Don't call back. There won't be anyone here.",
+          "ua-ua": "Не передзвонюй. Тут уже нікого не буде."
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [ "start", "sec_open" ],
+    [ "sec_open", "hub" ],
+    [ "hub:opt_where", "sec_answer" ],
+    [ "hub:opt_why", "sec_answer" ],
+    [ "sec_answer", "sec_close" ],
+    [ "sec_close", "end" ]
+  ]
+}

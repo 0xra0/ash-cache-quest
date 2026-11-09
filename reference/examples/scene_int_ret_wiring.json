@@ -1,0 +1,54 @@
+{
+ "_source": "base/quest/main_quests/part1/q112/q112_00c_wakako.questphase \u2014 the only sampled non-holocall scene node whose Default INT/RET outputs are wired. Scene node 22 (Wakako Okada). All 15 wired INT paths in the game have this shape.",
+ "_shape": [
+  "scene 22 --Default INT--> 126 pause 500ms --Out--> 128 setTier Tier1_FullGameplay",
+  "scene 22 --Default RET--> 127 pause 500ms --Out--> 129 setTier Tier1_FullGameplay"
+ ],
+ "_note": "questSetTier_NodeType to Tier1_FullGameplay is a safety net, not an exit: it hands a player interrupted out of a constrained-movement conversation back full control. Nothing routes INT to a cleanup, a despawn or a cut.",
+ "node_126": {
+  "$type": "questPauseConditionNodeDefinition",
+  "condition": {
+   "HandleId": "1535",
+   "Data": {
+    "$type": "questTimeCondition",
+    "type": {
+     "HandleId": "1536",
+     "Data": {
+      "$type": "questRealtimeDelay_ConditionType",
+      "hours": 0,
+      "miliseconds": 500,
+      "minutes": 0,
+      "seconds": 0
+     }
+    }
+   }
+  }
+ },
+ "node_128": {
+  "$type": "questSceneManagerNodeDefinition",
+  "type": {
+   "HandleId": "1551",
+   "Data": {
+    "$type": "questSetTier_NodeType",
+    "forceEmptyHands": 0,
+    "motionConstrainedTierDataParams": {
+     "$type": "gameMotionConstrainedTierDataParams",
+     "adjustingDuration": 0,
+     "adjustingSpeed": 0,
+     "notificationBackwardIndex": 0,
+     "splineRef": {
+      "$type": "NodeRef",
+      "$storage": "uint64",
+      "$value": "0"
+     },
+     "travellingDuration": 0,
+     "travellingSpeed": 0
+    },
+    "tier": "Tier1_FullGameplay",
+    "useEnterAnim": 0,
+    "useExitAnim": 0,
+    "usePlayerWorkspot": 0
+   }
+  }
+ }
+}

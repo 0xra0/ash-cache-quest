@@ -1,0 +1,16 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_Prediction archive scanner.png",
+ "band": [
+  135,
+  752
+ ],
+ "views": [
+  "front",
+  "back",
+  "left",
+  "right"
+ ],
+ "height_m": 1.2,
+ "name": "archive_scanner",
+ "atlas": 2048
+}

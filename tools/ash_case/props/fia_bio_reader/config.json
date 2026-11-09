@@ -1,0 +1,17 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_Old FIA biometric reader.png",
+ "band": [
+  120,
+  628
+ ],
+ "views": [
+  "front",
+  "left",
+  "back",
+  "right"
+ ],
+ "height_m": 1.35,
+ "bg": "dark",
+ "name": "fia_bio_reader",
+ "atlas": 2048
+}

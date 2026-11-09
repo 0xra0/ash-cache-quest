@@ -1,0 +1,325 @@
+{
+  "_comment": [
+    "The three endings, D120. Until now the ending was a fact and nothing else:",
+    "scene_decision.json's hub set ashcache_end_*, the graph raised the matching",
+    "objective and closed it in the same frame, and the quest ended without V ever",
+    "doing the thing the objective named. 'Destroy the splinter' ticked with the",
+    "splinter still in the backpack.",
+    "",
+    "This scene is what happens between the objective appearing and the objective",
+    "closing. One entry point per ending, one exit point per ending; the graph",
+    "enters at the branch it already picked and leaves on the matching socket, so",
+    "the three beats never see each other.",
+    "",
+    "Everything here is an engine node (rule 1). The parts, and where each one is",
+    "attested:",
+    "  play_fx      questPlayFX_NodeType on the PLAYER. Undermine's template.scene",
+    "               ships exactly this with 'fast_travel_glitch' - isPlayer 1 and a",
+    "               null nodeRef. It is the one player-side effect name in the",
+    "               references, which is why both beats that need a glitch use it.",
+    "  progress_bar vanilla's own download bar (D119), here reading a chip into a",
+    "               head instead of an archive onto a shard.",
+    "  warning_msg  the centre-screen machine line, same as the terminal's.",
+    "  section      subtitles, and - with 'seconds' and no lines - the wait that",
+    "               holds the scene open while the bar fills (D119).",
+    "",
+    "What is deliberately NOT here: the item removals and the payout. Those are",
+    "graph nodes, on the other side of the exit, because that is where every other",
+    "grant in this quest lives and where the re-entry guards can see them.",
+    "",
+    "D121 adds the fourth. Hide was left out of the first pass as 'a drive into the",
+    "Badlands - real content, not a flourish', and that was the wrong call for one",
+    "reason: it is the only ending with another person in it. Leaving it empty left",
+    "the one ending gated on Mara's trust as the one ending where she does not",
+    "appear, which is precisely the complaint that started D121.",
+    "",
+    "It is the quietest of the four on purpose. Burn has a glitch and a dead signal,",
+    "absorb has a five-second read and a warning line; Hide has two people, a hole",
+    "and no ceremony at all. The anticlimax IS the ending - nothing happens, which",
+    "is the whole thing Mara wanted for nine years."
+  ],
+  "scene": {
+    "id": "ash_cache_epilogue",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [],
+  "_actors": "Empty for the same reason as scene_decision.json: V is alone, and a scnActorDef is a spawn instruction, not a reference to somebody already standing there.",
+
+  "entryPoints": [
+    { "name": "epi_destroy_in", "node": "d_start" },
+    { "name": "epi_absorb_in", "node": "a_start" },
+    { "name": "epi_sell_in", "node": "s_start" },
+    { "name": "epi_hide_in", "node": "h_start" }
+  ],
+  "exitPoints": [
+    { "name": "epi_destroy_done", "node": "d_end" },
+    { "name": "epi_absorb_done", "node": "a_end" },
+    { "name": "epi_sell_done", "node": "s_end" },
+    { "name": "epi_hide_done", "node": "h_end" }
+  ],
+
+  "nodes": [
+    { "id": "d_start", "type": "start" },
+    {
+      "_comment": "Tier3 for the length of each beat, the same framing the Mara and decision scenes use: V stands still with empty hands while something happens to her. Paired with the tier_off at the end of every branch, and the graph wires this scene's Default INT/RET to a 500 ms Tier1 restore because of it.",
+      "id": "d_tier_on",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier3_LimitedGameplay", "emptyHands": true }
+    },
+    {
+      "id": "d_sec1",
+      "type": "section",
+      "lines": [
+        {
+          "id": "epi_burn_1",
+          "actor": "V",
+          "en-us": "There's a burn barrel out back. Half the block keeps warm by it.",
+          "ua-ua": "Позаду є бочка з вогнем. Півкварталу нею гріється."
+        },
+        {
+          "id": "epi_burn_2",
+          "actor": "V",
+          "en-us": "Nine years in a wall, and it goes in like a cigarette butt.",
+          "ua-ua": "Дев'ять років у стіні — і воно летить туди, як недопалок."
+        }
+      ]
+    },
+    {
+      "_comment": "The splinter's last transmission, landing in V's optics as it burns. The glitch and the warning line fire together on purpose - the HUD is the only place a dying chip can still be seen.",
+      "id": "d_fx",
+      "type": "quest",
+      "node": { "type": "play_fx", "player": true, "effect": "fast_travel_glitch" }
+    },
+    {
+      "id": "d_warn",
+      "type": "quest",
+      "node": {
+        "type": "warning_message",
+        "text": "hud_burn_lost",
+        "duration": 3.0,
+        "debug": "SIGNAL LOST - 0-1140"
+      }
+    },
+    {
+      "id": "d_sec2",
+      "type": "section",
+      "lines": [
+        {
+          "id": "epi_burn_3",
+          "actor": "V",
+          "en-us": "It touched my optics on the way down. Once. Then nothing.",
+          "ua-ua": "Воно торкнулося моєї оптики на льоту. Один раз. Потім — нічого."
+        }
+      ]
+    },
+    {
+      "id": "d_tier_off",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier1_FullGameplay", "emptyHands": false }
+    },
+    { "id": "d_end", "type": "end", "exit": "Terminating" },
+
+    { "id": "a_start", "type": "start" },
+    {
+      "id": "a_tier_on",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier3_LimitedGameplay", "emptyHands": true }
+    },
+    {
+      "id": "a_sec1",
+      "type": "section",
+      "lines": [
+        {
+          "id": "epi_absorb_1",
+          "actor": "V",
+          "en-us": "Personal link. Straight into the socket behind my ear.",
+          "ua-ua": "Персональний лінк. Просто в роз'єм за вухом."
+        },
+        {
+          "id": "epi_absorb_2",
+          "actor": "V",
+          "en-us": "If there's anything of me left in there, it comes home the short way.",
+          "ua-ua": "Якщо там лишилося щось моє — воно повернеться додому найкоротшим шляхом."
+        }
+      ]
+    },
+    {
+      "_comment": "5 seconds of read. The same node the clinic terminal uses, pointed the other way: there it copied an archive out of a machine, here it copies a chip into a head. questProgressBar starts the bar and returns, so a_wait is what holds the scene open while it fills.",
+      "id": "a_bar",
+      "type": "quest",
+      "node": {
+        "type": "progress_bar",
+        "text": "hud_absorb_top",
+        "bottom": "hud_absorb_bottom",
+        "duration": 5.0
+      }
+    },
+    {
+      "id": "a_wait",
+      "type": "section",
+      "seconds": 5.4,
+      "lines": []
+    },
+    {
+      "_comment": "The moment it lands. Same effect as the burn beat, opposite direction: there the echo leaves, here it arrives.",
+      "id": "a_fx",
+      "type": "quest",
+      "node": { "type": "play_fx", "player": true, "effect": "fast_travel_glitch" }
+    },
+    {
+      "id": "a_warn",
+      "type": "quest",
+      "node": {
+        "type": "warning_message",
+        "text": "hud_absorb_done",
+        "duration": 2.5,
+        "debug": "ECHO INTEGRATED"
+      }
+    },
+    {
+      "id": "a_sec2",
+      "type": "section",
+      "lines": [
+        {
+          "id": "epi_absorb_3",
+          "actor": "V",
+          "en-us": "Nine years. And it still sounds like me asking for something.",
+          "ua-ua": "Дев'ять років. А воно досі звучить, як я, коли чогось прошу."
+        }
+      ]
+    },
+    {
+      "id": "a_tier_off",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier1_FullGameplay", "emptyHands": false }
+    },
+    { "id": "a_end", "type": "end", "exit": "Terminating" },
+
+    { "id": "s_start", "type": "start" },
+    {
+      "id": "s_tier_on",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier3_LimitedGameplay", "emptyHands": true }
+    },
+    {
+      "_comment": "No meeting and no face: a man who has stayed anonymous through two conversations does not turn up in person for the third. The payoff is on the other side of the exit - the money lands with the engine's own eddies notification and the phone gets the receipt - which is also why this beat needs no HUD node of its own.",
+      "id": "s_sec1",
+      "type": "section",
+      "lines": [
+        {
+          "id": "epi_sell_1",
+          "actor": "V",
+          "en-us": "No meet. No face. A drop box on Charter and a number that won't ring twice.",
+          "ua-ua": "Жодних зустрічей. Жодних облич. Скринька на Чартері й номер, який не задзвонить двічі."
+        },
+        {
+          "id": "epi_sell_2",
+          "actor": "V",
+          "en-us": "He never asked my price. He named one, and it was higher than I'd have asked.",
+          "ua-ua": "Він не питав моєї ціни. Він назвав свою — і вона була вища за ту, що я просила б."
+        },
+        {
+          "id": "epi_sell_3",
+          "actor": "V",
+          "en-us": "Splinter's in the box. Whatever he wants it for, that's his problem now.",
+          "ua-ua": "Осколок у скриньці. Навіщо він йому — тепер це його клопіт."
+        }
+      ]
+    },
+    {
+      "id": "s_tier_off",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier1_FullGameplay", "emptyHands": false }
+    },
+    { "id": "s_end", "type": "end", "exit": "Terminating" },
+
+    { "id": "h_start", "type": "start" },
+    {
+      "id": "h_tier_on",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier3_LimitedGameplay", "emptyHands": true }
+    },
+    {
+      "_comment": "Mara is in this ending and she is not cast in this scene. A scnActorDef SPAWNS - it is an instruction to put a character at the scene's anchor, not a reference to one already standing in the clinic - and she is already standing in the clinic, keepAlive, from her own scene. Casting her here would either duplicate her or despawn the original, and neither has been measured. So the Badlands is narrated, the way the other three beats are, and her voice arrives four lines later on the phone where it costs nothing to be sure of. If she is ever moved onto a world spawner (acquisitionPlan 'spawner', 3 shipped instances) this is the beat to cast her in first.",
+      "id": "h_sec1",
+      "type": "section",
+      "lines": [
+        {
+          "id": "epi_hide_1",
+          "actor": "V",
+          "en-us": "Two hours out of the city and she never checks the mirror once. She's done this before. Alone.",
+          "ua-ua": "Дві години від міста — і вона жодного разу не глянула в дзеркало. Вона вже це робила. Сама."
+        },
+        {
+          "id": "epi_hide_2",
+          "actor": "V",
+          "en-us": "No marker. No pin, no coordinates, nothing anybody could subpoena. She counts fence posts.",
+          "ua-ua": "Жодної позначки. Ні пін, ні координат — нічого, що можна витребувати через суд. Вона рахує стовпці огорожі."
+        }
+      ]
+    },
+    {
+      "_comment": "Two seconds of nothing between the drive and the hole. The other three beats fill their gap with an effect or a progress bar; this one leaves it empty, because the point of this ending is that nothing happens.",
+      "id": "h_wait",
+      "type": "section",
+      "seconds": 2.0,
+      "lines": []
+    },
+    {
+      "id": "h_sec2",
+      "type": "section",
+      "lines": [
+        {
+          "id": "epi_hide_3",
+          "actor": "V",
+          "en-us": "Two metres of caliche. She sets the plate back herself, and then stands on it until it stops settling.",
+          "ua-ua": "Два метри сухої глини. Плиту вона повертає на місце сама, а тоді стоїть на ній, доки та не перестає осідати."
+        },
+        {
+          "id": "epi_hide_4",
+          "actor": "V",
+          "en-us": "Then she puts the key in my hand. Like she's spent nine years holding it for whoever showed up.",
+          "ua-ua": "А тоді вкладає ключ мені в долоню. Так, ніби дев'ять років тримала його для того, хто зрештою прийде."
+        }
+      ]
+    },
+    {
+      "id": "h_tier_off",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier1_FullGameplay", "emptyHands": false }
+    },
+    { "id": "h_end", "type": "end", "exit": "Terminating" }
+  ],
+
+  "links": [
+    ["d_start", "d_tier_on"],
+    ["d_tier_on", "d_sec1"],
+    ["d_sec1", "d_fx"],
+    ["d_fx", "d_warn"],
+    ["d_warn", "d_sec2"],
+    ["d_sec2", "d_tier_off"],
+    ["d_tier_off", "d_end"],
+
+    ["a_start", "a_tier_on"],
+    ["a_tier_on", "a_sec1"],
+    ["a_sec1", "a_bar"],
+    ["a_bar", "a_wait"],
+    ["a_wait", "a_fx"],
+    ["a_fx", "a_warn"],
+    ["a_warn", "a_sec2"],
+    ["a_sec2", "a_tier_off"],
+    ["a_tier_off", "a_end"],
+
+    ["s_start", "s_tier_on"],
+    ["s_tier_on", "s_sec1"],
+    ["s_sec1", "s_tier_off"],
+    ["s_tier_off", "s_end"],
+
+    ["h_start", "h_tier_on"],
+    ["h_tier_on", "h_sec1"],
+    ["h_sec1", "h_wait"],
+    ["h_wait", "h_sec2"],
+    ["h_sec2", "h_tier_off"],
+    ["h_tier_off", "h_end"]
+  ]
+}

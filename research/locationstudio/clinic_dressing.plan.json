@@ -1,0 +1,464 @@
+{
+ "format": "locationstudio-authoring-plan",
+ "version": 1,
+ "name": "Ash Cache Clinic Dressing",
+ "origin": {
+  "position": {
+   "x": -1908.0,
+   "y": -2470.0,
+   "z": 24.06
+  },
+  "rotation": {
+   "yaw": 0,
+   "pitch": 0,
+   "roll": 0
+  }
+ },
+ "steps": [
+  {
+   "op": "register_asset",
+   "name": "AC FIA Holotape",
+   "template": "base\\quest\\main_quests\\prologue\\q001\\entities\\appearances\\q001_police_holotape_01.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Burn Barrel",
+   "template": "ep1\\items\\quest\\q301__barrel_drum_destroyed.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Small Fire",
+   "template": "base\\fx\\quest\\sq028\\sq028_fire_small.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Body Bag",
+   "template": "base\\environment\\decoration\\containers\\bags\\body_bag\\body_bag.mesh",
+   "category": "Ash Cache",
+   "kind": "mesh"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Blood Decal",
+   "template": "ep1\\fx\\quest\\q304\\deal\\q304_blood_decal.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC IV Pump",
+   "template": "ep1\\environment\\decoration\\unique\\quest\\q307\\hospital_iv\\hospital_iv_pump.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Surgery Lamp",
+   "template": "base\\items\\interactive\\lighting\\int_lighting_002__surgery_lamp_large_a.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Scalpel",
+   "template": "base\\items\\interactive\\medical\\int_medical_001__scalpel.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Syringe",
+   "template": "base\\items\\interactive\\medical\\int_medical_002__syringe.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Bandages",
+   "template": "base\\items\\interactive\\medical\\int_medical_001__bandages.ent",
+   "category": "Ash Cache",
+   "kind": "prop"
+  },
+  {
+   "op": "register_asset",
+   "name": "AC Paper",
+   "template": "base\\fx\\environment\\debris\\paper_2sided.mesh",
+   "category": "Ash Cache",
+   "kind": "mesh"
+  },
+  {
+   "op": "create_premise",
+   "as": "clinic",
+   "name": "Ash Cache Clinic",
+   "kind": "interior"
+  },
+  {
+   "op": "create_room",
+   "as": "room",
+   "premise_id": "$clinic",
+   "name": "Clinic Floor",
+   "width": 10,
+   "depth": 10,
+   "height": 3,
+   "spawn": false
+  },
+  {
+   "op": "place_asset",
+   "as": "tape",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": 16.25,
+    "y": -16.9,
+    "z": 3.89
+   },
+   "yaw": 39.5,
+   "spawn": true,
+   "asset_query": "AC FIA Holotape"
+  },
+  {
+   "op": "place_asset",
+   "as": "barrel",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": 3.5,
+    "y": -1.0,
+    "z": 0
+   },
+   "yaw": 0,
+   "spawn": true,
+   "asset_query": "AC Burn Barrel"
+  },
+  {
+   "op": "place_asset",
+   "as": "fire",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": 3.5,
+    "y": -1.0,
+    "z": 0.8
+   },
+   "yaw": 0,
+   "spawn": true,
+   "asset_query": "AC Small Fire"
+  },
+  {
+   "op": "place_asset",
+   "as": "bag",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": 2.6,
+    "y": -4.6,
+    "z": 0
+   },
+   "yaw": 70,
+   "spawn": true,
+   "asset_query": "AC Body Bag"
+  },
+  {
+   "op": "place_asset",
+   "as": "blood",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": 2.2,
+    "y": -4.2,
+    "z": 0.01
+   },
+   "yaw": 0,
+   "spawn": true,
+   "asset_query": "AC Blood Decal"
+  },
+  {
+   "op": "place_asset",
+   "as": "case_a",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -2.0,
+    "y": 2.4,
+    "z": 0
+   },
+   "yaw": 30,
+   "spawn": true,
+   "asset_id": "builtin_case_military"
+  },
+  {
+   "op": "place_asset",
+   "as": "case_b",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -1.1,
+    "y": 3.3,
+    "z": 0
+   },
+   "yaw": -15,
+   "spawn": true,
+   "asset_id": "builtin_case_military"
+  },
+  {
+   "op": "place_asset",
+   "as": "iv",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": 0.9,
+    "y": -0.5,
+    "z": 0
+   },
+   "yaw": 0,
+   "spawn": true,
+   "asset_query": "AC IV Pump"
+  },
+  {
+   "op": "place_asset",
+   "as": "lamp",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": 0.2,
+    "y": 0.6,
+    "z": 0
+   },
+   "yaw": 200,
+   "spawn": true,
+   "asset_query": "AC Surgery Lamp"
+  },
+  {
+   "op": "place_asset",
+   "as": "table",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -1.6,
+    "y": 0.6,
+    "z": 0
+   },
+   "yaw": 110,
+   "spawn": true,
+   "asset_id": "builtin_table_lab"
+  },
+  {
+   "op": "place_asset",
+   "as": "scalpel",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -1.6,
+    "y": 0.4,
+    "z": 0.95
+   },
+   "yaw": 20,
+   "spawn": true,
+   "asset_query": "AC Scalpel"
+  },
+  {
+   "op": "place_asset",
+   "as": "syringe",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -1.5,
+    "y": 0.9,
+    "z": 0.95
+   },
+   "yaw": 80,
+   "spawn": true,
+   "asset_query": "AC Syringe"
+  },
+  {
+   "op": "place_asset",
+   "as": "bandage",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -1.8,
+    "y": 0.2,
+    "z": 0.95
+   },
+   "yaw": 0,
+   "spawn": true,
+   "asset_query": "AC Bandages"
+  },
+  {
+   "op": "place_asset",
+   "as": "paper1",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -3.0,
+    "y": 4.6,
+    "z": 0.01
+   },
+   "yaw": 10,
+   "spawn": true,
+   "asset_query": "AC Paper"
+  },
+  {
+   "op": "place_asset",
+   "as": "paper2",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -2.4,
+    "y": 5.2,
+    "z": 0.01
+   },
+   "yaw": 75,
+   "spawn": true,
+   "asset_query": "AC Paper"
+  },
+  {
+   "op": "place_asset",
+   "as": "paper3",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": -0.6,
+    "y": 1.8,
+    "z": 0.01
+   },
+   "yaw": 140,
+   "spawn": true,
+   "asset_query": "AC Paper"
+  },
+  {
+   "op": "place_asset",
+   "as": "paper4",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "offset": {
+    "x": 3.0,
+    "y": -0.2,
+    "z": 0.01
+   },
+   "yaw": 220,
+   "spawn": true,
+   "asset_query": "AC Paper"
+  },
+  {
+   "op": "create_location",
+   "as": "l_entr",
+   "name": "Clinic Entrance",
+   "type": "entrance",
+   "category": "Ash Cache",
+   "offset": {
+    "x": 16.25,
+    "y": -16.9,
+    "z": 3.89
+   }
+  },
+  {
+   "op": "create_location",
+   "as": "l_term",
+   "name": "Clinic Terminal",
+   "type": "interaction",
+   "category": "Ash Cache",
+   "offset": {
+    "x": -3.72,
+    "y": 5.68,
+    "z": 0.02
+   }
+  },
+  {
+   "op": "create_location",
+   "as": "l_case",
+   "name": "Splinter Case",
+   "type": "interaction",
+   "category": "Ash Cache",
+   "offset": {
+    "x": -0.11,
+    "y": -1.92,
+    "z": 0
+   }
+  },
+  {
+   "op": "create_location",
+   "as": "l_mara",
+   "name": "Mara",
+   "type": "npc",
+   "category": "Ash Cache",
+   "offset": {
+    "x": 1.17,
+    "y": -3.31,
+    "z": 0
+   }
+  },
+  {
+   "op": "create_volume",
+   "as": "v_arrive",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "name": "ashcache_at_clinic trigger",
+   "shape": "box",
+   "offset": {
+    "x": 0,
+    "y": -2,
+    "z": 1
+   },
+   "size_x": 8,
+   "size_y": 6,
+   "size_z": 2.5
+  },
+  {
+   "op": "create_volume",
+   "as": "v_case",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "name": "splinter case interact",
+   "shape": "box",
+   "offset": {
+    "x": -0.11,
+    "y": -1.92,
+    "z": 1
+   },
+   "size_x": 1.5,
+   "size_y": 1.5,
+   "size_z": 2
+  },
+  {
+   "op": "create_camera",
+   "as": "cam",
+   "premise_id": "$clinic",
+   "room_id": "$room",
+   "name": "Mara Confrontation",
+   "offset": {
+    "x": -1.5,
+    "y": 0.5,
+    "z": 1.7
+   },
+   "look_at_location_id": "$l_mara",
+   "fov": 50
+  },
+  {
+   "op": "create_route",
+   "as": "route",
+   "name": "Act 2 walk",
+   "kind": "path",
+   "location_ids": [
+    "$l_entr",
+    "$l_term",
+    "$l_case",
+    "$l_mara"
+   ],
+   "loop": false
+  },
+  {
+   "op": "capture_scene",
+   "as": "scene",
+   "name": "Ash Cache Clinic - FIA aftermath",
+   "premise_id": "$clinic",
+   "activate": true
+  }
+ ]
+}

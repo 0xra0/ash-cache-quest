@@ -1,0 +1,23 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_Six unique Echo Fragment.png",
+ "band": [
+  490,
+  735
+ ],
+ "xrange": [
+  530,
+  1010
+ ],
+ "views": [
+  "front",
+  "back",
+  "left",
+  "right"
+ ],
+ "height_m": 0.078,
+ "bg": "dark",
+ "flat": true,
+ "bevel": 0.0004,
+ "atlas": 1024,
+ "name": "echo_fragment_e"
+}

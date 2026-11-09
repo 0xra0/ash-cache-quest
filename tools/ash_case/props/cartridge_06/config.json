@@ -1,0 +1,24 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_Destroyed personality cartridges.png",
+ "band": [
+  195,
+  428
+ ],
+ "xrange": [
+  1292,
+  1524
+ ],
+ "views": [
+  "front",
+  "left",
+  "right"
+ ],
+ "height_m": 0.085,
+ "bg": "dark",
+ "flat": true,
+ "bevel": 0.0004,
+ "atlas": 1024,
+ "name": "cartridge_06",
+ "close": 6,
+ "thr": 34
+}

@@ -1,0 +1,38 @@
+# Build outputs (generated - never hand-edit)
+build/
+build.log
+
+# Developer scratchpad and test logs
+dev/
+diag/
+*.log
+
+# Backup files
+*.bak
+*.bak-*
+*.bak.*
+assets_bak/
+narration.*.bak*
+vo.*.bak*
+*.orig
+*~
+*.swp
+
+# Heavy research dumps / database files
+research/cp77wb/assets.sqlite3
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS / Editor artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Release archives
+*.zip
+*.tar.gz
+

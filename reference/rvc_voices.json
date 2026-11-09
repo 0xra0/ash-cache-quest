@@ -1,0 +1,201 @@
+{
+  "_source": "Every field below was read out of the checkpoint itself with torch.load(map_location='cpu') and out of the faiss index with faiss.read_index, then confirmed by a real conversion. Nothing here is inferred from a filename. Script: questmod-research/verify_downloaded_rvc.py; output: rvc_logs/downloaded_check/.",
+  "_date": "2026-09-04",
+  "_updated": "2026-09-08",
+  "_why_this_file": [
+    "The quest's two scenes are spoken by exactly two actors: Mara (18 lines) and",
+    "V (11 lines). So the voice work needs a Mara model and a male V model, and a",
+    "Johnny model is for the ua-ua dub, not for this quest.",
+    "The overnight queue was 'mara v_male johnny' - 18 GPU hours - and two of those",
+    "three already existed on disk as downloaded models. This file records what they",
+    "actually are, so the question is never re-argued from filenames."
+  ],
+  "_how_applio_reads_a_checkpoint": {
+    "file": "/mnt/sata/Applio/rvc/infer/infer.py, setup_network()",
+    "notes": [
+      "tgt_sr = cpt['config'][-1]  - the INT in config, not the 'sr' key. That is why",
+      "  MaleV's sr='48k' string is harmless: it is never read.",
+      "version = cpt.get('version','v1') -> text_enc_hidden_dim 768 for v2.",
+      "vocoder = cpt.get('vocoder','HiFi-GAN') - so a pre-Applio checkpoint with no",
+      "  vocoder key gets HiFi-GAN, which is what those models were trained with.",
+      "embedder_model is NOT read from the checkpoint - it is an argument to the",
+      "  inference call, default 'contentvec'. Both models want contentvec."
+    ]
+  },
+  "voices": {
+    "mara": {
+      "status": "VERIFIED 2026-09-09. Trained for real this time: fp32, 200 epochs, 26200 steps, finished 10:45:38 on 2026-09-09 and stopped there on the user's instruction rather than running to the 300 it was launched with. tools/rvc_check_model.py mara passes (0.00% clipped, p95 -11.3 dB, silence floor -42.1 dB, hf8k 0.07%) and the user approved it BY EAR on a 12.4 s line: '/mnt/ssd/Downloads/tts_rvc_output(1).wav' - edge-tts front end, this checkpoint, no post-processing. That listening test, not the numbers, is why the status changed.",
+      "role_in_quest": "18 of the 43 spoken lines - every line Mara herself speaks",
+      "dataset": "/mnt/sata/Cyberpunk2077/rvc_datasets/mara  (626 clips, Rogue's VO corpus)",
+      "pth": "/mnt/sata/Applio/logs/mara/mara_*e_*s.pth  newest epoch wins - see voice_paths()/D45. Resolves to mara_200e_26200s.pth. The 2026-09-06 fp16 files were renamed to old-fp16-2026-09-06_* precisely so they fall OUT of this glob; do not rename them back.",
+      "index": "/mnt/sata/Applio/logs/mara/mara.index  333505619 bytes, IndexIVFFlat, 105574 vectors, dim 768. Built from logs/mara/extracted/*.npy, so it survived the fp16 run and is still the right index for this dataset. Optional: render works without it.",
+      "sample_rate": 48000,
+      "version": "v2",
+      "f0": true,
+      "vocoder": "HiFi-GAN",
+      "embedder": "contentvec",
+      "checkpoint_format": "Applio: author/model_name/dataset_length/creation_date present",
+      "epoch": 200,
+      "target_epochs": "300 as launched, 200 as delivered. Stopping was a measurement decision, not a failure - see docs/decisions.md D62 addendum 2.",
+      "step": 26200,
+      "n_speakers": 1,
+      "index_dim": 768,
+      "index_ntotal": 105574,
+      "index_type": "IndexIVFFlat",
+      "inference": {
+        "volume_envelope": 1.0,
+        "_why": "1.0 leaves the model's own output alone. The previous 0.0 was WRONG and actively harmful: change_rms rescales the output until its RMS matches the source, which made a railed generator produce a plausible level table. The old note here even recorded the symptom - 'at 1.0 this model emits -5.1 dBFS from a -21.6 dBFS source and is invariant to input level' - and read it as a property of the setting. An output invariant to its input level is a railed model. See D36.",
+        "index_rate": 0.5,
+        "protect": 0.33,
+        "f0_method": "rmvpe",
+        "_check_before_use": "tools/rvc_check_model.py <model>  - exits non-zero if the model emits noise"
+      },
+      "_measured_2026_09_08": {
+        "how": "questmod-research/check_mara_g.py and check_mara.py - torch.load on CPU over the whole preserved 2026-09-06 series.",
+        "generator_never_learned": [
+          "L2 norm of every float tensor falls monotonically 443.1926 (e10) -> 434.4345 (e200).",
+          "Monotone shrink with no growth anywhere is AdamW weight decay acting on a ZERO gradient.",
+          "(1 - lr*wd)**steps with lr=1e-4, wd=0.01, 26200 steps predicts ~2.6% shrink; measured 1.98%.",
+          "Per-decade max|delta| collapses to fp16-representable powers of two (7.812e-03 = 2**-7, 1.953e-03 = 2**-9).",
+          "From epoch 170 on, max|delta| is EXACTLY 0.0 - three consecutive decades of a bit-identical generator."
+        ],
+        "discriminator_died": "D_2333333.pth: 165/165 tensors non-finite, exp_avg_sq nan, GradScaler scale exactly 0.0 at 21287 steps.",
+        "root_cause": [
+          "fp16 GradScaler collapse. The FORWARD pass emits a non-finite value; GradScaler can only respond",
+          "by halving the loss scale and skipping the step, which does not change the forward pass, so it",
+          "halves forever: 2**16 -> 2**-40 by epoch 10 -> 0.0. Long before zero, loss*scale underflows fp16's",
+          "smallest subnormal (6e-8), so backward yields bit-zero gradients that contain no inf - the scaler",
+          "is satisfied and the optimizer steps on zeros. At scale 0.0, unscale_ multiplies by 1/0 = inf and",
+          "0*inf = nan. Confirmed identically on johnny's preserved series (exp_avg_sq decayed at exactly",
+          "beta2**n, 3.53e-05 per 10 epochs against 3.5e-05 predicted, for nine consecutive decades)."
+        ],
+        "supersedes": "_broken_how below, which blamed GPU contention (D34/D36). Contention was real but was not this. The same collapse reproduced on johnny with the card to itself.",
+        "the_fix": "precision fp32 in /mnt/sata/Applio/assets/config.json. NOT bf16: gfx1030/RDNA2 has no bf16 matrix instructions, so bf16 is emulated and was still inside MIOpen kernel JIT after 19 minutes without clearing step 0. train.py now raises if a whole epoch logs grad/norm == 0, so a repeat fails in minutes instead of 16 hours.",
+        "cheap_proof_before_committing_a_night": "Run 10 epochs at fp32 (~1.5 h) and check grad/norm_d and grad/norm_g in tensorboard are non-zero. With gradients actually flowing, a 626-clip fine-tune does not need 200 epochs - 60-80 is the usual range, ~10-13 h at fp32, i.e. one night rather than a couple of days."
+      },
+      "_root_cause_found_2026_09_08": {
+        "what": "The fp16 collapse is a single line in rvc/train/losses.py, not a hardware or precision problem.",
+        "the_line": "kl_loss(): kl = logs_p - logs_q - 0.5 + 0.5*((z_p-m_p)**2)*torch.exp(-2*logs_p)",
+        "why_it_overflows": "logs_p is a log-variance, in practice -4 to -7, so exp(-2*logs_p) reaches exp(8)..exp(14) = 2.98e3..1.20e6. fp16's maximum is 65504. exp() returns inf, kl.sum() is inf, loss_gen_all is inf.",
+        "why_gradscaler_could_not_save_it": "An inf in the FORWARD pass is the one case GradScaler cannot handle. It responds by halving the loss scale and skipping the step - and halving the scale does not change a forward exp(). So it halved 2**16 down to exactly 0.0 over ~100 epochs while the generator learned nothing.",
+        "why_it_was_not_obvious": "kl_loss and feature_loss are called OUTSIDE the autocast block (train.py ~733). Inside autocast torch promotes exp() to fp32 automatically - it is on autocast's fp32 list precisely because it overflows. Moving those calls out of autocast looks like good hygiene and is what removed the protection. discriminator_loss and generator_loss in the same file DO call .float(); kl_loss and feature_loss did not.",
+        "the_fix": "losses.py: cast z_p/logs_q/m_p/logs_p/z_mask to .float() in kl_loss, and rl/gl to .float() in feature_loss. Backup at losses.py.bak-20260908.",
+        "precision_verdict": "fp16 is CORRECT for this card and is what assets/config.json is set to. The earlier fp32 and bf16 recommendations are both withdrawn: bf16 has no matrix instructions on gfx1030 and is emulated, and fp32 was only ever a way to dodge the overflow that is now fixed at source.",
+        "SUPERSEDED": "This entry named kl_loss as THE cause. It was necessary but not sufficient - see _root_cause_corrected_2026_09_08. Keeping it because the kl_loss fix is still correct and still applied."
+      },
+      "_root_cause_corrected_2026_09_08": {
+        "what": "MIOpen's fp16 convolution backward-weights kernel returns NaN in the HiFi-GAN NSF vocoder.",
+        "how_found": "torch.autograd.set_detect_anomaly armed at step 60, where the GradScaler loss scale is ~0.03 and an overflow of the scaled gradient is arithmetically impossible. It reported: Function 'ConvolutionBackward0' returned nan values in its 1th output, forward call rvc/lib/algorithm/residuals.py:78 (x = conv2(x)), reached via synthesizers.py:191 self.dec(...) -> hifigan_nsf.py:202 resblock(x). Output 1 of ConvolutionBackward0 is grad_weight.",
+        "why_the_kl_theory_was_wrong": "kl_loss really did overflow fp16 in the forward pass and really did need the .float() casts that reference VITS has always had - after that fix every loss term stayed finite for a full epoch. But the gradients were still NaN. A NaN that survives a loss scale of 2.3e-10 cannot be an overflow of the scaled gradient; the accumulator that breaks is inside the conv kernel. enc_p.* topping the non-finite parameter list was misleading - those are simply the parameters furthest upstream, inheriting NaN from the decoder through the shared graph.",
+        "measured_fp16": {
+          "steps": 131,
+          "norm_g_nan": "48 of 131 (37%), never inf",
+          "norm_d": "nan/inf steps 0-3, finite 4-34, then exactly 0.0 for 98 steps",
+          "loss_scale": "32768 at step 0 -> 2.3e-10 by step 131, halving nearly every step",
+          "losses": "all finite, no downward trend"
+        },
+        "measured_fp32": {
+          "steps": 28,
+          "norm_d": "30-185, never zero, never non-finite",
+          "norm_g": "736-2310, never zero, never non-finite",
+          "loss_kl": "19.7 -> 4.89 in 23 steps",
+          "loss_gen_all": "54.7 -> 30.1 in 23 steps",
+          "verdict": "learning, for the first time"
+        },
+        "also_verified": "fp32->fp16 overflow on this GPU yields inf, not nan, including through ToCopyBackward0 - so the NaN is not a cast artefact.",
+        "precision_verdict": "fp32. Not a preference - fp16 produces NaN weight gradients in the vocoder on gfx1030 and cannot train this model. bf16 is untested since the earlier attempt only ever measured a cold MIOpen kernel compile.",
+        "minimal_repro": "rvc_logs/repro_conv1d_fp16_nan.py",
+        "full_writeup": "rvc_logs/FINDINGS-fp16-2026-09-08.md"
+      },
+      "_startup_fix_2026_09_08": {
+        "cause": "MIOpen namespaces its kernel cache by build hash. The build changed between Jun 15 and Sep 6, so the Sep 5-6 runs started completely cold and JIT-compiled the whole kernel set through comgr, single-threaded on CPU. There is no .kdb on this system for any architecture, so kernels are always compiled once then cached in the user ukdb.",
+        "inert_settings_removed": {
+          "MIOPEN_CACHE_DIR": "compile-time #ifdef (binary_cache.cpp:63), never read from the environment",
+          "MIOPEN_CUSTOM_CACHE_DIR": "replaces the WHOLE path including the version segment - pointing it at /mnt/ssd/miopen_cache aims MIOpen above the warm cache and silently starts an empty database. Do not set it.",
+          "APPLIO_CUDNN_BENCHMARK": "was inert because train.py's patch had been reverted to a hardcoded benchmark = True. Re-applied."
+        },
+        "measured": {
+          "epoch_1_before": "2:00:59",
+          "first_step_after": "~1 min 53 s",
+          "steady_state_before": "4:55/epoch, 2.25 s/it, fp16, cudnn.benchmark=True (MIOpen exhaustive find)",
+          "steady_state_after": "2:40/epoch, 1.07 s/it, fp16, benchmark=False + MIOPEN_FIND_MODE=FAST",
+          "note": "2.1x per step at identical precision - the gain is the find mode, not the dtype."
+        }
+      },
+      "_history_2026_09_06_fp16_why_it_is_only_110_epochs": "The 200-epoch run took an amdgpu gfxhub page fault at 2026-09-04 11:30:44 (pid 1584013) after nine hours of sharing the GPU with an orphaned trainer from an earlier queue run. See D34. --save-every-epoch 10 had already written this checkpoint, and it is the same small inference checkpoint format as the final <model>.pth - not a resume state. The .index survived because core.py builds it from logs/mara/extracted/*.npy, independently of the weights.",
+      "_history_2026_09_06_fp16_open": "110/200. Re-queueing mara after johnny resumes from this checkpoint and costs only the remaining 90 epochs. Whether the extra 90 are audible is a listening decision, not a technical one.",
+      "_history_2026_09_06_fp16_broken_how": {
+        "reported_by": "the user, on listening: 'more noise than a clear voice', 'sound eruptions'",
+        "measured": "100% of samples at full scale at volume_envelope=1.0; the level in the source's silent frames is -0.1 dB where a healthy model gives -57 to -96 dB",
+        "fails_on_its_own_training_data": true,
+        "controls_pass": "JohnnySilverhand_365e and MaleV-Cyberpunk2077 run clean through the identical pipeline, so the fault is this checkpoint, not the settings or the chain",
+        "collapsed_between_epochs": "40 and 50, i.e. 08:01:27 - 08:29:54 on 2026-09-04, during the shared-GPU run of D34",
+        "rot_started_earlier": "energy above 8 kHz climbs 1.12 -> 2.59 -> 3.46% over epochs 20/30/40, so no early checkpoint is a safe base to resume from",
+        "leading_cause": "GPU contention - two orphaned trainers, an OOM and a page fault. Inferred, not proven: johnny trains healthily on the same fp16 default with the card to itself",
+        "see": "docs/decisions.md D36"
+      },
+      "_history_2026_09_06_fp16_retrain": "queued 2026-09-04 12:51 behind johnny via tools/rvc_train.sh --wait --detach --epochs 200 mara; starts from the pretrained models, not from any railed checkpoint. The 626-clip dataset was never touched.",
+      "_history_2026_09_06_fp16_experiment": "/mnt/sata/Applio/logs/mara/fp16-2026-09-06-never-trained  (the failed run; preprocessing in logs/mara/ is intact and reusable)",
+      "_stale__verified_by": "questmod-research/verify_mara_salvage.py - torch.load on CPU with all three visible-device vars blanked and `assert not torch.cuda.is_available()`, then two real conversions (in-domain and cross-voice). Log: rvc_logs/mara_salvage_check.log, audio: rvc_logs/mara_salvage_check/.",
+      "_stale_pth_sha256": "94948b300d0ecff00b1660fa90b42079b5c8f2578175ee07783bbbc2579d4a18",
+      "_stale_pth_bytes": 57532660,
+      "_stale_index_bytes": 333505619,
+      "pth_sha256": "b13ed63734886b2894cd667eafa26e4e966c6aea51e4422b6ee7457a71cdc210",
+      "pth_bytes": 57532660,
+      "checkpoint_creation_date": "2026-09-09T10:45:38.675607",
+      "_why_that_date_matters": "Read out of the checkpoint by torch.load, not off the filename or the mtime. A file named mara_200e_26200s.pth ALSO existed from the failed 2026-09-06 run, and Applio's save is `if not os.path.exists(m)` (rvc/train/train.py:1123) - it SKIPS rather than overwrites, so that collision would have silently discarded this save had the old file not been renamed first. The embedded date is the only field that cannot be faked by a copy.",
+      "_epoch_choice": "120 holds the loss minimum (13.837, never beaten in the 80 epochs after it) and the best noise floor (SNR 29.4 vs 28.3). 200 is what the user listened to and approved. Every pair from epoch 090 to 200 differs by <=1 dB of band shape, which is at or under JND, so this was a coin toss and the ear settled it. Do not swap checkpoints for the 0.55 dB."
+    },
+    "male_v": {
+      "status": "DOWNLOADED, VERIFIED, USE AS IS - not trained here. RESTORED 2026-09-22 at a new path after going missing for four days (see _moved_2026_09_22). Re-verified on restore by torch.load/faiss.read_index on CPU, not by filename: every field below was re-read out of the restored files and every one matches what was recorded when the model was first checked in 2026-09-04.",
+      "role_in_quest": "25 of the 43 spoken lines - all 16 in scene_decision.json, plus 7 options and 2 spoken lines inside scene_mara.json. The old count of 11 predates lines_of() counting options, which carry no actor field and default to V. Plus the 5 shard narrations in narration/en-us/ (D125).",
+      "pth": "/mnt/sata/Cyberpunk2077/rvc_voices/Male V cyberpunk2077/MaleV-Cyberpunk2077.pth",
+      "index": "/mnt/sata/Cyberpunk2077/rvc_voices/Male V cyberpunk2077/added_IVF2918_Flat_nprobe_1_MaleV-Cyberpunk2077_v2.index",
+      "pth_sha256": "15fc883b7e20c02b3c31b354a95fe8c4ed56dd599481553990bb657faa5a90aa",
+      "pth_bytes": 57588083,
+      "index_bytes": 359506979,
+      "_moved_2026_09_22": "The registry pointed at /mnt/sata/SoniTranslate/weights/, which was deleted when everything was moved under /mnt/sata/Cyberpunk2077/. D125 needed V to read the shards aloud, found nothing on /mnt/sata, /mnt/ssd, /mnt/data or $HOME, and shipped five piper placeholders instead. The user then supplied the new location. The lesson worth keeping is not 'the file moved' but that the checkpoint's own fields are the identity: a path can be re-pointed in one line, and the restored file was confirmed the SAME model by its keys (config/f0/info/sr/version - pre-Applio), info='600epoch', enc_p.emb_phone.weight (192, 768), and an IndexIVFFlat of 113805 x 768. sha256 and byte counts are recorded above now so the next move is a one-command check rather than a re-derivation.",
+      "sample_rate": 48000,
+      "version": "v2",
+      "f0": true,
+      "vocoder": "HiFi-GAN (defaulted - the key is absent, which is correct for its age)",
+      "embedder": "contentvec (768-dim, matches enc_p.emb_phone.weight (192, 768))",
+      "checkpoint_format": "pre-Applio RVC: keys are config/f0/info/sr/version only",
+      "info": "600epoch",
+      "index_dim": 768,
+      "index_ntotal": 113805,
+      "index_type": "IndexIVFFlat",
+      "approx_training_minutes": 38,
+      "verdict": "Strictly better placed than the 200-epoch run on 35 min that was queued: same sample rate, same architecture, more data, three times the epochs. The queued v_male run was dropped.",
+      "_d125": "The five notes in narration/en-us/ ARE this voice as of 2026-09-22 (D125a). They were briefly piper placeholders while the checkpoint was missing; re-rendered with tools/render_lines.py --shards --force once it was restored."
+    },
+    "johnny": {
+      "status": "STILL QUEUED - the downloaded one is 32 kHz and ours would be 48",
+      "role_in_quest": "none. This is for the ua-ua dub.",
+      "_downloaded_is_gone_2026_09_22": "The two paths under 'downloaded' below are on the deleted /mnt/sata/SoniTranslate and nothing matching survived the move (unlike male_v, which the user restored). Left as a record of what the file WAS, not as a path to read. Nothing depends on it: role_in_quest is none, and ua-ua ships subtitles only (D42).",
+      "downloaded": {
+        "pth": "/mnt/sata/SoniTranslate/weights/JohnnySilverhand_365e_12410s.pth",
+        "index": "/mnt/sata/SoniTranslate/logs/JohnnySilverhand.index",
+        "sample_rate": 32000,
+        "version": "v2",
+        "f0": true,
+        "vocoder": "HiFi-GAN",
+        "embedder": "contentvec",
+        "checkpoint_format": "Applio: carries author/model_name/dataset_length/overtrain_info",
+        "epoch": 365,
+        "step": 12410,
+        "dataset_length": "00:28:09",
+        "index_dim": 768,
+        "index_ntotal": 87222,
+        "creation_date": "2025-12-13T00:46:21.989504"
+      },
+      "ours_would_be": {
+        "dataset": "/mnt/sata/Cyberpunk2077/rvc_datasets/johnny  (419 clips, 35.0 min)",
+        "sample_rate": 48000
+      },
+      "verdict": "Kept. 32 kHz is a 16 kHz Nyquist ceiling on the output, and these lines sit next to full-band 48 kHz vanilla VO. Our dataset is also larger, 35 min against 28."
+    }
+  },
+  "_verified_conversion": "RETRACTED for mara - the level table that produced it was measured downstream of change_rms and could not have failed. The .wem container round trip is still sample-identical; that part stands.",
+  "_still_missing": "RVC converts audio, it does not synthesise it, and there is still no recording of any of the 43 lines. But the TTS half is no longer UNVERIFIED: questmod-research/verify_tts_chain.sh ran edge-tts 7.2.8 -> ffmpeg 48k mono -> RVC/mara on CPU (volume_envelope 0.0) -> tools/wav_to_wem.py -> vgmstream, and the container round trip returns sample-identical int16. See D35. Neutral test text only - no quest line was sent to the endpoint. uk-UA-PolinaNeural and uk-UA-OstapNeural also synthesise, so ua-ua has a source. What remains open is a listening judgement, not a missing tool: Mara has no vanilla counterpart to be compared against, V has thousands of real lines in the same session."
+}

@@ -1,0 +1,17 @@
+{
+ "_comment": "D191. FireRedTTS3 reference clip per voice: vanilla game VO (vo_rip.py) + its own en-us subtitle as transcript. Chosen by ear 2026-09-26 from firered_refs/audition/.",
+ "mara": {
+  "wav": "/mnt/sata/Cyberpunk2077/rvc_datasets/mara/rogue_q103_f_1700d0ee0529f000.wav",
+  "text": "Occasionally, Panam moves merch for me. Last job... well, wasn't a good day for her.",
+  "seed": 1234,
+  "cfg": 2.0,
+  "steps": 10
+ },
+ "v_male": {
+  "wav": "/mnt/sata/Cyberpunk2077/firered_refs/v_male_rip/v_mq001_m_19db828fbb44d000.wav",
+  "text": "It's for Scorpion. His last wish, or somethin'. Is that good enough for you?",
+  "seed": 1234,
+  "cfg": 2.0,
+  "steps": 10
+ }
+}

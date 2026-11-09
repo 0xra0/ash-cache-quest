@@ -1,0 +1,117 @@
+# Cynosure M3 dressing (read by tools/gen_cyn_m3.py). Props: Starfield meshes cooked by
+# /mnt/sata/Cyberpunk2077/starfield_kit/sf_cook.sh -> mod\ash_cache\sf\<name>\<name>.mesh.
+# Room frame: origin = room centre, +y = north (towards the core), z = floor. Props face -Y by default.
+# Starfield assets are for this personal build only: they cannot ship in a published mod.
+
+fronts:                     # props whose front is not -Y (checked from renders; confirm in game)
+  consolekit_terminaltallfull01: '+y'
+
+rooms:
+  CYN_ROOM_01_ENTRY:        # shaft landing: the lift cage the descent arrives in, service clutter
+    - {prop: elvindsm_bot01, at: [0, -2.7], yaw: 0, z: 0.33, collide: false}
+    - {prop: chemical_canisters_01, wall: west, span: [1.5, 4.5], gap: 0.2}
+    - {prop: securitycamera_a01, wall: east, along: 3.5, z: 3.6, collide: false}
+
+  CYN_ROOM_02_CHECKPOINT:   # body scanner hanging over the route, guard consoles either side
+    - {prop: na_spaceport_bodyscanneroverhead_01, at: [0, 2], yaw: 90, z: 3.8, collide: false}
+    - {prop: consolekit_terminalshortfull01, wall: west, span: [-2, 3], count: 1}
+    - {prop: genmachinery_serverb01, wall: east, span: [-8, 8], gap: 0.1, count: 2}
+    - {prop: securitycamera_a01, wall: north, along: 2.5, z: 3.6, collide: false}
+
+  CYN_ROOM_03_FLOODED:      # tanks and pipework, the flood came from here
+    - {prop: storagetank_vert_01, wall: west, span: [-9, 9], gap: 1.2}
+    - {prop: trap_pipeindlg_cryogenic01, wall: east, span: [3, 9], count: 1}
+    - {prop: genericmachines_a01, wall: east, span: [-9, -2], count: 1}
+
+  CYN_ROOM_03A_MAINT_SIDE:
+    - {prop: genericmachines_c01, wall: east, span: [-4, 4], count: 1}
+    - {prop: chemical_canisters_01, wall: north, span: [-3.5, 3.5], count: 2}
+
+  CYN_ROOM_04_PUMP:         # pump hall: the tall machine as the stand-in pump, machinery rows
+    - {prop: genericmachines_a01, at: [0, 2], yaw: 0}
+    - {prop: genericmachines_e01, wall: west, span: [-13, 13], gap: 1.0, cycle: [genericmachines_e01, genericmachines_g01]}
+    - {prop: storagetank_vert_01, wall: east, span: [-13, 13], gap: 1.5}
+    - {prop: cylindertank_cryotanksmall_01, at: [5, -8], yaw: 30}
+
+  CYN_ROOM_05_SECURITY:     # security spine: server cabinets along the blind wall, consoles facing the route
+    - {prop: genmachinery_servera01, wall: west, span: [-8, 8], gap: 0.1,
+       cycle: [genmachinery_servera01, genmachinery_serverb01]}
+    - {prop: consolekit_terminaltallfull01, wall: east, span: [-8, -2], count: 2, gap: 0.6}
+    - {prop: securitycamera_a01, wall: south, along: 3, z: 3.8, collide: false}
+
+  CYN_ROOM_05A_SECURITY_OFFICE:
+    - {prop: terminala01, wall: east, span: [-3, 3], count: 1}
+    - {prop: genmachinery_serverc01, wall: north, span: [-3.5, 3.5], gap: 0.1}
+    - {prop: filingstoragebox01static, at: [-1.5, -3.5], yaw: 20}
+    - {prop: filingstoragebox01static, at: [-1.0, -3.6], yaw: -10}
+
+  CYN_ROOM_06_BIOMETRIC:    # the reader gate: laser reader on the wall beside the north door
+    - {prop: laserscanner01_static01, wall: north, along: 1.6, z: 1.4, collide: false}
+    - {prop: stand_alone_terminal_01, wall: west, span: [-1, 3], count: 1}
+    - {prop: securitycamera_a01, wall: north, along: 3, z: 3.8, collide: false}
+
+  CYN_ROOM_07_OBSERVATION:  # observation lab: autopsy table in the middle, medical kit on the walls
+    - {prop: autopsytable01, at: [0, 0], yaw: 90}
+    - {prop: medicalivstand01static, at: [1.2, 1.2], yaw: 0}
+    - {prop: medicalgencart01static, wall: east, span: [-5, 1], count: 2, gap: 1.0}
+    - {prop: uvirradiator01on, wall: east, span: [2, 5], count: 1}
+    - {prop: containmenttank_specimen_sm01, at: [-3.8, 4.4], yaw: 0, z: 0.32}
+    - {prop: scienceglass_vialtray01, at: [-3.8, -4.5], yaw: 0, collide: false}
+
+  CYN_ROOM_07A_SUBJECT_RECORDS:
+    - {prop: genmachinery_serverc01, wall: west, span: [-3.5, 3.5], gap: 0.1}
+    - {prop: genmachinery_serverd01, wall: north, span: [-3.5, 3.5], gap: 0.1}
+    - {prop: terminala01, wall: south, span: [-1, 3], count: 1}
+
+  CYN_ROOM_08_ARCHIVE:       # personality archive: rows of specimen tubes down the hall
+    - {prop: containmenttank_specimen_sm01, wall: west, span: [-19, 19], gap: 1.2, z: 0.32}
+    - {prop: containmenttank_specimen_sm01, wall: east, span: [-19, 19], gap: 1.2, z: 0.32}
+    - {prop: containmenttank_specimen_sm01, line: {from: [-3, -16], to: [-3, 16], n: 9}, z: 0.32}
+    - {prop: containmenttank_specimen_sm01, line: {from: [3, -16], to: [3, 16], n: 9}, yaw: 180, z: 0.32}
+
+  CYN_ROOM_08A_PURGE_ARCHIVE:
+    - {prop: chemical_canisters_01, wall: east, span: [-4.5, 4.5], gap: 0.3}
+    - {prop: storagetank_horiz_01, wall: north, span: [-4.5, 4.5], count: 1}
+
+  CYN_ROOM_09_PREDICTION:   # prediction hall: the digital table and a wall of screens
+    - {prop: digitaltable01a, at: [0, 0], yaw: 0}
+    - {prop: displaymegascreen1, wall: west, along: 0, z: 2.5, collide: false}
+    - {prop: consolekit_terminalshortfull01, ring: {r: 5, n: 4, start: 45}, face: in}
+
+  CYN_ROOM_09A_ECHO_ANALYSIS:
+    - {prop: medicalscanner01, at: [0.5, 0], yaw: 90}
+    - {prop: stand_alone_terminal_01, wall: north, span: [-3, 3], count: 1}
+
+  CYN_ROOM_10_BRANCH_COFFINS: # the branch coffins (procedural, gen/bl_coffin.py): two columns, aisle kept clear
+    - {prop: cyn_branch_coffin, line: {from: [-5, -6], to: [-5, 6], n: 4}, yaw: 90}
+    - {prop: cyn_branch_coffin, line: {from: [5, -6], to: [5, 6], n: 4}, yaw: 90}
+    - {prop: uvirradiator02, at: [-2.2, 0], yaw: 90}
+    - {prop: consolekit_terminalshortfull01, at: [2.2, 0], yaw: -90}
+
+  CYN_ROOM_11_COMPARISON:   # two scanners side by side: the comparison
+    - {prop: medicalscanner01, at: [-2.5, 0], yaw: 0}
+    - {prop: medicalscanner01, at: [2.5, 0], yaw: 0}
+    - {prop: consolekit_terminalshortfull01, wall: west, span: [-6, -2], count: 1}
+
+  CYN_ROOM_12_SERVER_VAULT: # ASH server vault: server rows down both long walls
+    - {prop: genmachinery_servera01, wall: west, span: [-28, 28], gap: 0.1,
+       cycle: [genmachinery_servera01, genmachinery_serverb01, genmachinery_serverc01]}
+    - {prop: genmachinery_serverd01, wall: east, span: [-28, 28], gap: 0.1,
+       cycle: [genmachinery_serverd01, genmachinery_servere01, genmachinery_serverf01]}
+
+  CYN_ROOM_13_CORE_ANTE:
+    - {prop: genmachinery_serverb01, wall: west, span: [-5, 5], gap: 0.1}
+    - {prop: uvirradiator02, wall: east, span: [-5, 5], gap: 2.0}
+
+  CYN_ROOM_14_CORE:         # predictive core: a 12 m containment column, consoles round it
+    - {stack: [containmenttankmed_bot01, containmenttankmed_mid01, containmenttankmed_mid01, containmenttankmed_top01], at: [0, 0]}
+    - {prop: cyn_core_insert, at: [0, 0], yaw: 0, collide: false}   # glass tube + cyan pillar (gen/bl_core.py)
+    - {prop: consolekit_terminaltallfull01, ring: {r: 10, n: 6, start: 60}, face: in}
+
+  CYN_ROOM_15_ENDING_CONTROL:
+    - {prop: consolekit_terminaltallfull01, wall: east, span: [-6, 6], gap: 0.5, count: 3}
+    - {prop: displaymegascreen1, wall: south, along: 0, z: 2.2, collide: false}
+
+  CYN_ROOM_16_ESCAPE:
+    - {prop: storagetank_horiz_01, wall: west, span: [-14, 10], gap: 3}
+    - {prop: chemical_canisters_01, wall: east, span: [-14, 10], gap: 2}

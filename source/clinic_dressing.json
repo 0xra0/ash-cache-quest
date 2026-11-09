@@ -1,0 +1,1014 @@
+{
+  "_about": [
+    "D151. Clinic redesign dressing (GPT 5.6 design, wk_scratch/clinic_design). tools/clinic_dressing.py turns each item into a solid prop + world.json pose + glue prop (ashcache_progress 2..6).",
+    "Counter measured by live raycasts 2026-09-25: top z 25.06, runs along the NE wall from s=-1.4 to +0.65 m around the terminal floor point (-1909.67,-2463.40), wall at depth +0.55, front edge at -0.35 (along-wall unit (0.707,-0.707), depth unit (0.707,0.707)).",
+    "D153: room frame for placement - u = (0.7071, 0.7071) toward the NE/terminal wall, v = (-0.7071, 0.7071) from the inner door (v -6) to the far wall (v +7.5), origin (-1908.0, -2469.5). Room map by a 0.25 m grid of live downward raycasts (2026-09-25 02:44). Yaw -45 faces +u, 135 faces -u, 45 faces +v, -135 faces -v."
+  ],
+  "items": [
+    {
+      "id": "ac_dress_monitor",
+      "mesh": "ep1\\environment\\decoration\\electronics\\devices\\old_computer_monitor\\old_monitor_4_3.mesh",
+      "extra": [
+        "ep1\\environment\\decoration\\electronics\\devices\\old_computer_monitor\\old_monitor_4_3_display.mesh"
+      ],
+      "pos": [
+        -1909.599,
+        -2463.329
+      ],
+      "surface": 25.06,
+      "yaw": 135.0,
+      "note": "D152: the terminal's visible monitor - boxy PL monitor + its lit display (screen on local +Y, yaw 135 faces the room), sitting on the counter at the terminal point. Replaces computer_1.ent, whose angle_15 look is a stand-less panel that floated 0.4 m over the counter with its screen to the wall."
+    },
+    {
+      "id": "ac_dress_diag",
+      "mesh": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_a.mesh",
+      "pos": [
+        -1910.165,
+        -2462.693
+      ],
+      "surface": 25.06,
+      "yaw": 135.0,
+      "note": "diagnostic module on the terminal counter, left of the terminal"
+    },
+    {
+      "id": "ac_dress_folder",
+      "mesh": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_j_file_closed.mesh",
+      "pos": [
+        -1910.059,
+        -2463.153
+      ],
+      "surface": 25.06,
+      "yaw": 150.0,
+      "note": "one closed folder between the module and the terminal",
+      "_d163": "D163 fitcheck: moved 5 cm +v; it overlapped the monitor's foot by 1 cm, so the monitor stood 1 cm into it"
+    },
+    {
+      "id": "ac_dress_stool",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\morgue_table\\morgue_stool_a.mesh",
+      "pos": [
+        -1910.801,
+        -2463.471
+      ],
+      "surface": 24.056,
+      "yaw": 120.0,
+      "note": "stool pushed aside at the counter, left of the terminal standing spot"
+    },
+    {
+      "id": "ac_dress_trolley_a",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\medical_cart\\medical_cart_a.mesh",
+      "appearance": "military",
+      "pos": [
+        -1907.258,
+        -2473.0
+      ],
+      "center": true,
+      "surface": 24.056,
+      "yaw": -35.0,
+      "note": "D153 room coords u -1.95 v -3.0 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): instrument trolley pushed to the left partition near the entrance"
+    },
+    {
+      "id": "ac_dress_trolley_b",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\medical_cart\\medical_cart_e.mesh",
+      "appearance": "military",
+      "pos": [
+        -1910.475,
+        -2469.712
+      ],
+      "center": true,
+      "surface": 24.056,
+      "yaw": -52.0,
+      "note": "D153 room coords u -1.9 v 1.6 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): second trolley, left lane, short of the table"
+    },
+    {
+      "id": "ac_dress_cabinet",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\lab_locker_set_a\\lab_set_a_locker_a.mesh",
+      "appearance": "military",
+      "pos": [
+        -1906.939,
+        -2466.177
+      ],
+      "center": true,
+      "surface": 24.056,
+      "yaw": 135.0,
+      "note": "D153 room coords u 3.1 v 1.6 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): low lab cabinet along the right wall before the counter niche (nearest corner 1.7 m from ac_mara)"
+    },
+    {
+      "id": "ac_dress_iv_stand",
+      "mesh": "base\\environment\\decoration\\electronics\\medical\\machine_iv_stand\\machine_iv_stand_a.mesh",
+      "appearance": "default",
+      "pos": [
+        -1912.596,
+        -2467.591
+      ],
+      "center": true,
+      "surface": 24.056,
+      "yaw": -45.0,
+      "note": "D153 room coords u -1.9 v 4.6 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): IV / diagnostic stand at the table's left end, away from Mara's side"
+    },
+    {
+      "id": "ac_dress_bin",
+      "mesh": "base\\environment\\decoration\\garbage\\bins\\entropy_trashbin\\entropy_trashbin_a.mesh",
+      "appearance": "default",
+      "pos": [
+        -1910.864,
+        -2462.252
+      ],
+      "center": true,
+      "surface": 24.056,
+      "yaw": 135.0,
+      "note": "D153 room coords u 3.1 v 7.15 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): bin past the counter's far end"
+    },
+    {
+      "id": "ac_light_terminal",
+      "light": {
+        "rgb": [
+          60,
+          200,
+          255
+        ],
+        "lumens": 90,
+        "radius": 2.5
+      },
+      "pos": [
+        -1910.094,
+        -2463.824
+      ],
+      "z": 25.9,
+      "note": "D154 design 'terminal fill': cool cyan 0.7 m in front of the monitor, so the workstation reads as the room's cold light"
+    },
+    {
+      "id": "ac_light_mara",
+      "light": {
+        "rgb": [
+          255,
+          215,
+          180
+        ],
+        "lumens": 70,
+        "radius": 2.5
+      },
+      "pos": [
+        -1909.72,
+        -2465.99
+      ],
+      "z": 26.0,
+      "note": "D154 design 'Mara fill': soft warm-neutral 0.9 m in front of ac_mara toward V's case spot, face height - keeps her readable, never a backlight"
+    },
+    {
+      "id": "ac_dress_wall_cabinet",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\lab_cabinet_01\\lab_cabinet_01_c.mesh",
+      "appearance": "military",
+      "room": [
+        0,
+        -1.0
+      ],
+      "face": "+u",
+      "against": "left",
+      "surface": 24.056,
+      "note": "tall lab cabinet unit on the left wall, first thing past the entry trolley"
+    },
+    {
+      "id": "ac_dress_sink",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\morgue_sink\\morgue_sink_a.mesh",
+      "extra": [
+        "base\\environment\\decoration\\furniture\\lab\\morgue_sink\\morgue_sink_a_tap_a.mesh"
+      ],
+      "room": [
+        0,
+        -4.75
+      ],
+      "face": "-u",
+      "front": "-y",
+      "against": "right",
+      "surface": 24.406000000000002,
+      "note": "wall-hung scrub sink on the right wall by the entry (the left wall past v 1.2 is a glass partition, D155) - mesh origin is its floor point, bottom 0.35 up",
+      "_d160": "D160: pillar at v -3.45..-2.46 (face u 2.84) - sink ended inside it",
+      "wall_gap": 0.051,
+      "_d164": "D164 fitcheck --wall: back was 3.4 cm inside the wall"
+    },
+    {
+      "id": "ac_dress_medkit",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_a_stationary_base.mesh",
+      "room": [
+        0,
+        -3.4
+      ],
+      "face": "+u",
+      "against": "left",
+      "surface": 25.306,
+      "note": "wall first-aid box with its door gone and nothing inside - the room was emptied",
+      "wall_gap": 0.008,
+      "_d164": "D164 fitcheck --wall: hung 9 mm off the wall"
+    },
+    {
+      "id": "ac_dress_fusebox",
+      "mesh": "base\\environment\\decoration\\electronics\\attachments\\fuse_box_small\\fuse_box_small_p.mesh",
+      "room": [
+        0,
+        0.55
+      ],
+      "face": "+u",
+      "front": "-y",
+      "against": "left",
+      "surface": 25.406000000000002,
+      "note": "small utility box on the left wall next to the cabinet",
+      "wall_gap": 0.01,
+      "_d164": "D164 fitcheck --wall: hung 7 mm off the wall"
+    },
+    {
+      "id": "ac_dress_box_a",
+      "mesh": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_a_closed.mesh",
+      "appearance": "dirty_ep1",
+      "room": [
+        -3.2,
+        -5.0
+      ],
+      "face": "+u",
+      "yaw_add": 0,
+      "surface": 24.056,
+      "note": "packed boxes in the door-left corner: what was carried out"
+    },
+    {
+      "id": "ac_dress_box_b",
+      "mesh": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_b_closed.mesh",
+      "appearance": "dirty_ep1",
+      "room": [
+        -3.2,
+        -5.0
+      ],
+      "face": "+u",
+      "yaw_add": 0,
+      "on": "ac_dress_box_a",
+      "note": "second box stacked on the first",
+      "dz": -0.012,
+      "_d163": "D163 fitcheck: centred on box_a (B is 2 cm bigger than A); A's real top under it is 1.9 cm below its bounds top; dz -0.012 so its lowest point meets A's bulge (A's top is uneven: 0..2.8 cm under B)"
+    },
+    {
+      "id": "ac_dress_crate",
+      "mesh": "base\\environment\\decoration\\containers\\crates\\delivery_crate\\delivery_crate_a.mesh",
+      "room": [
+        -2.45,
+        -5.15
+      ],
+      "face": "+v",
+      "yaw_add": 0,
+      "surface": 24.056,
+      "note": "small crate next to the boxes"
+    },
+    {
+      "id": "ac_dress_bed",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\lab_bed\\lab_bed_a.mesh",
+      "room": [
+        0,
+        -0.95
+      ],
+      "face": "-u",
+      "front": "+x",
+      "against": "right",
+      "surface": 24.056,
+      "note": "stripped recovery bed along the right wall (long axis along the wall)"
+    },
+    {
+      "id": "ac_dress_bench",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\lab_table\\lab_table_c.mesh",
+      "appearance": "military",
+      "room": [
+        -0.78,
+        0
+      ],
+      "face": "-v",
+      "front": "-y",
+      "against": "far",
+      "surface": 24.056,
+      "note": "work bench on the far wall behind the procedure table",
+      "_d160": "D160: +0.12 u (with tray/pack/lamp) to clear the shelf"
+    },
+    {
+      "id": "ac_dress_bench_tray",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_tray.mesh",
+      "room": [
+        -1.56,
+        8.3
+      ],
+      "face": "-v",
+      "yaw_add": 0,
+      "note": "instrument tray on the bench",
+      "surface": 25.241,
+      "_d162": "D162: rasterised top under it is 25.240 (was 4 mm inside)",
+      "_surface": "D159: raycast bench top; lab_table_c's bounds top (25.336) is 10 cm above its real top",
+      "_d161": "D161: lab_table_c top is stepped (mesh: u<-1.225 1.18, middle 1.10, right 1.12 above the 24.056 floor); the tray straddled the 8 cm step - now wholly on the high left block"
+    },
+    {
+      "id": "ac_dress_shelf",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_c.mesh",
+      "room": [
+        -2.64,
+        0
+      ],
+      "face": "-v",
+      "front": "+x",
+      "against": "far",
+      "surface": 24.056,
+      "note": "half-empty shelf rack in the far-left corner",
+      "_d160": "D160: shelf and bench overlapped 5 cm; glass at u -3.33"
+    },
+    {
+      "id": "ac_dress_freezer",
+      "mesh": "base\\environment\\gameplay\\lootable_containers\\lootable_ripperdoc_freezer\\lootable_ripperdoc_freezer_medium_neomilitary_a.mesh",
+      "room": [
+        1.0,
+        0
+      ],
+      "face": "-v",
+      "front": "+y",
+      "against": "far",
+      "surface": 24.056,
+      "note": "implant freezer against the far wall, dead",
+      "_d160": "D160: door mesh dropped - extras go on the body pivot, so it stood half in the floor beside the freezer"
+    },
+    {
+      "id": "ac_dress_machine",
+      "mesh": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_large\\medical_electronic_largel_a.mesh",
+      "room": [
+        2.55,
+        0
+      ],
+      "face": "-v",
+      "front": "-y",
+      "against": "far",
+      "surface": 24.056,
+      "note": "unplugged medical unit, far-right corner"
+    },
+    {
+      "id": "ac_dress_table_cloth",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_surgical_cloth_a.mesh",
+      "room": [
+        -0.55,
+        4.35
+      ],
+      "face": "-v",
+      "yaw_add": 0,
+      "surface": 24.875,
+      "note": "folded sterile cloth at the procedure table's left end (the design's 'one folded sterile cloth'), the case stays the only thing in the middle",
+      "_d163": "D163 fitcheck: floated 2.4-2.7 cm over morgue_table_a_top_a (mesh), 2.1 cm (collision)"
+    },
+    {
+      "id": "ac_dress_lamp",
+      "mesh": "base\\environment\\decoration\\lighting\\lab\\lab_lamp_standing\\lab_lamp_standing_a.mesh",
+      "room": [
+        -1.35,
+        3.3
+      ],
+      "face": "+u",
+      "yaw_add": 0,
+      "surface": 24.056,
+      "note": "standing exam lamp at the table's left end, turned toward the case"
+    },
+    {
+      "id": "ac_light_far",
+      "light": {
+        "rgb": [
+          200,
+          225,
+          255
+        ],
+        "lumens": 160,
+        "radius": 4.5
+      },
+      "pos": [
+        -1913.869,
+        -2464.48
+      ],
+      "z": 26.4,
+      "note": "D155 far-wall practical: cold white over the bench / shelf / freezer, which sat in the dark behind the table"
+    },
+    {
+      "id": "ac_dress_wheelchair",
+      "mesh": "base\\environment\\decoration\\misc\\shops\\int_medical_deco\\wheelchair_deco.mesh",
+      "room": [
+        -2.75,
+        3.0
+      ],
+      "face": "+u",
+      "yaw_add": 0,
+      "surface": 24.056,
+      "note": "wheelchair parked by the left wall, left behind"
+    },
+    {
+      "id": "ac_dress_mara_mattress",
+      "wall_gap": 0.421,
+      "_d168": "D168 fitcheck --wall: mattress 0.6 / duvet 1.1 cm in the wall; both moved 1.6 cm out together; v 7.6->7.77 so a vanilla wall-pipe stub (u -6.1, v 6.63-6.78, bottom z 24.55) no longer dips into the duvet; wall_gap 0.421 so the pipe (face u -6.04, visual reaches the floor) stands behind the bed",
+      "mesh": "base\\environment\\decoration\\textiles\\bedding\\poor_mattress\\poor_mattress_b.mesh",
+      "room": [
+        0,
+        7.77
+      ],
+      "face": "+u",
+      "front": "+x",
+      "against": "mara_out",
+      "note": "Mara's room: mattress on the floor along the outer wall - she slept here",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_mara_duvet",
+      "wall_gap": 0.421,
+      "_d168": "D168 fitcheck --wall: mattress 0.6 / duvet 1.1 cm in the wall; both moved 1.6 cm out together; v 7.6->7.77 so a vanilla wall-pipe stub (u -6.1, v 6.63-6.78, bottom z 24.55) no longer dips into the duvet; wall_gap 0.421 so the pipe (face u -6.04, visual reaches the floor) stands behind the bed",
+      "mesh": "base\\environment\\decoration\\textiles\\bedding\\poor_mattress\\poor_mattress_b_duvet_a.mesh",
+      "room": [
+        0,
+        7.77
+      ],
+      "face": "+u",
+      "front": "+x",
+      "against": "mara_out",
+      "on": "ac_dress_mara_mattress",
+      "note": "Mara's room: duvet on the mattress"
+    },
+    {
+      "id": "ac_dress_mara_pillow",
+      "mesh": "base\\environment\\decoration\\textiles\\bedding\\bed_pillow\\bed_pillow_a.mesh",
+      "room": [
+        -5.36,
+        8.47
+      ],
+      "face": "+v",
+      "on": "ac_dress_mara_duvet",
+      "note": "Mara's room: pillow",
+      "dz": -0.019,
+      "_d163": "D163 fitcheck: floated 1.9-2.9 cm over the duvet"
+    },
+    {
+      "id": "ac_dress_mara_duffel",
+      "mesh": "base\\items\\interactive\\accessories\\int_accessories_001__duffel_bag\\int_accessories_001__duffel_bag.mesh",
+      "room": [
+        0,
+        6.75
+      ],
+      "face": "-u",
+      "front": "+x",
+      "against": "mara_in",
+      "appearance": "leather",
+      "note": "Mara's room: packed duffel against the inner wall - ready to run",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_mara_locker",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\entropy_cabinet\\entropy_locker_a.mesh",
+      "room": [
+        0,
+        8.2
+      ],
+      "face": "-u",
+      "against": "mara_in",
+      "note": "Mara's room: steel locker, her clothes",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_mara_folded",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_a.mesh",
+      "room": [
+        -3.85,
+        8.2
+      ],
+      "face": "-u",
+      "on": "ac_dress_mara_locker",
+      "note": "Mara's room: folded clothes on the locker"
+    },
+    {
+      "id": "ac_dress_mara_table",
+      "wall_gap": 0.047,
+      "_d167": "D167 fitcheck --wall: back 2.7 cm inside the wall",
+      "mesh": "base\\environment\\decoration\\furniture\\living_room\\entropy_table\\entropy_table_c.mesh",
+      "room": [
+        -5.0,
+        0
+      ],
+      "face": "+v",
+      "against": "mara_near",
+      "note": "Mara's room: work table at the near wall",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_mara_laptop",
+      "mesh": "base\\environment\\decoration\\electronics\\devices\\military_grade_laptop\\military_grade_laptop_a_body.mesh",
+      "room": [
+        -5.0,
+        1.72
+      ],
+      "face": "+v",
+      "front": "-x",
+      "on": "ac_dress_mara_table",
+      "appearance": "v01",
+      "extra": [
+        "base\\environment\\decoration\\electronics\\devices\\military_grade_laptop\\military_grade_laptop_a_screen.mesh"
+      ],
+      "note": "Mara's room: open laptop - her notes"
+    },
+    {
+      "id": "ac_dress_mara_lamp",
+      "mesh": "base\\environment\\decoration\\lighting\\residential\\poor_desk_lamp\\poor_desk_lamp_a.mesh",
+      "room": [
+        -5.8,
+        1.6
+      ],
+      "face": "+v",
+      "yaw_add": 0,
+      "on": "ac_dress_mara_table",
+      "note": "Mara's room: desk lamp"
+    },
+    {
+      "id": "ac_dress_mara_mug",
+      "mesh": "base\\environment\\decoration\\dining_accessories\\tableware\\tableware_entropy\\tableware_entropy_a_mug_a.mesh",
+      "room": [
+        -4.45,
+        1.75
+      ],
+      "face": "+v",
+      "on": "ac_dress_mara_table",
+      "appearance": "black",
+      "note": "Mara's room: mug"
+    },
+    {
+      "id": "ac_dress_mara_noodle",
+      "mesh": "base\\environment\\decoration\\food\\street_food\\mixed_street_food\\mixed_street_food_a_cup_noodle.mesh",
+      "room": [
+        -4.2,
+        1.55
+      ],
+      "face": "+v",
+      "on": "ac_dress_mara_table",
+      "note": "Mara's room: empty noodle cup"
+    },
+    {
+      "id": "ac_dress_mara_chair",
+      "mesh": "base\\environment\\decoration\\furniture\\office\\poor_office_chair\\poor_office_chair_a.mesh",
+      "room": [
+        -5.0,
+        2.5
+      ],
+      "face": "-v",
+      "yaw_add": 15,
+      "note": "Mara's room: chair pushed back from the table",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_light_mara_room",
+      "light": {
+        "rgb": [
+          255,
+          185,
+          120
+        ],
+        "lumens": 700,
+        "radius": 6.0
+      },
+      "room": [
+        -5.0,
+        5.0
+      ],
+      "z": 26.2,
+      "note": "Mara's room: warm practical (the room was dark) - D157 700 lm"
+    },
+    {
+      "id": "ac_dress_hall_locker_1",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\entropy_cabinet\\entropy_locker_a.mesh",
+      "room": [
+        0,
+        -7.1
+      ],
+      "face": "-u",
+      "against": "hall_right",
+      "note": "entry hall: row of staff lockers for street clothes",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_hall_locker_2",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\entropy_cabinet\\entropy_locker_a.mesh",
+      "room": [
+        0,
+        -7.85
+      ],
+      "face": "-u",
+      "against": "hall_right",
+      "note": "entry hall: row of staff lockers for street clothes",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_hall_locker_3",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\entropy_cabinet\\entropy_locker_a.mesh",
+      "room": [
+        0,
+        -8.6
+      ],
+      "face": "-u",
+      "against": "hall_right",
+      "note": "entry hall: row of staff lockers for street clothes",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_hall_locker_4",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\entropy_cabinet\\entropy_locker_a.mesh",
+      "room": [
+        0,
+        -9.35
+      ],
+      "face": "-u",
+      "against": "hall_right",
+      "note": "entry hall: row of staff lockers for street clothes",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_hall_folded",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_jacket_a.mesh",
+      "room": [
+        1.75,
+        -7.85
+      ],
+      "face": "-u",
+      "yaw_add": 0,
+      "on": "ac_dress_hall_locker_2",
+      "note": "entry hall: folded jacket on a locker"
+    },
+    {
+      "id": "ac_dress_hall_folded_b",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_a.mesh",
+      "room": [
+        1.75,
+        -9.35
+      ],
+      "face": "-u",
+      "yaw_add": 0,
+      "on": "ac_dress_hall_locker_4",
+      "note": "entry hall: folded clothes on a locker"
+    },
+    {
+      "id": "ac_dress_hall_duffel",
+      "mesh": "base\\items\\interactive\\accessories\\int_accessories_001__duffel_bag\\int_accessories_001__duffel_bag.mesh",
+      "room": [
+        0,
+        -9.7
+      ],
+      "face": "+u",
+      "front": "+x",
+      "against": "hall_left",
+      "note": "entry hall: bag under the coats",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_light_hall",
+      "light": {
+        "rgb": [
+          215,
+          230,
+          255
+        ],
+        "lumens": 90,
+        "radius": 4.0
+      },
+      "room": [
+        0.3,
+        -8.5
+      ],
+      "z": 26.3,
+      "note": "entry hall: cold practical"
+    },
+    {
+      "id": "ac_dress_cart_lane",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\medical_cart\\medical_cart_b.mesh",
+      "room": [
+        0,
+        -2.4
+      ],
+      "face": "+u",
+      "front": "-y",
+      "against": "left",
+      "appearance": "military",
+      "note": "D156: instrument cart in the left lane",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_iv_b",
+      "mesh": "base\\environment\\decoration\\electronics\\medical\\machine_iv_stand\\machine_iv_stand_b.mesh",
+      "room": [
+        1.75,
+        0.75
+      ],
+      "face": "-u",
+      "note": "D156: second IV stand at the foot of the recovery bed",
+      "surface": 24.056
+    },
+    {
+      "id": "ac_dress_bed_device",
+      "mesh": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_b.mesh",
+      "room": [
+        2.875,
+        -1.05
+      ],
+      "face": "-u",
+      "yaw_add": 0,
+      "on": "ac_dress_bed",
+      "note": "D156: flat diagnostic unit left on the stripped bed",
+      "dz": -0.048,
+      "_d163": "D163 fitcheck: was u 2.55 (hung 25 cm past the bed's -u edge) and rested on the raised head section's height 5 cm above the flat pad; now centred on the pad u 2.6..3.15"
+    },
+    {
+      "id": "ac_dress_bench_lamp",
+      "mesh": "base\\environment\\decoration\\furniture\\lab\\morgue_table\\morgue_lamp_a.mesh",
+      "room": [
+        0.22,
+        8.35
+      ],
+      "face": "-v",
+      "appearance": "greenish_dim",
+      "note": "D156: small inspection lamp on the bench",
+      "surface": 25.18,
+      "_d162": "D162: rasterised top under it is 25.179 (was 3 mm inside)",
+      "_surface": "D159: raycast bench top; lab_table_c's bounds top (25.336) is 10 cm above its real top",
+      "_d161": "D161: sat 14 cm past the bench's right end at the collision-box height; now on the 1.12 right block"
+    },
+    {
+      "id": "ac_dress_bench_pack",
+      "mesh": "base\\items\\interactive\\medical\\int_medical_002__trauma_pack\\int_medical_002__trauma_pack.mesh",
+      "room": [
+        -0.26,
+        8.3
+      ],
+      "face": "-v",
+      "yaw_add": 0,
+      "note": "D158: trauma pack on the bench, moved off the shelf upright into the freed device spot",
+      "surface": 25.18,
+      "_d162": "D162 (benchfit.py): the 0.096 below the base is the case floor itself (773 verts over the full 44x34 cm), not a strap; at 25.08 it sat 10 cm inside the bench. Bottom now on the triangle-rasterised top 25.179",
+      "_surface": "D159: bounds bottom is a strap 0.096 below the case base; this puts the base on the raycast bench top 25.24",
+      "_d162_u": "D162: pack is 0.445 long along u; at -0.38 it hung 8 cm over the step to the lower diamond-plate block at u -0.525; -0.26 keeps it 4 cm clear",
+      "_d161": "D161: base (strap 0.096 below) on the right block's real top 25.176, not the collision box 25.24"
+    },
+    {
+      "id": "ac_dress_hall_shelf_1",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_h.mesh",
+      "room": [
+        0,
+        -7.45
+      ],
+      "face": "+u",
+      "front": "+x",
+      "against": "hall_left",
+      "surface": 24.056,
+      "note": "D157: entry hall: low clothes shelf, left wall"
+    },
+    {
+      "id": "ac_dress_hall_shelf_2",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_h.mesh",
+      "room": [
+        0,
+        -8.75
+      ],
+      "face": "+u",
+      "front": "+x",
+      "against": "hall_left",
+      "surface": 24.056,
+      "note": "D157: entry hall: low clothes shelf, left wall"
+    },
+    {
+      "id": "ac_dress_hall_top_1",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_jacket_b.mesh",
+      "room": [
+        -2.07,
+        -7.15
+      ],
+      "face": "+u",
+      "on": "ac_dress_hall_shelf_1",
+      "note": "D157: folded jacket"
+    },
+    {
+      "id": "ac_dress_hall_top_2",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_tshirt.mesh",
+      "room": [
+        -2.07,
+        -7.75
+      ],
+      "face": "+u",
+      "on": "ac_dress_hall_shelf_1",
+      "note": "D157: folded shirts"
+    },
+    {
+      "id": "ac_dress_hall_top_3",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_pants.mesh",
+      "room": [
+        -2.07,
+        -8.45
+      ],
+      "face": "+u",
+      "on": "ac_dress_hall_shelf_2",
+      "note": "D157: folded trousers"
+    },
+    {
+      "id": "ac_dress_hall_top_4",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_b.mesh",
+      "room": [
+        -2.07,
+        -9.05
+      ],
+      "face": "+u",
+      "on": "ac_dress_hall_shelf_2",
+      "note": "D157: folded clothes"
+    },
+    {
+      "id": "ac_dress_mara_shelf",
+      "wall_gap": 0.04,
+      "_d167": "D167 fitcheck --wall: back 2.0 cm inside the wall",
+      "mesh": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_h.mesh",
+      "room": [
+        0,
+        4.3
+      ],
+      "face": "+u",
+      "front": "+x",
+      "against": "mara_out",
+      "surface": 24.056,
+      "note": "D157: Mara's room: low shelf where the towel hung"
+    },
+    {
+      "id": "ac_dress_mara_top_1",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_c.mesh",
+      "room": [
+        -6.2,
+        4.0
+      ],
+      "face": "+u",
+      "on": "ac_dress_mara_shelf",
+      "note": "D157: Mara's folded clothes",
+      "dz": -0.013,
+      "_d163": "D163 fitcheck: floated 1.4 cm"
+    },
+    {
+      "id": "ac_dress_mara_top_2",
+      "mesh": "base\\environment\\decoration\\textiles\\clothes\\clothes_folded\\clothes_folded_d.mesh",
+      "room": [
+        -6.2,
+        4.6
+      ],
+      "face": "+u",
+      "on": "ac_dress_mara_shelf",
+      "note": "D157: Mara's folded clothes"
+    },
+    {
+      "id": "ac_dress_far_shelf",
+      "mesh": "base\\environment\\decoration\\furniture\\shops\\poor_wall_shelf_01\\poor_wall_shelf_01_b.mesh",
+      "room": [
+        -0.9,
+        0
+      ],
+      "face": "-v",
+      "front": "-y",
+      "against": "far",
+      "surface": 26.1,
+      "note": "D158: 2 m wall shelf above the bench",
+      "wall_gap": 0.044,
+      "_d164": "D164 fitcheck --wall: back was 2.7 cm inside the wall"
+    },
+    {
+      "id": "ac_dress_far_shelf_a",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_a.mesh",
+      "room": [
+        -1.55,
+        8.5
+      ],
+      "face": "-v",
+      "yaw_add": 0,
+      "on": "ac_dress_far_shelf",
+      "note": "D158",
+      "dz": -0.007,
+      "_d163": "D163 fitcheck: shelf's real top 8 mm under its bounds top"
+    },
+    {
+      "id": "ac_dress_far_shelf_c",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_c.mesh",
+      "room": [
+        -0.95,
+        8.5
+      ],
+      "face": "-v",
+      "yaw_add": 0,
+      "on": "ac_dress_far_shelf",
+      "note": "D158",
+      "dz": -0.007,
+      "_d163": "D163 fitcheck: as far_shelf_a"
+    },
+    {
+      "id": "ac_dress_far_shelf_rack",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_d_rack.mesh",
+      "room": [
+        -0.3,
+        8.5
+      ],
+      "face": "-v",
+      "yaw_add": 0,
+      "on": "ac_dress_far_shelf",
+      "note": "D158: empty test-tube rack",
+      "dz": -0.007,
+      "_d163": "D163 fitcheck: as far_shelf_a"
+    },
+    {
+      "id": "ac_dress_apron_rack",
+      "mesh": "base\\environment\\decoration\\industrial\\equipment\\wall_rack\\wall_rack_a.mesh",
+      "room": [
+        0,
+        7.2
+      ],
+      "face": "+u",
+      "front": "+y",
+      "against": "left",
+      "surface": 24.926,
+      "note": "D158: hook rail on the left wall between Mara's door and the corner shelf; origin is at the floor, rail spans 0.87..1.64",
+      "wall_gap": 0.021,
+      "_d164": "D164 fitcheck --wall: back was 4 mm inside the wall"
+    },
+    {
+      "id": "ac_dress_apron_1",
+      "mesh": "base\\environment\\decoration\\industrial\\equipment\\wall_rack\\wall_rack_apron_a.mesh",
+      "surface": 24.162,
+      "note": "D158: surgical apron hung on the rail (origin = hook, top 25.62)",
+      "pos": [
+        -1915.139,
+        -2466.986
+      ],
+      "yaw": -47.4,
+      "_d165": "D165: hung in air between hooks, 14 cm too high; now on wall_rack_a lower J-hook (rack-local x +0.375, y 0.10, bar top 1.459)"
+    },
+    {
+      "id": "ac_dress_apron_2",
+      "mesh": "base\\environment\\decoration\\industrial\\equipment\\wall_rack\\wall_rack_apron_a.mesh",
+      "surface": 24.162,
+      "note": "D158",
+      "pos": [
+        -1915.646,
+        -2466.434
+      ],
+      "yaw": -47.4,
+      "_d165": "D165: hung in air between hooks, 14 cm too high; now on wall_rack_a lower J-hook (rack-local x -0.375, y 0.10, bar top 1.459)"
+    },
+    {
+      "id": "ac_dress_bed_shelf",
+      "mesh": "base\\environment\\decoration\\furniture\\shops\\poor_wall_shelf_01\\poor_wall_shelf_01_a.mesh",
+      "room": [
+        0,
+        -0.95
+      ],
+      "face": "-u",
+      "front": "-y",
+      "against": "right",
+      "surface": 25.75,
+      "note": "D158: wall shelf over the recovery bed"
+    },
+    {
+      "id": "ac_dress_bed_shelf_1",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_a.mesh",
+      "room": [
+        3.14,
+        -1.25
+      ],
+      "face": "-u",
+      "yaw_add": 0,
+      "on": "ac_dress_bed_shelf",
+      "note": "D158"
+    },
+    {
+      "id": "ac_dress_bed_shelf_2",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_bottle_a.mesh",
+      "room": [
+        3.14,
+        -0.9
+      ],
+      "face": "-u",
+      "yaw_add": 0,
+      "on": "ac_dress_bed_shelf",
+      "note": "D158"
+    },
+    {
+      "id": "ac_dress_bed_shelf_3",
+      "mesh": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_b.mesh",
+      "room": [
+        3.14,
+        -0.6
+      ],
+      "face": "-u",
+      "yaw_add": 0,
+      "on": "ac_dress_bed_shelf",
+      "note": "D158"
+    },
+    {
+      "id": "ac_dress_gloves",
+      "mesh": "base\\environment\\decoration\\industrial\\equipment\\wall_rack\\wall_rack_glove_a.mesh",
+      "surface": 25.431,
+      "note": "D158: glove dispenser between the sink and the bed",
+      "_d160": "D160: on the pillar face (u 2.84), not the wall behind it",
+      "_d164": "D164 fitcheck --wall: hung 2.1 cm off the wall; moved 1.9 cm to it",
+      "pos": [
+        -1915.345,
+        -2466.769
+      ],
+      "yaw": -47.4,
+      "_d166": "D166: it is a single glove made to hang on wall_rack_a, not a dispenser; floated off the pillar. Now draped on the free lower J-hook (rack-local x +0.075, y 0.095, bar centre 1.452)"
+    }
+  ]
+}

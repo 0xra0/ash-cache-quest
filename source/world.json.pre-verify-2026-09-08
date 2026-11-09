@@ -1,0 +1,232 @@
+{
+  "_about": [
+    "World nodes for the quest. Each entry becomes a node in a generated",
+    ".streamingsector; the sectors are listed in one .streamingblock that the .xl",
+    "registers via 'streaming: blocks:'. Four kinds, cheapest first:",
+    "",
+    "  markers   worldStaticMarkerNode       an empty named point - what a map pin",
+    "                                        points at and what a scene uses as its",
+    "                                        origin. No mesh, no entity.",
+    "  triggers  worldTriggerAreaNode        a volume that notifies the quest graph",
+    "                                        on entry. Needs no .ent and no TweakDB",
+    "                                        record: 'size' is the half-extent in",
+    "                                        metres, so [8,8,4] is 16x16 and 8 tall.",
+    "  spawners  worldPopulationSpawnerNode  an object the graph switches on later",
+    "                                        with questSpawner_NodeType. 'record' is",
+    "                                        a TweakDB id. spawnOnStart is always 0.",
+    "  props     worldEntityNode             an entity template placed in the world.",
+    "                                        'template' is a depot path to an .ent -",
+    "                                        a vanilla one is fine and costs nothing",
+    "                                        to author.",
+    "",
+    "COORDINATE PROVENANCE. Anchors marked 'verified' are teleport targets shipped",
+    "by Appearance Menu Mod, so they are known-standable positions in the real world",
+    "geometry. Anything marked 'offset' is derived from an anchor by hand and has NOT",
+    "been stood on - see OI-9 for how to correct them in game."
+  ],
+  "nodeRefPrefix": "$/03_night_city/ash_cache/#AshCache",
+  "block": "mod\\ash_cache\\worlds\\ash_cache.streamingblock",
+  "sectorDir": "mod\\ash_cache\\worlds",
+  "sectors": [
+    {
+      "id": "ash_cache_motel",
+      "_about": "Act 1. The motel in Dogtown where the signal is traced to room 7.",
+      "markers": [
+        {
+          "id": "ac_motel_entrance",
+          "pos": [
+            -2240.04,
+            -2553.28,
+            80.23
+          ],
+          "yaw": -140.3,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "verified": true
+        },
+        {
+          "id": "ac_motel_room7",
+          "pos": [
+            -2240.04,
+            -2553.28,
+            80.23
+          ],
+          "yaw": -140.3,
+          "_source": "DERIVED, NOT STOOD ON. Collapsed onto #ac_motel_entrance, which IS verified. No verified interior point exists anywhere in the motel, and the previous value (entrance +6X +4Y +3Z) put the player in an underground parking garage - concrete pillars, not a motel room. A map pin at the door is honest and reachable; a pin one floor up inside a guess is neither. Correct this by teleporting to ac_motel_entrance, walking to room 7 on foot, and pressing set - the entrance being verified is exactly what makes that walk possible.",
+          "verified": false,
+          "collapsedOnto": "ac_motel_entrance"
+        }
+      ]
+    },
+    {
+      "id": "ash_cache_clinic",
+      "_about": [
+        "Acts 2-4. A ripperdoc clinic in Dogtown, four metres below street level.",
+        "",
+        "This sector used to sit on the Cynosure core at Z -194.78. That coordinate",
+        "was real geometry, but it is 275m underground inside the Phantom Liberty",
+        "mission space, so the only way in was a teleport. It is now anchored on",
+        "vanilla's own ripperdoc shopfront - the prefab is loc_q303_macs_clinic,",
+        "dressed by q304 as Farida's - which the player walks into off the street.",
+        "",
+        "Reachability is not inferred from the geometry, it is read out of vanilla:",
+        "the sector one level up holds a worldStaticGpsLocationEntranceMarkerNode",
+        "named {loc_q303_macs_clinic_gps} at -1891.75 -2486.90 28.00. That node type",
+        "exists so the navigation system can route the player to a door on foot, and",
+        "there are exactly four of them in the whole of Dogtown. Beside it sits a",
+        "worldInteriorAreaNode {q304_Farida_interior_area}, and the front door",
+        "(base\\gameplay\\devices\\doors\\final\\single_door.ent) carries a DoorController",
+        "whose authored persistentState is isLocked 0, isSealed 0.",
+        "",
+        "All of that lives in the ordinary streamed Interior/Exterior sectors, not in",
+        "a Quest-category one, so it is present whatever the player's PL progress. The",
+        "q304_ dressing is not: q304_farida_shop_sign has isVisibleInGame 0 and is",
+        "switched on by that mission. The room is permanent, the shop sign is not."
+      ],
+      "markers": [
+        {
+          "id": "ac_clinic_entrance",
+          "pos": [
+            -1891.75,
+            -2486.9,
+            27.95
+          ],
+          "yaw": 39.5,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "verified": true
+        },
+        {
+          "id": "ac_clinic_terminal",
+          "pos": [
+            -1911.72,
+            -2464.32,
+            24.08
+          ],
+          "yaw": 48.1,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "verified": true
+        },
+        {
+          "id": "ac_splinter_case",
+          "pos": [
+            -1910.25,
+            -2467.02,
+            24.07
+          ],
+          "yaw": -137.1,
+          "_source": "DERIVED, NOT STOOD ON. 30% along the straight line from #ac_clinic_terminal to #ac_mara - two points the player physically occupied inside the clinic on the same floor, 10.2m apart - so this lies on interior floor unless the room is concave between them. 3.1m clear of the terminal, 7.2m of Mara, 27.2m in from the stairwell. Yaw faces back at the stairwell, so V meets the front of the box. The PREVIOUS value (-1917.5 -2472.5 25.0) was an offset guess and was inside solid rock: the capture screenshot is a 21KB all-black frame.",
+          "verified": false
+        },
+        {
+          "id": "ac_mara",
+          "pos": [
+            -1906.83,
+            -2473.31,
+            24.06
+          ],
+          "yaw": -111.9,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "ash_cache_probe",
+      "probe": "Not quest content. Two nodes that answer, in one look, whether this project can place an INTERACTABLE object at all - see D15. Its nodes are exempt from the 'defined but nothing references it' check because nothing is SUPPOSED to reference them. Delete this whole sector once OI-13 is closed.",
+      "_about": [
+        "Everything here sits on #ac_clinic_entrance, which is one of the two VERIFIED",
+        "coordinates (OI-9), so a node that does not appear failed for its own reasons",
+        "and not because it was placed inside a wall.",
+        "",
+        "It is a SEPARATE sector on purpose, and so are the two spawner probes below it.",
+        "A malformed node takes its own sector down with it. Splitting them means each",
+        "question fails on its own: if this sector is empty but the car sector is not,",
+        "the answer is about the .ent, not about the location."
+      ],
+      "triggers": [
+        {
+          "id": "ac_probe_trigger",
+          "pos": [
+            -1892.08,
+            -2486.52,
+            28.0
+          ],
+          "yaw": 41.6,
+          "size": [
+            4.0,
+            4.0,
+            2.0
+          ],
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "_about": "Cheapest possible world node: no .ent, no record, no redscript. If the sector loads at all, this one is almost certainly fine.",
+          "verified": true
+        }
+      ],
+      "props": [
+        {
+          "id": "ac_probe_computer",
+          "pos": [
+            -1916.6,
+            -2467.91,
+            24.06
+          ],
+          "yaw": 86.2,
+          "template": "base\\gameplay\\devices\\masters\\computers\\computer_1.ent",
+          "appearance": "computer_computer_2_angle_15",
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "_about": "The whole question, in one node. Vanilla places this exact .ent with this exact appearance in quest_73110a178d6e7404, but WITH a 200-field instanceData buffer; the cover entity two nodes later has instanceData null. This is that .ent with a null buffer. If it appears AND can be interacted with, terminal_read, box_opened and cabinet_opened are all cheap. If it appears but is inert, they need the buffer. If nothing appears, they need a mod-authored .ent.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "ash_cache_probe_car",
+      "probe": "Not quest content. The control half of the spawner experiment - see D15. Delete with the rest of the probes once OI-13 is closed.",
+      "spawners": [
+        {
+          "id": "ac_probe_car",
+          "pos": [
+            -1916.6,
+            -2467.91,
+            24.06
+          ],
+          "yaw": 90.0,
+          "record": "Vehicle.hackable_thorton_galena",
+          "isVehicle": true,
+          "_source": "DERIVED, NOT STOOD ON, but co-located deliberately with the verified #ac_probe_computer point on the open lower plaza - wide paving and benches, the only verified ground in the capture set a car actually fits on. As the CONTROL for the spawner experiment its coordinate must be above suspicion, and overlapping the computer probe costs nothing: the question is 'does anything appear here at all', which two probes answer better than one.",
+          "_about": "The CONTROL. A Vehicle record is the only kind vanilla ever puts in a spawner node, so if this one does not appear, nothing below it means anything and the problem is the location or the node itself.",
+          "spawnOnStart": true,
+          "verified": false
+        }
+      ]
+    },
+    {
+      "id": "ash_cache_probe_npc",
+      "probe": "Not quest content. Asks whether worldPopulationSpawnerNode.objectRecordId accepts a Character record - see D15 and OI-13. Its own sector so that a 'no' loud enough to invalidate the sector cannot take the control car down with it. Delete with the rest of the probes once OI-13 is closed.",
+      "spawners": [
+        {
+          "id": "ac_probe_npc",
+          "pos": [
+            -1892.65,
+            -2484.95,
+            28.0
+          ],
+          "yaw": -179.8,
+          "record": "Character.q305_fia_agent",
+          "spawnOnStart": true,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "_about": "The VARIABLE, and the whole reason this sector exists. Every objectRecordId in all 698 vanilla quest sectors is a Vehicle.*; not one is a Character.*, because vanilla spawns NPC groups from communities instead. So whether a spawner node accepts a Character record is a guess, and it is the last thing standing between cleanup_done and being authorable. q305_fia_agent is a real Phantom Liberty FIA agent, which is who the cleanup crew would be, so a yes here is the real content and not just an answer.",
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "deferred": {
+    "_about": [
+      "Referenced by source/journal.json but deliberately not built yet. Listed here",
+      "so validate.py can tell 'not written yet' apart from 'typo', instead of either",
+      "failing the build or letting a misspelt NodeRef ship silently."
+    ],
+    "ac_blueeyes_meet": "Act 5 Blue Eyes handover - location not designed yet (D5)",
+    "ac_badlands_cache": "Act 5 Hide ending - Badlands cache, outside Dogtown (D5)"
+  }
+}

@@ -1,0 +1,304 @@
+{
+  "_comment": [
+    "D130. The meeting. Mr. Blue Eyes has been two SMS and an ending since D5; this",
+    "is the one time in the quest he is a man standing in front of V.",
+    "",
+    "WHERE: #ac_motel_entrance, the lot act 1 sends V to - one of the coordinates",
+    "that has actually been stood on. Since D87 an actor carries no",
+    "spawnMarkerNodeRef of its own and spawns at the scene node's sceneLocation with",
+    "a zero offset, so this anchor is also the pavement he is standing on, and",
+    "validate.py refuses both a scene origin and a spawn on a position nobody has",
+    "measured. It is also the lot D129 put inside the Cynosure footprint: he picked",
+    "the spot, and the spot is the argument.",
+    "",
+    "FOUR ENTRY POINTS, ONE EXIT. Which door opens is decided by the quest graph,",
+    "off the same ashcache_end_* facts the ending switch reads - so the two can",
+    "never disagree about what V did. They differ for four lines and then converge:",
+    "what he has come to say does not depend on the answer, only his opinion of the",
+    "person he is saying it to. One exit rather than four, which is what makes a",
+    "SHARED scene node legal here where scene_epilogue.json needed four separate",
+    "ones: the thing D120 tripped over was a node with several live exit sockets,",
+    "not several entries (scene_aftertalk.json has two entries and ships).",
+    "",
+    "HE IS NOT KEPT ALIVE. characters.json leaves keepAlive off, so the engine",
+    "despawns him the frame the scene ends (D105). For Mara that was a bug the",
+    "player reported; for this man it is the only correct behaviour, and the last",
+    "line is written to be delivered on the way out. A Character record left",
+    "standing on a Dogtown pavement is also a Character record the player can shoot,",
+    "which is the D127 failure mode nobody needs twice.",
+    "",
+    "NO VOICE MODEL, AND NOT A GAP. Mr. Blue Eyes has no voiced lines anywhere in",
+    "the shipped game: a scan of all 110,495 English VO files finds blue_moon (the",
+    "singer) and nothing else. There is no performance to clone, so tools/",
+    "render_lines.py maps him to the TTS front end with no conversion, the same",
+    "mechanism the masked caller uses for a different reason. See D130."
+  ],
+  "scene": {
+    "id": "ash_cache_blueeyes",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [
+    "blueeyes"
+  ],
+  "entryPoints": [
+    { "name": "meet_sell_in", "node": "start_sell" },
+    { "name": "meet_absorb_in", "node": "start_absorb" },
+    { "name": "meet_destroy_in", "node": "start_destroy" },
+    { "name": "meet_hide_in", "node": "start_hide" }
+  ],
+  "exitPoints": [
+    { "name": "meet_done", "node": "end" }
+  ],
+  "nodes": [
+    { "id": "start_sell", "type": "start" },
+    { "id": "start_absorb", "type": "start" },
+    { "id": "start_destroy", "type": "start" },
+    { "id": "start_hide", "type": "start" },
+
+    {
+      "id": "tier_sell",
+      "_comment": "Same Tier3_LimitedGameplay + empty hands every conversation in this quest raises, one per entry point as scene_aftertalk.json does it. emptyHands is not cosmetic here: V arrives from an optional objective in open-world gameplay, which is the one approach to a scene in this quest that can start with a rifle up.",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier3_LimitedGameplay", "emptyHands": true }
+    },
+    { "id": "tier_absorb", "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier3_LimitedGameplay", "emptyHands": true } },
+    { "id": "tier_destroy", "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier3_LimitedGameplay", "emptyHands": true } },
+    { "id": "tier_hide", "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier3_LimitedGameplay", "emptyHands": true } },
+
+    {
+      "_comment": "The sell door. He has the splinter, he paid for it, and the only thing left to say about the transaction is how it was done.",
+      "id": "sec_sell",
+      "type": "section",
+      "lines": [
+        {
+          "id": "meet_sell_1",
+          "actor": "BlueEyes",
+          "emotion": "interested/confident",
+          "en-us": "It came in a box I never had to open. That is the only kind of delivery worth paying for.",
+          "ua-ua": "Воно прийшло в коробці, яку мені не довелося відкривати. Лише за такі доставки й варто платити."
+        },
+        {
+          "id": "meet_sell_2",
+          "actor": "BlueEyes",
+          "emotion": "neutral",
+          "en-us": "I hope you counted the money somewhere private. I did not pay you to be memorable.",
+          "ua-ua": "Сподіваюся, ти рахував гроші не на видноті. Я платив не за те, щоб тебе запам'ятали."
+        }
+      ]
+    },
+    {
+      "_comment": "The absorb door. The one ending where the thing he wanted is still in the room - behind V's eyes - and the only one where he looks at V as an object rather than a courier.",
+      "id": "sec_absorb",
+      "type": "section",
+      "lines": [
+        {
+          "id": "meet_absorb_1",
+          "actor": "BlueEyes",
+          "emotion": "interested/focused",
+          "en-us": "You did not sell it. You wore it.",
+          "ua-ua": "Ти його не продав. Ти його вдягнув."
+        },
+        {
+          "id": "meet_absorb_2",
+          "actor": "BlueEyes",
+          "emotion": "joy/fake_smile",
+          "en-us": "Nine years of somebody's voice, filed behind your own eyes. I would like very much to see how that ages.",
+          "ua-ua": "Дев'ять років чийогось голосу — і ти поклав їх собі за очі. Мені дуже цікаво, як воно визріє."
+        }
+      ]
+    },
+    {
+      "_comment": "The destroy door. No reproach: a man who buys futures does not argue with one that burned, he prices the next one.",
+      "id": "sec_destroy",
+      "type": "section",
+      "lines": [
+        {
+          "id": "meet_destroy_1",
+          "actor": "BlueEyes",
+          "emotion": "neutral",
+          "en-us": "You burned it. I watched a signal turn into a hole shaped like a signal.",
+          "ua-ua": "Ти його спалив. Я дивився, як сигнал став діркою у формі сигналу."
+        },
+        {
+          "id": "meet_destroy_2",
+          "actor": "BlueEyes",
+          "emotion": "interested/confident",
+          "en-us": "Don't apologize. I have bought a great many things that turned out to be ash. That one I got to watch.",
+          "ua-ua": "Не вибачайся. Я купив чимало речей, які виявилися попелом. За цією я хоч подивився."
+        }
+      ]
+    },
+    {
+      "_comment": "The hide door. Mara is alive on this one and he knows it, so the line is about her judgement rather than her grave.",
+      "id": "sec_hide",
+      "type": "section",
+      "lines": [
+        {
+          "id": "meet_hide_1",
+          "actor": "BlueEyes",
+          "emotion": "interested/focused",
+          "en-us": "You put it in the ground. On the word of the woman who put it in a wall.",
+          "ua-ua": "Ти закопав його в землю. За словом жінки, яка колись замурувала його в стіну."
+        },
+        {
+          "id": "meet_hide_2",
+          "actor": "BlueEyes",
+          "emotion": "neutral",
+          "en-us": "There is a symmetry in that I did not expect from you. It will hold about as long as she did.",
+          "ua-ua": "У цьому є симетрія, якої я від тебе не чекав. І протримається воно приблизно стільки ж, скільки й вона."
+        }
+      ]
+    },
+
+    {
+      "_comment": "Where the four doors meet, and the reason the meeting exists. He says out loud what D129's closure order only implies: the lot V is standing on is the roof of the thing the quest was about, and the cutting was never the asset.",
+      "id": "sec_shaft",
+      "type": "section",
+      "lines": [
+        {
+          "id": "meet_shaft_1",
+          "actor": "BlueEyes",
+          "emotion": "interested/confident",
+          "en-us": "Do you know what you have been standing on all evening? This lot. The road behind you. Two hundred and fifty meters of fill, and then a door.",
+          "ua-ua": "Ти знаєш, на чому стояв увесь вечір? Цей майданчик. Дорога позаду. Двісті п'ятдесят метрів насипу — а під ними двері."
+        },
+        {
+          "id": "meet_shaft_2",
+          "actor": "BlueEyes",
+          "emotion": "interested/focused",
+          "en-us": "The splinter was a cutting. What it was cut from is still down there, filed under a closure order with your name three rows below the header.",
+          "ua-ua": "Осколок був живцем. Те, з чого його зрізали, досі лежить унизу — під наказом про закриття, і твоє ім'я на три рядки нижче шапки."
+        },
+        {
+          "id": "meet_shaft_3",
+          "actor": "BlueEyes",
+          "emotion": "neutral",
+          "en-us": "I don't want it enough to dig. I want it enough to know who else is digging.",
+          "ua-ua": "Я хочу його не настільки, щоб копати. Але настільки, щоб знати, хто ще копає."
+        }
+      ]
+    },
+    {
+      "_comment": "Two options and two different answers - unlike the hub in scene_aftertalk.json, which converges on one. Both questions are the ones a player will actually have at this point in the quest, and refusing the first one properly is the only way to keep the unknown caller unidentified (characters.json) without the scene pretending V did not ask.",
+      "id": "hub",
+      "type": "choice",
+      "options": [
+        {
+          "id": "opt_meet_who",
+          "goto": "sec_who",
+          "en-us": "Who called me that first night?",
+          "ua-ua": "Хто подзвонив мені тієї першої ночі?"
+        },
+        {
+          "id": "opt_meet_price",
+          "goto": "sec_price",
+          "en-us": "Name a number for what's down there.",
+          "ua-ua": "Назви ціну за те, що лежить унизу."
+        }
+      ]
+    },
+    {
+      "id": "sec_who",
+      "type": "section",
+      "lines": [
+        {
+          "id": "meet_who_1",
+          "actor": "BlueEyes",
+          "emotion": "interested/confident",
+          "en-us": "Wrong question. A number with no name told you to drive to Dogtown, and you went.",
+          "ua-ua": "Неправильне питання. Номер без імені сказав їхати в Доґтаун — і ти поїхав."
+        },
+        {
+          "id": "meet_who_2",
+          "actor": "BlueEyes",
+          "emotion": "neutral",
+          "en-us": "Work out why that worked, and you won't need me to tell you who dialed.",
+          "ua-ua": "Зрозумій, чому це спрацювало, — і тобі не знадобиться, щоб я називав того, хто набирав."
+        }
+      ]
+    },
+    {
+      "id": "sec_price",
+      "type": "section",
+      "lines": [
+        {
+          "id": "meet_price_1",
+          "actor": "BlueEyes",
+          "emotion": "neutral",
+          "en-us": "Prices are for finished things. What you did tonight is finished.",
+          "ua-ua": "Ціни бувають у завершених речей. Те, що ти зробив сьогодні, — завершене."
+        },
+        {
+          "id": "meet_price_2",
+          "actor": "BlueEyes",
+          "emotion": "interested/confident",
+          "en-us": "What is under your feet is not for sale yet. When it is, I will be the one who tells you what it costs.",
+          "ua-ua": "Те, що під твоїми ногами, ще не продається. Коли продаватиметься — саме я скажу тобі, скільки воно коштує."
+        }
+      ]
+    },
+    {
+      "_comment": "The close, and the mod's standing hook: D123 had Mara say the source is still down there, D129 welded the door shut, and this asks why anyone welds a door in a hurry. Written to be delivered while turning away, because the actor despawns the frame the scene ends.",
+      "id": "sec_close",
+      "type": "section",
+      "lines": [
+        {
+          "id": "meet_close_1",
+          "actor": "BlueEyes",
+          "emotion": "interested/focused",
+          "en-us": "One thing, since you walked all the way up here. Nobody welds a door shut in a hurry unless something behind it was still moving.",
+          "ua-ua": "І ще одне — раз ти сюди дійшов. Ніхто не заварює двері поспіхом, якщо за ними вже ніщо не рухається."
+        },
+        {
+          "id": "meet_close_2",
+          "actor": "BlueEyes",
+          "emotion": "neutral",
+          "en-us": "Keep the number. Enjoy your evening.",
+          "ua-ua": "Збережи номер. Гарного вечора."
+        }
+      ]
+    },
+    {
+      "_comment": "The save-game record that this conversation happened and that the offer is open - the same job ashcache_mara_warned does for D123. The quest graph's guard_meet reads a separate replay fact; this one exists for a continuation to open on, and for nothing in this build.",
+      "id": "fact_offer",
+      "type": "quest",
+      "node": { "type": "set_fact", "fact": "ashcache_blueeyes_offer", "value": 1 }
+    },
+    {
+      "id": "tier_off",
+      "_comment": "Hands full control back.",
+      "type": "quest",
+      "node": { "type": "set_tier", "tier": "Tier1_FullGameplay", "emptyHands": false }
+    },
+    { "id": "end", "type": "end", "exit": "Terminating" }
+  ],
+  "links": [
+    [ "start_sell", "tier_sell" ],
+    [ "tier_sell", "sec_sell" ],
+    [ "sec_sell", "sec_shaft" ],
+
+    [ "start_absorb", "tier_absorb" ],
+    [ "tier_absorb", "sec_absorb" ],
+    [ "sec_absorb", "sec_shaft" ],
+
+    [ "start_destroy", "tier_destroy" ],
+    [ "tier_destroy", "sec_destroy" ],
+    [ "sec_destroy", "sec_shaft" ],
+
+    [ "start_hide", "tier_hide" ],
+    [ "tier_hide", "sec_hide" ],
+    [ "sec_hide", "sec_shaft" ],
+
+    [ "sec_shaft", "hub" ],
+    [ "hub:opt_meet_who", "sec_who" ],
+    [ "hub:opt_meet_price", "sec_price" ],
+    [ "sec_who", "sec_close" ],
+    [ "sec_price", "sec_close" ],
+    [ "sec_close", "fact_offer" ],
+    [ "fact_offer", "tier_off" ],
+    [ "tier_off", "end" ]
+  ]
+}

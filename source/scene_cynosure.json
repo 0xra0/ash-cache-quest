@@ -1,0 +1,537 @@
+{
+  "_comment": [
+    "D131. Shaft 14 - the head of the maintenance riser that goes down into Cynosure,",
+    "and the first time in this quest that the location the whole plot is named after is",
+    "a place the player can work rather than a word in somebody's dialogue.",
+    "",
+    "D129 put an objective here and one shard in V's pocket: walk to a pin on a parking",
+    "lot, get a silent grant, objective closes. That is the beat this scene replaces.",
+    "",
+    "SHAPE. scene_terminal.json's, exactly: actors [], a world-attached prompt hub, and",
+    "options that set a fact and LOOP BACK to the hub. A failing condition removes an",
+    "option rather than greying it out (OI-14), so each thing on the site can be done",
+    "once, in any order, and the menu shrinks as the player works. Every option is",
+    "visible from the first frame, so nothing here is content hidden behind a guess -",
+    "a player who leaves early left on purpose.",
+    "",
+    "WHAT IT PAYS. Two of the three things set a fact the quest graph reads after the",
+    "scene exits: the plate grants the closure order (D129's shard), the port grants the",
+    "survey abstract (new, and the one that actually describes the facility - nine",
+    "levels, where V's scan is filed, and the item missing from the cold store that is",
+    "the splinter in V's own inventory). The weld is worth no item and is the best beat",
+    "on the site: the plate is warm, the air moves outward, and the pumps log a",
+    "maintenance cycle every eleven days on a facility that was shut four years ago.",
+    "",
+    "ANCHOR. #ac_motel_entrance, a VERIFIED coordinate (D9) - validate.py refuses a",
+    "scene origin on a position nobody has stood on, which is the rule D129 wrote and",
+    "D130 paid for. ac_cynosure_shaft carries that same coordinate today, so the pin,",
+    "the 12 m arrival watch and this prompt are all on one point. A stood-on capture at",
+    "the real shaft head moves all four together.",
+    "",
+    "The scene raises the tier, so the quest graph wires its Default INT / Default RET",
+    "sockets to decide_int_wait / decide_ret_wait like every other tier-raising scene."
+  ],
+  "scene": {
+    "id": "ash_cache_cynosure",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [],
+  "entryPoints": [
+    {
+      "name": "shaft_in",
+      "node": "start"
+    },
+    {
+      "name": "shaft_return",
+      "node": "start_return"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "shaft_done",
+      "node": "end"
+    },
+    {
+      "name": "shaft_descend",
+      "node": "end_descend"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "_comment": "What tells the player there is anything here at all. The site is a concrete pad on an asphalt lot: no prop is placed, because a prop needs a stood-on coordinate and this one is still ac_motel_entrance's. D194: no tier raise before this - Tier3 locked walking and the world-attached hub never expanded (2026-09-30 in game). Same shape as scene_terminal.json, which runs the hub at full gameplay.",
+      "id": "sec_arrive",
+      "type": "section",
+      "lines": [
+        {
+          "id": "arrive_1",
+          "actor": "V",
+          "en-us": "Concrete pad. No parking lines, no drain. Everything else on this lot is asphalt.",
+          "ua-ua": "Бетонна плита. Ні розмітки, ні зливу. Уся решта майданчика — асфальт."
+        },
+        {
+          "id": "arrive_2",
+          "actor": "V",
+          "en-us": "Militech riser head, capped with plate and welded at the rim. Somebody stencilled a federal order straight across the weld.",
+          "ua-ua": "Оголовок технічної шахти «Мілітек», накритий плитою і заварений по обводу. Хтось наніс трафаретом федеральний припис просто по шву."
+        }
+      ]
+    },
+    {
+      "_comment": [
+        "The site itself. 1.0 m up off the scene origin puts the prompt at waist height on",
+        "a flat pad rather than in the dirt; range 3 is one metre wider than the 2 m every",
+        "other hub in this mod uses, because this one is outdoors and the player arrives",
+        "from any direction rather than walking up to a counter.",
+        "",
+        "Three things to do, each gone once done (OI-14: a failing condition removes an",
+        "option rather than greying it out), and one unconditional way out that is always",
+        "there. Every option is visible from the first frame, so a player who leaves",
+        "without the survey left on purpose."
+      ],
+      "id": "hub",
+      "type": "choice",
+      "attachToWorld": {
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "range": 3
+      },
+      "options": [
+        {
+          "id": "opt_plate",
+          "goto": "bar_plate",
+          "condition": {
+            "fact": "ashcache_cynosure_plate",
+            "value": 0,
+            "compare": "Equal"
+          },
+          "en-us": "Pull the closure plate",
+          "ua-ua": "Зняти припис про закриття"
+        },
+        {
+          "id": "opt_port",
+          "goto": "bar_port",
+          "condition": {
+            "fact": "ashcache_cynosure_port",
+            "value": 0,
+            "compare": "Equal"
+          },
+          "en-us": "Jack into the maintenance port",
+          "ua-ua": "Під'єднатися до технічного порту"
+        },
+        {
+          "id": "opt_seam",
+          "goto": "sec_seam",
+          "condition": {
+            "fact": "ashcache_cynosure_alive",
+            "value": 0,
+            "compare": "Equal"
+          },
+          "en-us": "Put a hand on the weld",
+          "ua-ua": "Покласти руку на шов"
+        },
+        {
+          "id": "opt_descend",
+          "goto": "tier_off_d",
+          "condition": {
+            "all": [
+              {
+                "fact": "ashcache_cynosure_alive",
+                "value": 1,
+                "compare": "Equal"
+              },
+              {
+                "fact": "ashcache_cyn_descended",
+                "value": 0,
+                "compare": "Equal"
+              }
+            ]
+          },
+          "en-us": "[Cut the seal] Climb down Shaft 14",
+          "ua-ua": "[Зрізати пломбу] Спуститися в шахту 14",
+          "_comment": "D193. Only after the weld beat: V has felt warm plate and moving air, so going down follows from what the site showed. The scene only expresses the decision; the graph sets ashcache_cyn_descended after the teleport runs."
+        },
+        {
+          "id": "opt_redescend",
+          "goto": "tier_off_d",
+          "condition": {
+            "fact": "ashcache_cyn_descended",
+            "value": 1,
+            "compare": "Equal"
+          },
+          "en-us": "Climb down Shaft 14",
+          "ua-ua": "Спуститися в шахту 14",
+          "_comment": "D193. The seal is cut once; every later visit is plain re-entry."
+        },
+        {
+          "id": "opt_leave",
+          "goto": "sec_leave",
+          "en-us": "Head out",
+          "ua-ua": "Іти звідси",
+          "_comment": "Unconditional on purpose. validate.py refuses a hub where every option is conditional, because a hub that can come up empty is a tier-raised scene the player cannot leave."
+        }
+      ]
+    },
+    {
+      "_comment": "4 seconds of bar and a 4.4 s section behind it, for the reason written on scene_terminal.json's wait_dl: questProgressBar does not block, so without the wait the plate would come off before the bar finished drawing.",
+      "id": "bar_plate",
+      "type": "quest",
+      "node": {
+        "type": "progress_bar",
+        "text": "hud_shaft_pry_top",
+        "bottom": "hud_shaft_pry_bottom",
+        "duration": 4.0
+      }
+    },
+    {
+      "id": "wait_plate",
+      "type": "section",
+      "seconds": 4.4,
+      "lines": []
+    },
+    {
+      "id": "warn_plate",
+      "type": "quest",
+      "node": {
+        "type": "warning_message",
+        "text": "hud_shaft_sealed",
+        "duration": 2.5,
+        "debug": "SHAFT 14 SEALED AT GRADE - FIA SITE SERVICES"
+      }
+    },
+    {
+      "_comment": "The reconciling beat, said out loud. The weld is older than the order painted on it, which is the whole reason the archive below has not been touched in four years.",
+      "id": "sec_plate",
+      "type": "section",
+      "lines": [
+        {
+          "id": "plate_1",
+          "actor": "V",
+          "en-us": "Agency stencil. Weld under it is Militech rod — pre-war spec, and years older than the paint.",
+          "ua-ua": "Трафарет агентства. Шов під ним — мілітеківський електрод, довоєнна специфікація, на роки старший за фарбу."
+        },
+        {
+          "id": "plate_2",
+          "actor": "V",
+          "en-us": "So the feds didn't seal this. They found it sealed and did the paperwork.",
+          "ua-ua": "Отже, федерали цього не заварювали. Вони знайшли його вже завареним і оформили папери."
+        },
+        {
+          "id": "plate_3",
+          "actor": "V",
+          "en-us": "Plate's coming with me. Site Services wrote their complaint on the face of it. Four times.",
+          "ua-ua": "Табличку заберу. Служба об'єктів написала свою скаргу просто на ній. Чотири рази."
+        }
+      ]
+    },
+    {
+      "id": "f_plate",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_cynosure_plate",
+        "value": 1
+      }
+    },
+    {
+      "id": "bar_port",
+      "type": "quest",
+      "node": {
+        "type": "progress_bar",
+        "text": "hud_shaft_port_top",
+        "bottom": "hud_shaft_port_bottom",
+        "duration": 6.0
+      }
+    },
+    {
+      "id": "wait_port",
+      "type": "section",
+      "seconds": 6.4,
+      "lines": []
+    },
+    {
+      "id": "warn_port",
+      "type": "quest",
+      "node": {
+        "type": "warning_message",
+        "text": "hud_shaft_port_done",
+        "duration": 3.0,
+        "debug": "SURVEY ABSTRACT PULLED - LEVELS -1 TO -9"
+      }
+    },
+    {
+      "_comment": [
+        "The location, described by the people who run it. This is the payload of the whole",
+        "round: the player finally learns what Cynosure IS, floor by floor, and where V's",
+        "own scan sits in it.",
+        "",
+        "port_5 closes the loop the quest opened in act 1. The cold store is short one",
+        "cutting, signed out nine years ago, and the carrier never signed out at grade -",
+        "because he got as far as a motel wall two hundred and fifty metres straight up,",
+        "which is where V found the box."
+      ],
+      "id": "sec_port",
+      "type": "section",
+      "lines": [
+        {
+          "id": "port_1",
+          "actor": "V",
+          "en-us": "Port's live. Whole riser's still drawing off the Pacifica grid.",
+          "ua-ua": "Порт живий. Уся шахта досі тягне струм із мережі «Пасифіки»."
+        },
+        {
+          "id": "port_2",
+          "actor": "V",
+          "en-us": "Nine levels. Minus one's the landing, minus three's the cold store, minus seven's the archive. Four through six have been underwater since '71.",
+          "ua-ua": "Дев'ять рівнів. Мінус перший — майданчик, мінус третій — холодне сховище, мінус сьомий — архів. Четвертий-шостий під водою з сімдесят першого."
+        },
+        {
+          "id": "port_3",
+          "actor": "V",
+          "en-us": "Minus seven is where my scan is. Tier three, originals included, nothing removed.",
+          "ua-ua": "На мінус сьомому — мій скан. Третій рівень доступу, разом з оригіналами, нічого не вилучено."
+        },
+        {
+          "id": "port_4",
+          "actor": "V",
+          "en-us": "And the cold store's short one item. A cutting off that same scan, signed out nine years ago on a badge that doesn't resolve.",
+          "ua-ua": "А в холодному сховищі бракує однієї одиниці. Живець із того самого скану — виписали дев'ять років тому за перепусткою, яка ні на кого не виводить."
+        },
+        {
+          "id": "port_5",
+          "actor": "V",
+          "en-us": "Carrier never signed out at grade. He got as far as a motel wall, two hundred and fifty metres straight up.",
+          "ua-ua": "Носій так і не відмітився на виході. Він дійшов до стіни мотелю — двісті п'ятдесят метрів просто вгору."
+        }
+      ]
+    },
+    {
+      "id": "f_port",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_cynosure_port",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "No item, and the best thing on the site. Everything V has read says the place is four years shut; the plate says otherwise under his hand.",
+      "id": "sec_seam",
+      "type": "section",
+      "lines": [
+        {
+          "id": "seam_1",
+          "actor": "V",
+          "en-us": "Plate's warm.",
+          "ua-ua": "Плита тепла."
+        },
+        {
+          "id": "seam_2",
+          "actor": "V",
+          "en-us": "Air's coming out of the weld line. Out, not in. Something down there is still pushing it.",
+          "ua-ua": "Із лінії шва йде повітря. Назовні, не всередину. Щось унизу його досі жене."
+        }
+      ]
+    },
+    {
+      "id": "warn_seam",
+      "type": "quest",
+      "node": {
+        "type": "warning_message",
+        "text": "hud_shaft_air",
+        "duration": 3.0,
+        "debug": "AIRFLOW OUTWARD 0.6 M/S - 14 C"
+      }
+    },
+    {
+      "id": "sec_seam2",
+      "type": "section",
+      "lines": [
+        {
+          "id": "seam_3",
+          "actor": "V",
+          "en-us": "Pumps on the landing log a maintenance cycle every eleven days. On a facility that shut four years ago.",
+          "ua-ua": "Насоси на майданчику відмічають технічний цикл кожні одинадцять днів. На об'єкті, який закрили чотири роки тому."
+        },
+        {
+          "id": "seam_4",
+          "actor": "V",
+          "en-us": "It's not a rumour under the Badlands any more. It's under my feet, and it's running.",
+          "ua-ua": "Це вже не чутка десь під Пустками. Воно в мене під ногами — і воно працює."
+        }
+      ]
+    },
+    {
+      "id": "f_seam",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_cynosure_alive",
+        "value": 1
+      }
+    },
+    {
+      "id": "sec_leave",
+      "type": "section",
+      "lines": [
+        {
+          "id": "leave_1",
+          "actor": "V",
+          "en-us": "Welded, federal, and over my head.",
+          "ua-ua": "Заварено, федеральне й не мого рівня."
+        },
+        {
+          "id": "leave_2",
+          "actor": "V",
+          "en-us": "I know where it is. That's more than I had this morning.",
+          "ua-ua": "Я знаю, де воно. Це більше, ніж я мав зранку."
+        }
+      ]
+    },
+    {
+      "id": "tier_off",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier1_FullGameplay",
+        "emptyHands": false
+      }
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    },
+    {
+      "id": "tier_off_d",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier1_FullGameplay",
+        "emptyHands": false
+      }
+    },
+    {
+      "id": "end_descend",
+      "type": "end",
+      "exit": "Terminating"
+    },
+    {
+      "_comment": "D194. Entry for the M1 return teleport (tp_cyn_up): straight to the hub. The arrival lines are a first-visit beat; replaying them every time V climbs back up read as a loop.",
+      "id": "start_return",
+      "type": "start"
+    }
+  ],
+  "links": [
+    [
+      "start",
+      "sec_arrive"
+    ],
+    [
+      "sec_arrive",
+      "hub"
+    ],
+    [
+      "hub:opt_plate",
+      "bar_plate"
+    ],
+    [
+      "bar_plate",
+      "wait_plate"
+    ],
+    [
+      "wait_plate",
+      "warn_plate"
+    ],
+    [
+      "warn_plate",
+      "sec_plate"
+    ],
+    [
+      "sec_plate",
+      "f_plate"
+    ],
+    [
+      "f_plate",
+      "hub"
+    ],
+    [
+      "hub:opt_port",
+      "bar_port"
+    ],
+    [
+      "bar_port",
+      "wait_port"
+    ],
+    [
+      "wait_port",
+      "warn_port"
+    ],
+    [
+      "warn_port",
+      "sec_port"
+    ],
+    [
+      "sec_port",
+      "f_port"
+    ],
+    [
+      "f_port",
+      "hub"
+    ],
+    [
+      "hub:opt_seam",
+      "sec_seam"
+    ],
+    [
+      "sec_seam",
+      "warn_seam"
+    ],
+    [
+      "warn_seam",
+      "sec_seam2"
+    ],
+    [
+      "sec_seam2",
+      "f_seam"
+    ],
+    [
+      "f_seam",
+      "hub"
+    ],
+    [
+      "hub:opt_leave",
+      "sec_leave"
+    ],
+    [
+      "sec_leave",
+      "tier_off"
+    ],
+    [
+      "tier_off",
+      "end"
+    ],
+    [
+      "hub:opt_descend",
+      "tier_off_d"
+    ],
+    [
+      "hub:opt_redescend",
+      "tier_off_d"
+    ],
+    [
+      "tier_off_d",
+      "end_descend"
+    ],
+    [
+      "start_return",
+      "hub"
+    ]
+  ]
+}

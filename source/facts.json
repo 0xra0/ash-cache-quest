@@ -1,0 +1,339 @@
+{
+  "_comment": "Every fact the quest reads or writes. Facts are the engine's global int store - the .questphase graph gates on them and redscript glue sets them. Names are flat and global across all mods, so everything is prefixed ashcache_.",
+  "progress": {
+    "_comment": "Linear spine. Each act sets the next value. The graph gates on >=.",
+    "ashcache_progress": {
+      "type": "int",
+      "values": {
+        "0": "not started",
+        "1": "message received",
+        "2": "courier room searched",
+        "3": "clinic found",
+        "4": "mara met",
+        "5": "terminal read",
+        "6": "cleanup survived",
+        "7": "resolved",
+        "8": "closure order read - the man with blue eyes asks for ten minutes"
+      }
+    }
+  },
+  "discoveries": {
+    "_comment": "Optional things the player may or may not find. These unlock dialogue, not progress.",
+    "ashcache_journal_read": {
+      "type": "bool",
+      "set_by": "reading Mara's journal shard"
+    },
+    "ashcache_cabinet_opened": {
+      "type": "bool",
+      "set_by": "opening the FIA-locked cabinet"
+    },
+    "ashcache_terminal_full_read": {
+      "type": "bool",
+      "set_by": "reading all terminal logs (unlocks Neural Dampener recipe)"
+    },
+    "ashcache_courier_log_played": {
+      "type": "bool",
+      "set_by": "playing the courier's audio log"
+    },
+    "ashcache_mara_autopsy_read": {
+      "type": "bool",
+      "set_by": "reading the coroner's note taken off Mara's body bag (D122)",
+      "_comment": "Read by nothing today, and declared anyway. Every other shard in this project sets a fact the graph or a later line can look at, and the alternative - a shard whose read is the one player action the mod does not notice - is the exact defect D121 was opened to fix. If the aftermath ever grows a second beat, this is what it hangs on."
+    },
+    "ashcache_mara_warned": {
+      "type": "bool",
+      "set_by": "the aftertalk scene, on BOTH routes - source/scene_aftertalk.json (D123)",
+      "_comment": "V has been told the splinter is a cutting and that the scan it grew from is still under Cynosure. Filed as a discovery rather than under 'mara' because it is not her disposition, it is something the player now knows: the quest graph reads it only as a re-entry guard, and the thing it is really for is a continuation opening on a save where it is 1. It is deliberately set on the intimidate route too - a sequel hook gated behind having been polite in Act 3 is a hook half the players never hear."
+    },
+    "ashcache_blueeyes_offer": {
+      "type": "bool",
+      "set_by": "the meeting scene itself, on its last beat (D130)",
+      "_comment": "Read by nothing in this build, deliberately - it is the save-game record that the offer on whatever is still under Shaft 14 is open, and it is what a continuation would open on. Same job ashcache_mara_warned does for D123."
+    },
+    "ashcache_cynosure_plate": {
+      "type": "bool",
+      "set_by": "the shaft-head scene, when V works the closure plate off the cap (D131)",
+      "_comment": "Read by the graph after the scene exits: it is what decides whether the closure order is granted. A player who never picks that option leaves without it, which is the point of a hub whose options are all visible from the first frame."
+    },
+    "ashcache_cynosure_port": {
+      "type": "bool",
+      "set_by": "the shaft-head scene, when V jacks the riser's maintenance port (D131)",
+      "_comment": "Grants the survey abstract, and is read once more inside the scene itself: the two 'head out' options are mutually exclusive positive conditions on this fact, so V signs off knowing what is under the lot or knowing only that it is welded."
+    },
+    "ashcache_cynosure_alive": {
+      "type": "bool",
+      "set_by": "the shaft-head scene, when V puts a hand on the weld (D131)",
+      "_comment": "Read by nothing, like ashcache_blueeyes_offer: it is the save-game record that V felt warm plate and outward airflow on a facility four years shut. The one thing on that site worth no item at all."
+    }
+  },
+  "mara": {
+    "_comment": "Mara's disposition. Mutually exclusive - exactly one is ever set.",
+    "ashcache_mara_trusted": {
+      "type": "bool",
+      "set_by": "micro-choice A, or C"
+    },
+    "ashcache_mara_hostile": {
+      "type": "bool",
+      "set_by": "micro-choice B (intimidate)"
+    },
+    "ashcache_mara_break": {
+      "type": "bool",
+      "set_by": "micro-choice C only (journal confrontation)"
+    },
+    "ashcache_mara_dead": {
+      "type": "bool",
+      "set_by": "set if she dies in the FIA cleanup fight",
+      "_comment": "Stated as 'dead', not 'alive', on purpose: an unset fact reads 0, so an 'alive' flag would read false until something initialised it. The Hide gate tests mara_dead == 0."
+    }
+  },
+  "ending": {
+    "_comment": "Exactly one is set at the final choice. Read by the epilogue scheduler.",
+    "ashcache_end_destroy": {
+      "type": "bool"
+    },
+    "ashcache_end_absorb": {
+      "type": "bool"
+    },
+    "ashcache_end_blueeyes": {
+      "type": "bool"
+    },
+    "ashcache_end_hide": {
+      "type": "bool"
+    }
+  },
+  "world_triggers": {
+    "_comment": "Set from outside the graph - by a world trigger volume, an interaction, or the redscript glue. The graph only ever waits on these.",
+    "ashcache_start": {
+      "type": "bool",
+      "set_by": "quest start conditions met; also the CET debug force-start"
+    },
+    "ashcache_at_motel": {
+      "type": "bool",
+      "set_by": "trigger volume at the Sleep-Kennel motel"
+    },
+    "ashcache_at_clinic": {
+      "type": "bool",
+      "set_by": "trigger volume at the clinic entrance"
+    },
+    "ashcache_box_opened": {
+      "type": "bool",
+      "set_by": "interaction on the black box in the clinic"
+    },
+    "ashcache_mara_choice_made": {
+      "type": "bool",
+      "set_by": "Mara's conversation, once a micro-choice is taken (also sets one of the mara_* facts)"
+    },
+    "ashcache_terminal_read": {
+      "type": "bool",
+      "set_by": "reading the clinic terminal's main log (the required beat; terminal_full_read is the optional one)"
+    },
+    "ashcache_cleanup_done": {
+      "type": "bool",
+      "set_by": "the FIA cleanup crew encounter ending"
+    },
+    "ashcache_decision_made": {
+      "type": "bool",
+      "set_by": "the final choice, alongside exactly one ashcache_end_* fact"
+    },
+    "ashcache_at_landfill": {
+      "type": "bool",
+      "set_by": "the glue's proximity watch on the ac_landfill_body marker, stage 7 (D122)",
+      "_comment": "Stage 7 and not earlier on purpose. The landfill is an ordinary piece of Night City the player may have driven past fifty times before the quest existed; arming this watch before the body is placed would fire the whole aftermath off a coincidence."
+    },
+    "ashcache_at_cynosure": {
+      "type": "bool",
+      "set_by": "the glue's proximity watch on the ac_cynosure_shaft marker, stage 7 (D129)",
+      "_comment": "Stage 7, same reasoning as ashcache_at_landfill: the shaft head is a piece of Dogtown the player has already walked past on the way to room 7 in act 1. Arming this before the quest is resolved would complete the aftermath objective off a coincidence - and off a coincidence the player could not even see, because the objective would not exist yet."
+    },
+    "ashcache_at_blueeyes": {
+      "type": "bool",
+      "set_by": "the glue's proximity watch on the ac_motel_entrance marker, stage 8 (D130)",
+      "_comment": "Stage 8 and not 7, although this is the same lot the shaft head sits on - which is exactly why. Both watches would otherwise be armed together and the player walking up for the closure order would satisfy this one on the same step, starting the meeting before the message that asks for it. A stage of its own is what the field is for: the graph sets progress to 8 when the shaft beat closes."
+    },
+    "ashcache_cyn_escaped": {
+      "type": "bool",
+      "set_by": "the glue's area watch on ac_cyn_escape (D193, M1 scaffolding)",
+      "_comment": "One-shot guard for the M1 return teleport, reset to 0 on each descent so the round trip can be repeated. The M4 ending flow replaces the watch."
+    }
+  },
+  "graph_outputs": {
+    "_comment": "Written by the .questphase graph and read back by it a moment later, to carry an answer across the objective node that sits between the gate and the choice. It was meant to be read by the choice hub - a questCondition on the option, so Hide greys out. Half of that is now available: 1,177 vanilla scenes (17%) gate an option with questCondition and gen_scene.py can emit one (D26), but a failing condition REMOVES the option instead of greying it, so the hub still cannot show what the player did not earn. D14 reads it in route_hide instead and enters the ending scene by one of two entry points.",
+    "ashcache_hide_available": {
+      "type": "bool",
+      "set_by": "the graph, when the Hide gate passes"
+    }
+  },
+  "ending_gates": {
+    "_comment": "DECIDED 2026-09-01 (D3). Hide is gated on Mara trusting V - she is the one who knows the Badlands cache and seals it. The other three are always offered. An empty 'requires' means always available.",
+    "ashcache_end_destroy": {
+      "requires": []
+    },
+    "ashcache_end_absorb": {
+      "requires": []
+    },
+    "ashcache_end_blueeyes": {
+      "requires": []
+    },
+    "ashcache_end_hide": {
+      "requires": [
+        "ashcache_mara_trusted"
+      ],
+      "excludes": [
+        "ashcache_mara_dead"
+      ],
+      "_comment": "OI-1: Mara has to be alive to name the Badlands cache and hand over the Master Key, so the gate tests both. Enforced twice on purpose - once as gate_hide, whose answer route_hide reads to open the four-option door of the ending scene rather than the three-option one (D14), and again as br_hide in the ending switch, so a bugged or modded dialogue cannot reach an unplayable ending."
+    }
+  },
+  "world_state": {
+    "_comment": "World state this mod holds open outside the quest. Read by source/cynosure_graph.json, which is a separate injected phase - not part of the quest graph, and not set by it.",
+    "ashcache_cynosure_open": {
+      "type": "bool",
+      "set_by": "the player, deliberately: CET panel button or Game.SetFactValue. Default 0, and nothing in the quest sets it. 1 streams the Cynosure bunker prefabs, 0 unloads them again."
+    }
+  },
+  "replay_guards": {
+    "_comment": "Markers that say 'this irreversible node already ran on this save'. They exist only so a phase_revision bump (OI-15) can repair a stale journal without repeating the world effects the player already got - see D50 and tools/replaytest.py. Nothing in the world sets these; the graph sets each one immediately after the node it guards, so the marker and the effect cannot come apart.",
+    "ashcache_courier_log_given": {
+      "type": "bool",
+      "set_by": "the graph, right after granting the courier's audio log"
+    },
+    "ashcache_courier_shard_taken": {
+      "type": "bool",
+      "set_by": "the graph, right after V takes the courier's shard off the room 7 table (D110)"
+    },
+    "ashcache_mara_journal_given": {
+      "type": "bool",
+      "set_by": "the graph, right after granting Mara's journal shard"
+    },
+    "ashcache_splinter_given": {
+      "type": "bool",
+      "set_by": "the graph, right after granting the splinter"
+    },
+    "ashcache_fia_key_given": {
+      "type": "bool",
+      "set_by": "the graph, right after granting the FIA master key (Hide ending only)"
+    },
+    "ashcache_mara_trophy_dropped": {
+      "type": "bool",
+      "set_by": "AshCacheTrophy.reds (D186), when it drops the Last Word as a real loot item beside Mara's body. Hides the glue's visual gun prop and stops a second drop."
+    },
+    "ashcache_mara_liberty_given": {
+      "type": "bool",
+      "set_by": "the graph, right after granting Mara's sidearm (D121). Only the three routes where V did not tell her to get lost reach the grant at all, so this marker is 0 forever on the hostile route - it guards a re-walk, it does not decide who gets the gun."
+    },
+    "ashcache_mara_body_placed": {
+      "type": "bool",
+      "set_by": "the graph, right after the aftermath arms itself - the NCPD notice is sent, the objective is raised and the body is drawn (D122)",
+      "_comment": "Also the switch the glue reads to know the body exists at all: source/glue.json draws the corpse only while this is 1, so a player who never reaches the aftermath walks across an ordinary landfill. It guards a re-walk AND doubles as world state, which no other replay guard in this file does - worth knowing before anyone reuses the pattern."
+    },
+    "ashcache_mara_autopsy_given": {
+      "type": "bool",
+      "set_by": "the graph, right after granting whichever coroner's note the wound called for (D122)"
+    },
+    "ashcache_hook_called": {
+      "type": "bool",
+      "set_by": "the graph, right after the opening holocall hangs up (D126)",
+      "_comment": "The re-entry guard on the call that STARTS the quest, and it matters more than the one on D124's. The two SMS this replaced needed no guard at all: a journal entry re-activated is the same entry, already in the thread, and the player sees nothing. A call is not idempotent - a phase_revision bump would re-walk the graph past await_start on a save that is hours into the quest and ring the opening hook again, with the caller explaining a burn order the player has already beaten. Set AFTER the hang-up, never before the ring, so a save interrupted mid-call rings again rather than losing the address and the only objective the quest has yet given."
+    },
+    "ashcache_mara_called": {
+      "type": "bool",
+      "set_by": "the graph, right after Mara's holocall hangs up (D124)",
+      "_comment": "The re-entry guard on the call. A phase_revision bump re-walks a finished save all the way back through the aftermath, and without this the phone rings again on a quest that ended - worse than a replayed message, because a call takes the screen. Filed with the replay guards and not under 'discoveries' even though V learns something: what V learned is already ashcache_mara_warned, set back at the clinic. This one only remembers that the call happened."
+    },
+    "ashcache_epilogue_played": {
+      "type": "bool",
+      "set_by": "the graph, at the end of whichever ending beat played (D120). The re-entry guard on the epilogue: a phase_revision bump re-walks a finished save all the way back to its ending, and without this the beat replays - and the Blue Eyes payout lands a second time."
+    },
+    "ashcache_cynosure_seal_given": {
+      "type": "bool",
+      "set_by": "the graph, right after granting the closure order at the shaft head (D129)"
+    },
+    "ashcache_meeting_played": {
+      "type": "bool",
+      "set_by": "the graph, once the meeting scene has handed control back (D130)"
+    },
+    "ashcache_cynosure_site": {
+      "type": "bool",
+      "set_by": "the graph, the moment the shaft-head scene exits (D131)"
+    },
+    "ashcache_cynosure_survey_given": {
+      "type": "bool",
+      "set_by": "the graph, right after granting the survey abstract at the shaft head (D131)"
+    }
+  },
+  "chip": {
+    "_comment": "The Splinter perk tree (D115). Set by source/scripts/AshCacheChipTree.reds, never by the graph: buying a perk is a menu action, not a quest step. Facts rather than script fields because facts are saved with the game.",
+    "ashcache_chip_frag_1": {
+      "type": "bool",
+      "set_by": "AshCacheChipTree.reds, when V walks onto echo fragment 1 (chip_tree.json fragments, D117)"
+    },
+    "ashcache_chip_frag_2": {
+      "type": "bool",
+      "set_by": "AshCacheChipTree.reds, when V walks onto echo fragment 2 (chip_tree.json fragments, D117)"
+    },
+    "ashcache_chip_frag_3": {
+      "type": "bool",
+      "set_by": "AshCacheChipTree.reds, when V walks onto echo fragment 3 (chip_tree.json fragments, D117)"
+    },
+    "ashcache_chip_frag_4": {
+      "type": "bool",
+      "set_by": "AshCacheChipTree.reds, when V walks onto echo fragment 4 (chip_tree.json fragments, D117)"
+    },
+    "ashcache_chip_frag_5": {
+      "type": "bool",
+      "set_by": "AshCacheChipTree.reds, when V walks onto echo fragment 5 (chip_tree.json fragments, D117)"
+    },
+    "ashcache_chip_frag_6": {
+      "type": "bool",
+      "set_by": "AshCacheChipTree.reds, when V walks onto echo fragment 6 (chip_tree.json fragments, D117)"
+    },
+    "ashcache_chip_ghost_1": {
+      "type": "bool",
+      "set_by": "buying perk ghost_1 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_ghost_2": {
+      "type": "bool",
+      "set_by": "buying perk ghost_2 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_ghost_3": {
+      "type": "bool",
+      "set_by": "buying perk ghost_3 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_echo_1": {
+      "type": "bool",
+      "set_by": "buying perk echo_1 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_echo_2": {
+      "type": "bool",
+      "set_by": "buying perk echo_2 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_echo_3": {
+      "type": "bool",
+      "set_by": "buying perk echo_3 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_ash_1": {
+      "type": "bool",
+      "set_by": "buying perk ash_1 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_ash_2": {
+      "type": "bool",
+      "set_by": "buying perk ash_2 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_ash_3": {
+      "type": "bool",
+      "set_by": "buying perk ash_3 in the Splinter tree; cleared by Reset"
+    },
+    "ashcache_chip_notified": {
+      "type": "bool",
+      "set_by": "the chip tree, after it shows the one-time unlock message"
+    }
+  },
+  "cynosure": {
+    "_comment": "D193. The Cynosure facility itself (D192 sector). Names follow cynosure_contract.json, where the imported ash_* state was renamed to ashcache_*. ashcache_cyn_phase itself comes from the imported contract; ashcache_cyn_escaped is under world_triggers because the glue sets it.",
+    "ashcache_cyn_descended": {
+      "type": "bool",
+      "set_by": "the quest graph, AFTER the Shaft 14 teleport node has run (D193)",
+      "_comment": "Written after the teleport, not by the scene option, so a save can never say V went down while V is still standing at the shaft head. Also picks the re-entry caption: the seal is cut once."
+    }
+  }
+}

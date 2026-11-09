@@ -1,0 +1,66 @@
+{
+ "$type": "questInjectLoot_NodeType",
+ "params": [
+  {
+   "HandleId": "103",
+   "Data": {
+    "$type": "questInjectLoot_NodeTypeParams",
+    "lootOperations": [
+     {
+      "HandleId": "104",
+      "Data": {
+       "$type": "questInjectLoot_NodeTypeParams_OperationData",
+       "itemTDBID": {
+        "$type": "TweakDBID",
+        "$storage": "string",
+        "$value": "Items.ma_std_arr_10_onscreen_01"
+       },
+       "operationType": "Inject",
+       "quantity": 1
+      }
+     }
+    ],
+    "objectRef": {
+     "HandleId": "105",
+     "Data": {
+      "$type": "questUniversalRef",
+      "entityReference": {
+       "$type": "gameEntityReference",
+       "dynamicEntityUniqueName": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "None"
+       },
+       "names": [
+        {
+         "$type": "CName",
+         "$storage": "string",
+         "$value": "ganger_001"
+        }
+       ],
+       "reference": {
+        "$type": "NodeRef",
+        "$storage": "string",
+        "$value": "#ma_std_arr_10_com"
+       },
+       "sceneActorContextName": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "None"
+       },
+       "slotName": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "None"
+       },
+       "type": "EntityRef"
+      },
+      "mainPlayerObject": 0,
+      "refLocalPlayer": 0
+     }
+    },
+    "operations": []
+   }
+  }
+ ]
+}

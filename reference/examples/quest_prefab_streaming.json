@@ -1,0 +1,39 @@
+{
+  "_source": "ep1/quest/main_quests/q305/phases/q305_06_outer_bunker.questphase and q305_07_inner_bunker.questphase, unbundled from ep1_2_gamedata.archive and serialised with WolvenKit.CLI. Extracted 2026-09-04 (D31).",
+
+  "_why": "A Quest-category streaming sector is not loaded by walking near it. Its worldStreamingSectorDescriptor in ep1 all.streamingblock carries a questPrefabNodeRef - true for 381 of 381 Quest sectors and 0 of the other 1,805 - and a streamingBox of +/-FLT_MAX, which is distance streaming switched OFF, not an infinite radius. The sector is loaded for exactly as long as some ACTIVE PHASE names its prefab. That is the whole mechanism, and it is why there is no door to open and no coordinate to stand on.",
+
+  "_two_forms": {
+    "questQuestPhaseResource.phasePrefabs": "owned while the whole phase runs. q305_06_outer_bunker declares #q305_pr_outer_bunker (and #holocalls_studio_ep1); q305_07_inner_bunker declares #q305_pr_inner_bunker.",
+    "questPhaseNodeDefinition.phaseInstancePrefabs": "owned while that one node runs. q305_07 node 128 declares #q305_pr_outer_bunker. This is the form to copy in a mod: a phase injected by ArchiveXL attaches to the ROOT quest graph and runs from game load until its output fires, so the resource-level list would mean 'for the entire game'."
+  },
+
+  "_not_the_mechanism": "questShowWorldNode_NodeType is a second, finer step, not the loader. q305_06_outer_bunker node 476 uses it on #q305_pr_inner_bunker with show:1 so the inner bunker is visible through the airlock while the outer phase still owns the streaming. In mq305_03_bunker_exploration_setup it is used only on props (#mq305_lab_footprints_01/02), while the LOCATION prefabs there are driven by questTogglePrefabVariant_NodeType on #loc_mq305_wanted_lab_lighting and #loc_mq305_wanted_lab_env_int. Showing a node that no active phase owns loads nothing.",
+
+  "_no_output_node_is_legal": "6 of the 61 q305/mq305 phases ship with no questOutputNodeDefinition at all - q305_06_ob_lightning, q305_06_ob_fx, q305_06_ob_devices, q305_07_ib_ui, q305_07_ib_sfx, q305_outer_bunker_malfunctioning_doors. All six are ambient world-state phases. A phase that holds a prefab is the same kind of thing and is not supposed to finish.",
+
+  "verified_prefab_refs": {
+    "#q305_pr_outer_bunker": "quest_c5762a0914e51033.streamingsector, 4 variants. Owned by q305_06_outer_bunker.phasePrefabs and by q305_07 node 128.phaseInstancePrefabs.",
+    "#q305_pr_inner_bunker": "quest_9ecf0f6eee9ee9de.streamingsector, 11 variants. Owned by q305_07_inner_bunker.phasePrefabs; shown early by q305_06_outer_bunker node 476."
+  },
+
+  "node_476_show": {
+    "$type": "questShowWorldNode_NodeType",
+    "componentName": "None",
+    "isPlayer": 0,
+    "objectRef": "#q305_pr_inner_bunker",
+    "show": 1
+  },
+
+  "node_128_hold": {
+    "$type": "questPhaseNodeDefinition",
+    "phaseInstancePrefabs": [{"$type": "questQuestPrefabEntry", "prefabNodeRef": "#q305_pr_outer_bunker"}],
+    "phaseResource": {"DepotPath": 0, "Flags": "Soft"},
+    "saveLock": 0,
+    "unfreezingTriggerNodeRef": 0,
+    "_sockets": "In1 / Out1, matched by name against the socketName of the input and output nodes inside phaseGraph",
+    "_phaseGraph": "an inline questGraphDefinition; an empty phaseResource DepotPath is what makes it inline rather than a reference to another file"
+  },
+
+  "_untested": "Loading the geometry is not the same as being able to walk it. None of q305_06/q305_07's scripting runs - airlocks, Cerberus, lighting states, set dressing are all graph nodes in phases that are not active - so expect an empty dark bunker with some doors shut. Whether it is traversable end to end needs a playthrough."
+}

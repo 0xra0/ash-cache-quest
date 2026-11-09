@@ -1,0 +1,934 @@
+{
+ "_source": "base\\gameplay\\devices\\masters\\computers\\computer_1.ent as vanilla places it in quest_73110a178d6e7404.streamingsector, node 12 - a worldEntityNode with appearance computer_computer_2_angle_15, which is the same .ent, the same node type and the same appearance this quest places. Extracted verbatim by tools, not typed by hand.",
+ "_why": [
+  "OI-13 asked whether a DEVICE can be placed with instanceData null, the way",
+  "base\\entities\\covers\\left_sided_low_cover.ent is. The probe node",
+  "ac_probe_computer was placed with null to find out, and world.json wrote the",
+  "test down before it was run: 'If it appears AND can be interacted with,",
+  "terminal_read, box_opened and cabinet_opened are all cheap. If it appears",
+  "but is inert, they need the buffer.'",
+  "",
+  "The player reported it on 2026-09-09: it appears, drawn as a bare screen",
+  "plane, and there is no interaction on it at all. So: they need the buffer.",
+  "This is the buffer. isInteractive is 1 and tweakDBRecord is Devices.Computer;",
+  "with no instanceData there is no ComputerControllerPS at all, so there is",
+  "nothing to be interactive and no device record to draw a body from."
+ ],
+ "_handleids": "The 12 HandleIds in here (24-35 as vanilla numbered them) are definitions - each appears exactly once and nothing references them - so gen_sector.py renumbers them per node. Two props carrying this buffer would otherwise define the same handle twice in one file.",
+ "_cruid": "CruidDict is copied unchanged, deliberately. It is NOT a per-node unique id: nodes 79, 80 and 84 of quest_e495c59e9949e75b all carry the same 3609005567401009152, and 1508365491801698304 appears in two different sectors. Vanilla duplicates it across identical placements, so duplicating it is what matching vanilla means (rule 8).",
+ "instanceData": {
+  "HandleId": "24",
+  "Data": {
+   "$type": "entEntityInstanceData",
+   "buffer": {
+    "BufferId": "1",
+    "Flags": 4063232,
+    "Type": "WolvenKit.RED4.Archive.Buffer.RedPackage, WolvenKit.RED4, Version=8.19.1.0, Culture=neutral, PublicKeyToken=null",
+    "Data": {
+     "Version": 4,
+     "Sections": 6,
+     "CruidIndex": 1,
+     "CruidDict": {
+      "0": "1131680419258347532",
+      "1": "0"
+     },
+     "Chunks": [
+      {
+       "$type": "ComputerController",
+       "id": "0",
+       "isReplicable": 0,
+       "name": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "Component"
+       },
+       "persistentState": {
+        "HandleId": "25",
+        "Data": {
+         "$type": "ComputerControllerPS",
+         "actionsWithDisabledRPGChecks": [],
+         "activationState": "NONE",
+         "activatorActionSetup": "None",
+         "activeContexts": [],
+         "allowUICameraZoomDynamicSwitch": 0,
+         "authorizationProperties": {
+          "$type": "AuthorizationData",
+          "alwaysExposeActions": 0,
+          "authorizationDataEntry": {
+           "$type": "SecurityAccessLevelEntryClient",
+           "keycard": {
+            "$type": "TweakDBID",
+            "$storage": "string",
+            "$value": "Keycards.Master_keycard"
+           },
+           "level": "ESL_NONE",
+           "password": {
+            "$type": "CName",
+            "$storage": "string",
+            "$value": "None"
+           }
+          },
+          "isAuthorizationModuleOn": 1
+         },
+         "autoToggleQuestMark": 1,
+         "availableQuickHacks": [],
+         "availableSpiderbotActions": [],
+         "backdoorBreachDifficulty": "HARD",
+         "backdoorObjectiveData": null,
+         "blackboard": null,
+         "blockSecurityWakeUp": 0,
+         "broadcastGlitchVideoPath": {
+          "$type": "redResourceReferenceScriptToken",
+          "resource": {
+           "DepotPath": {
+            "$type": "ResourcePath",
+            "$storage": "uint64",
+            "$value": "0"
+           },
+           "Flags": "Soft"
+          }
+         },
+         "cachedDeviceState": "OFF",
+         "callbackToDisableQuestMarkID": 0,
+         "canBeInDeviceChain": 0,
+         "canBeTrapped": 0,
+         "canHandleAdvancedInteraction": 0,
+         "canPlayerTakeOverControl": 0,
+         "clearance": null,
+         "computerSetup": {
+          "$type": "ComputerSetup",
+          "allowRemoteAuthorization": 0,
+          "animationState": "None",
+          "animationStateSetFactName": {
+           "$type": "CName",
+           "$storage": "string",
+           "$value": "None"
+          },
+          "filesMenu": 1,
+          "filesStructure": [
+           {
+            "$type": "gamedeviceGenericDataContent",
+            "content": [
+             {
+              "$type": "gamedeviceDataElement",
+              "content": "",
+              "date": "",
+              "documentName": {
+               "$type": "CName",
+               "$storage": "string",
+               "$value": "mq058_file1"
+              },
+              "isEnabled": 1,
+              "isEncrypted": 0,
+              "journalPath": {
+               "HandleId": "26",
+               "Data": {
+                "$type": "gameJournalPath",
+                "className": {
+                 "$type": "CName",
+                 "$storage": "string",
+                 "$value": "gameJournalFile"
+                },
+                "editorPath": "Onscreens/Emails/Quests/Minor_quest/Mq058_semimaru_crystalcoat/Mq058_files/Mq058_00_file1",
+                "fileEntryIndex": 5,
+                "realPath": "onscreens/emails/quests/minor_quest/mq058_semimaru_crystalcoat/mq058_files/mq058_00_file1"
+               }
+              },
+              "owner": "",
+              "questInfo": {
+               "$type": "gamedeviceQuestInfo",
+               "factName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "mq058_Files_File1_Status"
+               },
+               "isHighlighted": 1
+              },
+              "title": "",
+              "videoPath": {
+               "$type": "redResourceReferenceScriptToken",
+               "resource": {
+                "DepotPath": {
+                 "$type": "ResourcePath",
+                 "$storage": "uint64",
+                 "$value": "0"
+                },
+                "Flags": "Soft"
+               }
+              },
+              "wasRead": 0
+             }
+            ],
+            "name": "mq058_file1"
+           }
+          ],
+          "hideTopNavigationBar": 0,
+          "ignoreSlaveAuthorizationModule": 0,
+          "ignoreSleepMode": 0,
+          "internetMenu": 0,
+          "internetSubnet": {
+           "$type": "SInternetData",
+           "startingPage": ""
+          },
+          "mailsMenu": 1,
+          "mailsStructure": [
+           {
+            "$type": "gamedeviceGenericDataContent",
+            "content": [
+             {
+              "$type": "gamedeviceDataElement",
+              "content": "",
+              "date": "",
+              "documentName": {
+               "$type": "CName",
+               "$storage": "string",
+               "$value": "mq058_plex_newsletter"
+              },
+              "isEnabled": 1,
+              "isEncrypted": 0,
+              "journalPath": {
+               "HandleId": "27",
+               "Data": {
+                "$type": "gameJournalPath",
+                "className": {
+                 "$type": "CName",
+                 "$storage": "string",
+                 "$value": "gameJournalEmail"
+                },
+                "editorPath": "Onscreens/Emails/Quests/Minor_quest/Mq058_semimaru_crystalcoat/Mq058_emails/Mq058_plex_newsletter",
+                "fileEntryIndex": 5,
+                "realPath": "onscreens/emails/quests/minor_quest/mq058_semimaru_crystalcoat/mq058_emails/mq058_plex_newsletter"
+               }
+              },
+              "owner": "",
+              "questInfo": {
+               "$type": "gamedeviceQuestInfo",
+               "factName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "mq058_Mails_Plex_Newsletter_Status"
+               },
+               "isHighlighted": 0
+              },
+              "title": "",
+              "videoPath": {
+               "$type": "redResourceReferenceScriptToken",
+               "resource": {
+                "DepotPath": {
+                 "$type": "ResourcePath",
+                 "$storage": "uint64",
+                 "$value": "0"
+                },
+                "Flags": "Soft"
+               }
+              },
+              "wasRead": 1
+             }
+            ],
+            "name": "mq058_plex_newsletter"
+           },
+           {
+            "$type": "gamedeviceGenericDataContent",
+            "content": [
+             {
+              "$type": "gamedeviceDataElement",
+              "content": "",
+              "date": "",
+              "documentName": {
+               "$type": "CName",
+               "$storage": "string",
+               "$value": "mq058_spam1"
+              },
+              "isEnabled": 1,
+              "isEncrypted": 0,
+              "journalPath": {
+               "HandleId": "28",
+               "Data": {
+                "$type": "gameJournalPath",
+                "className": {
+                 "$type": "CName",
+                 "$storage": "string",
+                 "$value": "gameJournalEmail"
+                },
+                "editorPath": "Onscreens/Emails/Generic/spam_emails_ads/Generic_spam_03",
+                "fileEntryIndex": 3,
+                "realPath": "onscreens/emails/generic/generic_emails_ads/generic_spam_03"
+               }
+              },
+              "owner": "",
+              "questInfo": {
+               "$type": "gamedeviceQuestInfo",
+               "factName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "mq058_Mails_Spam1_Status"
+               },
+               "isHighlighted": 0
+              },
+              "title": "",
+              "videoPath": {
+               "$type": "redResourceReferenceScriptToken",
+               "resource": {
+                "DepotPath": {
+                 "$type": "ResourcePath",
+                 "$storage": "uint64",
+                 "$value": "0"
+                },
+                "Flags": "Soft"
+               }
+              },
+              "wasRead": 0
+             }
+            ],
+            "name": "mq058_spam1"
+           },
+           {
+            "$type": "gamedeviceGenericDataContent",
+            "content": [
+             {
+              "$type": "gamedeviceDataElement",
+              "content": "",
+              "date": "",
+              "documentName": {
+               "$type": "CName",
+               "$storage": "string",
+               "$value": "mq058_spam2"
+              },
+              "isEnabled": 1,
+              "isEncrypted": 0,
+              "journalPath": {
+               "HandleId": "29",
+               "Data": {
+                "$type": "gameJournalPath",
+                "className": {
+                 "$type": "CName",
+                 "$storage": "string",
+                 "$value": "gameJournalEmail"
+                },
+                "editorPath": "Onscreens/Emails/Generic/spam_emails_ads/Generic_spam_06",
+                "fileEntryIndex": 3,
+                "realPath": "onscreens/emails/generic/generic_emails_ads/generic_spam_06"
+               }
+              },
+              "owner": "",
+              "questInfo": {
+               "$type": "gamedeviceQuestInfo",
+               "factName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "mq058_Mails_Spam2_Status"
+               },
+               "isHighlighted": 0
+              },
+              "title": "",
+              "videoPath": {
+               "$type": "redResourceReferenceScriptToken",
+               "resource": {
+                "DepotPath": {
+                 "$type": "ResourcePath",
+                 "$storage": "uint64",
+                 "$value": "0"
+                },
+                "Flags": "Soft"
+               }
+              },
+              "wasRead": 0
+             }
+            ],
+            "name": "mq058_spam2"
+           },
+           {
+            "$type": "gamedeviceGenericDataContent",
+            "content": [
+             {
+              "$type": "gamedeviceDataElement",
+              "content": "",
+              "date": "",
+              "documentName": {
+               "$type": "CName",
+               "$storage": "string",
+               "$value": "mq058_mint_dad_farewell"
+              },
+              "isEnabled": 1,
+              "isEncrypted": 0,
+              "journalPath": {
+               "HandleId": "30",
+               "Data": {
+                "$type": "gameJournalPath",
+                "className": {
+                 "$type": "CName",
+                 "$storage": "string",
+                 "$value": "gameJournalEmail"
+                },
+                "editorPath": "Onscreens/Emails/Quests/Minor_quest/Mq058_semimaru_crystalcoat/Mq058_emails/Mq058_mint_dad_farewell",
+                "fileEntryIndex": 5,
+                "realPath": "onscreens/emails/quests/minor_quest/mq058_semimaru_crystalcoat/mq058_emails/mq058_mint_dad_farewell"
+               }
+              },
+              "owner": "",
+              "questInfo": {
+               "$type": "gamedeviceQuestInfo",
+               "factName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "mq058_Mint_Dad_Farewell_Status"
+               },
+               "isHighlighted": 0
+              },
+              "title": "",
+              "videoPath": {
+               "$type": "redResourceReferenceScriptToken",
+               "resource": {
+                "DepotPath": {
+                 "$type": "ResourcePath",
+                 "$storage": "uint64",
+                 "$value": "0"
+                },
+                "Flags": "Soft"
+               }
+              },
+              "wasRead": 1
+             }
+            ],
+            "name": "mq058_mint_dad_farewell"
+           },
+           {
+            "$type": "gamedeviceGenericDataContent",
+            "content": [
+             {
+              "$type": "gamedeviceDataElement",
+              "content": "",
+              "date": "",
+              "documentName": {
+               "$type": "CName",
+               "$storage": "string",
+               "$value": "mq058_spam3"
+              },
+              "isEnabled": 1,
+              "isEncrypted": 0,
+              "journalPath": {
+               "HandleId": "31",
+               "Data": {
+                "$type": "gameJournalPath",
+                "className": {
+                 "$type": "CName",
+                 "$storage": "string",
+                 "$value": "gameJournalEmail"
+                },
+                "editorPath": "Onscreens/Emails/Generic/spam_emails_ads/Generic_spam_10",
+                "fileEntryIndex": 3,
+                "realPath": "onscreens/emails/generic/generic_emails_ads/generic_spam_10"
+               }
+              },
+              "owner": "",
+              "questInfo": {
+               "$type": "gamedeviceQuestInfo",
+               "factName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "mq058_Mails_Spam3_Status"
+               },
+               "isHighlighted": 0
+              },
+              "title": "",
+              "videoPath": {
+               "$type": "redResourceReferenceScriptToken",
+               "resource": {
+                "DepotPath": {
+                 "$type": "ResourcePath",
+                 "$storage": "uint64",
+                 "$value": "0"
+                },
+                "Flags": "Soft"
+               }
+              },
+              "wasRead": 0
+             }
+            ],
+            "name": "mq058_spam3"
+           }
+          ],
+          "maxClearance": 10,
+          "minClearance": 1,
+          "newsFeed": [],
+          "newsFeedInterval": 5,
+          "newsFeedMenu": 0,
+          "shouldForceVirtualSystem": 1,
+          "startingMenu": "MAIN",
+          "stylePreset": {
+           "$type": "TweakDBID",
+           "$storage": "string",
+           "$value": "ComputerUIPresets.DefaultPreset"
+          },
+          "systemMenu": 1
+         },
+         "computerSkillChecks": {
+          "HandleId": "32",
+          "Data": {
+           "$type": "HackEngContainer",
+           "demolitionCheckSlot": null,
+           "engineeringCheck": null,
+           "engineeringCheckSlot": null,
+           "hackingCheck": null,
+           "hackingCheckSlot": null,
+           "isInitialized": 0
+          }
+         },
+         "computerUIpreset": null,
+         "connectionHighlightObjects": [],
+         "contentScale": {
+          "$type": "TweakDBID",
+          "$storage": "uint64",
+          "$value": "0"
+         },
+         "controlPanelObjectiveData": {
+          "HandleId": "33",
+          "Data": {
+           "$type": "ControlPanelObjectiveData",
+           "objectiveDescription": "Gain access to control panel in order to manipulate devices",
+           "objectiveEntryID": "",
+           "objectiveState": "Undefined",
+           "ownerID": {
+            "$type": "entEntityID",
+            "hash": "0"
+           },
+           "questTitle": "TECHNICAL GRID",
+           "questUniqueId": "TECHNICAL_GRID",
+           "uniqueId": "",
+           "uniqueIdPrefix": "controlPanel"
+          }
+         },
+         "currentlyAuthorizedUsers": [],
+         "currentSpiderbotActionPerformed": null,
+         "debugDevice": 0,
+         "debugExposeQuickHacks": 0,
+         "debugID": 0,
+         "debugName": {
+          "$type": "CName",
+          "$storage": "string",
+          "$value": "None"
+         },
+         "debugPath": {
+          "$type": "CName",
+          "$storage": "string",
+          "$value": "None"
+         },
+         "defaultGlitchVideoPath": {
+          "$type": "redResourceReferenceScriptToken",
+          "resource": {
+           "DepotPath": {
+            "$type": "ResourcePath",
+            "$storage": "uint64",
+            "$value": "0"
+           },
+           "Flags": "Soft"
+          }
+         },
+         "destructionProperties": {
+          "$type": "DestructionData",
+          "canBeFixed": 0,
+          "durabilityType": "INVULNERABLE"
+         },
+         "deviceName": "LocKey#48",
+         "deviceOperationsSetup": {
+          "HandleId": "34",
+          "Data": {
+           "$type": "DeviceOperationsContainer",
+           "operations": [],
+           "triggers": []
+          }
+         },
+         "deviceState": "ON",
+         "deviceUIStyle": "LightBlue",
+         "disablePersonalLinkAutoDisconnect": 1,
+         "disableQuickHacks": 1,
+         "disassembleProperties": {
+          "$type": "DisassembleOptions",
+          "canBeDisassembled": 0
+         },
+         "distractExecuted": 0,
+         "distractionTimeCompleted": 0,
+         "drawGridLink": 0,
+         "durabilityState": "NOMINAL",
+         "exposeQuickHacks": 0,
+         "factToDisableQuestMark": {
+          "$type": "CName",
+          "$storage": "string",
+          "$value": "None"
+         },
+         "flatheadScavengeProperties": {
+          "$type": "SpiderbotScavengeOptions",
+          "scavengableBySpiderbot": 0
+         },
+         "forcedElevatorArrowsState": "Disabled",
+         "forceResolveStateOnAttach": 0,
+         "forceVisibilityInAnimSystemOnLogicReady": 0,
+         "fullDepth": 1,
+         "hackingMinigameState": "Unknown",
+         "hasAuthorizationModule": 1,
+         "hasBeenScavenged": 0,
+         "hasFullScreenUI": 0,
+         "hasNetworkBackdoor": 1,
+         "hasNPCWorkspotKillInteraction": 0,
+         "hasPersonalLinkSlot": 0,
+         "hasUICameraZoom": 1,
+         "illegalActions": {
+          "$type": "IllegalActionTypes",
+          "quickHacks": 0,
+          "regularActions": 0,
+          "skillChecks": 1
+         },
+         "isAdvancedInteractionModeOn": 0,
+         "isAttachedToGame": 0,
+         "isBeingScanned": 0,
+         "isControlledByThePlayer": 0,
+         "isGlitching": 0,
+         "isHighlightedInFocusMode": 0,
+         "isInitialized": 0,
+         "isInitialStateOperationPerformed": 0,
+         "isInSleepMode": 1,
+         "isInteractive": 1,
+         "isKeyloggerInstalled": 0,
+         "isLinkDynamic": 0,
+         "isLockedViaSequencer": 0,
+         "isLogicReady": 0,
+         "isRestarting": 0,
+         "isScanned": 0,
+         "isSpiderbotInteractionOrdered": 0,
+         "isTimedTurnOff": 0,
+         "isUnderEMPEffect": 0,
+         "juryrigTrapState": "UNARMED",
+         "lastPerformedQuickHack": {
+          "$type": "CName",
+          "$storage": "string",
+          "$value": "None"
+         },
+         "markAsQuest": 0,
+         "masters": [],
+         "mastersCached": 0,
+         "maxDevicesToExtractInOneFrame": 10,
+         "minigameAttempt": 1,
+         "minigameDefinition": {
+          "$type": "TweakDBID",
+          "$storage": "string",
+          "$value": "minigame_v2.DefaultItemMinigameHard"
+         },
+         "openedFileAdress": {
+          "$type": "SDocumentAdress",
+          "documentID": -1,
+          "folderID": -1
+         },
+         "openedMailAdress": {
+          "$type": "SDocumentAdress",
+          "documentID": -1,
+          "folderID": -1
+         },
+         "performedActions": [],
+         "personalLinkCustomInteraction": {
+          "$type": "TweakDBID",
+          "$storage": "uint64",
+          "$value": "0"
+         },
+         "personalLinkForced": 0,
+         "personalLinkStatus": "NOT_CONNECTED",
+         "playstyles": [],
+         "quickhackPerformed": 0,
+         "quickHackSetup": {
+          "$type": "ComputerQuickHackData",
+          "alternativeName": {
+           "$type": "TweakDBID",
+           "$storage": "uint64",
+           "$value": "0"
+          },
+          "factName": {
+           "$type": "CName",
+           "$storage": "string",
+           "$value": "None"
+          },
+          "factValue": 0,
+          "operationType": "Add"
+         },
+         "quickHackVulnerabilties": [],
+         "quickHackVulnerabiltiesInitialized": 0,
+         "revealDevicesGrid": 1,
+         "revealDevicesGridWhenUnpowered": 0,
+         "shouldNPCWorkspotFinishLoop": 0,
+         "shouldScannerShowAttitude": 0,
+         "shouldScannerShowHealth": 0,
+         "shouldScannerShowNetwork": 0,
+         "shouldScannerShowRole": 0,
+         "shouldScannerShowStatus": 1,
+         "shouldShowTerminalTitle": 1,
+         "shouldSkipNetrunnerMinigame": 0,
+         "skillCheckContainer": null,
+         "spawnedSystems": [],
+         "state": "Idle",
+         "terminalSetup": {
+          "$type": "TerminalSetup",
+          "allowRemoteAuthorization": 0,
+          "ignoreSlaveAuthorizationModule": 0,
+          "maxClearance": 10,
+          "minClearance": 1,
+          "shouldForceVirtualSystem": 1
+         },
+         "terminalSkillChecks": {
+          "HandleId": "35",
+          "Data": {
+           "$type": "HackEngContainer",
+           "demolitionCheckSlot": null,
+           "engineeringCheck": null,
+           "engineeringCheckSlot": null,
+           "hackingCheck": null,
+           "hackingCheckSlot": null,
+           "isInitialized": 0
+          }
+         },
+         "tweakDBDescriptionRecord": {
+          "$type": "TweakDBID",
+          "$storage": "uint64",
+          "$value": "122573441327"
+         },
+         "tweakDBRecord": {
+          "$type": "TweakDBID",
+          "$storage": "string",
+          "$value": "Devices.Computer"
+         },
+         "useKeyloggerHack": 0,
+         "virtualNetworkShapeID": {
+          "$type": "TweakDBID",
+          "$storage": "uint64",
+          "$value": "0"
+         },
+         "wasQuickHackAttempt": 0,
+         "wasQuickHacked": 0,
+         "wasRevealedInNetworkPing": 0,
+         "wasStateCached": 0,
+         "wasStateSet": 0,
+         "willingInvestigators": []
+        }
+       }
+      },
+      {
+       "$type": "Computer",
+       "accumulatedTimePasssed": 0,
+       "actionRestrictionCallbackID": null,
+       "actionRestrictionPlayerBB": null,
+       "activeProgramToUploadOnNPC": {
+        "$type": "TweakDBID",
+        "$storage": "uint64",
+        "$value": "0"
+       },
+       "activeStatusEffect": {
+        "$type": "TweakDBID",
+        "$storage": "uint64",
+        "$value": "0"
+       },
+       "advanceInteractionStateResolveDelayID": {
+        "$type": "gameDelayID"
+       },
+       "areaEffectsData": [],
+       "areaEffectsInFocusMode": [],
+       "audioResourceName": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "None"
+       },
+       "bannerUpdateActive": 0,
+       "bannerUpdateID": {
+        "$type": "gameDelayID"
+       },
+       "blackboard": null,
+       "cameraComponent": null,
+       "cameraFeed": null,
+       "cameraZoomActive": 0,
+       "cameraZoomComponent": null,
+       "contentScale": {
+        "$type": "TweakDBID",
+        "$storage": "uint64",
+        "$value": "0"
+       },
+       "controller": null,
+       "controllerTypeName": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "ComputerController"
+       },
+       "currentAnimationState": "None",
+       "currentlyUploadingAction": null,
+       "currentPlayerTargetCallbackID": null,
+       "customCameraTarget": "ECCTV_All",
+       "debugOptions": {
+        "$type": "DebuggerProperties",
+        "debugName": {
+         "$type": "CName",
+         "$storage": "string",
+         "$value": "None"
+        },
+        "exclusiveMode": 0,
+        "factActivated": {
+         "$type": "CName",
+         "$storage": "string",
+         "$value": "None"
+        },
+        "layerIDs": []
+       },
+       "delayedUIRefreshID": {
+        "$type": "gameDelayID"
+       },
+       "delayedUpdateDeviceStateID": {
+        "$type": "gameDelayID"
+       },
+       "deviceState": "OFF",
+       "disableAreaIndicatorDelayActive": 0,
+       "disableAreaIndicatorID": {
+        "$type": "gameDelayID"
+       },
+       "disassemblableComponent": null,
+       "displayDescription": {
+        "unk1": "0",
+        "value": "LocKey#97250"
+       },
+       "displayName": {
+        "unk1": "1680631537068412928",
+        "value": "LocKey#97245"
+       },
+       "durabilityType": "INVULNERABLE",
+       "e3ObjectRevealed": 0,
+       "effectVisualization": null,
+       "filesStructure": null,
+       "forceDefeatReward": 0,
+       "forceRegisterInHudManager": 0,
+       "fxResourceMapper": null,
+       "gameplayRoleComponent": null,
+       "hasVisibilityForcedInAnimSystem": 0,
+       "hitInstigatorCooldownID": {
+        "$type": "gameDelayID"
+       },
+       "IKslotComponent": null,
+       "interaction": null,
+       "interactionIndicator": null,
+       "investigationData": [],
+       "isDead": 0,
+       "isHighlightedInFocusMode": 0,
+       "isInitialized": 0,
+       "isInsideLogicArea": 0,
+       "isLogicReady": 0,
+       "isPlayerAround": 0,
+       "isQhackUploadInProgerss": 0,
+       "isScannerDataDirty": 0,
+       "isShortGlitchActive": 0,
+       "isTargetedWithSmartWeapon": 0,
+       "isUIdirty": 1,
+       "isVisible": 0,
+       "killRewardDisabled": 0,
+       "lastEngineTime": 0,
+       "lastHitInstigatorID": {
+        "$type": "entEntityID",
+        "hash": "0"
+       },
+       "lastPingSourceID": {
+        "$type": "entEntityID",
+        "hash": "0"
+       },
+       "localization": null,
+       "mailsStructure": null,
+       "markAsQuest": 0,
+       "networkGridBeamFX": {
+        "$type": "gameFxResource",
+        "effect": {
+         "DepotPath": {
+          "$type": "ResourcePath",
+          "$storage": "uint64",
+          "$value": "0"
+         },
+         "Flags": "Soft"
+        }
+       },
+       "networkGridBeamOffset": {
+        "$type": "Vector4",
+        "W": 0,
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+       },
+       "newsFeed": null,
+       "objectActionsCallbackCtrl": null,
+       "onInputHintManagerInitializedChangedCallback": null,
+       "persistentState": null,
+       "personalLinkComponent": null,
+       "personalLinkFailsafeID": {
+        "$type": "gameDelayID"
+       },
+       "personalLinkHackSend": 0,
+       "playerControlData": {
+        "$type": "PlayerControlDeviceData",
+        "currentPitchModifier": 0,
+        "currentYawModifier": 0
+       },
+       "playerSocket": {
+        "$type": "gamePlayerSocket"
+       },
+       "prereqListeners": [],
+       "receivedDamageHistory": [],
+       "renderSceneLayerMask": "Default",
+       "resourceLibraryComponent": null,
+       "scanningComponent": null,
+       "scanningTweakDBRecord": {
+        "$type": "TweakDBID",
+        "$storage": "uint64",
+        "$value": "0"
+       },
+       "screenDefinition": {
+        "$type": "SUIScreenDefinition",
+        "screenDefinition": {
+         "$type": "TweakDBID",
+         "$storage": "uint64",
+         "$value": "0"
+        },
+        "style": {
+         "$type": "TweakDBID",
+         "$storage": "uint64",
+         "$value": "0"
+        }
+       },
+       "shortGlitchDelayID": {
+        "$type": "gameDelayID"
+       },
+       "slotComponent": null,
+       "sourceShootComponent": null,
+       "squadMemberComponent": null,
+       "statusEffectComponent": null,
+       "statusEffectListeners": [],
+       "stimBroadcaster": null,
+       "tags": {
+        "$type": "redTagList",
+        "tags": []
+       },
+       "targetShootComponent": null,
+       "ToggleZoomInteractionWorkspot": null,
+       "transformX": null,
+       "transformY": null,
+       "uiComponent": null,
+       "uiSlotComponent": null,
+       "updateID": {
+        "$type": "gameDelayID"
+       },
+       "updateRunning": 0,
+       "visibilityCheckDistance": 16000,
+       "visionComponent": null,
+       "wasAnimationFastForwarded": 0,
+       "wasEngineeringSkillcheckTriggered": 0,
+       "wasLookedAtLast": 0,
+       "wasVisible": 0,
+       "willDieSoon": 0,
+       "workspotActivator": null,
+       "workspotMapper": null,
+       "ZoomStateMachineListenerID": null,
+       "ZoomUIListenerID": null
+      }
+     ]
+    }
+   }
+  }
+ }
+}

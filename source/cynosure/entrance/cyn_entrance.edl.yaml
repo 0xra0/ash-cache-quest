@@ -1,0 +1,4477 @@
+edl: 1
+id: cyn_entrance
+name: Cynosure Entrance Access Corridor
+origin:
+  position:
+  - -1908
+  - -2470
+  - -300
+  yaw: 0
+streaming:
+  category: interior
+  level: 1
+  cell:
+  - 64
+  - 64
+  - 32
+  range: 400
+objects:
+- id: floor_00_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -9.0
+  - 0
+  yaw: 0.0
+- id: floor_00_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -9.0
+  - 0
+  yaw: 0.0
+- id: drain_00
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.38
+  - -9.0
+  - 0.012
+  yaw: 90
+  scale:
+  - 1
+  - 0.35
+  - 0.06
+- id: floor_02_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -7.0
+  - 0
+  yaw: 0.0
+- id: floor_02_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -7.0
+  - 0
+  yaw: 0.0
+- id: drain_02
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.38
+  - -7.0
+  - 0.012
+  yaw: 90
+  scale:
+  - 1
+  - 0.35
+  - 0.06
+- id: floor_04_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -5.0
+  - 0
+  yaw: 0.0
+- id: floor_04_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -5.0
+  - 0
+  yaw: 0.0
+- id: drain_04
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.38
+  - -5.0
+  - 0.012
+  yaw: 90
+  scale:
+  - 1
+  - 0.35
+  - 0.06
+- id: floor_06_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -3.0
+  - 0
+  yaw: 0.0
+- id: floor_06_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -3.0
+  - 0
+  yaw: 0.0
+- id: floor_08_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -1.0
+  - 0
+  yaw: 0.0
+- id: floor_08_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -1.0
+  - 0
+  yaw: 0.0
+- id: drain_08
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.38
+  - -1.0
+  - 0.012
+  yaw: 90
+  scale:
+  - 1
+  - 0.35
+  - 0.06
+- id: floor_10_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 1.0
+  - 0
+  yaw: 0.0
+- id: floor_10_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 1.0
+  - 0
+  yaw: 0.0
+- id: drain_10
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.38
+  - 1.0
+  - 0.012
+  yaw: 90
+  scale:
+  - 1
+  - 0.35
+  - 0.06
+- id: floor_12_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 3.0
+  - 0
+  yaw: 0.0
+- id: floor_12_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 3.0
+  - 0
+  yaw: 0.0
+- id: drain_12
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.38
+  - 3.0
+  - 0.012
+  yaw: 90
+  scale:
+  - 1
+  - 0.35
+  - 0.06
+- id: floor_14_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 5.0
+  - 0
+  yaw: 0.0
+- id: floor_14_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 5.0
+  - 0
+  yaw: 0.0
+- id: drain_14
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.38
+  - 5.0
+  - 0.012
+  yaw: 90
+  scale:
+  - 1
+  - 0.35
+  - 0.06
+- id: floor_16_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 7.0
+  - 0
+  yaw: 0.0
+- id: floor_16_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 7.0
+  - 0
+  yaw: 0.0
+- id: floor_18_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 9.0
+  - 0
+  yaw: 0.0
+- id: floor_18_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 9.0
+  - 0
+  yaw: 0.0
+- id: drain_18
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.38
+  - 9.0
+  - 0.012
+  yaw: 90
+  scale:
+  - 1
+  - 0.35
+  - 0.06
+- id: floor_grate_end_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 10.0
+  - 0
+  yaw: 0.0
+- id: floor_grate_end_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 10.0
+  - 0
+  yaw: 0.0
+- id: wall_l_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - -2.15
+  - -11.0
+  yaw: -90
+- id: wall_r_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - 2.15
+  - -8.0
+  yaw: 90
+- id: wall_l_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - -2.15
+  - -8.0
+  yaw: -90
+- id: wall_r_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - 2.15
+  - -5.0
+  yaw: 90
+- id: wall_l_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - -2.15
+  - -5.0
+  yaw: -90
+- id: wall_r_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - 2.15
+  - -2.0
+  yaw: 90
+- id: wall_l_3
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - -2.15
+  - -2.0
+  yaw: -90
+- id: wall_r_3
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - 2.15
+  - 1.0
+  yaw: 90
+- id: wall_l_4_fill2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l100_c.mesh
+  appearance: default
+  at:
+  - -2.15
+  - 1.0
+  yaw: -90
+- id: wall_l_4_door
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_door_single_h400_l200_a.mesh
+  appearance: yellow
+  at:
+  - -2.15
+  - 2.0
+  yaw: -90
+- id: wall_l_4_seal
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l200_a.mesh
+  appearance: black
+  at:
+  - -2.17
+  - 2.0
+  yaw: -90
+- id: wall_r_4
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - 2.15
+  - 4.0
+  yaw: 90
+- id: wall_l_5
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - -2.15
+  - 4.0
+  yaw: -90
+- id: wall_r_5
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: yellow
+  at:
+  - 2.15
+  - 7.0
+  yaw: 90
+- id: wall_l_6
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - -2.15
+  - 7.0
+  yaw: -90
+- id: wall_r_6
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: default
+  at:
+  - 2.15
+  - 10.0
+  yaw: 90
+- id: door_s_frame
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_door_double_h400_l400_a.mesh
+  appearance: yellow
+  at:
+  - 2.0
+  - -11.25
+  yaw: 0
+- id: elev_cab
+  resource: base\environment\architecture\watson\north_harbor\meat_factory\elevator\wat_nhr_maelstrom_hideout_elevator_a.mesh
+  appearance: default
+  at:
+  - 0
+  - -13.55
+  - 0
+  yaw: 0
+- id: elev_shaft_l_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: black
+  at:
+  - -2.6
+  - -16.45
+  yaw: -90
+- id: elev_shaft_r_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: black
+  at:
+  - 2.6
+  - -13.45
+  yaw: 90
+- id: elev_shaft_l_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: black
+  at:
+  - -2.6
+  - -13.45
+  yaw: -90
+- id: elev_shaft_r_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: black
+  at:
+  - 2.6
+  - -10.45
+  yaw: 90
+- id: elev_shaft_back_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: black
+  at:
+  - 0.4
+  - -16.45
+  yaw: 0
+- id: elev_shaft_back_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l300_a.mesh
+  appearance: black
+  at:
+  - 2.6
+  - -16.45
+  yaw: 0
+- id: elev_shaft_fill_l
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l100_a.mesh
+  appearance: black
+  at:
+  - -2.0
+  - -11.24
+  yaw: 180
+- id: elev_shaft_fill_r
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_h400_l100_a.mesh
+  appearance: black
+  at:
+  - 2.6
+  - -11.24
+  yaw: 180
+- id: elev_shaft_ceil_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: black
+  at:
+  - -0.6
+  - -11.25
+  - 4.4
+  rotation:
+    yaw: 0
+    pitch: 180
+    roll: 0.0
+- id: elev_shaft_ceil_0b
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: black
+  at:
+  - -0.6
+  - -13.85
+  - 4.4
+  rotation:
+    yaw: 0
+    pitch: 180
+    roll: 0.0
+- id: elev_shaft_ceil_0c
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: black
+  at:
+  - -0.6
+  - -15.25
+  - 4.4
+  rotation:
+    yaw: 0
+    pitch: 180
+    roll: 0.0
+- id: elev_shaft_ceil_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: black
+  at:
+  - 2.6
+  - -11.25
+  - 4.4
+  rotation:
+    yaw: 0
+    pitch: 180
+    roll: 0.0
+- id: elev_shaft_ceil_1b
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: black
+  at:
+  - 2.6
+  - -13.85
+  - 4.4
+  rotation:
+    yaw: 0
+    pitch: 180
+    roll: 0.0
+- id: elev_shaft_ceil_1c
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_l200_w200_a.mesh
+  appearance: black
+  at:
+  - 2.6
+  - -15.25
+  - 4.4
+  rotation:
+    yaw: 0
+    pitch: 180
+    roll: 0.0
+- id: elev_gate_front
+  resource: base\items\interactive\public_utility\int_public_utility_002__elevator_industrial\int_public_utility_002__elevator_industrial_front.mesh
+  appearance: default
+  at:
+  - 0
+  - -10.05
+  - 0
+  node_ref: $/03_night_city/ash_cache/#AshCache/#CYN_ELEV_GATE
+  quest_relevant: true
+  yaw: 180
+- id: elev_landing_door
+  resource: ep1\environment\decoration\doors\unique\cynosure\door_int_mlt_bunker_b.mesh
+  appearance: default
+  at:
+  - 0
+  - -11.35
+  - 0
+  node_ref: $/03_night_city/ash_cache/#AshCache/#CYN_ELEV_LANDING_DOOR
+  quest_relevant: true
+  yaw: 0
+- id: elev_guide_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: black
+  at:
+  - -1.5
+  - -15.9
+  - 0
+  yaw: 0
+- id: elev_guide_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: black
+  at:
+  - 2.05
+  - -15.9
+  - 0
+  yaw: 0
+- id: elev_cable_0
+  resource: base\environment\architecture\megabuilding\structural\elevator\common_megabuilding_elevator_a_railing_a_cables_a.mesh
+  appearance: default
+  at:
+  - 0.75
+  - -16.25
+  - -2.0
+  yaw: 0
+- id: elev_cable_1
+  resource: base\environment\architecture\megabuilding\structural\elevator\common_megabuilding_elevator_a_railing_a_cables_a.mesh
+  appearance: default
+  at:
+  - 0.83
+  - -16.25
+  - -2.0
+  yaw: 0
+- id: elev_cable_2
+  resource: base\environment\architecture\megabuilding\structural\elevator\common_megabuilding_elevator_a_railing_a_cables_a.mesh
+  appearance: default
+  at:
+  - 0.91
+  - -16.25
+  - -2.0
+  yaw: 0
+- id: elev_aperture_0
+  resource: base\lighting\warning_light.mesh
+  appearance: default
+  at:
+  - -2.1
+  - -16.35
+  - 0.6
+  yaw: 0.0
+- id: elev_aperture_1
+  resource: base\lighting\warning_light.mesh
+  appearance: default
+  at:
+  - 1.5
+  - -16.35
+  - 3.6
+  yaw: 0.0
+- id: elev_aperture_2
+  resource: base\lighting\warning_light.mesh
+  appearance: default
+  at:
+  - -0.2
+  - -16.35
+  - 3.9
+  yaw: 0.0
+- id: elev_panel
+  resource: ep1\environment\decoration\unique\quest\q305\q305_bunker_elevator\bunker_elevator_panel.mesh
+  appearance: default
+  at:
+  - 1.85
+  - -11.95
+  - 0
+  yaw: -90
+- id: elev_rails
+  resource: base\environment\architecture\watson\north_harbor\meat_factory\elevator\wat_nhr_maelstrom_hideout_elevator_rails_structure_a.mesh
+  appearance: default
+  at:
+  - 0
+  - -16.1
+  - 0
+  yaw: 0
+- id: elev_scrape
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\dust_patch_01_dark.mi
+  at:
+  - 0
+  - -13.55
+  - 0
+  scale:
+  - 1.0
+  - 3.6
+  - 0.5
+  yaw: 0
+- id: elev_oil_l
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\oil_trail_asphalt_a.mi
+  at:
+  - -1.7
+  - -14.95
+  - 0
+  scale:
+  - 0.7
+  - 0.9
+  - 0.5
+  yaw: 35
+- id: elev_oil_r
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\oil_trail_asphalt_a.mi
+  at:
+  - 1.6
+  - -12.35
+  - 0
+  scale:
+  - 0.6
+  - 0.8
+  - 0.5
+  yaw: -50
+- id: elev_rust_track
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_a.mi
+  at:
+  - 0
+  - -12.1
+  - 0
+  scale:
+  - 3.0
+  - 0.35
+  - 0.5
+  yaw: 0
+- id: elev_anchor_0
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_a.mi
+  at:
+  - -1.6
+  - -15.05
+  - 0
+  scale:
+  - 0.22
+  - 0.22
+  - 0.4
+  yaw: 0
+- id: elev_anchor_1
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_a.mi
+  at:
+  - 1.6
+  - -15.05
+  - 0
+  scale:
+  - 0.22
+  - 0.22
+  - 0.4
+  yaw: 0
+- id: elev_anchor_2
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_a.mi
+  at:
+  - -1.6
+  - -12.65
+  - 0
+  scale:
+  - 0.22
+  - 0.22
+  - 0.4
+  yaw: 0
+- id: elev_anchor_3
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_a.mi
+  at:
+  - 1.6
+  - -12.65
+  - 0
+  scale:
+  - 0.22
+  - 0.22
+  - 0.4
+  yaw: 0
+- id: elev_rust_l
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_leak_a.mi
+  at:
+  - -2.3
+  - -12.95
+  - 0.7
+  scale:
+  - 0.9
+  - 1.2
+  - 0.3
+  rotation:
+    yaw: 90
+    pitch: 90
+    roll: 0.0
+- id: elev_rust_r
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_leak_a.mi
+  at:
+  - 2.3
+  - -14.35
+  - 0.7
+  scale:
+  - 0.9
+  - 1.2
+  - 0.3
+  rotation:
+    yaw: -90
+    pitch: 90
+    roll: 0.0
+- id: elev_dirt_sill
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\dirt_p_dark.mi
+  at:
+  - 0
+  - -11.55
+  - 0
+  scale:
+  - 2.2
+  - 0.6
+  - 0.5
+  yaw: 0
+- id: elev_lamp_red
+  resource: base\lighting\warning_light.mesh
+  appearance: default
+  at:
+  - -1.3
+  - -11.75
+  - 2.7
+  yaw: 0.0
+- id: elev_sign_plate
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_b_plate_a.mesh
+  appearance: default
+  at:
+  - 0
+  - -16.15
+  - 1.8
+  yaw: 0
+- id: elev_sign_decal
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_b_decals_a.mesh
+  appearance: default
+  at:
+  - 0
+  - -16.14
+  - 1.8
+  yaw: 0
+- id: elev_load_sign
+  resource:
+    type: decal
+    path: ep1\surfaces\textures\decals\signs\warning_sign_a.mi
+  at:
+  - 2.58
+  - -13.55
+  - 1.6
+  scale:
+  - 0.5
+  - 0.5
+  - 0.3
+  rotation:
+    yaw: -90
+    pitch: 90
+    roll: 0.0
+- id: elev_threshold
+  resource:
+    type: decal
+    path: ep1\environment\decoration\unique\cynosure\decals\cynosure_01_markings_stripes_a.mi
+  at:
+  - 0
+  - -10.6
+  - 0
+  scale:
+  - 2.2
+  - 0.5
+  - 0.5
+  yaw: 0
+- id: ceil_0_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -9.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_0_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -9.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_1_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -7.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_1_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -7.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_2_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -5.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_2_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -5.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_3_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -3.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_3_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -3.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_4_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - -1.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_4_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - -1.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_5_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 1.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_5_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 1.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_6_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 3.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_6_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 3.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_7_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 5.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_7_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 5.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_8_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 7.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_8_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 7.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_9_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 0.0
+  - 9.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_9_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_l200_w200_a.mesh
+  appearance: default
+  at:
+  - 2.0
+  - 9.0
+  - 3.82
+  yaw: 0.0
+- id: ceil_light_0
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_light_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - -9.0
+  - 3.79
+  yaw: 0
+- id: ceil_light_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_light_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - -6.0
+  - 3.79
+  yaw: 0
+- id: ceil_light_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_light_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - -3.0
+  - 3.79
+  yaw: 0
+- id: ceil_light_3
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_light_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 0.0
+  - 3.79
+  yaw: 0
+- id: ceil_light_4
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_light_l200_w100_a.mesh
+  appearance: 'off'
+  at:
+  - 1.0
+  - 3.0
+  - 3.79
+  yaw: 0
+- id: ceil_light_5
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_light_l200_w100_a.mesh
+  appearance: red
+  at:
+  - 1.0
+  - 6.0
+  - 3.79
+  yaw: 0
+- id: ceil_light_6
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_light_l200_w100_a.mesh
+  appearance: default
+  at:
+  - 1.0
+  - 9.0
+  - 3.79
+  yaw: 0
+- id: cable_l_00
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -11.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_01
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -10.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_02
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -9.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_03
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -8.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_04
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -7.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_05
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -6.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_06
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -5.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_07
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -4.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_08
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -3.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_09
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -2.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_10
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - -1.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_11
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 0.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_12
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 1.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_13
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 2.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_14
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 3.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_15
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 4.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_16
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 5.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_17
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 6.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_18
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 7.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_19
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 8.0
+  - 3.45
+  yaw: 0.0
+- id: cable_l_20
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.65
+  - 9.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_00
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -11.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_01
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -10.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_02
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -9.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_03
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -8.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_04
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -7.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_05
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -6.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_06
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -5.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_07
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -4.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_08
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -3.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_09
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -2.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_10
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - -1.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_11
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 0.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_12
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 1.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_13
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 2.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_14
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 3.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_15
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 4.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_16
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 5.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_17
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 6.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_18
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 7.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_19
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 8.0
+  - 3.45
+  yaw: 0.0
+- id: cable_r_20
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.65
+  - 9.0
+  - 3.45
+  yaw: 0.0
+- id: pipe_r_low_00
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -11.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_01
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -10.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_02
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -9.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_03
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -8.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_04
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -7.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_05
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -6.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_06
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -5.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_07
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -4.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_08
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -3.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_09
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -2.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_10
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - -1.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_11
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 0.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_12
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 1.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_13
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 2.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_14
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 3.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_15
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 4.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_16
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 5.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_17
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 6.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_18
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 7.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_19
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 8.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_r_low_20
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.72
+  - 9.0
+  - 2.75
+  yaw: 0.0
+- id: pipe_l_low_06
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - -5.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_l_low_07
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - -4.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_l_low_08
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - -3.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_l_low_09
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - -2.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_l_low_10
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - -1.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_l_low_11
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - 0.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_l_low_12
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - 1.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_l_low_13
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - 2.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_l_low_14
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.72
+  - 3.0
+  - 3.05
+  yaw: 0.0
+- id: pipe_cl_00
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -11.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_01
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -10.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_02
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -9.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_03
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -8.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_04
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -7.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_05
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -6.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_06
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -5.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_07
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -4.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_08
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -3.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_09
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -2.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_10
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - -1.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_11
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 0.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_12
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 1.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_13
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 2.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_14
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 3.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_15
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 4.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_16
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 5.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_17
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 6.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_18
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 7.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_19
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 8.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cl_20
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.75
+  - 9.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_00
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -11.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_01
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -10.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_02
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -9.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_03
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -8.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_04
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -7.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_05
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -6.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_06
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -5.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_07
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -4.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_08
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -3.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_09
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -2.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_10
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - -1.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_11
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 0.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_12
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 1.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_13
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 2.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_14
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 3.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_15
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 4.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_16
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 5.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_17
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 6.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_18
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 7.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_19
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 8.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_cr_20
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.55
+  - 9.0
+  - 3.6
+  yaw: 0.0
+- id: pipe_x_1_0
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.9
+  - -8.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_1_1
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.9
+  - -8.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_1_2
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.1
+  - -8.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_1_3
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.1
+  - -8.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_2_0
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.9
+  - -5.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_2_1
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.9
+  - -5.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_2_2
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.1
+  - -5.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_2_3
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.1
+  - -5.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_3_0
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.9
+  - -2.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_3_1
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.9
+  - -2.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_3_2
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.1
+  - -2.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_3_3
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.1
+  - -2.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_4_0
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.9
+  - 1.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_4_1
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.9
+  - 1.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_4_2
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.1
+  - 1.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_4_3
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.1
+  - 1.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_5_0
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.9
+  - 4.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_5_1
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.9
+  - 4.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_5_2
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.1
+  - 4.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_5_3
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.1
+  - 4.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_6_0
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 1.9
+  - 7.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_6_1
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - 0.9
+  - 7.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_6_2
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -0.1
+  - 7.0
+  - 3.35
+  yaw: 90
+- id: pipe_x_6_3
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.1
+  - 7.0
+  - 3.35
+  yaw: 90
+- id: duct_r_a
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_duct_h150_l200_a.mesh
+  appearance: baremetal
+  at:
+  - 1.9
+  - -2.7
+  - 1.4
+  yaw: 90
+- id: tray_b3
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_floor_grate_l300_w100_a.mesh
+  appearance: default
+  at:
+  - -1.45
+  - -2.1
+  - 3.0
+  yaw: 90
+  scale:
+  - 0.933
+  - 0.45
+  - 0.25
+- id: tray_cable_0
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.34
+  - -4.9
+  - 3.06
+  yaw: 0
+  scale:
+  - 0.5
+  - 2.8
+  - 0.5
+- id: tray_cable_1
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.12
+  - -4.9
+  - 3.06
+  yaw: 0
+  scale:
+  - 0.5
+  - 2.8
+  - 0.5
+- id: tray_rod_0
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.43
+  - -4.5
+  - 3.0
+  rotation:
+    yaw: 0
+    pitch: 90
+    roll: 0.0
+  scale:
+  - 0.12
+  - 0.8
+  - 0.12
+- id: tray_rod_1
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.02
+  - -4.5
+  - 3.0
+  rotation:
+    yaw: 0
+    pitch: 90
+    roll: 0.0
+  scale:
+  - 0.12
+  - 0.8
+  - 0.12
+- id: tray_rod_2
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.43
+  - -2.5
+  - 3.0
+  rotation:
+    yaw: 0
+    pitch: 90
+    roll: 0.0
+  scale:
+  - 0.12
+  - 0.8
+  - 0.12
+- id: tray_rod_3
+  resource: base\environment\decoration\industrial\pipes\cable_bundle_pipe\cable_bundle_pipe_01_a.mesh
+  appearance: default
+  at:
+  - -1.02
+  - -2.5
+  - 3.0
+  rotation:
+    yaw: 0
+    pitch: 90
+    roll: 0.0
+  scale:
+  - 0.12
+  - 0.8
+  - 0.12
+- id: relay_cab_a
+  resource: base\environment\decoration\electronics\attachments\attachments_fuse_box\attachments_fuse_box_a.mesh
+  appearance: default
+  at:
+  - 1.79
+  - -0.5
+  - 0
+  yaw: 180
+- id: relay_cab_b
+  resource: base\environment\decoration\electronics\attachments\attachments_fuse_box\attachments_fuse_box_a.mesh
+  appearance: default
+  at:
+  - -1.79
+  - -3.5
+  - 0
+  yaw: 0
+- id: rib_r_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - 2.2
+  - -7.75
+  - 0
+  yaw: 0
+- id: rib_l_1
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - -2.2
+  - -8.25
+  - 0
+  yaw: 180
+- id: rib_r_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - 2.2
+  - -4.75
+  - 0
+  yaw: 0
+- id: rib_l_2
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - -2.2
+  - -5.25
+  - 0
+  yaw: 180
+- id: rib_r_3
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - 2.2
+  - -1.75
+  - 0
+  yaw: 0
+- id: rib_l_3
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - -2.2
+  - -2.25
+  - 0
+  yaw: 180
+- id: rib_r_4
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - 2.2
+  - 1.25
+  - 0
+  yaw: 0
+- id: rib_l_4
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - -2.2
+  - 0.75
+  - 0
+  yaw: 180
+- id: rib_r_5
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - 2.2
+  - 4.25
+  - 0
+  yaw: 0
+- id: rib_l_5
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - -2.2
+  - 3.75
+  - 0
+  yaw: 180
+- id: rib_r_6
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - 2.2
+  - 7.25
+  - 0
+  yaw: 0
+- id: rib_l_6
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - -2.2
+  - 6.75
+  - 0
+  yaw: 180
+- id: toolbox_a
+  resource: base\environment\decoration\containers\cases\toolbox\toolbox_a.mesh
+  appearance: red
+  at:
+  - -1.45
+  - 4.6
+  - 0
+  yaw: 12
+- id: case_rugged_b
+  resource: base\environment\decoration\containers\cases\military_case\military_case_b.mesh
+  appearance: default_LED_RED
+  at:
+  - -1.57
+  - 1.8
+  - 0
+  yaw: 90
+- id: case_rugged_a
+  resource: base\environment\decoration\containers\cases\military_case\military_case_a.mesh
+  appearance: grey
+  at:
+  - 1.57
+  - 6.0
+  - 0
+  yaw: -88
+- id: toolbox_c
+  resource: base\environment\decoration\containers\cases\toolbox\toolbox_c.mesh
+  appearance: default
+  at:
+  - 1.55
+  - 5.0
+  - 0
+  yaw: 4
+- id: cable_coil
+  resource: base\environment\decoration\industrial\equipment\cable_coil\cable_coil_a.mesh
+  appearance: default
+  at:
+  - -1.45
+  - 0.0
+  - 0
+  yaw: 30
+- id: grille_loose
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_ceiling_vent_l100_w100_a.mesh
+  appearance: black
+  at:
+  - -1.6
+  - 6.6
+  - 0.0
+  rotation:
+    yaw: 0
+    pitch: 0
+    roll: 75
+- id: wet_puddle_b1
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\puddle_rough_a.mi
+  at:
+  - 0.3
+  - -8.8
+  - 0
+  scale:
+  - 1.8
+  - 2.6
+  - 0.6
+  yaw: 15
+- id: wet_puddle_b3
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\puddle_rough_a_dirty.mi
+  at:
+  - -0.4
+  - -5.8
+  - 0
+  scale:
+  - 2.2
+  - 1.6
+  - 0.6
+  yaw: -10
+- id: wet_puddle_b3b
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\puddle_rough_a.mi
+  at:
+  - 0.6
+  - -1.6
+  - 0
+  scale:
+  - 1.4
+  - 2.4
+  - 0.6
+  yaw: 40
+- id: wet_puddle_b5
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\puddle_rough_a_dirty.mi
+  at:
+  - 0.9
+  - 4.0
+  - 0
+  scale:
+  - 1.6
+  - 2.8
+  - 0.6
+  yaw: 5
+- id: wet_puddle_b6
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\puddle_rough_a.mi
+  at:
+  - -0.2
+  - 7.6
+  - 0
+  scale:
+  - 2.6
+  - 2.0
+  - 0.6
+  yaw: 0
+- id: wet_base_r_0
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\wetness_black_a.mi
+  at:
+  - 1.6
+  - -6.5
+  - 0
+  scale:
+  - 0.9
+  - 5.0
+  - 0.6
+  yaw: 0.0
+- id: wet_base_l_0
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\wetness_black_a.mi
+  at:
+  - -1.6
+  - -5.0
+  - 0
+  scale:
+  - 0.7
+  - 3.5
+  - 0.6
+  yaw: 0.0
+- id: wet_base_r_1
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\wetness_black_a.mi
+  at:
+  - 1.6
+  - 0.5
+  - 0
+  scale:
+  - 0.9
+  - 5.0
+  - 0.6
+  yaw: 0.0
+- id: wet_base_l_1
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\wetness_black_a.mi
+  at:
+  - -1.6
+  - 2.0
+  - 0
+  scale:
+  - 0.7
+  - 3.5
+  - 0.6
+  yaw: 0.0
+- id: wet_base_r_2
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\wetness_black_a.mi
+  at:
+  - 1.6
+  - 6.5
+  - 0
+  scale:
+  - 0.9
+  - 5.0
+  - 0.6
+  yaw: 0.0
+- id: wet_base_l_2
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\wetness\wetness_black_a.mi
+  at:
+  - -1.6
+  - 8.0
+  - 0
+  scale:
+  - 0.7
+  - 3.5
+  - 0.6
+  yaw: 0.0
+- id: mark_caution
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\industrial\industrial_lettering_caution.mi
+  at:
+  - 0
+  - 7.7
+  - 0
+  scale:
+  - 2.4
+  - 0.8
+  - 0.5
+  yaw: 0
+- id: mark_volt
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\signs\danger_horiz_high_volt_a_d.mi
+  at:
+  - 1.88
+  - -0.5
+  - 2.2
+  scale:
+  - 0.9
+  - 0.4
+  - 0.3
+  rotation:
+    yaw: -90
+    pitch: 90
+    roll: 0.0
+- id: mark_warn
+  resource:
+    type: decal
+    path: ep1\surfaces\textures\decals\signs\warning_sign_a.mi
+  at:
+  - -1.88
+  - 5.5
+  - 1.7
+  scale:
+  - 0.6
+  - 0.6
+  - 0.3
+  rotation:
+    yaw: 90
+    pitch: 90
+    roll: 0.0
+- id: sign_cyn_plate
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_a_plate_a.mesh
+  appearance: default
+  at:
+  - -1.87
+  - -6.5
+  - 2.0
+  yaw: 90
+- id: sign_cyn_decal
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_a_decals_a.mesh
+  appearance: default
+  at:
+  - -1.85
+  - -6.5
+  - 2.0
+  yaw: -90
+- id: sign_cyn_chevron
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_e.mesh
+  appearance: default
+  at:
+  - -1.86
+  - -9.4
+  - 1.6
+  yaw: -90
+- id: sign_bulk_plate
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_b_plate_a.mesh
+  appearance: default
+  at:
+  - 1.45
+  - 9.73
+  - 1.7
+  yaw: 180
+- id: sign_bulk_decal
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_sign_b_decals_a.mesh
+  appearance: default
+  at:
+  - 1.45
+  - 9.72
+  - 1.7
+  yaw: 180
+- id: lbox_l_b1
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_light_box_b.mesh
+  appearance: default
+  at:
+  - -1.9
+  - -9.4
+  - 2.7
+  yaw: -90
+- id: lbox_r_b3
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_light_box_b.mesh
+  appearance: default
+  at:
+  - 1.9
+  - -4.4
+  - 2.95
+  yaw: 90
+- id: lbox_l_b4
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_light_box_b.mesh
+  appearance: default
+  at:
+  - -1.9
+  - -0.5
+  - 2.7
+  yaw: -90
+- id: lbox_r_b6
+  resource: ep1\environment\decoration\unique\cynosure\cynosure_light_box_b.mesh
+  appearance: default
+  at:
+  - 1.9
+  - 8.0
+  - 2.7
+  yaw: 90
+- id: bulkhead_frame
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_wall_door_double_h400_l400_a.mesh
+  appearance: yellow
+  at:
+  - -2.0
+  - 10.0
+  yaw: 180
+- id: bulkhead_main
+  resource: ep1\environment\decoration\doors\unique\cynosure\door_int_mlt_bunker_b.mesh
+  appearance: default
+  at:
+  - 0
+  - 9.38
+  - 2.62
+  yaw: 180
+- id: access_reader
+  resource: base\environment\decoration\electronics\security\hand_scanner\hand_scanner_a.mesh
+  appearance: default
+  at:
+  - -1.45
+  - 9.71
+  - 1.1
+  yaw: -90
+- id: lamp_red_0
+  resource: base\lighting\warning_light.mesh
+  appearance: default
+  at:
+  - -1.73
+  - 5.5
+  - 2.9
+  yaw: 0.0
+- id: lamp_red_1
+  resource: base\lighting\warning_light.mesh
+  appearance: default
+  at:
+  - 1.73
+  - 8.8
+  - 2.9
+  yaw: 0.0
+- id: lamp_red_2
+  resource: base\lighting\warning_light.mesh
+  appearance: default
+  at:
+  - -1.73
+  - 8.8
+  - 2.9
+  yaw: 0.0
+- id: band_b2_l
+  resource:
+    type: decal
+    path: ep1\environment\decoration\unique\cynosure\decals\cynosure_01_markings_stripes_a.mi
+  at:
+  - -1.88
+  - -6.5
+  - 0.35
+  scale:
+  - 2.4
+  - 0.6
+  - 0.3
+  rotation:
+    yaw: 90
+    pitch: 90
+    roll: 0.0
+- id: band_b2_r
+  resource:
+    type: decal
+    path: ep1\environment\decoration\unique\cynosure\decals\cynosure_01_markings_stripes_a.mi
+  at:
+  - 1.88
+  - -6.5
+  - 0.35
+  scale:
+  - 2.4
+  - 0.6
+  - 0.3
+  rotation:
+    yaw: -90
+    pitch: 90
+    roll: 0.0
+- id: sect_a
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\industrial\industrial_lettering_large_a_white.mi
+  at:
+  - -1.88
+  - -7.45
+  - 1.15
+  scale:
+  - 0.5
+  - 0.5
+  - 0.3
+  rotation:
+    yaw: 90
+    pitch: 90
+    roll: 0.0
+- id: sect_1
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\industrial\industrial_numbers_large_1_white.mi
+  at:
+  - -1.88
+  - -7.05
+  - 1.15
+  scale:
+  - 0.5
+  - 0.5
+  - 0.3
+  rotation:
+    yaw: 90
+    pitch: 90
+    roll: 0.0
+- id: plate_clear_r
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\industrial\industrial_lettering_personnel_only_a.mi
+  at:
+  - 1.88
+  - 5.5
+  - 1.9
+  scale:
+  - 0.95
+  - 0.33
+  - 0.3
+  rotation:
+    yaw: -90
+    pitch: 90
+    roll: 0.0
+- id: plate_noentry_l
+  resource:
+    type: decal
+    path: ep1\environment\decoration\unique\cynosure\decals\cynosure_01_no_entry_a.mi
+  at:
+  - -1.88
+  - 7.9
+  - 1.7
+  scale:
+  - 0.8
+  - 0.8
+  - 0.3
+  rotation:
+    yaw: 90
+    pitch: 90
+    roll: 0.0
+- id: band_bulk_floor
+  resource:
+    type: decal
+    path: ep1\environment\decoration\unique\cynosure\decals\cynosure_01_markings_stripes_b.mi
+  at:
+  - 0
+  - 8.7
+  - 0
+  scale:
+  - 3.6
+  - 0.5
+  - 0.5
+  yaw: 0
+- id: rib2_r_5
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - 2.2
+  - 4.95
+  - 0
+  yaw: 0
+- id: rib2_l_5
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - -2.2
+  - 4.45
+  - 0
+  yaw: 180
+- id: rib2_r_6
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - 2.2
+  - 6.55
+  - 0
+  yaw: 0
+- id: rib2_l_6
+  resource: base\environment\architecture\common\int\int_common_techpanel_a\int_common_techpanel_a_pillar_h400_l50_a.mesh
+  appearance: annodised_dark
+  at:
+  - -2.2
+  - 6.05
+  - 0
+  yaw: 180
+- id: lamp_amber
+  resource: base\lighting\warning_light.mesh
+  appearance: default
+  at:
+  - 1.45
+  - 9.65
+  - 3.0
+  yaw: 0.0
+- id: cond_l_003
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -10.7
+  - 0.85
+  yaw: 0
+- id: cond_l_elb_003
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -10.7
+  - 0.85
+  yaw: 180
+- id: cond_l_013
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -9.7
+  - 0.85
+  yaw: 0
+- id: cond_l_elb_023
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -8.7
+  - 0.85
+  rotation:
+    yaw: 0
+    pitch: 0
+    roll: 180
+- id: cond_l_043
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -6.7
+  - 0.85
+  yaw: 0
+- id: cond_l_elb_043
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -6.7
+  - 0.85
+  yaw: 180
+- id: cond_l_053
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -5.7
+  - 0.85
+  yaw: 0
+- id: cond_l_elb_063
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -4.7
+  - 0.85
+  rotation:
+    yaw: 0
+    pitch: 0
+    roll: 180
+- id: cond_l_083
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -2.7
+  - 0.85
+  yaw: 0
+- id: cond_l_elb_083
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -2.7
+  - 0.85
+  yaw: 180
+- id: cond_l_093
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -1.7
+  - 0.85
+  yaw: 0
+- id: cond_l_103
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - -0.7
+  - 0.85
+  yaw: 0
+- id: cond_l_113
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - 0.3
+  - 0.85
+  yaw: 0
+- id: cond_l_elb_123
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - 1.3
+  - 0.85
+  rotation:
+    yaw: 0
+    pitch: 0
+    roll: 180
+- id: cond_l_153
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - 4.3
+  - 0.85
+  yaw: 0
+- id: cond_l_elb_153
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - 4.3
+  - 0.85
+  yaw: 180
+- id: cond_l_elb_163
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - 5.3
+  - 0.85
+  rotation:
+    yaw: 0
+    pitch: 0
+    roll: 180
+- id: cond_l_193
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - 8.3
+  - 0.85
+  yaw: 0
+- id: cond_l_elb_193
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - 8.3
+  - 0.85
+  yaw: 180
+- id: cond_l_elb_end
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - -1.77
+  - 9.3
+  - 0.85
+  rotation:
+    yaw: 0
+    pitch: 0
+    roll: 180
+- id: cond_r_003
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - -10.7
+  - 1.85
+  yaw: 0
+- id: cond_r_elb_003
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - -10.7
+  - 1.85
+  rotation:
+    yaw: 180
+    pitch: 0
+    roll: 180
+- id: cond_r_013
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - -9.7
+  - 1.85
+  yaw: 0
+- id: cond_r_023
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - -8.7
+  - 1.85
+  yaw: 0
+- id: cond_r_033
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - -7.7
+  - 1.85
+  yaw: 0
+- id: cond_r_043
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - -6.7
+  - 1.85
+  yaw: 0
+- id: cond_r_elb_053
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - -5.7
+  - 1.85
+  yaw: 0
+- id: cond_r_113
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 0.3
+  - 1.85
+  yaw: 0
+- id: cond_r_elb_113
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 0.3
+  - 1.85
+  rotation:
+    yaw: 180
+    pitch: 0
+    roll: 180
+- id: cond_r_123
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 1.3
+  - 1.85
+  yaw: 0
+- id: cond_r_133
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 2.3
+  - 1.85
+  yaw: 0
+- id: cond_r_143
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 3.3
+  - 1.85
+  yaw: 0
+- id: cond_r_elb_153
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 4.3
+  - 1.85
+  yaw: 0
+- id: cond_r_173
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 6.3
+  - 1.85
+  yaw: 0
+- id: cond_r_elb_173
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 6.3
+  - 1.85
+  rotation:
+    yaw: 180
+    pitch: 0
+    roll: 180
+- id: cond_r_183
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 7.3
+  - 1.85
+  yaw: 0
+- id: cond_r_193
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_b.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 8.3
+  - 1.85
+  yaw: 0
+- id: cond_r_elb_end
+  resource: base\environment\decoration\industrial\pipes\pipes_small_01\pipes_small_01_e.mesh
+  appearance: metal
+  at:
+  - 1.77
+  - 9.3
+  - 1.85
+  yaw: 0
+- id: flr_l0_003
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -10.7
+  - 0.1
+  yaw: 0
+- id: flr_l0_013
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -9.67
+  - 0.1
+  yaw: 0
+- id: flr_l0_044
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -6.58
+  - 0.1
+  yaw: 0
+- id: flr_l0_054
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -5.55
+  - 0.1
+  yaw: 0
+- id: flr_l0_085
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -2.46
+  - 0.1
+  yaw: 0
+- id: flr_l0_095
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -1.43
+  - 0.1
+  yaw: 0
+- id: flr_l0_106
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -0.4
+  - 0.1
+  yaw: 0
+- id: flr_l0_116
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - 0.63
+  - 0.1
+  yaw: 0
+- id: flr_l0_157
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - 4.75
+  - 0.1
+  yaw: 0
+- id: flr_l0_188
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - 7.84
+  - 0.1
+  yaw: 0
+- id: flr_r0_003
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -10.7
+  - 0.1
+  yaw: 0
+- id: flr_r0_013
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -9.67
+  - 0.1
+  yaw: 0
+- id: flr_r0_023
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -8.64
+  - 0.1
+  yaw: 0
+- id: flr_r0_033
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -7.61
+  - 0.1
+  yaw: 0
+- id: flr_r0_044
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -6.58
+  - 0.1
+  yaw: 0
+- id: flr_r0_054
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -5.55
+  - 0.1
+  yaw: 0
+- id: flr_r0_064
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -4.52
+  - 0.1
+  yaw: 0
+- id: flr_r0_075
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -3.49
+  - 0.1
+  yaw: 0
+- id: flr_r0_085
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -2.46
+  - 0.1
+  yaw: 0
+- id: flr_r0_116
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 0.63
+  - 0.1
+  yaw: 0
+- id: flr_r0_126
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 1.66
+  - 0.1
+  yaw: 0
+- id: flr_r0_136
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 2.69
+  - 0.1
+  yaw: 0
+- id: flr_r0_147
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 3.72
+  - 0.1
+  yaw: 0
+- id: flr_r0_178
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 6.81
+  - 0.1
+  yaw: 0
+- id: flr_r0_188
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 7.84
+  - 0.1
+  yaw: 0
+- id: flr_l1_003
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -10.7
+  - 0.24
+  yaw: 0
+- id: flr_l1_013
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -9.67
+  - 0.24
+  yaw: 0
+- id: flr_l1_044
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -6.58
+  - 0.24
+  yaw: 0
+- id: flr_l1_054
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -5.55
+  - 0.24
+  yaw: 0
+- id: flr_l1_085
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -2.46
+  - 0.24
+  yaw: 0
+- id: flr_l1_095
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -1.43
+  - 0.24
+  yaw: 0
+- id: flr_l1_106
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - -0.4
+  - 0.24
+  yaw: 0
+- id: flr_l1_116
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - 0.63
+  - 0.24
+  yaw: 0
+- id: flr_l1_157
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - 4.75
+  - 0.24
+  yaw: 0
+- id: flr_l1_188
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - -1.82
+  - 7.84
+  - 0.24
+  yaw: 0
+- id: flr_r1_003
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -10.7
+  - 0.24
+  yaw: 0
+- id: flr_r1_013
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -9.67
+  - 0.24
+  yaw: 0
+- id: flr_r1_023
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -8.64
+  - 0.24
+  yaw: 0
+- id: flr_r1_033
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -7.61
+  - 0.24
+  yaw: 0
+- id: flr_r1_044
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -6.58
+  - 0.24
+  yaw: 0
+- id: flr_r1_054
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -5.55
+  - 0.24
+  yaw: 0
+- id: flr_r1_064
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -4.52
+  - 0.24
+  yaw: 0
+- id: flr_r1_075
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -3.49
+  - 0.24
+  yaw: 0
+- id: flr_r1_085
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - -2.46
+  - 0.24
+  yaw: 0
+- id: flr_r1_116
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 0.63
+  - 0.24
+  yaw: 0
+- id: flr_r1_126
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 1.66
+  - 0.24
+  yaw: 0
+- id: flr_r1_136
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 2.69
+  - 0.24
+  yaw: 0
+- id: flr_r1_147
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 3.72
+  - 0.24
+  yaw: 0
+- id: flr_r1_178
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 6.81
+  - 0.24
+  yaw: 0
+- id: flr_r1_188
+  resource: base\environment\decoration\industrial\pipes\pipes_smallest_01\pipes_smallest_01_b.mesh
+  appearance: black
+  at:
+  - 1.82
+  - 7.84
+  - 0.24
+  yaw: 0
+- id: sym_warn_drums
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\industrial\industrial_symbol_warning_e.mi
+  at:
+  - 1.88
+  - 1.9
+  - 1.45
+  scale:
+  - 0.35
+  - 0.35
+  - 0.3
+  rotation:
+    yaw: -90
+    pitch: 90
+    roll: 0.0
+- id: ebox_l_0
+  resource: base\environment\decoration\electronics\devices\electric_box_entropy\electric_box_entropy_a_case.mesh
+  appearance: default
+  at:
+  - -1.9
+  - -0.5
+  - 1.25
+  yaw: 90
+- id: ebox_l_1
+  resource: base\environment\decoration\electronics\devices\electric_box_entropy\electric_box_entropy_a_case.mesh
+  appearance: default
+  at:
+  - -1.9
+  - 8.6
+  - 1.25
+  yaw: 90
+- id: ebox_r_0
+  resource: base\environment\decoration\electronics\devices\electric_box_entropy\electric_box_entropy_a_case.mesh
+  appearance: default
+  at:
+  - 1.9
+  - -9.8
+  - 1.3
+  yaw: -90
+- id: ebox_r_1
+  resource: base\environment\decoration\electronics\devices\electric_box_entropy\electric_box_entropy_a_case.mesh
+  appearance: default
+  at:
+  - 1.9
+  - 2.5
+  - 1.3
+  yaw: -90
+- id: intercom_r
+  resource: base\environment\decoration\electronics\devices\device_neomilitary\device_neomilitary_d_intercom.mesh
+  appearance: default
+  at:
+  - 1.9
+  - -8.8
+  - 1.45
+  yaw: 0
+- id: vent_l_0
+  resource: base\environment\decoration\public_utility\vents\wall_vents\wall_vent_01_a.mesh
+  appearance: metal_dark
+  at:
+  - -1.89
+  - -10.0
+  - 0.5
+  yaw: -90
+- id: vent_l_1
+  resource: base\environment\decoration\public_utility\vents\wall_vents\wall_vent_01_a.mesh
+  appearance: metal_dark
+  at:
+  - -1.89
+  - -1.0
+  - 0.5
+  yaw: -90
+- id: ext_r
+  resource: base\environment\decoration\industrial\equipment\fire_extinguisher\fire_extinguisher_a.mesh
+  appearance: default
+  at:
+  - 1.6
+  - -9.1
+  - 0
+  yaw: 0
+- id: ext_l
+  resource: base\environment\decoration\industrial\equipment\fire_extinguisher\fire_extinguisher_a.mesh
+  appearance: default
+  at:
+  - -1.6
+  - -1.4
+  - 0
+  yaw: 0
+- id: drum_a
+  resource: base\environment\decoration\containers\barrel\drum\barrel_drum_a.mesh
+  appearance: default
+  at:
+  - 1.55
+  - 1.6
+  - 0
+  yaw: 20
+- id: drum_b
+  resource: base\environment\decoration\containers\barrel\drum\barrel_drum_a.mesh
+  appearance: default
+  at:
+  - 1.52
+  - 2.25
+  - 0
+  yaw: 75
+- id: lane_l_01
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - -1.25
+  - -10.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_r_01
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - 1.25
+  - -10.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_l_03
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - -1.25
+  - -8.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_r_03
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - 1.25
+  - -8.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_l_05
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - -1.25
+  - -6.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_r_05
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - 1.25
+  - -6.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_l_09
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - -1.25
+  - -2.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_r_09
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - 1.25
+  - -2.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_l_11
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - -1.25
+  - 0.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_r_11
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - 1.25
+  - 0.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_l_13
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - -1.25
+  - 2.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_r_13
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - 1.25
+  - 2.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_l_15
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - -1.25
+  - 4.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_r_15
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - 1.25
+  - 4.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_l_19
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - -1.25
+  - 8.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: lane_r_19
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\megabuiding\strip\decal_strip_yellow_d.mi
+  at:
+  - 1.25
+  - 8.0
+  - 0
+  scale:
+  - 0.1
+  - 1.9
+  - 0.5
+  yaw: 0
+- id: dirt_b4
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\dirt_p_dark.mi
+  at:
+  - 0.0
+  - 1.5
+  - 0
+  scale:
+  - 1.5
+  - 2.0
+  - 0.5
+  yaw: 30
+- id: dirt_b2
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\dust_patch_01_dark.mi
+  at:
+  - -0.5
+  - -6.5
+  - 0
+  scale:
+  - 1.6
+  - 1.6
+  - 0.5
+  yaw: -20
+- id: oil_drums
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\oil_trail_asphalt_a.mi
+  at:
+  - 1.1
+  - 2.0
+  - 0
+  scale:
+  - 0.8
+  - 1.6
+  - 0.5
+  yaw: 20
+- id: rust_l_b4
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_leak_a.mi
+  at:
+  - -1.88
+  - -0.1
+  - 1.4
+  scale:
+  - 0.4
+  - 1.2
+  - 0.3
+  rotation:
+    yaw: 90
+    pitch: 90
+    roll: 0.0
+- id: rust_r_b5
+  resource:
+    type: decal
+    path: base\surfaces\textures\decals\dirt\rust_leak_a.mi
+  at:
+  - 1.88
+  - 3.2
+  - 1.2
+  scale:
+  - 0.4
+  - 1.4
+  - 0.3
+  rotation:
+    yaw: -90
+    pitch: 90
+    roll: 0.0
+lights:
+- id: elev_aperture_l0
+  at:
+  - -2.1
+  - -16.15
+  - 0.6
+  color:
+  - 1.0
+  - 0.5
+  - 0.15
+  intensity: 3
+  radius: 1.2
+- id: elev_aperture_l1
+  at:
+  - 1.5
+  - -16.15
+  - 3.6
+  color:
+  - 1.0
+  - 0.5
+  - 0.15
+  intensity: 3
+  radius: 1.2
+- id: elev_aperture_l2
+  at:
+  - -0.2
+  - -16.15
+  - 3.9
+  color:
+  - 1.0
+  - 0.5
+  - 0.15
+  intensity: 3
+  radius: 1.2
+- id: elev_white
+  at:
+  - 0
+  - -13.55
+  - 3.4
+  color:
+  - 1.0
+  - 0.88
+  - 0.7
+  intensity: 40
+  radius: 6
+- id: elev_amber
+  at:
+  - 1.1
+  - -11.85
+  - 1.5
+  color:
+  - 1.0
+  - 0.55
+  - 0.15
+  intensity: 8
+  radius: 2
+- id: elev_red
+  at:
+  - -1.3
+  - -11.75
+  - 2.6
+  color:
+  - 1.0
+  - 0.12
+  - 0.08
+  intensity: 25
+  radius: 4
+  flicker:
+    period: 1.6
+    strength: 0.7
+    offset: 0.0
+- id: lgt_white_0
+  at:
+  - 0
+  - -9.5
+  - 3.5
+  color:
+  - 0.86
+  - 0.93
+  - 1.0
+  intensity: 120
+  radius: 7.5
+- id: lgt_white_1
+  at:
+  - 0
+  - -6.5
+  - 3.5
+  color:
+  - 0.86
+  - 0.93
+  - 1.0
+  intensity: 80
+  radius: 7.5
+- id: lgt_white_2
+  at:
+  - 0
+  - -3.5
+  - 3.5
+  color:
+  - 0.86
+  - 0.93
+  - 1.0
+  intensity: 140
+  radius: 7.5
+- id: lgt_white_3
+  at:
+  - 0
+  - -0.5
+  - 3.5
+  color:
+  - 0.86
+  - 0.93
+  - 1.0
+  intensity: 70
+  radius: 7.5
+- id: lgt_white_6
+  at:
+  - 0
+  - 8.5
+  - 3.5
+  color:
+  - 0.86
+  - 0.93
+  - 1.0
+  intensity: 60
+  radius: 7.5
+  flicker:
+    period: 2.7
+    strength: 0.6
+    offset: 0.4
+- id: lgt_red_a
+  at:
+  - -1.5999999999999999
+  - 5.5
+  - 2.9
+  color:
+  - 1.0
+  - 0.12
+  - 0.08
+  intensity: 30
+  radius: 5
+- id: lgt_red_b
+  at:
+  - 1.5999999999999999
+  - 8.8
+  - 2.9
+  color:
+  - 1.0
+  - 0.12
+  - 0.08
+  intensity: 30
+  radius: 5
+- id: lgt_red_c
+  at:
+  - -1.5999999999999999
+  - 8.8
+  - 2.9
+  color:
+  - 1.0
+  - 0.12
+  - 0.08
+  intensity: 30
+  radius: 5
+- id: lgt_bulkhead
+  at:
+  - 0
+  - 9.0
+  - 2.6
+  color:
+  - 1.0
+  - 0.55
+  - 0.2
+  intensity: 25
+  radius: 4
+- id: lgt_amber_floor_0
+  at:
+  - -1.75
+  - 3.5
+  - 0.12
+  color:
+  - 1.0
+  - 0.5
+  - 0.12
+  intensity: 6
+  radius: 1.6
+- id: lgt_amber_floor_1
+  at:
+  - 1.75
+  - 4.5
+  - 0.12
+  color:
+  - 1.0
+  - 0.5
+  - 0.12
+  intensity: 6
+  radius: 1.6
+- id: lgt_amber_floor_2
+  at:
+  - -1.75
+  - 7.5
+  - 0.12
+  color:
+  - 1.0
+  - 0.5
+  - 0.12
+  intensity: 6
+  radius: 1.6
+- id: lgt_amber_floor_3
+  at:
+  - 1.75
+  - 8.0
+  - 0.12
+  color:
+  - 1.0
+  - 0.5
+  - 0.12
+  intensity: 6
+  radius: 1.6
+- id: lgt_amber_status
+  at:
+  - 1.45
+  - 9.45
+  - 3.0
+  color:
+  - 1.0
+  - 0.55
+  - 0.15
+  intensity: 12
+  radius: 2.5
+collisions:
+- id: col_floor
+  shape: box
+  at:
+  - 0
+  - -0.5
+  - -0.1
+  yaw: 0.0
+  size:
+  - 4.3
+  - 21.0
+  - 0.2
+- id: col_wall_l
+  shape: box
+  at:
+  - -2.05
+  - -0.5
+  - 1.9
+  yaw: 0.0
+  size:
+  - 0.3
+  - 21.0
+  - 3.8
+- id: col_wall_r
+  shape: box
+  at:
+  - 2.05
+  - -0.5
+  - 1.9
+  yaw: 0.0
+  size:
+  - 0.3
+  - 21.0
+  - 3.8
+- id: col_wall_s_l
+  shape: box
+  at:
+  - -1.45
+  - -11.15
+  - 1.9
+  yaw: 0.0
+  size:
+  - 0.9
+  - 0.3
+  - 3.8
+- id: col_wall_s_r
+  shape: box
+  at:
+  - 1.45
+  - -11.15
+  - 1.9
+  yaw: 0.0
+  size:
+  - 0.9
+  - 0.3
+  - 3.8
+- id: elev_col_floor
+  shape: box
+  at:
+  - 0
+  - -13.85
+  - -0.1
+  yaw: 0.0
+  size:
+  - 5.2
+  - 5.199999999999999
+  - 0.2
+- id: elev_col_cabback
+  shape: box
+  at:
+  - 0
+  - -15.85
+  - 1.5
+  yaw: 0.0
+  size:
+  - 5.2
+  - 0.1
+  - 3.0
+- id: elev_col_back
+  shape: box
+  at:
+  - 0
+  - -16.6
+  - 2.2
+  yaw: 0.0
+  size:
+  - 5.2
+  - 0.3
+  - 4.4
+- id: elev_col_l
+  shape: box
+  at:
+  - -2.75
+  - -13.85
+  - 2.2
+  yaw: 0.0
+  size:
+  - 0.3
+  - 5.199999999999999
+  - 4.4
+- id: elev_col_r
+  shape: box
+  at:
+  - 2.75
+  - -13.85
+  - 2.2
+  yaw: 0.0
+  size:
+  - 0.3
+  - 5.199999999999999
+  - 4.4
+- id: elev_col_ceil
+  shape: box
+  at:
+  - 0
+  - -13.85
+  - 4.5
+  yaw: 0.0
+  size:
+  - 5.2
+  - 5.199999999999999
+  - 0.2
+- id: col_ceiling
+  shape: box
+  at:
+  - 0
+  - -0.5
+  - 4.0
+  yaw: 0.0
+  size:
+  - 4.8
+  - 21.6
+  - 0.4
+- id: col_wall_n_l
+  shape: box
+  at:
+  - -1.45
+  - 9.85
+  - 1.9
+  yaw: 0.0
+  size:
+  - 0.9
+  - 0.3
+  - 3.8
+- id: col_wall_n_r
+  shape: box
+  at:
+  - 1.45
+  - 9.85
+  - 1.9
+  yaw: 0.0
+  size:
+  - 0.9
+  - 0.3
+  - 3.8
+vfx:
+- id: fx_drip_a
+  resource: ep1\fx\enviroment\water\e_water_dripping_low.particle
+  at:
+  - 0.4
+  - -1.6
+  - 3.5
+  yaw: 0.0
+- id: fx_drip_b
+  resource: ep1\fx\enviroment\water\e_water_dripping_low.particle
+  at:
+  - 0.9
+  - 4.0
+  - 3.5
+  yaw: 0.0
+- id: fx_drip_c
+  resource: ep1\fx\enviroment\water\e_water_dripping_low.particle
+  at:
+  - -0.3
+  - 7.8
+  - 3.5
+  yaw: 0.0
+- id: fx_steam_grate
+  resource: base\fx\environment\smoke\e_steam_interior_grate_strong.particle
+  at:
+  - 1.0
+  - -4.0
+  - 0.05
+  yaw: 0
+  scale:
+  - 0.5
+  - 0.5
+  - 0.5
+- id: fx_mist_bulk
+  resource: base\fx\environment\smoke\e_steam_floor_spread_subtle.particle
+  at:
+  - 0
+  - 8.8
+  - 0.05
+  yaw: 0.0
+audio:
+  emitters:
+  - id: aud_elev_hum
+    resource: amb_bl_g_airvents_med
+    at:
+    - 0
+    - -13.55
+    - 3.5
+    radius: 6
+  - id: aud_drip_a
+    resource: amb_g_fx_water_drip_medium_04_close
+    at:
+    - 0.4
+    - -1.6
+    - 3.3
+    radius: 6
+  - id: aud_drip_b
+    resource: amb_g_fx_water_drip_medium_01
+    at:
+    - 0.9
+    - 4.0
+    - 3.3
+    radius: 6
+  - id: aud_drip_c
+    resource: amb_g_fx_water_drip_medium_02_far
+    at:
+    - -0.3
+    - 7.8
+    - 3.3
+    radius: 6
+  - id: aud_steam
+    resource: amb_g_fx_steam_small_02_loop
+    at:
+    - 1.0
+    - -4.0
+    - 0.2
+    radius: 6
+  - id: aud_vent
+    resource: amb_bl_g_airvents_med
+    at:
+    - 1.6
+    - -3.7
+    - 2.1
+    radius: 9
+  - id: aud_flicker
+    resource: amb_g_city_el_neon_high_03_flicker
+    at:
+    - 0
+    - 8.5
+    - 3.5
+    radius: 7
+  - id: aud_relay
+    resource: amb_int_EM_elem_electronic_circuit_buzz_loop_01_low
+    at:
+    - 1.5
+    - -0.5
+    - 1.0
+    radius: 5

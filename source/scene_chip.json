@@ -1,0 +1,78 @@
+{
+  "_comment": [
+    "Taking the splinter out of the open case (Act 3, D118). Same shape as",
+    "scene_box.json and for the same reason: a prop cannot carry an interaction of its",
+    "own here, so the prompt is an attachToWorld scnChoiceNode hung on #ac_box_origin -",
+    "the vanilla prologue model (q005_07_vip_apartment.scene, hub 4162).",
+    "",
+    "It is the SECOND prompt on that one marker. scene_box.json opens the case and sets",
+    "ashcache_box_opened; between the two the glue draws the opened case with the",
+    "splinter visible in it, and this prompt is what makes the player reach in and take",
+    "it. The graph's take_chip node blocks on this scene inside guard_splinter's True",
+    "branch, so the grant it releases (give_splinter) keeps its re-entry guard: a",
+    "phase_revision bump re-walks the graph, finds ashcache_splinter_given already 1,",
+    "and never shows this prompt again.",
+    "",
+    "No lines, no actors, no tier - the same reasons as the box scene."
+  ],
+  "scene": {
+    "id": "ash_cache_chip",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [],
+  "entryPoints": [
+    {
+      "name": "chip_in",
+      "node": "start"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "chip_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "id": "hub_take",
+      "type": "choice",
+      "_attachToWorld": "Same offset and range as the box hub: #ac_box_origin sits on the case's base at the bench top, and the splinter lies inside the open lid, so 0.2 m up still puts the prompt on the object being reached for.",
+      "attachToWorld": {
+        "offset": [
+          0,
+          0,
+          0.2
+        ],
+        "range": 1.5,
+        "yaw": 180
+      },
+      "options": [
+        {
+          "id": "opt_take",
+          "goto": "end",
+          "en-us": "Take the splinter",
+          "ua-ua": "Взяти осколок"
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [
+      "start",
+      "hub_take"
+    ],
+    [
+      "hub_take:opt_take",
+      "end"
+    ]
+  ]
+}

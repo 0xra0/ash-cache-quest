@@ -1,0 +1,38 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_Custom \u201cContinuity\u201d vault door.png",
+ "band": [
+  118,
+  636
+ ],
+ "views": [
+  "front",
+  "left",
+  "back",
+  "right"
+ ],
+ "height_m": 2.8,
+ "bg": "dark",
+ "bevel": 0.01,
+ "name": "continuity_vault_door",
+ "atlas": 2048,
+ "thr": 45,
+ "boxes": {
+  "front": [
+   16,
+   576
+  ],
+  "left": [
+   596,
+   754
+  ],
+  "back": [
+   776,
+   1284
+  ],
+  "right": [
+   1296,
+   1504
+  ]
+ },
+ "close": 8
+}

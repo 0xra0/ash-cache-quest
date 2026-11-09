@@ -1,0 +1,17 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_Predictive personality storage rack.png",
+ "band": [
+  115,
+  945
+ ],
+ "views": [
+  "front",
+  "back",
+  "left",
+  "right"
+ ],
+ "height_m": 4.2,
+ "bevel": 0.01,
+ "name": "storage_rack",
+ "atlas": 2048
+}

@@ -1,0 +1,75 @@
+{
+  "_comment": "Ash Chip perk tree (D115). Hand-edited. tools/gen_chip.py -> build/scripts/AshCacheChipData.reds; tools/gen_tweak.py -> one permanent StatusEffect per perk. Stat units were read out of vanilla TweakDB (dev/chip/stat_units.py): CritChance/CritDamage/DamageReduction/HealthRegainOnKill are whole percent, Memory is RAM units, BonusQuickHackDamage/HeadshotDamageMultiplier/MemoryRegenRateMult are fractions.",
+
+  "_unlock": "Level 0 = no tree (not reached / Burn). 1 = partial: tiers < full_tier. 2 = full. First matching rule wins.",
+  "unlock": [
+    {"fact": "ashcache_end_destroy", "level": 0},
+    {"fact": "ashcache_end_absorb",  "level": 2},
+    {"fact": "ashcache_end_blueeyes", "level": 1},
+    {"fact": "ashcache_end_hide",    "level": 1}
+  ],
+  "full_tier": 3,
+  "visible_fact": "ashcache_splinter_given",
+
+  "_points": "Each source is a 0/1 fact worth `points`. Summed, never incremented, so a replayed node or a reload can never award twice.",
+  "points": [
+    {"fact": "ashcache_box_opened",   "points": 1, "note": "opened the case"},
+    {"fact": "ashcache_terminal_read", "points": 1, "note": "read the clinic terminal"},
+    {"fact": "ashcache_terminal_full_read", "points": 1,
+     "note": "D119: the terminal's optional audit read. Declared since D12 and dead until the terminal had a menu to read it from - this is what makes taking the extra option worth the two seconds."},
+    {"fact": "ashcache_mara_trusted", "points": 1, "note": "trusted Mara"},
+    {"fact": "ashcache_cleanup_done", "points": 2, "note": "survived Hale's crew"},
+    {"fact": "ashcache_end_absorb",   "points": 3, "note": "jacked in"},
+    {"fact": "ashcache_chip_frag_1",  "points": 2, "note": "echo fragment 1 (see fragments)"},
+    {"fact": "ashcache_chip_frag_2",  "points": 2, "note": "echo fragment 2 (see fragments)"},
+    {"fact": "ashcache_chip_frag_3",  "points": 2, "note": "echo fragment 3 (see fragments)"},
+    {"fact": "ashcache_chip_frag_4",  "points": 2, "note": "echo fragment 4 (see fragments)"},
+    {"fact": "ashcache_chip_frag_5",  "points": 2, "note": "echo fragment 5 (see fragments)"},
+    {"fact": "ashcache_chip_frag_6",  "points": 2, "note": "echo fragment 6 (see fragments)"}
+  ],
+
+  "_fragments": "D117. Spots the user stood on in game (player feet position + camera yaw, 2026-09-17). A fragment exists only while the tree is unlocked and its fact is 0; walking within radius sets the fact.",
+  "fragment_template": "base\\quest\\main_quests\\prologue\\q004\\entities\\q004_data_shard.ent",
+  "fragment_radius": 2.0,
+  "_fragment_z_offset": "D117 follow-up. `pos` is where V's FEET were, so a shard drawn there sits on the floor - the mesh is a few centimetres of splinter and the user walked onto fragment 1 without seeing it. This lifts the SHARD ONLY; the trigger still measures from `pos`, which is already verified to fire.",
+  "fragment_z_offset": 0.9,
+  "fragments": [
+    {"fact": "ashcache_chip_frag_1", "pos": [-1442.0782, -2718.9734, 86.7223], "yaw": -175.8155},
+    {"fact": "ashcache_chip_frag_2", "pos": [-1660.3569, -2793.9409, 115.0882], "yaw": 98.0013},
+    {"fact": "ashcache_chip_frag_3", "pos": [-1804.6383, -2882.0122, 101.8164], "yaw": -141.1488},
+    {"fact": "ashcache_chip_frag_4", "pos": [-2348.3848, -3013.6348, 111.1581], "yaw": 39.9511},
+    {"fact": "ashcache_chip_frag_5", "pos": [-2140.428, -2818.8362, 53.6549], "yaw": -159.5489},
+    {"fact": "ashcache_chip_frag_6", "pos": [-2538.5527, -2703.5334, 19.0514], "yaw": -58.7077}
+  ],
+
+  "_branches": "Column order left -> right, as Relic draws them.",
+  "branches": [
+    {"id": "ghost", "name": "chip_branch_ghost"},
+    {"id": "echo",  "name": "chip_branch_echo"},
+    {"id": "ash",   "name": "chip_branch_ash"}
+  ],
+
+  "_perks": "tier N requires tier N-1 of the same branch. cost = tier. stats: [statType, modifierType, value].",
+  "perks": [
+    {"id": "ghost_1", "branch": "ghost", "tier": 1, "cost": 1, "name": "chip_ghost_1_name", "desc": "chip_ghost_1_desc",
+     "stats": [["Memory", "Additive", 2]]},
+    {"id": "ghost_2", "branch": "ghost", "tier": 2, "cost": 2, "name": "chip_ghost_2_name", "desc": "chip_ghost_2_desc",
+     "stats": [["MemoryRegenRateMult", "Additive", 0.25]]},
+    {"id": "ghost_3", "branch": "ghost", "tier": 3, "cost": 3, "name": "chip_ghost_3_name", "desc": "chip_ghost_3_desc",
+     "stats": [["BonusQuickHackDamage", "Additive", 0.15], ["Memory", "Additive", 2]]},
+
+    {"id": "echo_1", "branch": "echo", "tier": 1, "cost": 1, "name": "chip_echo_1_name", "desc": "chip_echo_1_desc",
+     "stats": [["Health", "Additive", 50], ["Armor", "Additive", 30]]},
+    {"id": "echo_2", "branch": "echo", "tier": 2, "cost": 2, "name": "chip_echo_2_name", "desc": "chip_echo_2_desc",
+     "stats": [["DamageReduction", "Additive", 10]]},
+    {"id": "echo_3", "branch": "echo", "tier": 3, "cost": 3, "name": "chip_echo_3_name", "desc": "chip_echo_3_desc",
+     "stats": [["HealthRegainOnKill", "Additive", 15]]},
+
+    {"id": "ash_1", "branch": "ash", "tier": 1, "cost": 1, "name": "chip_ash_1_name", "desc": "chip_ash_1_desc",
+     "stats": [["CritChance", "Additive", 10]]},
+    {"id": "ash_2", "branch": "ash", "tier": 2, "cost": 2, "name": "chip_ash_2_name", "desc": "chip_ash_2_desc",
+     "stats": [["HeadshotDamageMultiplier", "Additive", 0.25]]},
+    {"id": "ash_3", "branch": "ash", "tier": 3, "cost": 3, "name": "chip_ash_3_name", "desc": "chip_ash_3_desc",
+     "stats": [["CritDamage", "Additive", 35], ["Armor", "Additive", 50]]}
+  ]
+}

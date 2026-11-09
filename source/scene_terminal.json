@@ -1,0 +1,179 @@
+{
+  "_comment": [
+    "The clinic terminal, D119. Before this scene the whole beat was one press:",
+    "the player walked up to the computer, the engine's own Use prompt fired,",
+    "await_terminal released and the objective ticked. Nothing was read, nothing",
+    "was downloaded, and the records the objective is ABOUT never appeared.",
+    "",
+    "This is a menu, and it is built out of nodes the engine already has rather",
+    "than a redscript UI (rule 1). Three pieces:",
+    "",
+    "  the hub        an attachToWorld choice node at the terminal - the same",
+    "                 machinery as scene_box.json and scene_courier_shard.json,",
+    "                 which are both confirmed working in game.",
+    "  the bar        questProgressBar_NodeType, vanilla's own download bar. Its",
+    "                 single shipped use is q005_07_vip_apartment.scene: the",
+    "                 Konpeki suite copying the Relic. The same beat, so the same",
+    "                 node. It starts the bar and RETURNS - see wait_dl.",
+    "  the notice     questWarningMessage_NodeType, the big centre-screen line.",
+    "                 Vanilla uses it two doors away in the same scene for",
+    "                 'WARNING: UNAUTHORIZED SCANNING'. A machine talking over",
+    "                 the HUD, which is exactly this register.",
+    "",
+    "Only opt_download leaves the scene, so the hub cannot be dismissed into a",
+    "half-finished objective: walking away just leaves the prompt standing, the",
+    "way the case's does. The audit read is optional and loops back to the hub."
+  ],
+  "scene": {
+    "id": "ash_cache_terminal",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [],
+  "entryPoints": [
+    {
+      "name": "menu_in",
+      "node": "start"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "menu_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "id": "hub_root",
+      "type": "choice",
+      "_attachToWorld": [
+        "Relative to #ac_terminal_origin, which is the terminal prop's own floor",
+        "point. 1.4 m up is the screen: computer_1.ent's origin sits about 1.5 m",
+        "above its feet (see ac_terminal_pc's zOffset of 1.48 and the workspot",
+        "measurements behind it), so this lands the prompt on the display rather",
+        "than on the floor in front of the counter. Lower it here if it reads",
+        "high in game - the number is data for exactly that reason.",
+        "range 2 is the vanilla hub range used by every other hub in this mod."
+      ],
+      "attachToWorld": {
+        "offset": [
+          0,
+          0,
+          1.4
+        ],
+        "range": 2,
+        "yaw": 90
+      },
+      "options": [
+        {
+          "id": "opt_download",
+          "goto": "q_bar",
+          "en-us": "Download Voss's archive",
+          "ua-ua": "Завантажити архів Восс"
+        },
+        {
+          "_comment": "Optional, and gone once taken. A failing condition REMOVES an option rather than greying it out (OI-14), which is the wanted behaviour here: the audit line reads once, and a player who already read it sees a menu with one thing left to do.",
+          "id": "opt_audit",
+          "goto": "q_audit",
+          "condition": {
+            "fact": "ashcache_terminal_full_read",
+            "value": 0,
+            "compare": "Equal"
+          },
+          "en-us": "Check the audit trail",
+          "ua-ua": "Перевірити журнал аудиту"
+        }
+      ]
+    },
+    {
+      "_comment": "6 seconds of bar. Long enough to feel like a transfer, short enough that nobody resents standing there; vanilla's Konpeki bar runs 28.85 s under a scripted conversation, which this beat has nothing to fill.",
+      "id": "q_bar",
+      "type": "quest",
+      "node": {
+        "type": "progress_bar",
+        "text": "hud_dl_top",
+        "bottom": "hud_dl_bottom",
+        "duration": 6.0
+      }
+    },
+    {
+      "_comment": "The wait, and the reason it has to exist: questProgressBar does not block. Without this section the bar would animate over a quest that had already granted the archive and closed the objective - the instant, unearned version of the beat. 6.4 s covers the bar's 6.0 with a little air.",
+      "id": "wait_dl",
+      "type": "section",
+      "seconds": 6.4,
+      "lines": []
+    },
+    {
+      "id": "q_done",
+      "type": "quest",
+      "node": {
+        "type": "warning_message",
+        "text": "hud_dl_done",
+        "duration": 2.5,
+        "debug": "TRANSFER COMPLETE"
+      }
+    },
+    {
+      "_comment": "Sets the fact FIRST, then shows the line: if the player is interrupted out of the scene between the two, the worst case is a missed notice rather than an option that can be farmed twice. ashcache_terminal_full_read had no setter anywhere until D119 - it was declared, documented as the completionist read, and dead.",
+      "id": "q_audit",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_terminal_full_read",
+        "value": 1
+      }
+    },
+    {
+      "id": "q_audit_msg",
+      "type": "quest",
+      "node": {
+        "type": "warning_message",
+        "text": "hud_terminal_audit",
+        "duration": 4.0,
+        "debug": "AUDIT TRAIL - 212 FILES PURGED, FIA ORDER 7"
+      }
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [
+      "start",
+      "hub_root"
+    ],
+    [
+      "hub_root:opt_download",
+      "q_bar"
+    ],
+    [
+      "q_bar",
+      "wait_dl"
+    ],
+    [
+      "wait_dl",
+      "q_done"
+    ],
+    [
+      "q_done",
+      "end"
+    ],
+    [
+      "hub_root:opt_audit",
+      "q_audit"
+    ],
+    [
+      "q_audit",
+      "q_audit_msg"
+    ],
+    [
+      "q_audit_msg",
+      "hub_root"
+    ]
+  ]
+}

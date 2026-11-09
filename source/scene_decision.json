@@ -1,0 +1,386 @@
+{
+  "_comment": [
+    "The last call (Act 7). Hale's cleanup crew is down, the splinter is in V's hand,",
+    "and nobody is coming for the next few minutes. This is the scene that decides how",
+    "Ash Cache ends: every option sets exactly one ashcache_end_* fact, and the quest",
+    "graph's br_* chain reads those facts to pick the epilogue.",
+    "",
+    "Why TWO entry points instead of one hub with a conditional option:",
+    "the Hide ending only exists if Mara is alive and trusted (D3, gate_hide). The",
+    "obvious way to express that is a questCondition on a scnChoiceNodeOption. That",
+    "field turned out to be real - 1,177 vanilla scenes use it (D26) - and gen_scene.py",
+    "now emits it. It is still not used here, because a failing condition REMOVES the",
+    "option rather than greying it, so it buys nothing this shape does not already do.",
+    "So the branch lives in the .questphase graph instead, which is where rule 1 wants",
+    "quest logic anyway: route_hide reads ashcache_hide_available and enters this scene",
+    "at decide_in or decide_in_hide. Same player-facing result, only proven machinery.",
+    "",
+    "The two openings are not the same lines twice. The hide path's opening is the",
+    "reason its fourth option exists - Mara is still breathing and she named a place -",
+    "so the branch reads as a consequence rather than as an extra button."
+  ],
+  "scene": {
+    "id": "ash_cache_decision",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [],
+  "_actors": [
+    "Deliberately empty: V is alone. A scnActorDef is a SPAWN instruction, not a",
+    "reference to somebody already standing there, so casting Mara here would",
+    "conjure her into the room on the branches where ashcache_mara_dead or",
+    "ashcache_mara_hostile is set - a corpse that walks in for the finale.",
+    "",
+    "A cast of nobody-but-V is a shipped shape, not an extrapolation: Undermine's",
+    "dialog_only_template.scene has 0 actors and 1 scnPlayerActorDef, with a section",
+    "node, two scnDialogLineEvents and two scnQuestNodes - the same parts this file",
+    "uses. The choice hub then falls back to mode 'attachToScreen', which is what",
+    "Undermine's template.scene ships for its own hub. Both checked in json_out/."
+  ],
+  "entryPoints": [
+    {
+      "name": "decide_in",
+      "node": "start"
+    },
+    {
+      "name": "decide_in_hide",
+      "node": "start_hide"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "decide_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "id": "start_hide",
+      "type": "start"
+    },
+    {
+      "id": "tier_on",
+      "_comment": "Same cinematic framing as the Mara confrontation: V stands still and cannot draw a weapon while choosing what to do with the splinter. Tier3 is the first rung that stops movement (Tier2 only caps walking speed). Paired with 'tier_off'; the questphase wires this scene's Default INT/RET because of it.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier3_LimitedGameplay",
+        "emptyHands": true
+      }
+    },
+    {
+      "id": "tier_on_h",
+      "_comment": "Same cinematic framing as the Mara confrontation: V stands still and cannot draw a weapon while choosing what to do with the splinter. Tier3 is the first rung that stops movement (Tier2 only caps walking speed). Paired with 'tier_off'; the questphase wires this scene's Default INT/RET because of it. Hide-route copy.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier3_LimitedGameplay",
+        "emptyHands": true
+      }
+    },
+    {
+      "id": "sec_open",
+      "type": "section",
+      "lines": [
+        {
+          "id": "dec_open_1",
+          "actor": "V",
+          "en-us": "Hale's crew came for a box. Not one of them asked what was inside it.",
+          "ua-ua": "Команда Гейла прийшла по кейс. І жоден з них не спитав, що всередині."
+        },
+        {
+          "id": "dec_open_2",
+          "actor": "V",
+          "en-us": "Twenty minutes, she said. Most of them are gone.",
+          "ua-ua": "Двадцять хвилин, казала вона. Більшості з них уже нема."
+        }
+      ]
+    },
+    {
+      "id": "sec_open_h",
+      "type": "section",
+      "lines": [
+        {
+          "id": "dec_openh_1",
+          "actor": "V",
+          "en-us": "Hale's crew is down. The case is still in my hands, and it's still warm.",
+          "ua-ua": "Команда Гейла лежить. Кейс досі в мене в руках — і досі теплий."
+        },
+        {
+          "id": "dec_openh_2",
+          "actor": "V",
+          "en-us": "Mara's still breathing. After nine years of waiting for this, that's not nothing.",
+          "ua-ua": "Мара досі дихає. Після дев'яти років чекання на це — вже немало."
+        },
+        {
+          "id": "dec_openh_3",
+          "actor": "V",
+          "en-us": "And she named a place. Somewhere the FIA stopped looking a long time ago.",
+          "ua-ua": "І вона назвала місце. Там, де ФІА давно перестало шукати."
+        }
+      ]
+    },
+    {
+      "_comment": "Three options. Same three the hide hub opens with - only the ids differ, because a locstring ruid is allocated per option id and two hubs cannot share one.",
+      "id": "hub",
+      "type": "choice",
+      "options": [
+        {
+          "id": "opt_destroy",
+          "goto": "sec_destroy",
+          "en-us": "Burn it. Nobody gets to read me.",
+          "ua-ua": "Спалити. Ніхто не читатиме мене."
+        },
+        {
+          "id": "opt_absorb",
+          "goto": "sec_absorb",
+          "en-us": "Jack in. I want to hear the echo.",
+          "ua-ua": "Підключитися. Хочу почути відлуння."
+        },
+        {
+          "id": "opt_blueeyes",
+          "goto": "sec_blueeyes",
+          "en-us": "There's a man with blue eyes who'll take it off my hands.",
+          "ua-ua": "Є чоловік із блакитними очима — він забере його в мене."
+        }
+      ]
+    },
+    {
+      "id": "hub_hide",
+      "type": "choice",
+      "options": [
+        {
+          "id": "opt_destroy_h",
+          "goto": "sec_destroy",
+          "en-us": "Burn it. Nobody gets to read me.",
+          "ua-ua": "Спалити. Ніхто не читатиме мене."
+        },
+        {
+          "id": "opt_absorb_h",
+          "goto": "sec_absorb",
+          "en-us": "Jack in. I want to hear the echo.",
+          "ua-ua": "Підключитися. Хочу почути відлуння."
+        },
+        {
+          "id": "opt_blueeyes_h",
+          "goto": "sec_blueeyes",
+          "en-us": "There's a man with blue eyes who'll take it off my hands.",
+          "ua-ua": "Є чоловік із блакитними очима — він забере його в мене."
+        },
+        {
+          "id": "opt_hide_h",
+          "goto": "sec_hide",
+          "en-us": "Bury it where the FIA stopped looking.",
+          "ua-ua": "Закопати там, де ФІА перестало шукати."
+        }
+      ]
+    },
+    {
+      "id": "sec_destroy",
+      "type": "section",
+      "lines": [
+        {
+          "id": "dec_destroy_1",
+          "actor": "V",
+          "en-us": "Whatever it thought I'd do next - it got this one wrong.",
+          "ua-ua": "Що б він не думав, що я зроблю далі — тут він помилився."
+        }
+      ]
+    },
+    {
+      "id": "sec_absorb",
+      "type": "section",
+      "lines": [
+        {
+          "id": "dec_absorb_1",
+          "actor": "V",
+          "en-us": "Nine years in a wall and it's still talking. Fine. Say it to my face.",
+          "ua-ua": "Дев'ять років у стіні, а він досі говорить. Гаразд. Скажи мені це в обличчя."
+        }
+      ]
+    },
+    {
+      "id": "sec_blueeyes",
+      "type": "section",
+      "lines": [
+        {
+          "id": "dec_blueeyes_1",
+          "actor": "V",
+          "en-us": "He already knew where it was. He just needed somebody else's hands on it.",
+          "ua-ua": "Він і так знав, де воно. Йому просто потрібні були чужі руки."
+        }
+      ]
+    },
+    {
+      "id": "sec_hide",
+      "type": "section",
+      "lines": [
+        {
+          "id": "dec_hide_1",
+          "actor": "V",
+          "en-us": "Another nine years. Maybe by then nobody remembers what to look for.",
+          "ua-ua": "Ще дев'ять років. Може, до того часу ніхто вже не пам'ятатиме, що шукати."
+        }
+      ]
+    },
+    {
+      "_comment": "One ending fact per branch. The graph's br_* chain reads exactly these, in order, and br_hide re-tests the D3 gate on its own - so even a hub that somehow offered Hide when it should not have cannot reach an ending Mara is not alive to play.",
+      "id": "fact_destroy",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_end_destroy",
+        "value": 1
+      }
+    },
+    {
+      "id": "fact_absorb",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_end_absorb",
+        "value": 1
+      }
+    },
+    {
+      "id": "fact_blueeyes",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_end_blueeyes",
+        "value": 1
+      }
+    },
+    {
+      "id": "fact_hide",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_end_hide",
+        "value": 1
+      }
+    },
+    {
+      "_comment": "Set last, after the ending fact, so a save taken between the two can never show 'decided' with no decision recorded. The graph no longer waits on it - the scene's own exit drives the flow - but it stays set because it is the save-game record that Act 7 happened, and the CET console uses it to jump there.",
+      "id": "fact_made",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_decision_made",
+        "value": 1
+      }
+    },
+    {
+      "id": "tier_off",
+      "_comment": "Hands full control back.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier1_FullGameplay",
+        "emptyHands": false
+      }
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [
+      "start",
+      "tier_on"
+    ],
+    [
+      "tier_on",
+      "sec_open"
+    ],
+    [
+      "sec_open",
+      "hub"
+    ],
+    [
+      "start_hide",
+      "tier_on_h"
+    ],
+    [
+      "tier_on_h",
+      "sec_open_h"
+    ],
+    [
+      "sec_open_h",
+      "hub_hide"
+    ],
+    [
+      "hub:opt_destroy",
+      "sec_destroy"
+    ],
+    [
+      "hub:opt_absorb",
+      "sec_absorb"
+    ],
+    [
+      "hub:opt_blueeyes",
+      "sec_blueeyes"
+    ],
+    [
+      "hub_hide:opt_destroy_h",
+      "sec_destroy"
+    ],
+    [
+      "hub_hide:opt_absorb_h",
+      "sec_absorb"
+    ],
+    [
+      "hub_hide:opt_blueeyes_h",
+      "sec_blueeyes"
+    ],
+    [
+      "hub_hide:opt_hide_h",
+      "sec_hide"
+    ],
+    [
+      "sec_destroy",
+      "fact_destroy"
+    ],
+    [
+      "sec_absorb",
+      "fact_absorb"
+    ],
+    [
+      "sec_blueeyes",
+      "fact_blueeyes"
+    ],
+    [
+      "sec_hide",
+      "fact_hide"
+    ],
+    [
+      "fact_destroy",
+      "fact_made"
+    ],
+    [
+      "fact_absorb",
+      "fact_made"
+    ],
+    [
+      "fact_blueeyes",
+      "fact_made"
+    ],
+    [
+      "fact_hide",
+      "fact_made"
+    ],
+    [
+      "fact_made",
+      "tier_off"
+    ],
+    [
+      "tier_off",
+      "end"
+    ]
+  ]
+}

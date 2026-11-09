@@ -1,0 +1,26 @@
+{
+  "_comment": "A second injected quest phase whose only job is to hold the Cynosure bunker streamed. It is a separate resource from quest_graph.json because ArchiveXL attaches a phase to the ROOT quest graph: the phase runs from the moment the game loads until its output node fires, and ash_cache's output node fires when the quest ends. Anything that must outlive the quest cannot live in that graph. Six vanilla q305 phases are built exactly like this one - q305_06_ob_lightning, q305_06_ob_fx, q305_06_ob_devices, q305_07_ib_ui, q305_07_ib_sfx and q305_outer_bunker_malfunctioning_doors all ship with no output node, because an ambient world-state phase is not supposed to finish.",
+  "_phase_revision": "Bumped 1 -> 2 on 2026-09-22 (D129). Not because this graph changed - it is byte-identical in shape to what D31 built - but because every save that loaded a build between 2026-09-04 and D116 on 09-17 is permanently marked as having already started r1. ArchiveXL force-starts an injected phase node only while its derived fact is 0 and sets that fact to 1 immediately, whether or not the phase ran; the D116 crash happened at world load, so those saves are marked WITHOUT the phase ever having executed. Re-testing r1 on such a save would measure nothing at all. A new revision is a new depot filename, hence a new CRC, node id and fact id. See D21 and OI-15.",
+  "phase_revision": 2,
+  "nodes": [
+    {"_comment": "WHY THIS EXISTS. Cynosure sits in Quest-category streaming sectors, and those are not proximity-streamed: their descriptors in ep1 all.streamingblock carry a questPrefabNodeRef (381 of 381 Quest sectors have one; 0 of the other 1,805 do) and a streamingBox of +/-FLT_MAX, which is distance streaming switched OFF rather than an infinite radius. Walking to the coordinates loads nothing, forever. What loads them is an active phase that names the prefab - so the only way in that does not involve finishing q305 is to be a phase that names it."},
+
+    {"id": "start", "type": "input"},
+
+    {"_comment": "Default OFF. The fact is never set by this mod's graph, so out of the box this phase parks here and nothing streams - zero cost and zero risk until the player asks for it. Set it to open the way in: Game.SetFactValue('ashcache_cynosure_open', 1) from the CET console, or the button on the mod's own CET panel. Set it back to 0 and the phase below exits, which unloads the sectors again.",
+     "id": "cyn_wait_open", "type": "pause_fact",
+     "fact": "ashcache_cynosure_open", "value": 1},
+
+    {"_comment": "Holds both bunker prefabs for as long as it runs. Node shape verified against vanilla q305_07_inner_bunker node 128, a questPhaseNodeDefinition with an inline phaseGraph and phaseInstancePrefabs [#q305_pr_outer_bunker]; the ref spellings are the ones q305 itself uses in its own phasePrefabs lists. UNTESTED IN GAME, and honestly so: this loads the geometry, it does not run any of q305's scripting. The airlocks, the Cerberus, the lighting states and the set dressing are all driven by q305_06/q305_07 graph nodes that are not running, so expect an empty, dark bunker and expect some doors to be shut. Whether it is walkable end to end is exactly the thing that needs a playthrough to answer.",
+     "id": "cyn_hold", "type": "prefab_phase",
+     "prefabs": ["#q305_pr_outer_bunker", "#q305_pr_inner_bunker"],
+     "release": {"fact": "ashcache_cynosure_open", "value": 0}},
+
+    {"_comment": "No output node, deliberately - see the vanilla precedent in the header. The loop below re-arms instead: closing it returns to the wait, so it can be reopened without reloading the save."}
+  ],
+  "links": [
+    ["start", "cyn_wait_open"],
+    ["cyn_wait_open", "cyn_hold"],
+    ["cyn_hold", "cyn_wait_open"]
+  ]
+}

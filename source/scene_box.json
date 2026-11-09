@@ -1,0 +1,78 @@
+{
+  "_comment": [
+    "The Relic case on the clinic workbench (Act 3, D102). No lines, no actors, no",
+    "tier: the scene exists only to hang one Use prompt on the case, which is how the",
+    "prologue makes a prop usable - q005_07_vip_apartment.scene's hub 4162 is an",
+    "attachToWorld scnChoiceNode with one option, captioned 'użyj'. The case itself",
+    "(ac_splinter_box in source/world.json) is scenery with no interaction of its own.",
+    "",
+    "The quest graph's open_box node blocks on this scene until the option is picked,",
+    "then sets ashcache_box_opened.",
+    "",
+    "D118: this is now the FIRST of two prompts on the same marker. This one opens the",
+    "case - the glue swaps the closed prop for q005_broken_suitcase.ent, which is the",
+    "opened case with the splinter lying in it - and scene_chip.json is the second,",
+    "which takes the splinter. One prompt that silently granted the item was the beat",
+    "the player could not see happening."
+  ],
+  "scene": {
+    "id": "ash_cache_box",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [],
+  "entryPoints": [
+    {
+      "name": "box_in",
+      "node": "start"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "box_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "id": "hub_use",
+      "type": "choice",
+      "_attachToWorld": "offset is relative to the scene location #ac_box_origin, which sits on the case's base at the bench top; 0.2 m up puts the prompt on the lid. range is vanilla hub 4162's 2 m.",
+      "attachToWorld": {
+        "offset": [
+          0,
+          0,
+          0.2
+        ],
+        "range": 1.5,
+        "yaw": 180
+      },
+      "options": [
+        {
+          "id": "opt_use",
+          "goto": "end",
+          "en-us": "Open the case",
+          "ua-ua": "Відкрити скриньку"
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [
+      "start",
+      "hub_use"
+    ],
+    [
+      "hub_use:opt_use",
+      "end"
+    ]
+  ]
+}

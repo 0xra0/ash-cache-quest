@@ -1,0 +1,251 @@
+{
+  "_comment": [
+    "D123. Mara comes out of the clinic once Hale's crew is down, says four sentences,",
+    "and names the thing the quest has been circling since Act 3 without ever saying it",
+    "out loud: the splinter is a CUTTING. The scan it grew from is still under Cynosure.",
+    "That is the hint at a continuation - and it is not a promise this mod cannot keep,",
+    "because source/cynosure_graph.json already streams those sectors on a fact.",
+    "",
+    "Why she appears HERE and not at #ac_mara: since D87 this project ships no",
+    "spawnMarkerNodeRef on an actor. An actor spawns at the scene node's own",
+    "sceneLocation with a zero offset, so anchoring this scene at #ac_clinic_entrance -",
+    "a VERIFIED marker, the same one the decision scene uses - puts her in the doorway",
+    "with no new position to stand on and measure. 'Emerging from the clinic' is a",
+    "consequence of where the scene is anchored, not of any animation.",
+    "",
+    "KNOWN RISK, first thing to check in game: she was already cast once, in",
+    "ash_cache_mara.scene, with keepAlive 1 (D105), so an entity carrying the",
+    "dynamicEntityUniqueName 'ashcache_mara' may still be standing inside the clinic",
+    "when this scene opens. Two outcomes are possible and only a playthrough decides",
+    "which: the spawn plan reuses her where she stands (lines play, nobody visible at",
+    "the door), or it places her at this scene's location (correct). The SAME record is",
+    "used on purpose - it cannot produce two Maras, which is the failure that would",
+    "look unfixable. If she does not appear, the fix is one edit: give this scene its",
+    "own character record in source/characters.json (same base, same appearance, new",
+    "'record' name) so the unique name differs and the spawn is unconditional.",
+    "",
+    "Why TWO entry points, the same idiom as scene_mara.json (D14) and",
+    "scene_decision.json: the intimidate route already gets its own agent count by SMS",
+    "(sms_mara_fight_cold, D121), so it gets its own version of this too. The cold path",
+    "has no choice hub at all - V is given nothing to say, which is the point of it -",
+    "and it still delivers Cynosure, because a sequel hook gated behind being polite to",
+    "somebody in Act 3 is a sequel hook half the players never hear.",
+    "",
+    "Both paths end on the same ashcache_mara_warned, which is what the quest graph's",
+    "guard_aftertalk reads to keep a phase_revision re-walk from replaying the scene."
+  ],
+  "scene": {
+    "id": "ash_cache_aftertalk",
+    "categoryTag": "sideQuests"
+  },
+  "actors": [
+    "mara"
+  ],
+  "entryPoints": [
+    {
+      "name": "after_in",
+      "node": "start"
+    },
+    {
+      "name": "after_in_cold",
+      "node": "start_cold"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "after_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "id": "start_cold",
+      "type": "start"
+    },
+    {
+      "id": "tier_on",
+      "_comment": "Same Tier3_LimitedGameplay framing every conversation in this quest uses - it is the first rung that actually stops movement. emptyHands matters more here than anywhere else: V walks into this scene straight out of a firefight with a gun up, and Mara's whole character is that she will not stand in front of one. Paired with 'tier_off'; the questphase wires this scene's Default INT/RET because of it.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier3_LimitedGameplay",
+        "emptyHands": true
+      }
+    },
+    {
+      "id": "tier_on_c",
+      "_comment": "Cold-route copy of 'tier_on'.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier3_LimitedGameplay",
+        "emptyHands": true
+      }
+    },
+    {
+      "id": "sec_open",
+      "type": "section",
+      "lines": [
+        {
+          "id": "after_open_1",
+          "actor": "Mara",
+          "emotion": "fear/worried",
+          "en-us": "Three of them. I counted from a supply closet with my phone in my hand, exactly like I said I would.",
+          "ua-ua": "Троє. Я рахувала їх із комірчини, з телефоном у руці — рівно так, як і обіцяла."
+        },
+        {
+          "id": "after_open_2",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "The clinic's node has already forgotten the last forty minutes. So have the two cameras on the corner. You were never in this building.",
+          "ua-ua": "Вузол клініки вже забув останні сорок хвилин. І дві камери на розі — теж. Тебе в цій будівлі ніколи не було."
+        },
+        {
+          "id": "after_open_3",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "Before you decide what to do with that case, there's one thing you don't know yet. It's the only part that matters.",
+          "ua-ua": "Перш ніж вирішиш, що робити з тим кейсом, — є одне, чого ти ще не знаєш. І саме воно єдине має значення."
+        }
+      ]
+    },
+    {
+      "_comment": "Two options, one answer. The choice is not a branch - it is the only place V gets to react to having just killed three people for a box, and the two readings of that (steady, or shaking) both lead to the same sentence from her. A hub that branched here would be a second ending switch twenty seconds before the real one.",
+      "id": "hub",
+      "attachToScreen": true,
+      "type": "choice",
+      "options": [
+        {
+          "id": "opt_ask",
+          "goto": "sec_hint",
+          "en-us": "Then say it.",
+          "ua-ua": "Тоді кажи."
+        },
+        {
+          "id": "opt_fast",
+          "goto": "sec_hint",
+          "en-us": "Make it fast. My hands are still shaking.",
+          "ua-ua": "Тільки швидко. У мене ще руки трусяться."
+        }
+      ]
+    },
+    {
+      "id": "sec_hint",
+      "type": "section",
+      "lines": [
+        {
+          "id": "after_hint_1",
+          "actor": "Mara",
+          "emotion": "interested/focused",
+          "en-us": "What's in your hand is a cutting. Somebody grew it off a scan, and the scan is still sitting where they took it.",
+          "ua-ua": "Те, що в тебе в руці, — живець. Хтось виростив його зі скану, і той скан досі лежить там, де його зняли."
+        },
+        {
+          "id": "after_hint_2",
+          "actor": "Mara",
+          "emotion": "fear/worried",
+          "en-us": "Cynosure. Under the Badlands. Militech dug it, the FIA inherited it, and Hale has been walking in and out of it for years.",
+          "ua-ua": "Сайносур. Під Пустищем. «Мілітех» його викопав, ФІА успадкувало, а Гейл роками заходить туди й виходить."
+        },
+        {
+          "id": "after_hint_3",
+          "actor": "Mara",
+          "emotion": "sadness",
+          "en-us": "So burn that case if you want. It closes nothing. Whatever you pick tonight, you're picking it about a copy.",
+          "ua-ua": "Тож спали той кейс, якщо хочеш. Це нічого не закриває. Хай що ти сьогодні обереш — ти обираєш щодо копії."
+        }
+      ]
+    },
+    {
+      "id": "sec_close",
+      "type": "section",
+      "lines": [
+        {
+          "id": "after_close_1",
+          "actor": "Mara",
+          "emotion": "interested/confident",
+          "en-us": "I'll be inside, taking myself out of nine years of paperwork. Keep the phone on. One day you'll want the address.",
+          "ua-ua": "Я буду всередині — витиратиму себе з дев'яти років паперів. Тримай телефон увімкненим. Колись ти попросиш адресу."
+        }
+      ]
+    },
+    {
+      "_comment": "The cold route in full: she comes out, she reports, she gives V the address anyway and then throws them off the step. Four lines, no hub. The information is identical - only her reason for handing it over changes, and on this route the reason is that she wants V pointed at somebody else.",
+      "id": "sec_cold",
+      "type": "section",
+      "lines": [
+        {
+          "id": "after_cold_1",
+          "actor": "Mara",
+          "emotion": "anger/defensive",
+          "en-us": "Three. All down. Counted from a closet, same as I'd have done for someone I liked.",
+          "ua-ua": "Троє. Усі лежать. Рахувала з комірчини — так само, як зробила б для того, хто мені подобається."
+        },
+        {
+          "id": "after_cold_2",
+          "actor": "Mara",
+          "emotion": "anger",
+          "en-us": "Node's wiped, cameras looped. That's not a favour. I'm just not going down for your mess.",
+          "ua-ua": "Вузол витерто, камери зациклено. Це не послуга. Просто я не сяду за твій безлад."
+        },
+        {
+          "id": "after_cold_3",
+          "actor": "Mara",
+          "emotion": "disgust",
+          "en-us": "One last thing, then get off my step. That case is a cutting. What it was cut from is still under Cynosure, and your scan is filed next to it.",
+          "ua-ua": "Останнє — і забирайся з мого порога. Той кейс — живець. Те, з чого його зрізали, досі під Сайносуром. І твій скан лежить у сусідній теці."
+        },
+        {
+          "id": "after_cold_4",
+          "actor": "Mara",
+          "emotion": "anger/full",
+          "en-us": "Burn it, swallow it, sell it. Hale grows another one by spring. Congratulations on your evening.",
+          "ua-ua": "Спали його, проковтни, продай. Гейл виростить новий до весни. Вітаю з вечором."
+        }
+      ]
+    },
+    {
+      "_comment": "Set on both routes. The graph's guard_aftertalk reads it so a phase_revision bump cannot drag the player back into this conversation, and it is also the save-game record that V has been told where the source is - which is what a continuation would open on.",
+      "id": "fact_warned",
+      "type": "quest",
+      "node": {
+        "type": "set_fact",
+        "fact": "ashcache_mara_warned",
+        "value": 1
+      }
+    },
+    {
+      "id": "tier_off",
+      "_comment": "Hands full control back.",
+      "type": "quest",
+      "node": {
+        "type": "set_tier",
+        "tier": "Tier1_FullGameplay",
+        "emptyHands": false
+      }
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [ "start", "tier_on" ],
+    [ "tier_on", "sec_open" ],
+    [ "sec_open", "hub" ],
+    [ "hub:opt_ask", "sec_hint" ],
+    [ "hub:opt_fast", "sec_hint" ],
+    [ "sec_hint", "sec_close" ],
+    [ "sec_close", "fact_warned" ],
+    [ "start_cold", "tier_on_c" ],
+    [ "tier_on_c", "sec_cold" ],
+    [ "sec_cold", "fact_warned" ],
+    [ "fact_warned", "tier_off" ],
+    [ "tier_off", "end" ]
+  ]
+}

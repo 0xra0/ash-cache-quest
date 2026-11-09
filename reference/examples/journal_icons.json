@@ -1,0 +1,53 @@
+{
+  "_source": "The game's own scripts, dumped to questmod-research/vanilla_scripts.reds, plus codexprobe2/ep1/journal/cooked_journal.journal serialized with WolvenKit.CLI. No DLL was read.",
+  "_why": "OI-18 recorded two icon defects. One of them is not a defect, and the other is not where it was being looked for. Both conclusions come from reading the code that draws the widgets, so they are quoted here rather than remembered.",
+
+  "quest_list_icon": {
+    "_what": "The icon beside a quest in the journal's left-hand list.",
+    "_chain": [
+      "SimpleQuestListItemController.OnDataChanged:  inkImageRef.SetTexturePart(m_typeIcon, QuestTypeIconUtils.GetIcon(m_questType))",
+      "QuestTypeIconUtils.GetIcon(QuestListItemType) -> CName            (a switch, vanilla_scripts.reds:361658)",
+      "QuestsListController.GetDisplayedCategory(gameJournalQuestType) -> QuestListItemType   (a switch, :360101)"
+    ],
+    "_not": "It is NOT a field on gameJournalQuest, and NOT districtID. gameJournalQuest has exactly four fields - title, type, recommendedLevelID, districtID - and no icon among them.",
+    "atlas_parts": {
+      "MainQuest": "quest", "SideQuest": "minor_quest", "MinorQuest": "minor_quest",
+      "CourierSideQuest": "minor_quest", "StreetStory": "gigs", "CyberPsycho": "hunt_for_psycho",
+      "Contract": "map_bounty", "ApartmentQuest": "apartment_to_buy", "CourierQuest": "courier"
+    },
+    "_the_trap": "gameJournalQuestType has TEN members. GetDisplayedCategory names nine. VehicleQuest (=6) is not among them, so it falls through to QuestListItemType.Invalid, and GetIcon's own fallthrough then returns the atlas part n\"invalid\" - the generic broken-icon glyph. A quest typed VehicleQuest is schema-valid, serializes cleanly, passes every build check and renders (!) with nothing reported anywhere. Vanilla itself ships one ep1 quest typed VehicleQuest.",
+    "_ash_cache": "type = SideQuest -> QuestListItemType.SideQuest -> atlas part 'minor_quest'. Valid; this is not the (!) path."
+  },
+
+  "hud_quest_icon": {
+    "_what": "A DIFFERENT icon - the one on the tracked-quest widget drawn by QuestItemController, not the journal list.",
+    "_chain": [
+      "QuestItemController.SetQuestData (:371818, last line):  InkImageUtils.RequestSetImage(this, m_QuestIcon, \"UIIcon.\" + ToString(m_QuestData.GetDistrict()))",
+      "QuestDataWrapper.GetDistrict() -> gamedataDistrict     = m_district.Type()  (:371680)",
+      "m_district comes from JournalManager.GetDistrict(quest) (native), fed from gameJournalQuest.districtID"
+    ],
+    "_shape": "districtID is a CString holding a TweakDB path, 'Districts.<Name>'. Verified across all 55 gameJournalQuest entries of the ep1 journal: 39 set it (Districts.Dogtown, Districts.Pacifica, Districts.Heywood, Districts.SouthBadlands), 16 leave it empty.",
+    "_the_trap": "The TweakDBID is built by STRING CONCATENATION from the gamedataDistrict enum name, so the icon record must be named UIIcon.<enum name> and not every district has one. gamedataDistrict has Dogtown_Brooklyn (56) and Dogtown_Worldmap_Sub (61); TweakDB has no UIIcon.Dogtown_Brooklyn and no UIIcon.Dogtown_Worldmap_Sub. A subdistrict that exists as a District record and as an enum member can still have no icon.",
+    "verified_uiicons": ["UIIcon.Dogtown", "UIIcon.Dogtown_Akebono", "UIIcon.Dogtown_CapitanCaliente", "UIIcon.Dogtown_Cynosure", "UIIcon.Dogtown_Expo", "UIIcon.Dogtown_Hideout"],
+    "_ash_cache": "districtID = Districts.Dogtown -> gamedataDistrict.Dogtown -> UIIcon.Dogtown, which exists. Valid."
+  },
+
+  "codex_link_thumbnails": {
+    "_what": "The linked-entry row on the journal screen. OI-18 called these 'three generic codex cards'.",
+    "_verdict": "NOT A DEFECT. There is no generic card to fall back to.",
+    "_chain": [
+      "QuestCodexLinkController.SetupCodexLink (:361104):",
+      "  if CodexUtils.IsImageValid(codexEntry.GetLinkImageID()) { RequestSetImage(...) }",
+      "  else { this.GetRootWidget().SetVisible(false); return; }"
+    ],
+    "_why_that_settles_it": "An invalid link image HIDES the card. Three cards visible therefore means three valid link images, drawing their real art. IsImageValid is stricter still: it rejects a valid TweakDBID whose UIIcon resolves to atlas part 'empty', 'empty2' or 'c_empty' (:197429), so even a present-but-blank icon hides the card rather than drawing a placeholder.",
+    "_field": "gameJournalQuestCodexLink carries ONE field, 'path'. The art is entirely the target gameJournalCodexEntry's business, via its linkImageId (the row thumbnail) or imageId (the full entry image).",
+    "verified_targets": {
+      "ep1/codex/locations/subdistricts/dogtown": {"imageId": "UIJournalIcons.l_dogtown_full", "linkImageId": "UIJournalIcons.l_dogtown"},
+      "ep1/codex/locations/quest/cyanosure": {"imageId": "UIJournalIcons.l_cynosure_full", "linkImageId": "UIJournalIcons.l_cynosure"}
+    },
+    "_the_real_difference": "Vanilla's row looks different because vanilla links CHARACTER codex entries alongside locations, and this mod links three locations. That is a content choice, not a pipeline fault. Adding a character portrait means linking a vanilla character's codex entry, or authoring a codex entry with its own linkImageId."
+  },
+
+  "_untested": "None of this has been seen in game since it was read. The claims are about which code path runs, and they are quoted from that code; whether the result looks right is still OI-18's to answer."
+}

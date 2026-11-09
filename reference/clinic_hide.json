@@ -1,0 +1,3198 @@
+{
+ "_about": "Farida's clinic dressing -> reference/clinic_hide.json (D134).",
+ "box": [
+  -1919.5,
+  -1899.0,
+  -2480.2,
+  -2460.7,
+  23.5,
+  29.0
+ ],
+ "sectors": [
+  {
+   "tag": "78",
+   "path": "base\\worlds\\03_night_city\\_compiled\\default\\ep1\\interior_-60_-78_0_0.streamingsector",
+   "setups": 570,
+   "vanilla_refs": [
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/monitor_a_vertical_prefabBLRPB4Y",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/monitor_b_prefabEPBP54I",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/monitor_a_prefabTYCFR3A",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/monitor_b_002_prefabEPBP54I",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/#q304_farida_screwdriver_1",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/#q304_farida_screwdriver_2",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/#q304_farida_tool",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/#q304_cyberdeck",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/#q304_farida_scalpel",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/#q304_farida_anaesthetic",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/#q304_farida_spark_plug",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_env_prefabOEBAZSQ/loc_q303_macs_clinic_deco_prefabQ62J7VI/monitor_a_001_prefabTYCFR3A"
+   ],
+   "hide": [],
+   "delete": [
+    {
+     "i": 0,
+     "cls": "worldClothMeshNode",
+     "name": "industrial_curtain_c_clh",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_c_clh.mesh"
+    },
+    {
+     "i": 1,
+     "cls": "worldClothMeshNode",
+     "name": "industrial_curtain_d_clh",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_d_clh.mesh"
+    },
+    {
+     "i": 2,
+     "cls": "worldClothMeshNode",
+     "name": "industrial_curtain_c_clh",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_c_clh.mesh"
+    },
+    {
+     "i": 3,
+     "cls": "worldClothMeshNode",
+     "name": "industrial_curtain_c_clh",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_c_clh.mesh"
+    },
+    {
+     "i": 4,
+     "cls": "worldClothMeshNode",
+     "name": "industrial_curtain_c_clh",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_c_clh.mesh"
+    },
+    {
+     "i": 5,
+     "cls": "worldDynamicMeshNode",
+     "name": "workshop_tool_e_screwdriver_001",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_e_screwdriver.mesh"
+    },
+    {
+     "i": 6,
+     "cls": "worldDynamicMeshNode",
+     "name": "workshop_tool_g_pliers_001",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_g_pliers.mesh"
+    },
+    {
+     "i": 7,
+     "cls": "worldDynamicMeshNode",
+     "name": "medkit_c_pro_stuff_b_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_c_pro_stuff_b.mesh"
+    },
+    {
+     "i": 8,
+     "cls": "worldDynamicMeshNode",
+     "name": "military_case_k",
+     "res": "base\\environment\\decoration\\containers\\cases\\military_case\\military_case_k.mesh"
+    },
+    {
+     "i": 9,
+     "cls": "worldDynamicMeshNode",
+     "name": "neo_milit_medical_device_c",
+     "res": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_c.mesh"
+    },
+    {
+     "i": 10,
+     "cls": "worldDynamicMeshNode",
+     "name": "neo_milit_medical_device_b",
+     "res": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_b.mesh"
+    },
+    {
+     "i": 11,
+     "cls": "worldStaticDecalNode",
+     "name": "d_industrial_lettering_caution_001",
+     "res": "base\\surfaces\\textures\\decals\\industrial\\industrial_lettering_caution.mi"
+    },
+    {
+     "i": 12,
+     "cls": "worldStaticDecalNode",
+     "name": "d_industrial_lettering_caution_002",
+     "res": "base\\surfaces\\textures\\decals\\industrial\\industrial_lettering_caution.mi"
+    },
+    {
+     "i": 41,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_f_scalpel_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_f_scalpel.mesh"
+    },
+    {
+     "i": 42,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_f_scalpel",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_f_scalpel.mesh"
+    },
+    {
+     "i": 43,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_d_scissors",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_d_scissors.mesh"
+    },
+    {
+     "i": 44,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_d_scissors_002",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_d_scissors.mesh"
+    },
+    {
+     "i": 45,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "office_tool_g_pen",
+     "res": "base\\environment\\decoration\\tools\\office\\office_tool\\office_tool_g_pen.mesh"
+    },
+    {
+     "i": 46,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 47,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_d_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_d.mesh"
+    },
+    {
+     "i": 48,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_d_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_d.mesh"
+    },
+    {
+     "i": 49,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "office_tool_f_pen_005",
+     "res": "base\\environment\\decoration\\tools\\office\\office_tool\\office_tool_f_pen.mesh"
+    },
+    {
+     "i": 50,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_c_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_c.mesh"
+    },
+    {
+     "i": 51,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_c_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_c.mesh"
+    },
+    {
+     "i": 52,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_b_tongs",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_b_tongs.mesh"
+    },
+    {
+     "i": 53,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_b_tongs_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_b_tongs.mesh"
+    },
+    {
+     "i": 54,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{surgical_tool_e_scissors}",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_e_scissors.mesh"
+    },
+    {
+     "i": 55,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_b_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_b.mesh"
+    },
+    {
+     "i": 56,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_b_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_b.mesh"
+    },
+    {
+     "i": 57,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_f_scalpel_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_f_scalpel.mesh"
+    },
+    {
+     "i": 58,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_a_syringe",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_a_syringe.mesh"
+    },
+    {
+     "i": 60,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_g_syringe",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_g_syringe.mesh"
+    },
+    {
+     "i": 61,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_f}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_f.mesh"
+    },
+    {
+     "i": 62,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_f}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_f.mesh"
+    },
+    {
+     "i": 64,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_a_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_a.mesh"
+    },
+    {
+     "i": 66,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_e}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_e.mesh"
+    },
+    {
+     "i": 67,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_e}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_e.mesh"
+    },
+    {
+     "i": 68,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_c_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_c.mesh"
+    },
+    {
+     "i": 69,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_g}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_g.mesh"
+    },
+    {
+     "i": 70,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_g}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_g.mesh"
+    },
+    {
+     "i": 73,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "voodoo_glass_a_jar_b_007",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_b.mesh"
+    },
+    {
+     "i": 75,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_b_001",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_b.mesh"
+    },
+    {
+     "i": 76,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_b_003",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_b.mesh"
+    },
+    {
+     "i": 77,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "workshop_tool_r_hammer_001",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_r_hammer.mesh"
+    },
+    {
+     "i": 78,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh"
+    },
+    {
+     "i": 79,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh"
+    },
+    {
+     "i": 80,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_d_006",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_d.mesh"
+    },
+    {
+     "i": 81,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_i_gauze_003",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_i_gauze.mesh"
+    },
+    {
+     "i": 82,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_i_gauze_003",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_i_gauze.mesh"
+    },
+    {
+     "i": 83,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{surgical_tool_g_syringe}",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_g_syringe.mesh"
+    },
+    {
+     "i": 85,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_e.mesh",
+     "res": "base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_e.mesh"
+    },
+    {
+     "i": 86,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_e.mesh",
+     "res": "base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_e.mesh"
+    },
+    {
+     "i": 87,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_j_gauze",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_j_gauze.mesh"
+    },
+    {
+     "i": 88,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_b",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_b.mesh"
+    },
+    {
+     "i": 89,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_j_gauze",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_j_gauze.mesh"
+    },
+    {
+     "i": 90,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_a_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_a.mesh"
+    },
+    {
+     "i": 92,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_g",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_g.mesh"
+    },
+    {
+     "i": 94,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_s_shears.mesh",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_s_shears.mesh"
+    },
+    {
+     "i": 95,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_s_shears.mesh",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_s_shears.mesh"
+    },
+    {
+     "i": 97,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_c_004",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh"
+    },
+    {
+     "i": 98,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_c_006",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh"
+    },
+    {
+     "i": 100,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_g_pliers.mesh",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_g_pliers.mesh"
+    },
+    {
+     "i": 101,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_g_pliers.mesh",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_g_pliers.mesh"
+    },
+    {
+     "i": 102,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\bottles\\medical_jar\\medical_jar_d.mesh",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medical_jar\\medical_jar_d.mesh"
+    },
+    {
+     "i": 103,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_e_003",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_e.mesh"
+    },
+    {
+     "i": 104,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cleaning_rag_b_001",
+     "res": "base\\environment\\decoration\\textiles\\cleaning\\cleaning_rag\\cleaning_rag_b.mesh"
+    },
+    {
+     "i": 105,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_i_gauze_003",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_i_gauze.mesh"
+    },
+    {
+     "i": 107,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "voodoo_glass_a_jar_a",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_a.mesh"
+    },
+    {
+     "i": 108,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cleaning_rag_d_002",
+     "res": "base\\environment\\decoration\\textiles\\cleaning\\cleaning_rag\\cleaning_rag_d.mesh"
+    },
+    {
+     "i": 109,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "delivery_crate_c_001",
+     "res": "base\\environment\\decoration\\containers\\crates\\delivery_crate\\delivery_crate_c.mesh"
+    },
+    {
+     "i": 110,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "towel_f_roll_pile",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_f_roll_pile.mesh"
+    },
+    {
+     "i": 111,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "hanging_lab_suit_a_001",
+     "res": "base\\environment\\decoration\\textiles\\clothes\\hanging_lab_suit\\hanging_lab_suit_a.mesh"
+    },
+    {
+     "i": 112,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "delivery_crate_a",
+     "res": "base\\environment\\decoration\\containers\\crates\\delivery_crate\\delivery_crate_a.mesh"
+    },
+    {
+     "i": 113,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "delivery_crate_b",
+     "res": "base\\environment\\decoration\\containers\\crates\\delivery_crate\\delivery_crate_b.mesh"
+    },
+    {
+     "i": 114,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "delivery_crate_b_002",
+     "res": "base\\environment\\decoration\\containers\\crates\\delivery_crate\\delivery_crate_b.mesh"
+    },
+    {
+     "i": 115,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "towel_c_folded_pile",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_c_folded_pile.mesh"
+    },
+    {
+     "i": 116,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "towel_b_folded_pile_001",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_b_folded_pile.mesh"
+    },
+    {
+     "i": 117,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "towel_d_roll_pile",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_d_roll_pile.mesh"
+    },
+    {
+     "i": 118,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "towel_e_roll_pile_001",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_e_roll_pile.mesh"
+    },
+    {
+     "i": 119,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_b.mesh",
+     "res": "base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_b.mesh"
+    },
+    {
+     "i": 120,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_d.mesh",
+     "res": "base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_d.mesh"
+    },
+    {
+     "i": 121,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_a.mesh",
+     "res": "base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_a.mesh"
+    },
+    {
+     "i": 122,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_e_opened.mesh",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_e_opened.mesh"
+    },
+    {
+     "i": 123,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "industrial_cabinet_f_door_a_005",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_cabinet\\industrial_cabinet_f_door_a.mesh"
+    },
+    {
+     "i": 124,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "toolbox_e_001",
+     "res": "base\\environment\\decoration\\containers\\cases\\toolbox\\toolbox_e.mesh"
+    },
+    {
+     "i": 125,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cardboard_box_01_h",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_h.mesh"
+    },
+    {
+     "i": 126,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "industrial_cabinet_f_door_a",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_cabinet\\industrial_cabinet_f_door_a.mesh"
+    },
+    {
+     "i": 127,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cleaning_rag_c_bloody_001",
+     "res": "base\\environment\\decoration\\textiles\\cleaning\\cleaning_rag\\cleaning_rag_c_bloody.mesh"
+    },
+    {
+     "i": 128,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_d.mesh",
+     "res": "base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_d.mesh"
+    },
+    {
+     "i": 129,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_f_002",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_f.mesh"
+    },
+    {
+     "i": 130,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_b.mesh",
+     "res": "base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_b.mesh"
+    },
+    {
+     "i": 131,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "postal_box_f_007",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_f.mesh"
+    },
+    {
+     "i": 132,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "postal_box_f",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_f.mesh"
+    },
+    {
+     "i": 133,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "postal_box_f_005",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_f.mesh"
+    },
+    {
+     "i": 134,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{towel_c_folded_pile}",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_c_folded_pile.mesh"
+    },
+    {
+     "i": 136,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 137,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 138,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 139,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 140,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 141,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 142,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 143,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 144,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 145,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 146,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 147,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 148,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 149,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_d",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_d.mesh"
+    },
+    {
+     "i": 150,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_g.mesh",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_g.mesh"
+    },
+    {
+     "i": 151,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "workshop_tool_h_cutter_001",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_h_cutter.mesh"
+    },
+    {
+     "i": 152,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_f_001",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_f.mesh"
+    },
+    {
+     "i": 154,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_d}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_d.mesh"
+    },
+    {
+     "i": 155,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_d}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_d.mesh"
+    },
+    {
+     "i": 156,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_i_gauze",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_i_gauze.mesh"
+    },
+    {
+     "i": 157,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_d_004",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_d.mesh"
+    },
+    {
+     "i": 158,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_g_004",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_g.mesh"
+    },
+    {
+     "i": 159,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "workshop_tool_t_cutter_001",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_t_cutter.mesh"
+    },
+    {
+     "i": 161,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_d_001",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_d.mesh"
+    },
+    {
+     "i": 162,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_d_001",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_d.mesh"
+    },
+    {
+     "i": 163,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_d_001",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_d.mesh"
+    },
+    {
+     "i": 164,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_d_001",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_d.mesh"
+    },
+    {
+     "i": 165,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile_004",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 166,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile_004",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 167,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile_004",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 168,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{workshop_tool_a_wrench}",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_a_wrench.mesh"
+    },
+    {
+     "i": 169,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{workshop_tool_a_wrench}",
+     "res": "base\\environment\\decoration\\tools\\workshop\\workshop_tool\\workshop_tool_a_wrench.mesh"
+    },
+    {
+     "i": 170,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_e_019",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_e.mesh"
+    },
+    {
+     "i": 171,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_i_gauze_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_i_gauze.mesh"
+    },
+    {
+     "i": 172,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_c_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_c.mesh"
+    },
+    {
+     "i": 173,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_c",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_c.mesh"
+    },
+    {
+     "i": 176,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_d.mesh",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_d.mesh"
+    },
+    {
+     "i": 177,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medkit_stuff_bottle_a}",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_bottle_a.mesh"
+    },
+    {
+     "i": 178,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medkit_stuff_bottle_a}",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_bottle_a.mesh"
+    },
+    {
+     "i": 179,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 180,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 181,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 182,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 183,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 184,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 185,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 186,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 187,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 188,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_d_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_d_pile.mesh"
+    },
+    {
+     "i": 189,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_h_003",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_h.mesh"
+    },
+    {
+     "i": 190,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_h_003",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_h.mesh"
+    },
+    {
+     "i": 191,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_h_003",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_h.mesh"
+    },
+    {
+     "i": 192,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_h_003",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_h.mesh"
+    },
+    {
+     "i": 193,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_b_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_b.mesh"
+    },
+    {
+     "i": 194,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_b_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_b.mesh"
+    },
+    {
+     "i": 195,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_b_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_b.mesh"
+    },
+    {
+     "i": 196,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_b_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_b.mesh"
+    },
+    {
+     "i": 197,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_e_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_e.mesh"
+    },
+    {
+     "i": 198,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_e_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_e.mesh"
+    },
+    {
+     "i": 199,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_e_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_e.mesh"
+    },
+    {
+     "i": 200,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "magazine_e_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\magazine\\magazine_e.mesh"
+    },
+    {
+     "i": 201,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile_001",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 202,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 203,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 204,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 205,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 206,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 207,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 208,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 209,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 210,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 211,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 212,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "voodoo_glass_a_jar_a_023",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_a.mesh"
+    },
+    {
+     "i": 213,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "voodoo_glass_a_jar_a_012",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_a.mesh"
+    },
+    {
+     "i": 214,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "corpo_lamp_desk_a_001",
+     "res": "base\\environment\\decoration\\lighting\\residential\\corpo_lamp_desk\\corpo_lamp_desk_a.mesh"
+    },
+    {
+     "i": 215,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "a0_002_ma_arms_cyberarm_l_deco_a_001",
+     "res": "base\\environment\\decoration\\misc\\shops\\cyber_arms\\a0_002_ma_arms_cyberarm_l_deco_a.mesh"
+    },
+    {
+     "i": 216,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_i_file_open_002",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_i_file_open.mesh"
+    },
+    {
+     "i": 217,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "voodoo_glass_a_jar_b",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_b.mesh"
+    },
+    {
+     "i": 218,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "poor_desk_lamp_b_001",
+     "res": "base\\environment\\decoration\\lighting\\residential\\poor_desk_lamp\\poor_desk_lamp_b.mesh"
+    },
+    {
+     "i": 219,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "poor_trash_can_small_d_001",
+     "res": "base\\environment\\decoration\\garbage\\bins\\poor_trash_can_small\\poor_trash_can_small_d.mesh"
+    },
+    {
+     "i": 220,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "postal_box_e_001",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_e.mesh"
+    },
+    {
+     "i": 221,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "postal_box_f_012",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_f.mesh"
+    },
+    {
+     "i": 222,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cardboard_box_01_e_lid_004",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_e_lid.mesh"
+    },
+    {
+     "i": 223,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cardboard_box_01_h",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_h.mesh"
+    },
+    {
+     "i": 224,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cardboard_box_01_g_001",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_g.mesh"
+    },
+    {
+     "i": 225,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_i_file_open",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_i_file_open.mesh"
+    },
+    {
+     "i": 226,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cable_coil_d_spool",
+     "res": "base\\environment\\decoration\\industrial\\equipment\\cable_coil\\cable_coil_d_spool.mesh"
+    },
+    {
+     "i": 227,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "voodoo_glass_a_jar_b_001",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_b.mesh"
+    },
+    {
+     "i": 228,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "voodoo_glass_a_jar_a_001",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_a.mesh"
+    },
+    {
+     "i": 229,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cardboard_box_02_h_001",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_02_h.mesh"
+    },
+    {
+     "i": 230,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "postal_box_f_006",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_f.mesh"
+    },
+    {
+     "i": 231,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_a",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_a.mesh"
+    },
+    {
+     "i": 232,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_b_009",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_b.mesh"
+    },
+    {
+     "i": 233,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medicine_bottle_a_002",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_a.mesh"
+    },
+    {
+     "i": 234,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_f_tray_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_tray.mesh"
+    },
+    {
+     "i": 235,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_f_tray",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_tray.mesh"
+    },
+    {
+     "i": 236,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "postal_box_f_008",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_f.mesh"
+    },
+    {
+     "i": 237,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_b_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_b.mesh"
+    },
+    {
+     "i": 238,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_b",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_b.mesh"
+    },
+    {
+     "i": 239,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_d_rack_002",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_d_rack.mesh"
+    },
+    {
+     "i": 240,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_f_surgical_cloth_a_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_surgical_cloth_a.mesh"
+    },
+    {
+     "i": 241,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_e_tray_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_e_tray.mesh"
+    },
+    {
+     "i": 242,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_g.mesh",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_g.mesh"
+    },
+    {
+     "i": 243,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medical_container_f_tray}",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_tray.mesh"
+    },
+    {
+     "i": 244,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_e_opened.mesh",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_e_opened.mesh"
+    },
+    {
+     "i": 245,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_a.mesh",
+     "res": "base\\environment\\decoration\\sanitation\\cleaning\\bottle_disinfectant\\bottle_disinfectant_a.mesh"
+    },
+    {
+     "i": 246,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_g.mesh",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_g.mesh"
+    },
+    {
+     "i": 247,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medical_container_f_tray}",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_tray.mesh"
+    },
+    {
+     "i": 248,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_c_002",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_c.mesh"
+    },
+    {
+     "i": 249,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{cardboard_box_open_a}",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box_open\\cardboard_box_open_a.mesh"
+    },
+    {
+     "i": 250,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_electronic_small_merged_h_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_h.mesh"
+    },
+    {
+     "i": 251,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_c_002",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_c.mesh"
+    },
+    {
+     "i": 252,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "machine_iv_stand_b",
+     "res": "base\\environment\\decoration\\electronics\\medical\\machine_iv_stand\\machine_iv_stand_b.mesh"
+    },
+    {
+     "i": 253,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "machine_iv_stand_b",
+     "res": "base\\environment\\decoration\\electronics\\medical\\machine_iv_stand\\machine_iv_stand_b.mesh"
+    },
+    {
+     "i": 254,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_f_surgical_cloth_a",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_surgical_cloth_a.mesh"
+    },
+    {
+     "i": 255,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_f_tray_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_tray.mesh"
+    },
+    {
+     "i": 256,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{cleaning_rag_d}",
+     "res": "base\\environment\\decoration\\textiles\\cleaning\\cleaning_rag\\cleaning_rag_d.mesh"
+    },
+    {
+     "i": 257,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{towel_f_roll_pile}",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_f_roll_pile.mesh"
+    },
+    {
+     "i": 258,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{towel_e_roll_pile}",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_e_roll_pile.mesh"
+    },
+    {
+     "i": 259,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_cart_c_001",
+     "res": "base\\environment\\decoration\\furniture\\lab\\medical_cart\\medical_cart_c.mesh"
+    },
+    {
+     "i": 260,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cleaning_rag_b_001",
+     "res": "base\\environment\\decoration\\textiles\\cleaning\\cleaning_rag\\cleaning_rag_b.mesh"
+    },
+    {
+     "i": 261,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_g.mesh",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_g.mesh"
+    },
+    {
+     "i": 262,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "paper_document_e_pile",
+     "res": "base\\environment\\decoration\\misc\\paper\\paper_document\\paper_document_e_pile.mesh"
+    },
+    {
+     "i": 263,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "military_case_l_001",
+     "res": "base\\environment\\decoration\\containers\\cases\\military_case\\military_case_l.mesh"
+    },
+    {
+     "i": 264,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_electronic_small_merged_g_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_g.mesh"
+    },
+    {
+     "i": 265,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{cardboard_box_open_a}",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box_open\\cardboard_box_open_a.mesh"
+    },
+    {
+     "i": 266,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_j_opened.mesh",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_j_opened.mesh"
+    },
+    {
+     "i": 267,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_a",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_a.mesh"
+    },
+    {
+     "i": 268,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "desk_organizer_c_002",
+     "res": "base\\environment\\decoration\\misc\\office\\desk_organizer\\desk_organizer_c.mesh"
+    },
+    {
+     "i": 269,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_cart_d_001",
+     "res": "base\\environment\\decoration\\furniture\\lab\\medical_cart\\medical_cart_d.mesh"
+    },
+    {
+     "i": 270,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cardboard_box_01_e_opened_004",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_e_opened.mesh"
+    },
+    {
+     "i": 271,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "deco_cyberware_container_002",
+     "res": "base\\environment\\decoration\\misc\\shops\\cyberware_container\\deco_cyberware_container.mesh"
+    },
+    {
+     "i": 272,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_container_f_tray_001",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_tray.mesh"
+    },
+    {
+     "i": 273,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_cart_b",
+     "res": "base\\environment\\decoration\\furniture\\lab\\medical_cart\\medical_cart_b.mesh"
+    },
+    {
+     "i": 282,
+     "cls": "worldEntityNode",
+     "name": "monitor_b_002",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_a.ent"
+    },
+    {
+     "i": 283,
+     "cls": "worldEntityNode",
+     "name": "q304_farida_screwdriver_1",
+     "res": "ep1\\quest\\main_quests\\q304\\entities\\q304_farida_screwdriver_1.ent"
+    },
+    {
+     "i": 284,
+     "cls": "worldEntityNode",
+     "name": "q304_farida_screwdriver_2",
+     "res": "ep1\\quest\\main_quests\\q304\\entities\\q304_farida_screwdriver_2.ent"
+    },
+    {
+     "i": 285,
+     "cls": "worldEntityNode",
+     "name": "q304_farida_tool",
+     "res": "ep1\\quest\\main_quests\\q304\\entities\\q304_farida_tool.ent"
+    },
+    {
+     "i": 286,
+     "cls": "worldEntityNode",
+     "name": "{q304_cyberdeck}",
+     "res": "base\\items\\quest\\q108__cyberdeck_a.ent"
+    },
+    {
+     "i": 287,
+     "cls": "worldEntityNode",
+     "name": "q304_farida_scalpel",
+     "res": "ep1\\quest\\main_quests\\q304\\entities\\q304_farida_scalpel.ent"
+    },
+    {
+     "i": 288,
+     "cls": "worldEntityNode",
+     "name": "monitor_b",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_a.ent"
+    },
+    {
+     "i": 289,
+     "cls": "worldEntityNode",
+     "name": "q304_farida_anaesthetic",
+     "res": "ep1\\quest\\main_quests\\q304\\entities\\q304_farida_anaesthetic.ent"
+    },
+    {
+     "i": 290,
+     "cls": "worldEntityNode",
+     "name": "q304_farida_spark_plug",
+     "res": "ep1\\quest\\main_quests\\q304\\entities\\q304_farida_spark_plug.ent"
+    },
+    {
+     "i": 291,
+     "cls": "worldEntityNode",
+     "name": "monitor_a_vertical",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_c_vertical.ent"
+    },
+    {
+     "i": 292,
+     "cls": "worldEntityNode",
+     "name": "monitor_a_001",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_b.ent"
+    },
+    {
+     "i": 293,
+     "cls": "worldEntityNode",
+     "name": "monitor_a",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_b.ent"
+    },
+    {
+     "i": 294,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_h_001",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_h.mesh"
+    },
+    {
+     "i": 295,
+     "cls": "worldStaticMeshNode",
+     "name": "node_036",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_n.mesh"
+    },
+    {
+     "i": 296,
+     "cls": "worldStaticMeshNode",
+     "name": "node_036",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_n.mesh"
+    },
+    {
+     "i": 297,
+     "cls": "worldStaticMeshNode",
+     "name": "surgical_tool_i_gauze_003",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_i_gauze.mesh"
+    },
+    {
+     "i": 298,
+     "cls": "worldStaticMeshNode",
+     "name": "node_038",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_k.mesh"
+    },
+    {
+     "i": 299,
+     "cls": "worldStaticMeshNode",
+     "name": "node_038",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_k.mesh"
+    },
+    {
+     "i": 300,
+     "cls": "worldStaticMeshNode",
+     "name": "node_054",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_j.mesh"
+    },
+    {
+     "i": 301,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_container_a",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_a.mesh"
+    },
+    {
+     "i": 302,
+     "cls": "worldStaticMeshNode",
+     "name": "node_004",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_c.mesh"
+    },
+    {
+     "i": 303,
+     "cls": "worldStaticMeshNode",
+     "name": "node_049",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_g.mesh"
+    },
+    {
+     "i": 304,
+     "cls": "worldStaticMeshNode",
+     "name": "node_049",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_g.mesh"
+    },
+    {
+     "i": 305,
+     "cls": "worldStaticMeshNode",
+     "name": "surgical_tool_j_gauze",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_j_gauze.mesh"
+    },
+    {
+     "i": 308,
+     "cls": "worldStaticMeshNode",
+     "name": "node_048",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_f.mesh"
+    },
+    {
+     "i": 309,
+     "cls": "worldStaticMeshNode",
+     "name": "node_048",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_f.mesh"
+    },
+    {
+     "i": 310,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_j",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_j.mesh"
+    },
+    {
+     "i": 311,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_c",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_c.mesh"
+    },
+    {
+     "i": 312,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_o",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_o.mesh"
+    },
+    {
+     "i": 314,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_q",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_q.mesh"
+    },
+    {
+     "i": 315,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_q",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_q.mesh"
+    },
+    {
+     "i": 316,
+     "cls": "worldStaticMeshNode",
+     "name": "dangling_chain_a_ceiling_mount_a",
+     "res": "base\\environment\\decoration\\garbage\\scraps\\dangling_chain\\dangling_chain_a_ceiling_mount_a.mesh"
+    },
+    {
+     "i": 317,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_b",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_b.mesh"
+    },
+    {
+     "i": 318,
+     "cls": "worldStaticMeshNode",
+     "name": "entropy_panel_06_a",
+     "res": "base\\environment\\decoration\\decals\\mesh_decal\\entropy_panel_06_a.mesh"
+    },
+    {
+     "i": 319,
+     "cls": "worldStaticMeshNode",
+     "name": "surgical_chair_a_chip_reader",
+     "res": "base\\environment\\decoration\\electronics\\medical\\surgical_chair\\surgical_chair_a_chip_reader.mesh"
+    },
+    {
+     "i": 320,
+     "cls": "worldStaticMeshNode",
+     "name": "medicine_bottle_a",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_a.mesh"
+    },
+    {
+     "i": 321,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_a_arm_d_001",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a_arm_d.mesh"
+    },
+    {
+     "i": 322,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_a_arm_d",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a_arm_d.mesh"
+    },
+    {
+     "i": 323,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_table_c_001",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_table\\industrial_table_c.mesh"
+    },
+    {
+     "i": 324,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_locker_02_c_left",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_locker_02\\industrial_locker_02_a_left.mesh"
+    },
+    {
+     "i": 326,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_curtain_d_railing",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_d_railing.mesh"
+    },
+    {
+     "i": 327,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_locker_02_c_right",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_locker_02\\industrial_locker_02_c_right.mesh"
+    },
+    {
+     "i": 328,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_cabinet_f_open_002",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_cabinet\\industrial_cabinet_f_open.mesh"
+    },
+    {
+     "i": 330,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_shelf_f",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_f.mesh"
+    },
+    {
+     "i": 331,
+     "cls": "worldStaticMeshNode",
+     "name": "hardware_electronic_device_e",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\hardware_electronic_device\\hardware_electronic_device_e.mesh"
+    },
+    {
+     "i": 332,
+     "cls": "worldStaticMeshNode",
+     "name": "entropy_panel_06_a_001",
+     "res": "base\\environment\\decoration\\decals\\mesh_decal\\entropy_panel_06_a.mesh"
+    },
+    {
+     "i": 333,
+     "cls": "worldStaticMeshNode",
+     "name": "hardware_electronic_device_e_001",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\hardware_electronic_device\\hardware_electronic_device_e.mesh"
+    },
+    {
+     "i": 334,
+     "cls": "worldStaticMeshNode",
+     "name": "keyboard_b",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\keyboard\\keyboard_b.mesh"
+    },
+    {
+     "i": 335,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_l",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_l.mesh"
+    },
+    {
+     "i": 336,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_l",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_l.mesh"
+    },
+    {
+     "i": 337,
+     "cls": "worldStaticMeshNode",
+     "name": "entropy_panel_small_06_a_001",
+     "res": "base\\environment\\decoration\\decals\\mesh_decal\\entropy_panel_small_06_a.mesh"
+    },
+    {
+     "i": 338,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_jar_b",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medical_jar\\medical_jar_b.mesh"
+    },
+    {
+     "i": 339,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_jar_c",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medical_jar\\medical_jar_c.mesh"
+    },
+    {
+     "i": 340,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_jar_a",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medical_jar\\medical_jar_a.mesh"
+    },
+    {
+     "i": 341,
+     "cls": "worldStaticMeshNode",
+     "name": "towel_e_roll_pile_001",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_e_roll_pile.mesh"
+    },
+    {
+     "i": 342,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_p_002",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_p.mesh"
+    },
+    {
+     "i": 343,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_p_002",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_p.mesh"
+    },
+    {
+     "i": 344,
+     "cls": "worldStaticMeshNode",
+     "name": "postal_box_g",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_g.mesh"
+    },
+    {
+     "i": 345,
+     "cls": "worldStaticMeshNode",
+     "name": "cardboard_box_open_d",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box_open\\cardboard_box_open_d.mesh"
+    },
+    {
+     "i": 346,
+     "cls": "worldStaticMeshNode",
+     "name": "neo_milit_medical_device_f_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_f.mesh"
+    },
+    {
+     "i": 347,
+     "cls": "worldStaticMeshNode",
+     "name": "neo_milit_medical_device_f_002",
+     "res": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_f.mesh"
+    },
+    {
+     "i": 351,
+     "cls": "worldStaticMeshNode",
+     "name": "arasaka_computing_unit_b",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\arasaka_computing_unit\\arasaka_computing_unit_b.mesh"
+    },
+    {
+     "i": 359,
+     "cls": "worldStaticMeshNode",
+     "name": "large_fusebox_attachment_d",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\large_fusebox_attachment\\large_fusebox_attachment_d.mesh"
+    },
+    {
+     "i": 360,
+     "cls": "worldStaticMeshNode",
+     "name": "large_fusebox_attachment_i",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\large_fusebox_attachment\\large_fusebox_attachment_i.mesh"
+    },
+    {
+     "i": 361,
+     "cls": "worldStaticMeshNode",
+     "name": "large_fusebox_attachment_j",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\large_fusebox_attachment\\large_fusebox_attachment_j.mesh"
+    },
+    {
+     "i": 363,
+     "cls": "worldStaticMeshNode",
+     "name": "neo_milit_medical_device_f",
+     "res": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_f.mesh"
+    },
+    {
+     "i": 364,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_f_004",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_f.mesh"
+    },
+    {
+     "i": 365,
+     "cls": "worldStaticMeshNode",
+     "name": "stage_a_truss_l200_a",
+     "res": "base\\environment\\decoration\\industrial\\platform\\stage\\stage_a_truss_l200_a.mesh"
+    },
+    {
+     "i": 366,
+     "cls": "worldStaticMeshNode",
+     "name": "stage_a_truss_l400_a_001",
+     "res": "base\\environment\\decoration\\industrial\\platform\\stage\\stage_a_truss_l400_a.mesh"
+    },
+    {
+     "i": 367,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_f_006",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_f.mesh"
+    },
+    {
+     "i": 368,
+     "cls": "worldStaticMeshNode",
+     "name": "cardboard_box_01_h_003",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_h.mesh"
+    },
+    {
+     "i": 369,
+     "cls": "worldStaticMeshNode",
+     "name": "postal_box_b",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_b.mesh"
+    },
+    {
+     "i": 370,
+     "cls": "worldStaticMeshNode",
+     "name": "poor_office_stool_a_001",
+     "res": "base\\environment\\decoration\\furniture\\office\\poor_office_stool\\poor_office_stool_a.mesh"
+    },
+    {
+     "i": 371,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_f_007",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_f.mesh"
+    },
+    {
+     "i": 372,
+     "cls": "worldStaticMeshNode",
+     "name": "towel_c_folded_pile",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_c_folded_pile.mesh"
+    },
+    {
+     "i": 373,
+     "cls": "worldStaticMeshNode",
+     "name": "morgue_sink_a_tap_c",
+     "res": "base\\environment\\decoration\\furniture\\lab\\morgue_sink\\morgue_sink_a_tap_c.mesh"
+    },
+    {
+     "i": 374,
+     "cls": "worldStaticMeshNode",
+     "name": "military_case_g",
+     "res": "base\\environment\\decoration\\containers\\cases\\military_case\\military_case_g.mesh"
+    },
+    {
+     "i": 375,
+     "cls": "worldStaticMeshNode",
+     "name": "military_case_g_002",
+     "res": "base\\environment\\decoration\\containers\\cases\\military_case\\military_case_g.mesh"
+    },
+    {
+     "i": 376,
+     "cls": "worldStaticMeshNode",
+     "name": "military_case_l",
+     "res": "base\\environment\\decoration\\containers\\cases\\military_case\\military_case_l.mesh"
+    },
+    {
+     "i": 377,
+     "cls": "worldStaticMeshNode",
+     "name": "military_cables_01_a_hang_b_002",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\military_cables_01\\military_cables_01_a_hang_b.mesh"
+    },
+    {
+     "i": 379,
+     "cls": "worldStaticMeshNode",
+     "name": "rich_kitchen_furniutre_a_top",
+     "res": "base\\environment\\decoration\\furniture\\kitchen\\rich_kitchen_furniture\\rich_kitchen_furniutre_a_top.mesh"
+    },
+    {
+     "i": 380,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_a_arm_a_002",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a_arm_a.mesh"
+    },
+    {
+     "i": 381,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_b_arm_d",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_b_arm_d.mesh"
+    },
+    {
+     "i": 382,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_d_006",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_d.mesh"
+    },
+    {
+     "i": 383,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_f_005",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_f.mesh"
+    },
+    {
+     "i": 384,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_c",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_c.mesh"
+    },
+    {
+     "i": 385,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_a_001",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a.mesh"
+    },
+    {
+     "i": 386,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_a",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a.mesh"
+    },
+    {
+     "i": 387,
+     "cls": "worldStaticMeshNode",
+     "name": "military_case_g",
+     "res": "base\\environment\\decoration\\containers\\cases\\military_case\\military_case_g.mesh"
+    },
+    {
+     "i": 390,
+     "cls": "worldStaticMeshNode",
+     "name": "surgical_chair_a_backrest_aa",
+     "res": "base\\environment\\decoration\\electronics\\medical\\surgical_chair\\surgical_chair_a_backrest_aa.mesh"
+    },
+    {
+     "i": 391,
+     "cls": "worldStaticMeshNode",
+     "name": "surgical_chair_a_base_aa",
+     "res": "base\\environment\\decoration\\electronics\\medical\\surgical_chair\\surgical_chair_a_base_aa.mesh"
+    },
+    {
+     "i": 392,
+     "cls": "worldStaticMeshNode",
+     "name": "surgical_chair_a_seat_aa",
+     "res": "base\\environment\\decoration\\electronics\\medical\\surgical_chair\\surgical_chair_a_seat_aa.mesh"
+    },
+    {
+     "i": 393,
+     "cls": "worldStaticMeshNode",
+     "name": "surgical_chair_a_slide_aa",
+     "res": "base\\environment\\decoration\\electronics\\medical\\surgical_chair\\surgical_chair_a_slide_aa.mesh"
+    },
+    {
+     "i": 394,
+     "cls": "worldStaticMeshNode",
+     "name": "entropy_cabinet_a_desk_a_001",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\entropy_cabinet\\entropy_cabinet_a_desk_a.mesh"
+    },
+    {
+     "i": 395,
+     "cls": "worldStaticMeshNode",
+     "name": "entropy_office_desk_d",
+     "res": "base\\environment\\decoration\\furniture\\office\\entropy_office_desk\\entropy_office_desk_d.mesh"
+    },
+    {
+     "i": 396,
+     "cls": "worldStaticMeshNode",
+     "name": "entropy_office_desk_a_drawer_b_002",
+     "res": "base\\environment\\decoration\\furniture\\office\\entropy_office_desk\\entropy_office_desk_a_drawer_b.mesh"
+    },
+    {
+     "i": 397,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_largel_a_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_large\\medical_electronic_largel_a.mesh"
+    },
+    {
+     "i": 398,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_curtain_c_railing",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_c_railing.mesh"
+    },
+    {
+     "i": 399,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_a",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_a.mesh"
+    },
+    {
+     "i": 400,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_p_001",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_p.mesh"
+    },
+    {
+     "i": 401,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_device_b",
+     "res": "base\\environment\\decoration\\electronics\\devices\\monitor_device\\monitor_device_b.mesh"
+    },
+    {
+     "i": 402,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_q",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_q.mesh"
+    },
+    {
+     "i": 403,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_device_c",
+     "res": "base\\environment\\decoration\\electronics\\devices\\monitor_device\\monitor_device_c.mesh"
+    },
+    {
+     "i": 404,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_c_screen",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_c_screen.mesh"
+    },
+    {
+     "i": 405,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_b_screen",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_b_screen.mesh"
+    },
+    {
+     "i": 406,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_curtain_c_railing",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_c_railing.mesh"
+    },
+    {
+     "i": 407,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_table_f_002",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_table\\industrial_table_f.mesh"
+    },
+    {
+     "i": 409,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_table_i",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_table\\industrial_table_i.mesh"
+    },
+    {
+     "i": 410,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_shelf_d",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_d.mesh"
+    },
+    {
+     "i": 411,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_shelf_c_thin",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_c_thin.mesh"
+    },
+    {
+     "i": 412,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_table_c",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_table\\industrial_table_c.mesh"
+    },
+    {
+     "i": 413,
+     "cls": "worldStaticMeshNode",
+     "name": "lab_lamp_standing_a",
+     "res": "base\\environment\\decoration\\lighting\\lab\\lab_lamp_standing\\lab_lamp_standing_a.mesh"
+    },
+    {
+     "i": 414,
+     "cls": "worldStaticMeshNode",
+     "name": "lab_lamp_standing_a_light_a",
+     "res": "base\\environment\\decoration\\lighting\\lab\\lab_lamp_standing\\lab_lamp_standing_a_light_a.mesh"
+    },
+    {
+     "i": 415,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_largel_c_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_large\\medical_electronic_largel_c.mesh"
+    },
+    {
+     "i": 416,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_largel_c",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_large\\medical_electronic_largel_c.mesh"
+    },
+    {
+     "i": 417,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_largel_a",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_large\\medical_electronic_largel_a.mesh"
+    },
+    {
+     "i": 419,
+     "cls": "worldStaticMeshNode",
+     "name": "poor_office_stool_a",
+     "res": "base\\environment\\decoration\\furniture\\office\\poor_office_stool\\poor_office_stool_a.mesh"
+    },
+    {
+     "i": 420,
+     "cls": "worldStaticMeshNode",
+     "name": "rich_kitchen_furniutre_c_001",
+     "res": "base\\environment\\decoration\\furniture\\kitchen\\rich_kitchen_furniture\\rich_kitchen_furniutre_c.mesh"
+    },
+    {
+     "i": 421,
+     "cls": "worldStaticMeshNode",
+     "name": "neo_milit_medical_device_e_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_e.mesh"
+    },
+    {
+     "i": 422,
+     "cls": "worldStaticMeshNode",
+     "name": "rich_kitchen_furniutre_c_top",
+     "res": "base\\environment\\decoration\\furniture\\kitchen\\rich_kitchen_furniture\\rich_kitchen_furniutre_c_top.mesh"
+    },
+    {
+     "i": 423,
+     "cls": "worldStaticMeshNode",
+     "name": "rich_kitchen_furniutre_b_top",
+     "res": "base\\environment\\decoration\\furniture\\kitchen\\rich_kitchen_furniture\\rich_kitchen_furniutre_b_top.mesh"
+    },
+    {
+     "i": 424,
+     "cls": "worldStaticMeshNode",
+     "name": "lab_lamp_standing_a_light_a_001",
+     "res": "base\\environment\\decoration\\lighting\\lab\\lab_lamp_standing\\lab_lamp_standing_a_light_a.mesh"
+    },
+    {
+     "i": 427,
+     "cls": "worldStaticMeshNode",
+     "name": "cable_set_a_l200_a_a_002",
+     "res": "base\\environment\\decoration\\public_utility\\cable\\cable_set_a\\cable_set_a_l200_a_a.mesh"
+    },
+    {
+     "i": 428,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_e_003",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_e.mesh"
+    },
+    {
+     "i": 429,
+     "cls": "worldStaticMeshNode",
+     "name": "toolbox_a_001",
+     "res": "base\\environment\\decoration\\containers\\cases\\toolbox\\toolbox_a.mesh"
+    },
+    {
+     "i": 430,
+     "cls": "worldStaticMeshNode",
+     "name": "rich_braindance_machine_a",
+     "res": "base\\environment\\decoration\\electronics\\devices\\rich_braindance_machine\\rich_braindance_machine_a.mesh"
+    },
+    {
+     "i": 431,
+     "cls": "worldStaticMeshNode",
+     "name": "netrunner_chair_voodoo_a_attachment_b",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\netrunner_chair_voodoo\\netrunner_chair_voodoo_a_attachment_b.mesh"
+    },
+    {
+     "i": 432,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_table_d",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_table\\industrial_table_d.mesh"
+    },
+    {
+     "i": 433,
+     "cls": "worldStaticMeshNode",
+     "name": "hardware_electronic_device_f",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\hardware_electronic_device\\hardware_electronic_device_f.mesh"
+    },
+    {
+     "i": 434,
+     "cls": "worldStaticMeshNode",
+     "name": "hardware_electronic_device_d",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\hardware_electronic_device\\hardware_electronic_device_d.mesh"
+    },
+    {
+     "i": 435,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_largel_c_002",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_large\\medical_electronic_largel_c.mesh"
+    },
+    {
+     "i": 436,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_cart_a",
+     "res": "base\\environment\\decoration\\furniture\\lab\\medical_cart\\medical_cart_a.mesh"
+    },
+    {
+     "i": 463,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_i.mesh"
+    },
+    {
+     "i": 464,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_i.mesh"
+    },
+    {
+     "i": 465,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_h.mesh"
+    },
+    {
+     "i": 466,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_e.mesh"
+    },
+    {
+     "i": 467,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_e.mesh"
+    },
+    {
+     "i": 468,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_i.mesh"
+    },
+    {
+     "i": 469,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_h.mesh"
+    },
+    {
+     "i": 470,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_c.mesh"
+    },
+    {
+     "i": 471,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_e.mesh"
+    },
+    {
+     "i": 472,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_e.mesh"
+    },
+    {
+     "i": 473,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_e.mesh"
+    },
+    {
+     "i": 474,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_d.mesh"
+    },
+    {
+     "i": 475,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_e.mesh"
+    },
+    {
+     "i": 476,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_i_gauze.mesh"
+    },
+    {
+     "i": 477,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_n.mesh"
+    },
+    {
+     "i": 478,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_j.mesh"
+    },
+    {
+     "i": 479,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_b.mesh"
+    },
+    {
+     "i": 480,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_c.mesh"
+    },
+    {
+     "i": 481,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_c.mesh"
+    },
+    {
+     "i": 482,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_j.mesh"
+    },
+    {
+     "i": 483,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_o.mesh"
+    },
+    {
+     "i": 484,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_o.mesh"
+    },
+    {
+     "i": 485,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_o.mesh"
+    },
+    {
+     "i": 486,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_b.mesh"
+    },
+    {
+     "i": 487,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_g.mesh"
+    },
+    {
+     "i": 488,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\screen_device_a_21x9.mesh"
+    },
+    {
+     "i": 489,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_d_rack.mesh"
+    },
+    {
+     "i": 490,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_f.mesh"
+    },
+    {
+     "i": 491,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh"
+    },
+    {
+     "i": 492,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\voodoo_glass\\voodoo_glass_a_jar_a.mesh"
+    },
+    {
+     "i": 493,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh"
+    },
+    {
+     "i": 495,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_a.mesh"
+    },
+    {
+     "i": 496,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_locker_02\\industrial_locker_02_b_middle.mesh"
+    },
+    {
+     "i": 497,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_locker_02\\industrial_locker_02_a_door_a.mesh"
+    },
+    {
+     "i": 499,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\architecture\\common\\int\\int_common_techpanel_a\\int_common_techpanel_a_floor_l200_w200_a.mesh"
+    },
+    {
+     "i": 500,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_cabinet\\industrial_cabinet_f_open.mesh"
+    },
+    {
+     "i": 501,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\decals\\mesh_decal\\entropy_panel_03_a.mesh"
+    },
+    {
+     "i": 502,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\shops\\poor_wall_shelf_01\\poor_wall_shelf_01_b.mesh"
+    },
+    {
+     "i": 506,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\textiles\\curtains\\industrial_curtain\\industrial_curtain_c_railing.mesh"
+    },
+    {
+     "i": 507,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_f_roll_pile.mesh"
+    },
+    {
+     "i": 508,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\textiles\\bathwear\\towel\\towel_d_roll_pile.mesh"
+    },
+    {
+     "i": 509,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_l.mesh"
+    },
+    {
+     "i": 510,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medical_jar\\medical_jar_a.mesh"
+    },
+    {
+     "i": 511,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\decals\\mesh_decal\\entropy_panel_small_02_a.mesh"
+    },
+    {
+     "i": 512,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_d.mesh"
+    },
+    {
+     "i": 513,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_d.mesh"
+    },
+    {
+     "i": 514,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\office\\entropy_file_cabinet\\entropy_file_cabinet_a.mesh"
+    },
+    {
+     "i": 515,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_d.mesh"
+    },
+    {
+     "i": 516,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_f.mesh"
+    },
+    {
+     "i": 517,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\glass_cabinet\\glass_cabinet_b_door_a.mesh"
+    },
+    {
+     "i": 518,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\glass_cabinet\\glass_cabinet_b.mesh"
+    },
+    {
+     "i": 519,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_d.mesh"
+    },
+    {
+     "i": 520,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\kitchen\\rich_kitchen_furniture\\rich_kitchen_furniutre_a.mesh"
+    },
+    {
+     "i": 521,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_f.mesh"
+    },
+    {
+     "i": 522,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_c.mesh"
+    },
+    {
+     "i": 523,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\office\\entropy_file_cabinet\\entropy_file_cabinet_a_drawer_a.mesh"
+    },
+    {
+     "i": 524,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_d.mesh"
+    },
+    {
+     "i": 525,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\packaging\\postal_box\\postal_box_a.mesh"
+    },
+    {
+     "i": 526,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a_mount_a.mesh"
+    },
+    {
+     "i": 527,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\military_cables_01\\military_cables_01_a_hang_b.mesh"
+    },
+    {
+     "i": 528,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\office\\entropy_office_desk\\entropy_office_desk_a_drawer_a.mesh"
+    },
+    {
+     "i": 529,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_e_lid.mesh"
+    },
+    {
+     "i": 530,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\packaging\\cardboard_box\\cardboard_box_01_e_opened.mesh"
+    },
+    {
+     "i": 531,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_table\\industrial_table_f.mesh"
+    },
+    {
+     "i": 533,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\public_utility\\cable\\cable_set_a\\cable_set_a_l200_a_a.mesh"
+    },
+    {
+     "i": 534,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\public_utility\\cable\\cable_set_a\\cable_set_a_l200_a_a.mesh"
+    },
+    {
+     "i": 536,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\kitchen\\neomilirary_fridge\\neomilitary_fridge_a.mesh"
+    },
+    {
+     "i": 539,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\military_cables_01\\military_cables_01_a_hang_b.mesh"
+    },
+    {
+     "i": 543,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\kitchen\\neomilirary_fridge\\neomilitary_fridge_b.mesh"
+    },
+    {
+     "i": 544,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_h.mesh"
+    },
+    {
+     "i": 546,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\furniture\\office\\poor_office_chair\\poor_office_chair_a.mesh"
+    }
+   ]
+  },
+  {
+   "tag": "77",
+   "path": "base\\worlds\\03_night_city\\_compiled\\default\\ep1\\interior_-60_-77_0_0.streamingsector",
+   "setups": 80,
+   "vanilla_refs": [],
+   "hide": [],
+   "delete": [
+    {
+     "i": 1,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_c_tongs",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_c_tongs.mesh"
+    },
+    {
+     "i": 2,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_d_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_d.mesh"
+    },
+    {
+     "i": 3,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_c_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_c.mesh"
+    },
+    {
+     "i": 4,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medkit_stuff_package_b_004",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medkit\\medkit_stuff_package_b.mesh"
+    },
+    {
+     "i": 5,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_f}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_f.mesh"
+    },
+    {
+     "i": 6,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_e}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_e.mesh"
+    },
+    {
+     "i": 7,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_g}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_g.mesh"
+    },
+    {
+     "i": 8,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "instanced_destructible_base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_c.mesh"
+    },
+    {
+     "i": 9,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "surgical_tool_i_gauze_003",
+     "res": "base\\environment\\decoration\\medical\\accessories\\surgical_tool\\surgical_tool_i_gauze.mesh"
+    },
+    {
+     "i": 10,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medicine_bottle_d}",
+     "res": "base\\environment\\decoration\\containers\\bottles\\medicine_bottle\\medicine_bottle_d.mesh"
+    },
+    {
+     "i": 11,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cable_coil_d_spool_005",
+     "res": "base\\environment\\decoration\\industrial\\equipment\\cable_coil\\cable_coil_d_spool.mesh"
+    },
+    {
+     "i": 12,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cable_coil_a_001",
+     "res": "base\\environment\\decoration\\industrial\\equipment\\cable_coil\\cable_coil_a.mesh"
+    },
+    {
+     "i": 13,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "cable_coil_f_hose_001",
+     "res": "base\\environment\\decoration\\industrial\\equipment\\cable_coil\\cable_coil_f_hose.mesh"
+    },
+    {
+     "i": 14,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "{medical_container_f_tray}",
+     "res": "base\\environment\\decoration\\medical\\accessories\\medical_container\\medical_container_f_tray.mesh"
+    },
+    {
+     "i": 15,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_electronic_small_merged_d_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_d.mesh"
+    },
+    {
+     "i": 16,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_electronic_small_merged_f_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_f.mesh"
+    },
+    {
+     "i": 17,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "military_case_g_003",
+     "res": "base\\environment\\decoration\\containers\\cases\\military_case\\military_case_g.mesh"
+    },
+    {
+     "i": 18,
+     "cls": "worldInstancedDestructibleMeshNode",
+     "name": "medical_electronic_small_merged_g_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_g.mesh"
+    },
+    {
+     "i": 19,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_arm_y",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_y.mesh"
+    },
+    {
+     "i": 20,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_a_arm_b_002",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a_arm_b.mesh"
+    },
+    {
+     "i": 21,
+     "cls": "worldStaticMeshNode",
+     "name": "{server_entropy_a}",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\server_entropy\\server_entropy_a.mesh"
+    },
+    {
+     "i": 23,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_largel_c_004",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_large\\medical_electronic_largel_c.mesh"
+    },
+    {
+     "i": 26,
+     "cls": "worldStaticMeshNode",
+     "name": "neo_milit_medical_device_d_003",
+     "res": "base\\environment\\decoration\\electronics\\medical\\neo_milit_medical_device\\neo_milit_medical_device_d.mesh"
+    },
+    {
+     "i": 27,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_largel_a_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_large\\medical_electronic_largel_a.mesh"
+    },
+    {
+     "i": 31,
+     "cls": "worldStaticMeshNode",
+     "name": "cable_6m_0_right_a",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\cables\\cables\\mesh\\test_set_for_ripperdoc\\cable_6m_0_right_a.w2mesh"
+    },
+    {
+     "i": 32,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_a_arm_a_001",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a_arm_a.mesh"
+    },
+    {
+     "i": 33,
+     "cls": "worldStaticMeshNode",
+     "name": "surgery_lamp_large_a_arm_c_001",
+     "res": "base\\environment\\decoration\\lighting\\lab\\surgery_lamp_large\\surgery_lamp_large_a_arm_c.mesh"
+    },
+    {
+     "i": 34,
+     "cls": "worldStaticMeshNode",
+     "name": "toolbox_a",
+     "res": "base\\environment\\decoration\\containers\\cases\\toolbox\\toolbox_a.mesh"
+    },
+    {
+     "i": 35,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_f",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_f.mesh"
+    },
+    {
+     "i": 36,
+     "cls": "worldStaticMeshNode",
+     "name": "industrial_shelf_a",
+     "res": "base\\environment\\decoration\\furniture\\industrial\\industrial_shelf\\industrial_shelf_a.mesh"
+    },
+    {
+     "i": 37,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_h_001",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_h.mesh"
+    },
+    {
+     "i": 38,
+     "cls": "worldStaticMeshNode",
+     "name": "medical_electronic_small_merged_d",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_d.mesh"
+    },
+    {
+     "i": 39,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_b_screen_001",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_b_screen.mesh"
+    },
+    {
+     "i": 40,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_b_screen_002",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_b_screen.mesh"
+    },
+    {
+     "i": 41,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_a_screen_002",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_a_screen.mesh"
+    },
+    {
+     "i": 42,
+     "cls": "worldStaticMeshNode",
+     "name": "monitor_a_screen",
+     "res": "base\\environment\\decoration\\electronics\\devices\\screen_device\\monitor_a_screen.mesh"
+    },
+    {
+     "i": 43,
+     "cls": "worldStaticMeshNode",
+     "name": "node_001",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_a.mesh"
+    },
+    {
+     "i": 48,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_ac.mesh"
+    },
+    {
+     "i": 49,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_i.mesh"
+    },
+    {
+     "i": 50,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_aa.mesh"
+    },
+    {
+     "i": 51,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_h.mesh"
+    },
+    {
+     "i": 52,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_v.mesh"
+    },
+    {
+     "i": 53,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_e.mesh"
+    },
+    {
+     "i": 54,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_s.mesh"
+    },
+    {
+     "i": 55,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_n.mesh"
+    },
+    {
+     "i": 56,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_d.mesh"
+    },
+    {
+     "i": 57,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_k.mesh"
+    },
+    {
+     "i": 58,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_j.mesh"
+    },
+    {
+     "i": 59,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_c.mesh"
+    },
+    {
+     "i": 60,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_o.mesh"
+    },
+    {
+     "i": 61,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_g.mesh"
+    },
+    {
+     "i": 62,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_f.mesh"
+    },
+    {
+     "i": 63,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_b.mesh"
+    },
+    {
+     "i": 64,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_r.mesh"
+    },
+    {
+     "i": 65,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\arasaka_computing_unit\\arasaka_computing_unit_b.mesh"
+    },
+    {
+     "i": 66,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\medical\\medical_electronic_small\\medical_electronic_small_merged_e.mesh"
+    },
+    {
+     "i": 67,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\containers\\cases\\toolbox\\toolbox_g.mesh"
+    },
+    {
+     "i": 68,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\devices\\monitor_device\\monitor_device_a.mesh"
+    },
+    {
+     "i": 69,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\devices\\monitor_device\\monitor_device_b.mesh"
+    },
+    {
+     "i": 70,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\attachments\\monitor_arm\\monitor_arm_p.mesh"
+    },
+    {
+     "i": 73,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\hardware\\server_neomilitarism\\server_militarism_b.mesh"
+    },
+    {
+     "i": 75,
+     "cls": "worldInstancedMeshNode",
+     "name": "None",
+     "res": "base\\environment\\decoration\\electronics\\devices\\rich_braindance_machine\\rich_braindance_machine_b.mesh"
+    }
+   ]
+  },
+  {
+   "tag": "ext",
+   "path": "base\\worlds\\03_night_city\\_compiled\\default\\ep1\\exterior_-30_-39_0_0.streamingsector",
+   "setups": 1825,
+   "vanilla_refs": [
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/underpassage_small_decoration_02_prefabPW4KN2A/decoset_shop_q_w600_cz_a_prefabERXYROA/decoset_entanglement_i_002_prefabDZAN2MA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/shootingSpotObject_088",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/monument_av_roads_prefab2LZPPEI/decoset_streetsign_gwashington_001_prefabJBZIHZI",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_single_cz_002_prefab4RYPJ7A",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/#monument_av_lighting/lch_wall_lamp_d_prefab6Y3UVYA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_env_prefab7UQLOBQ/boulevard_av_sector_b_prefabPWYTEZA/boulevard_av_decoration_prefabMCLQXUY/boulevard_av_sector_b_decoration_b_nonproxy_prefabSTTCHEI/decoset_trash_hobo_spot_u_prefabJ4TQEGA/crowd_ws_homeless_sit",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/#loc_q303_macs_clinic_gameplay/{q303_pr_door_clinic_entrance}_prefabZ65OBUY/#q303_dvc_door_clinic_entrance",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/#loc_q303_macs_clinic_gameplay/#q303_dvc_farida_door_intercom",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/#loc_q303_macs_clinic_gameplay/{q303_pr_door_clinic}_prefabDY3IITY/#q303_dvc_door_clinic",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_single_cz_003_prefab4RYPJ7A",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/combat_zone_drop_points_prefabPKKQKCY/drop_point_002_prefabYUA7DRA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/combat_zone_data_terminals_prefabLN6J6KI/combat_zone_dataterm_04_prefabARG5WKY/#stadium_data_term_001",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/underpassage_small_decoration_02_prefabPW4KN2A/decoset_shop_q_w600_cz_a_prefabERXYROA/advertising_lifted_a_vertical_h_300_w_150_single_003_prefabYWVODEA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_env_prefab7UQLOBQ/boulevard_av_sector_b_prefabPWYTEZA/boulevard_av_decoration_prefabMCLQXUY/boulevard_av_sector_b_decoration_b_nonproxy_prefabSTTCHEI/decoset_trash_hobo_spot_u_prefabJ4TQEGA/crowd_ws_homeless_sit_001",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/loc_q303_combat_zone_gate_prefabT6SV24Y/loc_q303_combat_zone_gate_leveldesign_prefabDT66IMA/climb_110cm_001_prefabMT3XVQI/{debug_shape}_prefabUDJVQCY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/decoset_hangouts_commercials_long_prefabSUNOPNY/EntityNode_001_prefabQAKQKUY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/combat_zone_kurt_radio_prefabV5XM47Y/combat_zone_kurt_radio_golden_pacific_prefabYXQUN3Q/kurt_megaphone_03_006_prefab56V3NJQ",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/monument_av_architecture_prefabA2O4RNI/spire_area_prefab7LTEMLI/underpassage_small_prefabGD4GXUQ/ventilation_fan_6m_black_v1_001_prefabT4YITRY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/#loc_q304_combat_tower/loc_q304_combat_tower_gameplay_prefabWRWAGBA/#loc_mq301_ct_devices/#mq301_mp_sit_bench",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/{loc_ma_mq304_ce}_prefabZUYPAOQ/{loc_ma_mq304_ce_gp}_prefabCYP6VUQ/#ma_ce_03_b_ws_03_b",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_010_prefabPQNNYOY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/loc_q303_macs_clinic_questdesign_prefabASGA53Y/#cz_monument_av_ripperdoc_farida_mappin",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_909",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_908",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_905",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_904",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_907",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_906",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_902",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/#monument_av_lighting/gle_wall_lamp_d_narrow_cyan_prefab3O7ZP3Q",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/{loc_ma_mq304_ce}_prefabZUYPAOQ/{loc_ma_mq304_ce_gp}_prefabCYP6VUQ/#ma_ce_03_b_ws_01_b",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/loc_q303_combat_zone_gate_prefabT6SV24Y/loc_q303_combat_zone_gate_leveldesign_prefabDT66IMA/climb_200cm_002_prefabDSG53RQ/{debug_shape}_prefabOSR22BA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_002_prefabPQNNYOY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/decoration_B2F7D65D_PVO7KQI_035",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/decoration_B2F7D65D_PVO7KQI_034",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_single_cz_004_prefab4RYPJ7A",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/loc_q303_combat_zone_gate_prefabT6SV24Y/loc_q303_combat_zone_gate_leveldesign_prefabDT66IMA/climb_110cm_prefabMT3XVQI/{debug_shape}_prefabUDJVQCY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/monument_av_architecture_prefabA2O4RNI/spire_area_prefab7LTEMLI/underpassage_small_prefabGD4GXUQ/ventilation_fan_6m_black_v1_prefabT4YITRY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/decoset_hangouts_commercials_long_001_prefabSUNOPNY/EntityNode_001_prefabQAKQKUY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_openworld_prefabNFBKBNQ/monument_av_community_prefabXYN3XFY/monument_av_external_241",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/underpassage_small_decoration_02_prefabPW4KN2A/decoset_bench_b_ent_v2_prefabS2OI6TA/crowd_ws_sit",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/loc_q303_combat_zone_gate_prefabT6SV24Y/loc_q303_combat_zone_gate_leveldesign_prefabDT66IMA/climb_200cm_prefabDSG53RQ/{debug_shape}_prefabOSR22BA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_741",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_790",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_791",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_788",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_783",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_787",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_786",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_785",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_784",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/loc_q303_combat_zone_gate_prefabT6SV24Y/loc_q303_combat_zone_gate_leveldesign_prefabDT66IMA/climb_200cm_004_prefabDSG53RQ/{debug_shape}_prefabOSR22BA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_170",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_171",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_177",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_178",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_141",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_140",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_142",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_138",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_136",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_137",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_105",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_104",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_103",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_102",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_198",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_199",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_181",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_011_prefabPQNNYOY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_single_cz_prefab4RYPJ7A",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_209",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_200",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_201",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_211",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_212",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_260",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_261",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_262",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_263",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_259",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_258",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_openworld_prefab2QCUN2I/boulevard_av_community_prefabGPNQVFI/#n_cz_gp_crossroad_sq_outcast_009_E",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_317",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_318",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/#loc_q303_macs_clinic_gameplay/#loc_q303_macs_clinic_gps",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/#loc_q303_macs_clinic_gameplay/laptop_1_prefabMJ334ZA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/#loc_pr_stadium/loc_q304_stadium_black_market_prefabE4QFOYY/loc_q304_stadium_black_market_openworld_prefabQKGCWII/#d_q304_parking_lot_ws_tunel_01_junkie_005_01",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/casino_street_decoration_nonproxy_prefabNM6B4ZA/street_pole_a_single_cz_011_prefabNRK6JYI",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_single_cz_001_prefab4RYPJ7A",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/#monument_av_lighting/lch_wall_lamp_d_001_prefab6Y3UVYA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/loc_q303_combat_zone_gate_prefabT6SV24Y/loc_q303_combat_zone_gate_leveldesign_prefabDT66IMA/climb_200cm_003_prefabDSG53RQ/{debug_shape}_prefabOSR22BA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_service_points_prefabBYHMIIY/mon_av_vendor_02_prefabB7NNS2I/mon_av_vendor_02_cinematics_prefabJY3E5KQ/cz_monument_av_ripperdoc_farida_prefabDN5U45I/#cz_monument_av_ripperdoc_tr_behind_the_counter",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/#loc_pr_stadium/loc_q304_stadium_black_market_prefabE4QFOYY/loc_q304_stadium_black_market_openworld_prefabQKGCWII/#d_q304_parking_lot_ws_tunel_02_homeless_005_01",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/#monument_av_lighting/gle_wall_lamp_d_narrow_cyan_001_prefab3O7ZP3Q",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/underpassage_small_decoration_02_prefabPW4KN2A/decoset_bench_b_ent_v1_prefabDV3T7WQ/crowd_ws_sit_001",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/underpassage_small_decoration_02_prefabPW4KN2A/decoset_bench_b_ent_v1_prefabDV3T7WQ/crowd_ws_sit",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/#loc_q303_macs_clinic_gameplay/{q303_pr_door_clinic_entrance}_prefabZ65OBUY/{terminal_}1_prefabQXJFEGY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_env_prefab7UQLOBQ/boulevard_av_sector_a_prefabOH2BT2A/boulevard_av_sector_a_decoration_prefabVQV3ASY/boulevard_av_sector_a_decoration_b_nonproxy_prefabYBEA2YI/decoset_blocade_long_holo_b_v2_002_prefabI75FYAI/street_sign_g_3_5x1_004_prefabZ4STXFA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_1120",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_1121",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_1119",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_gameplay_prefabW3HLHFY/boulevard_av_covers_prefabDDV2LDY/coverObject_1118",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/loc_q303_combat_zone_gate_prefabT6SV24Y/loc_q303_combat_zone_gate_leveldesign_prefabDT66IMA/climb_110cm_002_prefabMT3XVQI/{debug_shape}_prefabUDJVQCY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/loc_q303_combat_zone_gate_prefabT6SV24Y/loc_q303_combat_zone_gate_leveldesign_prefabDT66IMA/climb_200cm_001_prefabDSG53RQ/{debug_shape}_prefabOSR22BA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_003_prefabPQNNYOY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_env_prefab7UQLOBQ/boulevard_av_sector_b_prefabPWYTEZA/boulevard_av_decoration_prefabMCLQXUY/boulevard_av_sector_b_decorations_c_nonproxy_001_prefabVTC63GI/electrical_pole_g_prefabXXC6XDY/{electrical_pole_g_dst}_prefabBBER45I",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_lighting_prefabBKEWIOA/boulevard_av_streetlamps_prefabNOFKV2Q/EntityNode_012_prefabZWLXMEI",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/#loc_q303_macs_clinic_gameplay/loc_q303_macs_clinic_loot_prefabB7RX33Y/{q304_farida_faceplate_buyers_guide}_prefabX645Z2Y",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/loc_q303_macs_clinic_prefab6FLJFXI/#loc_q303_macs_clinic_gameplay/#q304_farida_shop_sign",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/underpassage_small_decoration_02_prefabPW4KN2A/decoset_bench_b_ent_v2_001_prefabS2OI6TA/crowd_ws_sit",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/boulevard_av_prefabHHWJYRA/boulevard_av_env_prefab7UQLOBQ/boulevard_av_sector_a_prefabOH2BT2A/boulevard_av_sector_a_decoration_prefabVQV3ASY/boulevard_av_sector_a_decoration_b_nonproxy_prefabYBEA2YI/decoset_blocade_long_holo_b_v2_002_prefabI75FYAI/street_sign_g_3_5x1_005_prefabZ4STXFA",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_001_prefabPQNNYOY",
+    "$/03_night_city/c_pacifica/combat_zone_prefabUEX7DCY/monument_av_prefabCJD7Q4Q/monument_av_env_prefabWC276OQ/#monument_av_decoration/vegas_strip_decoration_prefabYOMF2DQ/vegas_strip_decoration_nonproxy_prefabMVWG4NI/street_pole_a_007_prefabPQNNYOY"
+   ],
+   "hide": [],
+   "delete": [
+    {
+     "i": 94,
+     "cls": "worldStaticLightNode",
+     "name": "{L_Face_Jar_Back}",
+     "res": ""
+    },
+    {
+     "i": 95,
+     "cls": "worldStaticLightNode",
+     "name": "{L_Face_Jar_Bottom_Right}",
+     "res": ""
+    },
+    {
+     "i": 96,
+     "cls": "worldStaticLightNode",
+     "name": "{L_Face_Jar_Main}",
+     "res": ""
+    },
+    {
+     "i": 97,
+     "cls": "worldStaticLightNode",
+     "name": "{L_Face_Jar_Bottom_Left}",
+     "res": ""
+    },
+    {
+     "i": 98,
+     "cls": "worldStaticLightNode",
+     "name": "{L_Face_Jar_Top}",
+     "res": ""
+    },
+    {
+     "i": 1032,
+     "cls": "worldStaticParticleNode",
+     "name": "StaticParticleNode",
+     "res": ""
+    },
+    {
+     "i": 1034,
+     "cls": "worldStaticParticleNode",
+     "name": "e_liquid_nitrogen_1m_slow",
+     "res": ""
+    },
+    {
+     "i": 1064,
+     "cls": "worldEntityNode",
+     "name": "q304_farida_shop_sign",
+     "res": "ep1\\quest\\main_quests\\q304\\entities\\q304_farida_shop_sign.ent"
+    },
+    {
+     "i": 1065,
+     "cls": "worldEntityNode",
+     "name": "{q304_farida_faceplate_buyers_guide}",
+     "res": "base\\gameplay\\loot\\shard_cases\\shard_case_container.ent"
+    },
+    {
+     "i": 1069,
+     "cls": "worldEntityNode",
+     "name": "laptop_1",
+     "res": "base\\gameplay\\devices\\masters\\computers\\laptop_1.ent"
+    },
+    {
+     "i": 1229,
+     "cls": "worldStaticMeshNode",
+     "name": "faceplate_tank",
+     "res": "ep1\\environment\\decoration\\unique\\quest\\q303\\faceplate_tank\\faceplate_tank.mesh"
+    }
+   ]
+  }
+ ]
+}

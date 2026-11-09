@@ -1,0 +1,1784 @@
+{
+  "_about": [
+    "World nodes for the quest. Each entry becomes a node in a generated",
+    ".streamingsector; the sectors are listed in one .streamingblock that the .xl",
+    "registers via 'streaming: blocks:'. Four kinds, cheapest first:",
+    "",
+    "  markers   worldStaticMarkerNode       an empty named point - what a map pin",
+    "                                        points at and what a scene uses as its",
+    "                                        origin. No mesh, no entity.",
+    "  triggers  worldTriggerAreaNode        a volume that notifies the quest graph",
+    "                                        on entry. Needs no .ent and no TweakDB",
+    "                                        record: 'size' is the half-extent in",
+    "                                        metres, so [8,8,4] is 16x16 and 8 tall.",
+    "  spawners  worldPopulationSpawnerNode  an object the graph switches on later",
+    "                                        with questSpawner_NodeType. 'record' is",
+    "                                        a TweakDB id. spawnOnStart is always 0.",
+    "  props     worldEntityNode             an entity template placed in the world.",
+    "                                        'template' is a depot path to an .ent -",
+    "                                        a vanilla one is fine and costs nothing",
+    "                                        to author.",
+    "",
+    "COORDINATE PROVENANCE. Anchors marked 'verified' are teleport targets shipped",
+    "by Appearance Menu Mod, so they are known-standable positions in the real world",
+    "geometry. Anything marked 'offset' is derived from an anchor by hand and has NOT",
+    "been stood on - see OI-9 for how to correct them in game."
+  ],
+  "nodeRefPrefix": "$/03_night_city/ash_cache/#AshCache",
+  "block": "mod\\ash_cache\\worlds\\ash_cache.streamingblock",
+  "sectorDir": "mod\\ash_cache\\worlds",
+  "sectors": [
+    {
+      "id": "ash_cache_motel",
+      "_about": "Act 1. The motel in Dogtown where the signal is traced to room 7.",
+      "markers": [
+        {
+          "id": "ac_motel_entrance",
+          "pos": [
+            -2240.04,
+            -2553.28,
+            80.23
+          ],
+          "yaw": -140.3,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "verified": true
+        },
+        {
+          "id": "ac_motel_room7",
+          "pos": [
+            -2222.78,
+            -2563.45,
+            80.3
+          ],
+          "yaw": 74.9,
+          "_source": "verified - stood on in game 2026-09-06, CET Surveyor capture (ash_cache_debug/markers.txt). Replaces a DERIVED value.",
+          "verified": true
+        },
+        {
+          "id": "ac_shard_origin",
+          "pos": [
+            -2225.361,
+            -2561.411,
+            81.13
+          ],
+          "yaw": -58.5,
+          "_source": "D110, same point as the ac_courier_shard prop: room 7 table top under the player's crosshair (cp77wb camera raycast 2026-09-16 with the player at (-2224.25, -2560.73, 80.30), visual hit z 81.120 normal up, confirmed by a downward physical ray; +1 cm). Yaw -58.5 turns it toward where the player stood (sc_on_tablet.png).",
+          "_about": "Origin of ash_cache_courier_shard.scene; same point as the ac_courier_shard prop, so the hub offset is a plain height (see ac_box_origin).",
+          "verified": true
+        },
+        {
+          "_comment": "D129. The head of the maintenance shaft that goes down into Cynosure. It is in the motel sector because that is where Cynosure actually is: the outer bunker's node transforms run X -2411..-2074, Y -2598..-2166, Z -208..-57 (quest_c5762a0914e51033.streamingsector, 469 nodes), and the motel at (-2240, -2553) sits inside that footprint. The clinic does not.",
+          "id": "ac_cynosure_shaft",
+          "pos": [
+            -2240.04,
+            -2553.28,
+            80.23
+          ],
+          "yaw": -140.3,
+          "verified": false,
+          "_source": "PROVISIONAL - NOT stood on. This is ac_motel_entrance's verified coordinate re-used so the pin and the arrival watch both work on the first test. It is a placeholder for the real shaft head, which wants to be off the lot rather than at the front door. Replace with a stood-on capture (CET Surveyor) and the pin, the GPS route and the 12 m trigger all move together - glue.json names the marker, not a coordinate.",
+          "collapsedOnto": "ac_motel_entrance"
+        },
+        {
+          "id": "ac_cyn_entry_tp",
+          "pos": [
+            -1908.0,
+            -2484.9,
+            -300.0
+          ],
+          "yaw": 0.0,
+          "verified": true,
+          "_source": "D193. Stood on 2026-09-29: V teleported here by Location Studio and held z -300.000 on the built Cynosure sector (D192), CYN_ROOM_01_ENTRY floor, facing +Y down the route. Teleport destination for the Shaft 14 descent. 2026-10-02 (user OK): moved into the elevator cab, rear-centre facing +Y (the landing doors), 0.85 m behind V, 3.6 m clear ahead; cab floor stood on at z -300.000 by the user (screenshot 18:18:57, y -2484.1)."
+        },
+        {
+          "id": "ac_cyn_shaft_return_tp",
+          "pos": [
+            -2240.04,
+            -2553.28,
+            80.23
+          ],
+          "yaw": -140.3,
+          "verified": true,
+          "collapsedOnto": "ac_cynosure_shaft",
+          "_source": "D193. Where the M1 return teleport puts V back on the surface. It is ac_motel_entrance's verified coordinate because ac_cynosure_shaft is still provisional; when the shaft head gets a stood-on capture, move this beside it too."
+        },
+        {
+          "id": "ac_cyn_escape",
+          "pos": [
+            -1883.0,
+            -2130.0,
+            -300.0
+          ],
+          "yaw": 0.0,
+          "verified": false,
+          "_source": "D193, M1 SCAFFOLDING. The far end of CYN_ROOM_16_ESCAPE (frame CYN local 25,340). Arrival here returns V to the shaft head; the real ending flow (M4) replaces this. Not stood on - the area trigger only needs to be inside the corridor."
+        }
+      ],
+      "props": [
+        {
+          "id": "ac_courier_shard",
+          "pos": [
+            -2225.361,
+            -2561.411,
+            81.13
+          ],
+          "yaw": -58.5,
+          "template": "base\\quest\\main_quests\\prologue\\q004\\entities\\q004_data_shard.ent",
+          "scenery": "Nothing references this node: the Take prompt is ash_cache_courier_shard.scene's hub at #ac_shard_origin, the marker on the same point.",
+          "_source": "D110. The prologue's own quest data shard (q004). Its .ent has no interaction or device components (colliders, mesh, scanning, audio only), the same class of object as the D102 Relic case. room 7 table top under the player's crosshair (cp77wb camera raycast 2026-09-16 with the player at (-2224.25, -2560.73, 80.30), visual hit z 81.120 normal up, confirmed by a downward physical ray; +1 cm). Yaw -58.5 turns it toward where the player stood (sc_on_tablet.png).",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "ash_cache_clinic",
+      "_about": [
+        "Acts 2-4. A ripperdoc clinic in Dogtown, four metres below street level.",
+        "",
+        "This sector used to sit on the Cynosure core at Z -194.78. That coordinate",
+        "was real geometry, but it is 275m underground inside the Phantom Liberty",
+        "mission space, so the only way in was a teleport. It is now anchored on",
+        "vanilla's own ripperdoc shopfront - the prefab is loc_q303_macs_clinic,",
+        "dressed by q304 as Farida's - which the player walks into off the street.",
+        "",
+        "Reachability is not inferred from the geometry, it is read out of vanilla:",
+        "the sector one level up holds a worldStaticGpsLocationEntranceMarkerNode",
+        "named {loc_q303_macs_clinic_gps} at -1891.75 -2486.90 28.00. That node type",
+        "exists so the navigation system can route the player to a door on foot, and",
+        "there are exactly four of them in the whole of Dogtown. Beside it sits a",
+        "worldInteriorAreaNode {q304_Farida_interior_area}, and the front door",
+        "(base\\gameplay\\devices\\doors\\final\\single_door.ent) carries a DoorController",
+        "whose authored persistentState is isLocked 0, isSealed 0.",
+        "",
+        "All of that lives in the ordinary streamed Interior/Exterior sectors, not in",
+        "a Quest-category one, so it is present whatever the player's PL progress. The",
+        "q304_ dressing is not: q304_farida_shop_sign has isVisibleInGame 0 and is",
+        "switched on by that mission. The room is permanent, the shop sign is not."
+      ],
+      "markers": [
+        {
+          "id": "ac_clinic_entrance",
+          "pos": [
+            -1891.75,
+            -2486.9,
+            27.95
+          ],
+          "yaw": 39.5,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "verified": true
+        },
+        {
+          "id": "ac_clinic_terminal",
+          "pos": [
+            -1911.72,
+            -2464.32,
+            24.08
+          ],
+          "yaw": 48.1,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "verified": true
+        },
+        {
+          "id": "ac_splinter_case",
+          "pos": [
+            -1910.021,
+            -2467.069,
+            24.084
+          ],
+          "yaw": 45.0,
+          "_source": "verified - stood on in game 2026-09-06, CET Surveyor capture (ash_cache_debug/markers.txt). Replaces a DERIVED value.",
+          "verified": true,
+          "_moved": "D147 (2026-09-25): centred under the clinic's big ceiling lamp (exterior_-30_-39 node 1213 entropy_ceiling_bar_lamp, light {L_Chair_Ceiling}, x/y -1910.87 -2466.22) - where Farida's chair stood, at the centre of the ~2 m round floor grate (edge found at 2.0-2.1 m by live raycasts). Floor there z 24.084 (live raycast). Journal pin 1.2 m in front of the case, where V opens it.",
+          "_verified_how": "D147: live raycast floor z 24.084 at the lamp point; same floor."
+        },
+        {
+          "id": "ac_mara",
+          "pos": [
+            -1909.49,
+            -2465.12,
+            24.084
+          ],
+          "yaw": 164.8,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt). D103: the capture stored the PLAYER's view yaw (-111.9), and the scene spawns Mara at this marker's orientation, so she stood with her back to V. yaw 32.1 = atan2(-dx, dy) toward V's live position during the talk (-1908.08, -2471.32; cp77wb wb_live_player 2026-09-16), forward = (-sin yaw, cos yaw).",
+          "verified": true,
+          "_previous": {
+            "pos": [
+              -1906.83,
+              -2473.31,
+              24.06
+            ],
+            "yaw": 32.1,
+            "why": "D103 pose in Farida's original layout"
+          },
+          "_moved": "D148 (2026-09-25): next to the procedure table as in the GPT 5.6 design - at its right end seen from the entrance, 0.55 m past the table end, between the table and the terminal wall. yaw 164.8 = atan2(-dx, dy) toward V's case spot (-1910.02, -2467.07) (1.2 m in front of the case). Floor by live raycast z 24.084 (on the round grate)."
+        },
+        {
+          "id": "ac_box_origin",
+          "pos": [
+            -1910.87,
+            -2466.22,
+            24.898
+          ],
+          "yaw": 45.0,
+          "_source": "D102, same point as the ac_splinter_box prop: bench top under the player's crosshair (cp77wb camera raycast 2026-09-16, hit z 24.856 + 1.4 cm), previewed in game with a Codeware DynamicEntitySpec at this pose and approved (sc_better.png).",
+          "_about": "Origin of ash_cache_box.scene. Its choice hub is attachToWorld, and atwParams.entityPosition is relative to this marker, so putting the origin ON the case keeps that offset a plain height above the lid instead of a vector that depends on how the marker's yaw rotates it.",
+          "verified": true,
+          "_moved": "D147 (2026-09-25): centred under the clinic's big ceiling lamp (exterior_-30_-39 node 1213 entropy_ceiling_bar_lamp, light {L_Chair_Ceiling}, x/y -1910.87 -2466.22) - where Farida's chair stood, at the centre of the ~2 m round floor grate (edge found at 2.0-2.1 m by live raycasts). Floor there z 24.084 (live raycast).",
+          "_verified_how": "D147: live raycast 2026-09-25 01:33 hit the floor at this x/y, z 24.084; case height = table top (+0.800) + 0.014. Confirmed by screenshot after hot reload.",
+          "_yaw_why": "D149: 45, not -135. The case's opening faces the OPPOSITE way to what D147 assumed: at -135 the lid swung up on the entrance side and hid the splinter, and the tray was only visible from behind the table (user screenshots 2026-09-25 01:44). Turned 180 so the lid opens away from V and the tray faces the entrance."
+        },
+        {
+          "id": "ac_terminal_origin",
+          "pos": [
+            -1909.67,
+            -2463.4,
+            24.08
+          ],
+          "yaw": 45.0,
+          "_source": "D119. The same floor point as the ac_terminal_pc prop, which is where the terminal was measured and stood on: D101's cp77wb raycast against the 1.0 m counter along the NE wall, then confirmed in game on 2026-09-16 (the Use prompt showed at the counter). Not an independent capture and not meant to be one - if that pose is ever corrected, both entries move together.",
+          "_about": "Origin of ash_cache_terminal.scene. Its hub is attachToWorld and the offset is relative to THIS point, so keeping the origin on the prop's own floor coordinate makes that offset a plain screen height (1.4 m) instead of a vector that depends on how the marker's yaw rotates it. Same reasoning as ac_box_origin.",
+          "verified": true
+        }
+      ],
+      "props": [
+        {
+          "id": "ac_splinter_box",
+          "_disabled_history": "Off 2026-09-10 for the D77 clinic bisect; D78 cleared the props the same day (the clinic still crashed without them) but they were never switched back on, which left await_box and await_terminal releasable only from CET. The clinic crash was the scene voicetag (D96). Back on in D98. Off again in D118 - see disabled_why: the case now has two looks and a static node has only one.",
+          "disabled": true,
+          "disabled_why": "D118 gave the case a second state - opened, with the splinter lying in it - and a sector node, once emitted, cannot be taken out of the world at runtime. Both looks are therefore drawn by the glue (glue.json 'props'), which despawns one before spawning the other, and this node is kept here only because it is where the pose was measured and verified. Delete nothing: glue.json reads THIS pos and yaw, so a correction still happens in one place.",
+          "pos": [
+            -1910.87,
+            -2466.22,
+            24.898
+          ],
+          "yaw": 45.0,
+          "template": "base\\quest\\main_quests\\prologue\\q005\\entities\\q005_biochip_suitcase.ent",
+          "scenery": "Nothing references this node: the Use prompt is ash_cache_box.scene's hub at #ac_box_origin, the marker on the same point.",
+          "_source": "D102. The Relic case V lifts from Konpeki Plaza in the prologue, on the open notebook in the middle of the workbench. Position is a cp77wb camera raycast at the player's crosshair (bench top z 24.856, +1.4 cm so the case sits on the paper); yaw -50.2 is the bench's front normal, which turns the case's latches toward the player. Previewed in game with a Codeware DynamicEntitySpec at exactly this pose and approved by the player on 2026-09-16 (sc_better.png). The origin of this .ent is at its base, so no zOffset.",
+          "_about": [
+            "The black box, as a thing V can see. It is SCENERY now: the .ent carries no interaction, and that is on purpose. The Use prompt is ash_cache_box.scene's attachToWorld choice hub at #ac_box_origin - the way q005 itself makes its props usable (q005_07_vip_apartment.scene, hub 4162). ac_splinter_case stays a marker because the journal map pin points at it (ac_pin_splinter, and ac_pin_decide).",
+            "",
+            "Replaced computer_1.ent + a device instanceData buffer (D65-D101), which was only ever a placeholder model that happened to offer a prompt."
+          ],
+          "verified": true,
+          "_moved": "D147 (2026-09-25): centred under the clinic's big ceiling lamp (exterior_-30_-39 node 1213 entropy_ceiling_bar_lamp, light {L_Chair_Ceiling}, x/y -1910.87 -2466.22) - where Farida's chair stood, at the centre of the ~2 m round floor grate (edge found at 2.0-2.1 m by live raycasts). Floor there z 24.084 (live raycast).",
+          "_verified_how": "D147: live raycast 2026-09-25 01:33 hit the floor at this x/y, z 24.084; case height = table top (+0.800) + 0.014. Confirmed by screenshot after hot reload.",
+          "_yaw_why": "D149: 45, not -135. The case's opening faces the OPPOSITE way to what D147 assumed: at -135 the lid swung up on the entrance side and hid the splinter, and the tray was only visible from behind the table (user screenshots 2026-09-25 01:44). Turned 180 so the lid opens away from V and the tray faces the entrance."
+        },
+        {
+          "id": "ac_terminal_pc",
+          "_disabled_history": "Off 2026-09-10 for the D77 clinic bisect; D78 cleared the props the same day (the clinic still crashed without them) but they were never switched back on, which left await_box and await_terminal releasable only from CET. The clinic crash was the scene voicetag (D96). Back on in D98.",
+          "pos": [
+            -1909.67,
+            -2463.4,
+            24.08
+          ],
+          "yaw": 45.0,
+          "template": "base\\gameplay\\devices\\masters\\computers\\computer_1.ent",
+          "appearance": "computer_computer_2_angle_15",
+          "zOffset": 1.48,
+          "_zOffset_why": "computer_1.ent's origin is NOT at its feet. Its player workspots - personalLinkPlayerWorkspot, ToggleZoomInteraction and personalLinkComponent - sit at local z -1.52, -1.40 and -1.40, and a workspot anchor is where the player STANDS, so this entity expects its origin about 1.5 m above the floor. Vanilla agrees: in quest_73110a178d6e7404 node 12 is at Z 8.705 and the one AI spot on that side of the building (node 4) is at Z 7.221 - a difference of 1.484 m. Placed at the floor point the mesh renders half-sunk and the interaction workspot lands under the floor. 'pos' stays the verified floor coordinate; only the emitted node moves. See D100.",
+          "_source": "D101, measured live 2026-09-16 with cp77wb raycasts (stood on 2026-09-16: Use prompt shows at the counter, verified true). The old spot inherited from ac_clinic_terminal was open floor, 2 m from any surface. This is 0.25 m behind the front edge of the 1.0 m counter along the NE wall (edge faces heading 225, so yaw 45.0), on its clear stretch past the items in the corner; the stand spot 0.58 m out is open floor.",
+          "_about": "The clinic terminal. Here the model is not a placeholder: glue.json's blocked list asks for 'an interactable computer at #ac_clinic_terminal' and this is that computer, the same .ent and appearance vanilla places in quest_73110a178d6e7404.",
+          "verified": true,
+          "device": null,
+          "_device_why_null": "D119. The scene owns the interaction now. Left as a device this prop shows the engine's own Use prompt right beside ash_cache_terminal.scene's hub - two prompts on one screen, and the device one leads to a vanilla computer UI with nothing in it. 'device': null is the documented off switch (D69), and OI-13 answered in game on 2026-09-09 what it leaves behind: the .ent still appears, and cannot be interacted with at all. That is exactly the wanted shape - the model stays, the prompt comes from the scene.",
+          "scenery": "Nothing references this node any more: the prompt is ash_cache_terminal.scene's hub at #ac_terminal_origin, the marker on the same point. Same arrangement as ac_courier_shard.",
+          "_device_status": "BACK ON since D70, 2026-09-09. D69 turned this off to bisect a crash against the scene audio events. The bisect ran and returned a verdict the same afternoon: with both buffers off the game still crashed twice inside 15 minutes (16:15 and 16:29), and one of those, signature E4044E73 on redDispatcher10, is the SAME signature this machine threw twice at 11:33 and 11:34 - hours before the buffer existed. Crash rate with the buffer: 2 in 25 min. Without it: 2 in 15 min. The buffer is not distinguishable as a cause, and an inert terminal blocks the quest at its first objective, so it comes back. See D70.",
+          "_device_why": "OI-13, answered in game on 2026-09-09: placed with instanceData null this .ent appears and cannot be interacted with at all. The buffer is what carries ComputerControllerPS - isInteractive, and the Devices.Computer record - so a device without one is scenery. reference/device_computer.instancedata.json says where it came from. ac_probe_computer keeps its null buffer on purpose: it is now the control that shows the difference.",
+          "_redesign_history": "D143 disabled it for the empty-clinic design pass; D151 (2026-09-25) brings it back on the kept counter (setup 22) as the design's terminal wall.",
+          "disabled": true,
+          "disabled_why": "D152 (2026-09-25): replaced by the dressing prop ac_dress_monitor. computer_1.ent with computer_computer_2_angle_15 is a stand-less angled panel: on this counter its bottom sat at z ~25.45 (counter 25.06) with the screen facing the wall (screenshot shots/ls/20260925-023043-term_air.png). It was scenery only - the prompt is ash_cache_terminal.scene's hub on #ac_terminal_origin."
+        },
+        {
+          "id": "ac_procedure_table",
+          "disabled": true,
+          "disabled_why": "Drawn by the glue (glue.json props ac_clinic_table) only while ashcache_progress is 2..6, so Farida's room comes back without it. This entry is the pose authority, like ac_splinter_box.",
+          "pos": [
+            -1911.105,
+            -2466.4,
+            24.084
+          ],
+          "yaw": -135.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_procedure_table.ent",
+          "_source": "D146. Clinic redesign (GPT 5.6 design, wk_scratch/clinic_design): one central procedure island under the verified ac_case pose instead of Farida's two industrial_table_f. vanilla morgue_table_a.mesh wrapped by tools/gen_mesh_ent.py; top 0.793 m above origin -> 24.849 under the case at 24.87. Yaw = the case's, so the long side faces the case approach; centre shifted 0.45 m away from ac_mara so the nearest corner is 1.57 m from her. Computed, not yet seen in game.",
+          "scenery": "Nothing references this node by NodeRef: glue.json props ac_clinic_table reads its pos and yaw.",
+          "verified": false,
+          "_moved": "D147 (2026-09-25): centred under the clinic's big ceiling lamp (exterior_-30_-39 node 1213 entropy_ceiling_bar_lamp, light {L_Chair_Ceiling}, x/y -1910.87 -2466.22) - where Farida's chair stood, at the centre of the ~2 m round floor grate (edge found at 2.0-2.1 m by live raycasts). Floor there z 24.084 (live raycast)."
+        },
+        {
+          "id": "ac_dress_monitor",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1909.599,
+            -2463.329,
+            25.2681
+          ],
+          "yaw": 135.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_monitor.ent",
+          "_source": "source/clinic_dressing.json (D152: the terminal's visible monitor - boxy PL monitor + its lit display (screen on local +Y, yaw 135 faces the room), sitting on the counter at the terminal point. Replaces computer_1.ent, whose angle_15 look is a stand-less panel that floated 0.4 m over the counter with its screen to the wall.)"
+        },
+        {
+          "id": "ac_dress_diag",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1910.165,
+            -2462.693,
+            25.0604
+          ],
+          "yaw": 135.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_diag.ent",
+          "_source": "source/clinic_dressing.json (diagnostic module on the terminal counter, left of the terminal)"
+        },
+        {
+          "id": "ac_dress_folder",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1910.059,
+            -2463.153,
+            25.0628
+          ],
+          "yaw": 150.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_folder.ent",
+          "_source": "source/clinic_dressing.json (one closed folder between the module and the terminal)"
+        },
+        {
+          "id": "ac_dress_stool",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1910.801,
+            -2463.471,
+            24.056
+          ],
+          "yaw": 120.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_stool.ent",
+          "_source": "source/clinic_dressing.json (stool pushed aside at the counter, left of the terminal standing spot)"
+        },
+        {
+          "id": "ac_dress_trolley_a",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1907.249,
+            -2473.003,
+            24.0561
+          ],
+          "yaw": -35.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_trolley_a.ent",
+          "_source": "source/clinic_dressing.json (D153 room coords u -1.95 v -3.0 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): instrument trolley pushed to the left partition near the entrance)"
+        },
+        {
+          "id": "ac_dress_trolley_b",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1910.468,
+            -2469.72,
+            24.0548
+          ],
+          "yaw": -52.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_trolley_b.ent",
+          "_source": "source/clinic_dressing.json (D153 room coords u -1.9 v 1.6 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): second trolley, left lane, short of the table)"
+        },
+        {
+          "id": "ac_dress_cabinet",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1905.996,
+            -2466.636,
+            24.056
+          ],
+          "yaw": 135.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_cabinet.ent",
+          "_source": "source/clinic_dressing.json (D153 room coords u 3.1 v 1.6 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): low lab cabinet along the right wall before the counter niche (nearest corner 1.7 m from ac_mara))"
+        },
+        {
+          "id": "ac_dress_iv_stand",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1912.589,
+            -2467.598,
+            24.0559
+          ],
+          "yaw": -45.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_iv_stand.ent",
+          "_source": "source/clinic_dressing.json (D153 room coords u -1.9 v 4.6 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): IV / diagnostic stand at the table's left end, away from Mara's side)"
+        },
+        {
+          "id": "ac_dress_bin",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1910.869,
+            -2462.257,
+            24.056
+          ],
+          "yaw": 135.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bin.ent",
+          "_source": "source/clinic_dressing.json (D153 room coords u 3.1 v 7.15 (u across toward the terminal wall, v from the door to the far wall; origin -1908.0 -2469.5): bin past the counter's far end)"
+        },
+        {
+          "id": "ac_light_terminal",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1910.094,
+            -2463.824,
+            25.9
+          ],
+          "yaw": 0.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_terminal.ent",
+          "_source": "source/clinic_dressing.json (D154 design 'terminal fill': cool cyan 0.7 m in front of the monitor, so the workstation reads as the room's cold light)"
+        },
+        {
+          "id": "ac_light_mara",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1909.72,
+            -2465.99,
+            26.0
+          ],
+          "yaw": 0.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_mara.ent",
+          "_source": "source/clinic_dressing.json (D154 design 'Mara fill': soft warm-neutral 0.9 m in front of ac_mara toward V's case spot, face height - keeps her readable, never a backlight)"
+        },
+        {
+          "id": "ac_dress_wall_cabinet",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1909.257,
+            -2473.556,
+            24.056
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_wall_cabinet.ent",
+          "_source": "source/clinic_dressing.json (tall lab cabinet unit on the left wall, first thing past the entry trolley)"
+        },
+        {
+          "id": "ac_dress_sink",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1902.403,
+            -2470.645,
+            24.0586
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_sink.ent",
+          "_source": "source/clinic_dressing.json (wall-hung scrub sink on the right wall by the entry (the left wall past v 1.2 is a glass partition, D155) - mesh origin is its floor point, bottom 0.35 up)"
+        },
+        {
+          "id": "ac_dress_medkit",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1908.313,
+            -2474.616,
+            25.306
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_medkit.ent",
+          "_source": "source/clinic_dressing.json (wall first-aid box with its door gone and nothing inside - the room was emptied)"
+        },
+        {
+          "id": "ac_dress_fusebox",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1910.867,
+            -2471.591,
+            25.6258
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_fusebox.ent",
+          "_source": "source/clinic_dressing.json (small utility box on the left wall next to the cabinet)"
+        },
+        {
+          "id": "ac_dress_box_a",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1906.754,
+            -2475.265,
+            24.056
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_box_a.ent",
+          "_source": "source/clinic_dressing.json (packed boxes in the door-left corner: what was carried out)"
+        },
+        {
+          "id": "ac_dress_box_b",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1906.732,
+            -2475.284,
+            24.504
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_box_b.ent",
+          "_source": "source/clinic_dressing.json (second box stacked on the first)"
+        },
+        {
+          "id": "ac_dress_crate",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1906.091,
+            -2474.874,
+            24.056
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_crate.ent",
+          "_source": "source/clinic_dressing.json (small crate next to the boxes)"
+        },
+        {
+          "id": "ac_dress_bed",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1906.307,
+            -2467.022,
+            23.8513
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed.ent",
+          "_source": "source/clinic_dressing.json (stripped recovery bed along the right wall (long axis along the wall))"
+        },
+        {
+          "id": "ac_dress_bench",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1914.38,
+            -2464.223,
+            24.0561
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bench.ent",
+          "_source": "source/clinic_dressing.json (work bench on the far wall behind the procedure table)"
+        },
+        {
+          "id": "ac_dress_bench_tray",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1914.971,
+            -2464.733,
+            25.2416
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bench_tray.ent",
+          "_source": "source/clinic_dressing.json (instrument tray on the bench)"
+        },
+        {
+          "id": "ac_dress_shelf",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.827,
+            -2465.407,
+            24.056
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_shelf.ent",
+          "_source": "source/clinic_dressing.json (half-empty shelf rack in the far-left corner)"
+        },
+        {
+          "id": "ac_dress_freezer",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1913.209,
+            -2462.877,
+            24.056
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_freezer.ent",
+          "_source": "source/clinic_dressing.json (implant freezer against the far wall, dead)"
+        },
+        {
+          "id": "ac_dress_machine",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1911.99,
+            -2461.903,
+            24.056
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_machine.ent",
+          "_source": "source/clinic_dressing.json (unplugged medical unit, far-right corner)"
+        },
+        {
+          "id": "ac_dress_table_cloth",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1911.465,
+            -2466.814,
+            24.8749
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_table_cloth.ent",
+          "_source": "source/clinic_dressing.json (folded sterile cloth at the procedure table's left end (the design's 'one folded sterile cloth'), the case stays the only thing in the middle)"
+        },
+        {
+          "id": "ac_dress_lamp",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1911.346,
+            -2468.228,
+            24.0571
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_lamp.ent",
+          "_source": "source/clinic_dressing.json (standing exam lamp at the table's left end, turned toward the case)"
+        },
+        {
+          "id": "ac_light_far",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1913.869,
+            -2464.48,
+            26.4
+          ],
+          "yaw": 0.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_far.ent",
+          "_source": "source/clinic_dressing.json (D155 far-wall practical: cold white over the bench / shelf / freezer, which sat in the dark behind the table)"
+        },
+        {
+          "id": "ac_dress_wheelchair",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1912.063,
+            -2469.32,
+            24.0568
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_wheelchair.ent",
+          "_source": "source/clinic_dressing.json (wheelchair parked by the left wall, left behind)"
+        },
+        {
+          "id": "ac_dress_mara_mattress",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1917.259,
+            -2467.783,
+            24.0767
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_mattress.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: mattress on the floor along the outer wall - she slept here)"
+        },
+        {
+          "id": "ac_dress_mara_duvet",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1917.247,
+            -2467.758,
+            24.2415
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_duvet.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: duvet on the mattress)"
+        },
+        {
+          "id": "ac_dress_mara_pillow",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1917.782,
+            -2467.298,
+            24.4607
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_pillow.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: pillow)"
+        },
+        {
+          "id": "ac_dress_mara_duffel",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.392,
+            -2467.344,
+            24.5227
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_duffel.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: packed duffel against the inner wall - ready to run)"
+        },
+        {
+          "id": "ac_dress_mara_locker",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1916.425,
+            -2466.329,
+            24.056
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_locker.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: steel locker, her clothes)"
+        },
+        {
+          "id": "ac_dress_mara_folded",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1916.532,
+            -2466.422,
+            25.635
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_folded.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: folded clothes on the locker)"
+        },
+        {
+          "id": "ac_dress_mara_table",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1912.808,
+            -2471.763,
+            24.0565
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_table.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: work table at the near wall)"
+        },
+        {
+          "id": "ac_dress_mara_laptop",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1912.639,
+            -2471.942,
+            24.8577
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_laptop.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: open laptop - her notes)"
+        },
+        {
+          "id": "ac_dress_mara_lamp",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1913.199,
+            -2472.441,
+            24.8571
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_lamp.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: desk lamp)"
+        },
+        {
+          "id": "ac_dress_mara_mug",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1912.384,
+            -2471.409,
+            24.8571
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_mug.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: mug)"
+        },
+        {
+          "id": "ac_dress_mara_noodle",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1912.068,
+            -2471.373,
+            24.8551
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_noodle.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: empty noodle cup)"
+        },
+        {
+          "id": "ac_dress_mara_chair",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1913.313,
+            -2471.248,
+            24.0605
+          ],
+          "yaw": -122.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_chair.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: chair pushed back from the table)"
+        },
+        {
+          "id": "ac_light_mara_room",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.071,
+            -2469.5,
+            26.2
+          ],
+          "yaw": 0.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_mara_room.ent",
+          "_source": "source/clinic_dressing.json (Mara's room: warm practical (the room was dark) - D157 700 lm)"
+        },
+        {
+          "id": "ac_dress_hall_locker_1",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1901.678,
+            -2473.219,
+            24.056
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_locker_1.ent",
+          "_source": "source/clinic_dressing.json (entry hall: row of staff lockers for street clothes)"
+        },
+        {
+          "id": "ac_dress_hall_locker_2",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1901.171,
+            -2473.772,
+            24.056
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_locker_2.ent",
+          "_source": "source/clinic_dressing.json (entry hall: row of staff lockers for street clothes)"
+        },
+        {
+          "id": "ac_dress_hall_locker_3",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1900.663,
+            -2474.326,
+            24.056
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_locker_3.ent",
+          "_source": "source/clinic_dressing.json (entry hall: row of staff lockers for street clothes)"
+        },
+        {
+          "id": "ac_dress_hall_locker_4",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1900.156,
+            -2474.879,
+            24.056
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_locker_4.ent",
+          "_source": "source/clinic_dressing.json (entry hall: row of staff lockers for street clothes)"
+        },
+        {
+          "id": "ac_dress_hall_folded",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1901.212,
+            -2473.813,
+            25.556
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_folded.ent",
+          "_source": "source/clinic_dressing.json (entry hall: folded jacket on a locker)"
+        },
+        {
+          "id": "ac_dress_hall_folded_b",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1900.162,
+            -2474.872,
+            25.635
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_folded_b.ent",
+          "_source": "source/clinic_dressing.json (entry hall: folded clothes on a locker)"
+        },
+        {
+          "id": "ac_dress_hall_duffel",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1902.787,
+            -2478.006,
+            24.5227
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_duffel.ent",
+          "_source": "source/clinic_dressing.json (entry hall: bag under the coats)"
+        },
+        {
+          "id": "ac_light_hall",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1901.777,
+            -2475.298,
+            26.3
+          ],
+          "yaw": 0.0,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_light_hall.ent",
+          "_source": "source/clinic_dressing.json (entry hall: cold practical)"
+        },
+        {
+          "id": "ac_dress_cart_lane",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1908.967,
+            -2473.843,
+            24.0602
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_cart_lane.ent",
+          "_source": "source/clinic_dressing.json (D156: instrument cart in the left lane)"
+        },
+        {
+          "id": "ac_dress_iv_b",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1907.299,
+            -2467.725,
+            24.0559
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_iv_b.ent",
+          "_source": "source/clinic_dressing.json (D156: second IV stand at the foot of the recovery bed)"
+        },
+        {
+          "id": "ac_dress_bed_device",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1905.224,
+            -2468.21,
+            24.6604
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_device.ent",
+          "_source": "source/clinic_dressing.json (D156: flat diagnostic unit left on the stripped bed)"
+        },
+        {
+          "id": "ac_dress_bench_lamp",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1913.775,
+            -2463.464,
+            25.18
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bench_lamp.ent",
+          "_source": "source/clinic_dressing.json (D156: small inspection lamp on the bench)"
+        },
+        {
+          "id": "ac_dress_bench_pack",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1914.053,
+            -2463.814,
+            25.2758
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bench_pack.ent",
+          "_source": "source/clinic_dressing.json (D158: trauma pack on the bench, moved off the shelf upright into the freed device spot)"
+        },
+        {
+          "id": "ac_dress_hall_shelf_1",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1904.196,
+            -2476.232,
+            24.056
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_shelf_1.ent",
+          "_source": "source/clinic_dressing.json (D157: entry hall: low clothes shelf, left wall)"
+        },
+        {
+          "id": "ac_dress_hall_shelf_2",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1903.314,
+            -2477.188,
+            24.056
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_shelf_2.ent",
+          "_source": "source/clinic_dressing.json (D157: entry hall: low clothes shelf, left wall)"
+        },
+        {
+          "id": "ac_dress_hall_top_1",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1904.408,
+            -2476.019,
+            25.156
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_top_1.ent",
+          "_source": "source/clinic_dressing.json (D157: folded jacket)"
+        },
+        {
+          "id": "ac_dress_hall_top_2",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1903.984,
+            -2476.444,
+            25.156
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_top_2.ent",
+          "_source": "source/clinic_dressing.json (D157: folded shirts)"
+        },
+        {
+          "id": "ac_dress_hall_top_3",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1903.489,
+            -2476.939,
+            25.1869
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_top_3.ent",
+          "_source": "source/clinic_dressing.json (D157: folded trousers)"
+        },
+        {
+          "id": "ac_dress_hall_top_4",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1903.062,
+            -2477.376,
+            25.244
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_hall_top_4.ent",
+          "_source": "source/clinic_dressing.json (D157: folded clothes)"
+        },
+        {
+          "id": "ac_dress_mara_shelf",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.395,
+            -2470.814,
+            24.056
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_shelf.ent",
+          "_source": "source/clinic_dressing.json (D157: Mara's room: low shelf where the towel hung)"
+        },
+        {
+          "id": "ac_dress_mara_top_1",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.217,
+            -2471.022,
+            25.2518
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_top_1.ent",
+          "_source": "source/clinic_dressing.json (D157: Mara's folded clothes)"
+        },
+        {
+          "id": "ac_dress_mara_top_2",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.636,
+            -2470.621,
+            25.2478
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_mara_top_2.ent",
+          "_source": "source/clinic_dressing.json (D157: Mara's folded clothes)"
+        },
+        {
+          "id": "ac_dress_far_shelf",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1914.756,
+            -2464.005,
+            26.3001
+          ],
+          "yaw": 42.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_far_shelf.ent",
+          "_source": "source/clinic_dressing.json (D158: 2 m wall shelf above the bench)"
+        },
+        {
+          "id": "ac_dress_far_shelf_a",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.107,
+            -2464.585,
+            26.4932
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_far_shelf_a.ent",
+          "_source": "source/clinic_dressing.json (D158)"
+        },
+        {
+          "id": "ac_dress_far_shelf_c",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1914.666,
+            -2464.167,
+            26.4941
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_far_shelf_c.ent",
+          "_source": "source/clinic_dressing.json (D158)"
+        },
+        {
+          "id": "ac_dress_far_shelf_rack",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1914.224,
+            -2463.703,
+            26.4931
+          ],
+          "yaw": -137.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_far_shelf_rack.ent",
+          "_source": "source/clinic_dressing.json (D158: empty test-tube rack)"
+        },
+        {
+          "id": "ac_dress_apron_rack",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.466,
+            -2466.778,
+            24.0543
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_apron_rack.ent",
+          "_source": "source/clinic_dressing.json (D158: hook rail on the left wall between Mara's door and the corner shelf; origin is at the floor, rail spans 0.87..1.64)"
+        },
+        {
+          "id": "ac_dress_apron_1",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.139,
+            -2466.986,
+            25.5091
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_apron_1.ent",
+          "_source": "source/clinic_dressing.json (D158: surgical apron hung on the rail (origin = hook, top 25.62))"
+        },
+        {
+          "id": "ac_dress_apron_2",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.646,
+            -2466.434,
+            25.5091
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_apron_2.ent",
+          "_source": "source/clinic_dressing.json (D158)"
+        },
+        {
+          "id": "ac_dress_bed_shelf",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1904.962,
+            -2467.818,
+            25.9504
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_shelf.ent",
+          "_source": "source/clinic_dressing.json (D158: wall shelf over the recovery bed)"
+        },
+        {
+          "id": "ac_dress_bed_shelf_1",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1904.895,
+            -2468.164,
+            26.1569
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_shelf_1.ent",
+          "_source": "source/clinic_dressing.json (D158)"
+        },
+        {
+          "id": "ac_dress_bed_shelf_2",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1905.143,
+            -2467.916,
+            26.1496
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_shelf_2.ent",
+          "_source": "source/clinic_dressing.json (D158)"
+        },
+        {
+          "id": "ac_dress_bed_shelf_3",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1905.357,
+            -2467.703,
+            26.1508
+          ],
+          "yaw": 132.6,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_bed_shelf_3.ent",
+          "_source": "source/clinic_dressing.json (D158)"
+        },
+        {
+          "id": "ac_dress_gloves",
+          "_dressing": true,
+          "disabled": true,
+          "verified": false,
+          "disabled_why": "D151 clinic dressing: drawn by the glue while ashcache_progress is 2..6; this entry is the pose.",
+          "scenery": "Nothing references this node by NodeRef: glue.json reads its pos and yaw.",
+          "pos": [
+            -1915.345,
+            -2466.769,
+            25.506
+          ],
+          "yaw": -47.4,
+          "template": "mod\\ash_cache\\props\\clinic\\ac_dress_gloves.ent",
+          "_source": "source/clinic_dressing.json (D158: glove dispenser between the sink and the bed)"
+        }
+      ],
+      "spawners": [
+        {
+          "id": "ac_fia_car",
+          "pos": [
+            -1905.47,
+            -2501.87,
+            28.0
+          ],
+          "yaw": -50.5,
+          "record": "Vehicle.cs_savable_chevalier_thrax",
+          "isVehicle": true,
+          "_source": "cp77wb live raycast 2026-09-18 (D114), V standing on ac_clinic_entrance: straight down from Z 30 hits flat street at Z 28.0; horizontal rays at Z 28.3 from the door run clear south-west along the street for ~29 m in the lanes 0-3 m out from the door line (the 5 m lane has street furniture at 6-9 m). Replaces the 2026-09-16 spot 58 m west, whose route crossed Barghest ground. Chevalier Thrax: the black executive sedan.",
+          "verified": true
+        },
+        {
+          "id": "ac_fia_agent_1",
+          "pos": [
+            -1899.48,
+            -2494.99,
+            28.0
+          ],
+          "yaw": -50.5,
+          "record": "Character.ashcache_fia_agent_rifle",
+          "_source": "cp77wb live raycast 2026-09-18 (D114), V standing on ac_clinic_entrance: straight down from Z 30 hits flat street at Z 28.0; horizontal rays at Z 28.3 from the door run clear south-west along the street for ~29 m in the lanes 0-3 m out from the door line (the 5 m lane has street furniture at 6-9 m). Replaces the 2026-09-16 spot 58 m west, whose route crossed Barghest ground.",
+          "verified": true
+        },
+        {
+          "id": "ac_fia_agent_2",
+          "pos": [
+            -1900.07,
+            -2497.42,
+            28.0
+          ],
+          "yaw": -50.5,
+          "record": "Character.ashcache_fia_agent_handgun",
+          "_source": "cp77wb live raycast 2026-09-18 (D114), V standing on ac_clinic_entrance: straight down from Z 30 hits flat street at Z 28.0; horizontal rays at Z 28.3 from the door run clear south-west along the street for ~29 m in the lanes 0-3 m out from the door line (the 5 m lane has street furniture at 6-9 m). Replaces the 2026-09-16 spot 58 m west, whose route crossed Barghest ground.",
+          "verified": true
+        },
+        {
+          "id": "ac_fia_agent_3",
+          "pos": [
+            -1902.88,
+            -2497.14,
+            28.0
+          ],
+          "yaw": -50.5,
+          "record": "Character.ashcache_fia_agent_rifle",
+          "_source": "cp77wb live raycast 2026-09-18 (D114), V standing on ac_clinic_entrance: straight down from Z 30 hits flat street at Z 28.0; horizontal rays at Z 28.3 from the door run clear south-west along the street for ~29 m in the lanes 0-3 m out from the door line (the 5 m lane has street furniture at 6-9 m). Replaces the 2026-09-16 spot 58 m west, whose route crossed Barghest ground.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "ash_cache_landfill",
+      "_about": [
+        "D122. Where Mara ends up in the two endings that leave the cache alive.",
+        "",
+        "Markers-only when it is emitted: both props below are 'disabled', because a",
+        "body that is only there in some playthroughs cannot be a sector node - a",
+        "node is emitted once and cannot be taken out of the world at runtime (the",
+        "D118 lesson). source/glue.json draws them instead, keyed on facts, and reads",
+        "the pose from HERE so that a corrected coordinate still moves them. That is",
+        "the same division ac_splinter_box already uses.",
+        "",
+        "A markers-only sector is also the safest thing this project knows how to",
+        "emit: the motel has been markers-only since the beginning and has never",
+        "crashed, while the only sector that ever killed the game was the only one",
+        "with live props.",
+        "",
+        "THE COORDINATE IS NOT REAL YET. It is the one thing in D122 that cannot be",
+        "derived from the game files: 'landfill' appears in TweakDB only as the",
+        "attitude group _Landfill_Guards and in the depot only as terrain prefabs",
+        "under base\\prefabs\\environment\\terrain\\landfill, neither of which carries a",
+        "world position. It has to be stood on. Until it is, the map pin and the body",
+        "are in the wrong place and nothing else is affected - see 'verified' below."
+      ],
+      "markers": [
+        {
+          "id": "ac_landfill_body",
+          "pos": [
+            1544.9994,
+            -1981.8353,
+            73.3839
+          ],
+          "yaw": 21.8821,
+          "verified": true,
+          "_source": "verified - stood on in game 2026-09-18, same capture method as the six echo fragments (D117). Drives three things at once: the map pin on ac_obj_landfill, the 12 m arrival watch in glue.json, and the body itself."
+        }
+      ],
+      "props": [
+        {
+          "id": "ac_mara_body",
+          "disabled": true,
+          "disabled_why": "Drawn by the glue, not by the sector - it exists only once ashcache_mara_body_placed is 1, which is two of five endings. Kept here because this is where the pose is measured and verified, exactly like ac_splinter_box.",
+          "pos": [
+            1544.9994,
+            -1981.8353,
+            73.3839
+          ],
+          "yaw": 21.8821,
+          "template": "base\\quest\\main_quests\\part1\\q105\\entities\\q105_fluff_dead_body_01.ent",
+          "scenery": "Nothing references this node: there is no prompt on the body and there is not meant to be. Walking inside twelve metres is what the glue watches, and the coroner's note is granted by the graph. Frisking her would be the wrong verb.",
+          "verified": true,
+          "_source": "Position verified - stood on in game 2026-09-18, the same point as ac_landfill_body because she IS the marker. Template REPLACED 2026-09-22 (D127) after the D122 one was seen in game and turned out to be a living woman; the one here was read out of the .ent itself rather than inferred from its name - see _about.",
+          "_z_note": "No z_offset in glue.json. The captured z is where the player's feet were, which is where a body lying on the ground belongs - unlike ac_splinter_box, which sits on a bench and may still need a nudge.",
+          "_about": [
+            "D127 replaced the D122 template after it was seen in game. The half of that",
+            "reasoning that was right is worth keeping: character records named *_dead",
+            "ARE ordinary living NPCs - q001_scavenger_dead_man,",
+            "q105_jigjig_prostitute_dead and Mara's own base record carry identical",
+            "statPools, visualTags, appearanceName and reactionPreset. D122 concluded",
+            "from that the corpse had to be in the entity template, and resolved the",
+            "raRef hashes to find one. It is not there either.",
+            "",
+            "Read out of the .ent itself (WolvenKit cr2w -s), which is the step D122",
+            "skipped: q105_jigjig_prostitute_dead.ent has 110 components, among them",
+            "gameAttitudeAgent, gameSquadMemberComponent, gameInventory and",
+            "StimBroadcasterComponent, and its eight appearances are every one",
+            "service__sexworker_wa_prostitute_poor_0N - living women. It is a complete",
+            "NPC puppet. q105 spawns her alive and kills her from quest script. The",
+            "deadness was never in any file, only in the quest that used them - which is",
+            "why the player found a woman standing on the landfill, unhurt, and crashed",
+            "the game by shooting her.",
+            "",
+            "The right object was one directory over, in entities/ rather than",
+            "characters/, and CDPR's own word for it is 'fluff' - set dressing.",
+            "q105_fluff_dead_body_01.ent has EIGHT components headed by",
+            "entCorpseComponent, no AI, no inventory and no health, and exactly one",
+            "appearance: wa_q105_fluff_01_corpse. 'wa' is woman-average, so it is a",
+            "female body, and there is nothing in it to anger, loot or kill.",
+            "",
+            "The rule this cost twice: a name is a label its author chose. The only",
+            "thing that says what a resource IS is the resource. Extract it and read it.",
+            "reference/rvc_voices.json says the same about checkpoints."
+          ],
+          "_alternatives": {
+            "_comment": "Two siblings from the same q105 folder, identical in shape and differing only in pose and outfit. Swap the string if 01 lies wrong on the slope. All are real depot paths, all female, all entCorpseComponent.",
+            "fluff_02": "base\\quest\\main_quests\\part1\\q105\\entities\\q105_fluff_dead_body_02.ent - appearance wa_q105_fluff_02_corpse.",
+            "fluff_03": "base\\quest\\main_quests\\part1\\q105\\entities\\q105_fluff_dead_body_03.ent - appearance wa_q105_fluff_03_corpse.",
+            "_rejected_base_corpse": "base\\characters\\base_entities\\corpse\\corpse.ent is real but is a BASE entity the appearance system builds on, not a placeable body.",
+            "_rejected_mara_alive": "ep1\\quest\\main_quests\\q306\\characters\\q306_fia_undercover_wa.ent is Mara's own entity and has her face, but it is a live NPC - the exact failure D127 is fixing. Her face at the cost of her being alive is not a trade worth making."
+          }
+        },
+        {
+          "id": "ac_mara_liberty_drop",
+          "disabled": true,
+          "disabled_why": "Drawn by the glue only on the route where V gave her the sidearm. This is the visible half of 'bullet or knife': the gun is on the ground next to her, or there is no gun anywhere.",
+          "pos": [
+            1545.5562,
+            -1981.6118,
+            73.41
+          ],
+          "yaw": 111.8821,
+          "template": "base\\items\\interactive\\weapons\\int_weapons_002__constitutional_liberty__base1.ent",
+          "appearance": "w_handgun__constitutional_liberty__base1_01_default",
+          "scenery": "Nothing references it either - it is the visible half of the wound and no more. The Liberty V is carrying is the item; this is the one she was holding.",
+          "verified": false,
+          "_source": "D127 retired the D118 placeholder, which drew a biochip suitcase lying beside the body. int_weapons_002__constitutional_liberty__base1.ent was read out of the archive before it was used: ONE component, entAnimationControllerComponent, no item record, no inventory, no pickup interaction - a weapon-shaped mesh and nothing else, which is the same property that makes the corpse entity safe. It ships ten appearances and defaults to Rogue's engraved one, so the plain one is named; the glue passes it through DynamicEntitySpec.appearanceName. Still not stood on, so verified stays false.",
+          "_offset_note": "DERIVED, not stood on, which is why verified stays false. 0.6 m along the right-hand vector of the body's own yaw - right = (cos yaw, sin yaw) at yaw 21.8821 is (0.9280, 0.3726), so the gun lands 0.56 east and 0.22 north of her. Same z: both are on the ground. Its own yaw is the body's plus 90 so the gun lies ACROSS her rather than in line with her, which reads as dropped rather than placed. One measured point, one piece of geometry - if it floats or clips, the fix is here, not in the glue.",
+          "roll": 90.0,
+          "_roll_note": "D184. The interactive Liberty's mesh stands upright on its grip at roll 0 - that is how it sits in a hand. Roll 90 lays it on its side; checked live at the landfill 2026-09-26 against pitch 90 (still upright). z 3 cm over the body's so the frame clears the ground."
+        }
+      ],
+      "meshes": [],
+      "collisions": []
+    },
+    {
+      "id": "ash_cache_probe",
+      "disabled": true,
+      "disabled_why": "Off together with ash_cache_probe_car (D80). Not a suspect on its own - the trigger nodeData is copied from hotfuzz, the one shipped mod whose entire mechanism is a quest trigger - but it goes out in the same cut so that the next launch has no spawner and no trigger left anywhere in the world: six inert marker nodes and nothing else. If the clinic still dies with that archive, no world node can be the cause and the search moves to the questphase and the journal. ac_probe_computer inside it is already off. Nothing here is quest content.",
+      "probe": "Not quest content. Two nodes that answer, in one look, whether this project can place an INTERACTABLE object at all - see D15. Its nodes are exempt from the 'defined but nothing references it' check because nothing is SUPPOSED to reference them. Delete this whole sector once OI-13 is closed.",
+      "_about": [
+        "Everything here sits on #ac_clinic_entrance, which is one of the two VERIFIED",
+        "coordinates (OI-9), so a node that does not appear failed for its own reasons",
+        "and not because it was placed inside a wall.",
+        "",
+        "It is a SEPARATE sector on purpose, and so are the two spawner probes below it.",
+        "A malformed node takes its own sector down with it. Splitting them means each",
+        "question fails on its own: if this sector is empty but the car sector is not,",
+        "the answer is about the .ent, not about the location."
+      ],
+      "triggers": [
+        {
+          "id": "ac_probe_trigger",
+          "pos": [
+            -1892.08,
+            -2486.52,
+            28.0
+          ],
+          "yaw": 41.6,
+          "size": [
+            4.0,
+            4.0,
+            2.0
+          ],
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "_about": "Cheapest possible world node: no .ent, no record, no redscript. If the sector loads at all, this one is almost certainly fine.",
+          "verified": true
+        }
+      ],
+      "props": [
+        {
+          "id": "ac_probe_computer",
+          "disabled": true,
+          "disabled_why": "Off for one test - the clinic bisect, D77. Four fatal crashes have now landed within 1.4 m of each other on the clinic floor (-1899,-2479,24) under three different signatures, and the 02:32 one happened with ash_cache_probe_npc already disabled, so D73's spawner is not the cause. What is left is these three nodes: they are the ONLY worldEntityNodes in the project, they are all the same device master (computers\\\\computer_1.ent) with instanceData null, the player has confirmed all three are inert scenery with no interaction prompt, and the only sector that has ever killed the game is the only sector that has props. The motel is markers-only and has never crashed. A device master with no ComputerControllerPS is a half-constructed object; that explains the missing prompt and it is the right shape for a job thread reading garbage. One variable: every marker, trigger and spawner stays. If the clinic stops crashing, this node type is the answer to OI-13 and to the crash at once.",
+          "pos": [
+            -1916.6,
+            -2467.91,
+            24.06
+          ],
+          "yaw": 86.2,
+          "template": "base\\gameplay\\devices\\masters\\computers\\computer_1.ent",
+          "appearance": "computer_computer_2_angle_15",
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "_about": "The whole question, in one node. Vanilla places this exact .ent with this exact appearance in quest_73110a178d6e7404, but WITH a 200-field instanceData buffer; the cover entity two nodes later has instanceData null. This is that .ent with a null buffer. If it appears AND can be interacted with, terminal_read, box_opened and cabinet_opened are all cheap. If it appears but is inert, they need the buffer. If nothing appears, they need a mod-authored .ent.",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "ash_cache_probe_car",
+      "disabled": true,
+      "disabled_why": "Off - and this one is a suspect, not just a bisect step (D80). The clinic crash is ONE instruction, Cyberpunk2077.exe+0x1D173BE / ID 1912746313+0x1E, five fatal logs, the first at 2026-09-09 20:50 and none in the 251 logs before it. The 2026-09-10 12:23 crash reproduced it with every other mod on this install removed - two archives in archive/pc/mod, both ours - so it is our archive. Props were already off for the last three of those five, ash_cache_probe_npc was already off, and the markers are inert worldStaticMarkerNodes with all-zero nodeData that have shipped unchanged for weeks. The one structural change inside the window is this node: it moved from -1916.6,-2467.91,24.06 (buried indoors, where it never spawned anything) to a verified spot on the street outside the clinic on 2026-09-09. It also carries spawnOnStart: 1 where every vanilla quest-content spawner in reference/sectors.md ships 0, and appearanceName default, which is the worldEntityNode prop convention - a Galena appearance is named thorton_galena__basic_*, and a CName that resolves to nothing is exactly the -1 this instruction dereferences. The control it provided is already moot: the FIA agent rendered, so the car decides nothing.",
+      "probe": "Not quest content. The control half of the spawner experiment - see D15. Delete with the rest of the probes once OI-13 is closed.",
+      "spawners": [
+        {
+          "id": "ac_probe_car",
+          "pos": [
+            -1953.87,
+            -2479.25,
+            28.62
+          ],
+          "yaw": -130.1,
+          "record": "Vehicle.hackable_thorton_galena",
+          "isVehicle": true,
+          "_source": "verified - stood on in game 2026-09-06, CET Surveyor capture (ash_cache_debug/markers.txt). Replaces a DERIVED value.",
+          "_about": "The CONTROL. A Vehicle record is the only kind vanilla ever puts in a spawner node, so if this one does not appear, nothing below it means anything and the problem is the location or the node itself.",
+          "spawnOnStart": true,
+          "verified": true,
+          "collapsedOnto": "ac_fia_car"
+        }
+      ]
+    },
+    {
+      "id": "ash_cache_probe_npc",
+      "disabled": true,
+      "disabled_why": "Prime suspect for the clinic crash - see D73. Three fatal crashes on 2026-09-09 landed within 1.4 m of each other on the clinic floor, all a redDispatcher job thread reading 0xFFFFFFFFFFFFFFFF, and signature 93CABB10 appears twice in those three and in none of the 237 crash logs before them. This spawner sits 3 m from the door the player walks through to get there, and it is the one node in the project doing something no vanilla sector does: a Character record in worldPopulationSpawnerNode.objectRecordId. Off for one test. If the clinic stops killing the game, OI-13 is answered no and this node is the answer.",
+      "probe": "Not quest content. Asks whether worldPopulationSpawnerNode.objectRecordId accepts a Character record - see D15 and OI-13. Its own sector so that a 'no' loud enough to invalidate the sector cannot take the control car down with it. Delete with the rest of the probes once OI-13 is closed.",
+      "spawners": [
+        {
+          "id": "ac_probe_npc",
+          "pos": [
+            -1892.65,
+            -2484.95,
+            28.0
+          ],
+          "yaw": -179.8,
+          "record": "Character.q305_fia_agent",
+          "spawnOnStart": true,
+          "_source": "verified - stood on in game 2026-09-03, CET Surveyor capture (markers.txt)",
+          "_about": "The VARIABLE, and the whole reason this sector exists. Every objectRecordId in all 698 vanilla quest sectors is a Vehicle.*; not one is a Character.*, because vanilla spawns NPC groups from communities instead. So whether a spawner node accepts a Character record is a guess, and it is the last thing standing between cleanup_done and being authorable. q305_fia_agent is a real Phantom Liberty FIA agent, which is who the cleanup crew would be, so a yes here is the real content and not just an answer.",
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "deferred": {
+    "_about": [
+      "Referenced by source/journal.json but deliberately not built yet. Listed here",
+      "so validate.py can tell 'not written yet' apart from 'typo', instead of either",
+      "failing the build or letting a misspelt NodeRef ship silently."
+    ],
+    "ac_badlands_cache": "Act 5 Hide ending - Badlands cache, outside Dogtown (D5)"
+  }
+}

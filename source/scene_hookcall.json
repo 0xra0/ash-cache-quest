@@ -1,0 +1,156 @@
+{
+  "_comment": [
+    "D126. The call that starts the quest. It replaces the two SMS the prologue",
+    "used to open with - ac_msg_unknown_01 and _02, both now gone from",
+    "source/journal.json - and it sits in exactly their slot in the graph, between",
+    "await_start and quest_active, so the phone still leads and the journal still",
+    "follows.",
+    "",
+    "WHY A CALL IS BETTER HERE AND NOT JUST DIFFERENT: the second SMS was a",
+    "description of a sound. '[attachment: audio, 2s] It is your voice. Distorted.",
+    "Saying words you never said.' A text message can only ever tell the player",
+    "about that recording; a call can play it. So the beat the SMS narrated is the",
+    "one beat this scene performs, and it is the reason the scene has a second",
+    "speaker.",
+    "",
+    "WHO IS CALLING: not established, on purpose. docs/quest_design.md gives the",
+    "hook to 'an unknown number' and gives Mr. Blue Eyes his own contact and his own",
+    "SMS later, so the question of who made this call is a hole the quest declines",
+    "to fill. Nothing in here hints. The caller knows about the scan, the echo and",
+    "the burn order, and that is the whole of what the player gets.",
+    "",
+    "WHY NOBODY SPAWNS: scene.holocall makes every non-player actor a VOICE -",
+    "findInContext with contextualName 'Voice', the vanilla penthouse-AI shape. See",
+    "source/scene_holocall.json, which established this, and characters.json",
+    "'_voices' for the two bodiless cast members and why they carry no marker.",
+    "",
+    "WHY NO set_tier: same as D124. A phone call is not a conversation you stand",
+    "still for, and q112_03_infiltration brackets two Takemura calls with exactly one",
+    "tier node in the whole phase, Tier1_FullGameplay. Here it matters more than it",
+    "did in D124, because this call fires at the very start of the quest and the",
+    "player could be doing anything at all when it lands.",
+    "",
+    "THE HUB DOES NOT BRANCH. Both options reach the same answer, the pattern",
+    "scene_aftertalk.json and scene_holocall.json both use: this is the player's one",
+    "chance to react, not a decision. What differs is only whether V asks who is on",
+    "the line or says the thing the player is actually thinking.",
+    "",
+    "The caller never answers 'Who is this?'. That is not an oversight to be fixed",
+    "later - it is the answer."
+  ],
+  "scene": {
+    "id": "ash_cache_hookcall",
+    "categoryTag": "sideQuests",
+    "holocall": true
+  },
+  "actors": [
+    "unknown",
+    "echo"
+  ],
+  "entryPoints": [
+    {
+      "name": "hook_in",
+      "node": "start"
+    }
+  ],
+  "exitPoints": [
+    {
+      "name": "hook_done",
+      "node": "end"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "type": "start"
+    },
+    {
+      "_comment": "No emotions on any line in this scene. A voice actor is built with facialAnimSets [] and has no head to put an expression on, so an emotion event here would be a performer event addressed to nobody - see gen_scene.py FACIAL_EMOTIONS, which is a set of female facial idles and has nothing to say about either of these two.",
+      "id": "sec_open",
+      "type": "section",
+      "lines": [
+        {
+          "id": "hook_open_1",
+          "actor": "Unknown",
+          "en-us": "Don't talk. This number stops existing in about a minute, so just listen.",
+          "ua-ua": "Не говори. Цей номер зникне десь за хвилину, тож просто слухай."
+        },
+        {
+          "id": "hook_open_2",
+          "actor": "Unknown",
+          "en-us": "Cynosure didn't just take your scan in that vault. They kept a piece of the echo they grew off it.",
+          "ua-ua": "У «Синозурі» не просто зняли твій скан у тому сховищі. Вони лишили собі шматок відлуння, яке з нього виростили."
+        }
+      ]
+    },
+    {
+      "_comment": "The beat the SMS could only describe. hook_echo_1 is the same sentence the old ac_msg_unknown_02 quoted, said out loud this time, and it is rendered in V's OWN voice - tools/render_lines.py maps the actor 'Echo' to the male_v model. That mapping is the whole point and is the one line in this quest that could not be made until the V checkpoint came back.",
+      "id": "sec_play",
+      "type": "section",
+      "lines": [
+        {
+          "id": "hook_play_1",
+          "actor": "Unknown",
+          "en-us": "Two seconds is all I could pull before it locked me out. Here.",
+          "ua-ua": "Дві секунди — це все, що я встиг витягнути, поки мене не відрізало. Ось."
+        },
+        {
+          "id": "hook_echo_1",
+          "actor": "Echo",
+          "en-us": "Don't let them delete me.",
+          "ua-ua": "Не дай їм стерти мене."
+        }
+      ]
+    },
+    {
+      "id": "hub",
+      "type": "choice",
+      "options": [
+        {
+          "id": "opt_who",
+          "goto": "sec_close",
+          "en-us": "Who is this?",
+          "ua-ua": "Хто це?"
+        },
+        {
+          "id": "opt_voice",
+          "goto": "sec_close",
+          "en-us": "That's my voice.",
+          "ua-ua": "Це мій голос."
+        }
+      ]
+    },
+    {
+      "_comment": "'It was.' answers opt_voice and pointedly does not answer opt_who. Written to land as an answer either way: after 'Who is this?' the same two words read as a refusal.",
+      "id": "sec_close",
+      "type": "section",
+      "lines": [
+        {
+          "id": "hook_close_1",
+          "actor": "Unknown",
+          "en-us": "It was. The FIA signs the burn order this week, and after that there's nothing left to come for.",
+          "ua-ua": "Був. ФІА цього тижня підпише наказ на спалення, і після цього вже не буде по що приходити."
+        },
+        {
+          "id": "hook_close_2",
+          "actor": "Unknown",
+          "en-us": "Dogtown. Ask for the place where dogs sleep. Come without company, and get there before they do.",
+          "ua-ua": "Доґтаун. Питай про місце, де сплять пси. Приходь без компанії й будь там раніше за них."
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "exit": "Terminating"
+    }
+  ],
+  "links": [
+    [ "start", "sec_open" ],
+    [ "sec_open", "sec_play" ],
+    [ "sec_play", "hub" ],
+    [ "hub:opt_who", "sec_close" ],
+    [ "hub:opt_voice", "sec_close" ],
+    [ "sec_close", "end" ]
+  ]
+}

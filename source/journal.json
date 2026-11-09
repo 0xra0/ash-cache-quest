@@ -1,0 +1,236 @@
+{
+  "_comment": "Player-visible quest structure. Symbolic string ids resolve to LocKeys via tools/alloc_lockeys.py. Objectives are what shows in the journal and drives map pins.",
+
+  "quest": {
+    "id": "ash_cache",
+    "title": "str.quest_title",
+    "type": "SideQuest",
+    "districtID": "Districts.Dogtown",
+    "recommendedLevelID": "Character.ScaleToPlayerLevel"
+  },
+
+  "_comment_codex": [
+    "gameJournalQuestCodexLink. Vanilla hangs a set of these off EVERY objective of a",
+    "quest (Hot Fuzz repeats the same three on all three of its objectives), and they",
+    "are what puts the character portraits and location cards in the Journal beside the",
+    "text. Each is a path into the game's own codex tree, so linking costs nothing and",
+    "inherits vanilla's art.",
+    "",
+    "'distrcts' is not a typo here - it is vanilla's typo, in the real shipped path.",
+    "Spelling it correctly produces a dead link. Confirmed in all three reference",
+    "journals (17 uses across badlands, watson, pacifica, westbrook).",
+    "",
+    "The Cynosure path is 'locations/quest', NOT 'quest/locations'. It was written the",
+    "wrong way round first, verified only as far as the leaf spelling, and shipped dead.",
+    "The leaf being famously misspelt is exactly what made the stem look already-checked.",
+    "",
+    "None of these three needs to be unlocked first, and the quest's own q304_done gate",
+    "is not what unlocks them. PopulateCodexLinks (vanilla_scripts.reds:360616) walks the",
+    "codex links of the TRACKED objective, and any target it finds Inactive it flips to",
+    "Active itself with DoNotNotify - the engine unlocks a linked codex entry on sight.",
+    "That is also why the link renders one objective update late: the frame that unlocks",
+    "takes the first branch of the if-chain and does not spawn the widget. Only the first",
+    "four links on an objective are ever drawn, so three is the ceiling worth authoring.",
+    "Songbird's own codex entry (ep1/codex/characters/quest/songbird) would fit the",
+    "premise too and is deliberately NOT linked: the player has not finished that",
+    "storyline and it is theirs to reach on their own.",
+    "",
+    "validate.py checks every path here against reference/codex_paths.txt, which is all",
+    "1013 codex entries of the shipped game. A mod-authored codex path is exactly the",
+    "kind of string that is wrong silently (one reference mod ships",
+    "'odex/glossary/world/militech', missing the leading c, and nothing ever complained)."
+  ],
+  "codexLinks": [
+    { "id": "ac_codex_dogtown",  "path": "ep1/codex/locations/subdistricts/dogtown" },
+    { "id": "ac_codex_cynosure", "path": "ep1/codex/locations/quest/cyanosure" },
+    { "id": "ac_codex_pacifica", "path": "codex/locations/distrcts/pacifica" }
+  ],
+
+  "phases": [
+    {
+      "id": "ac_ph1_signal",
+      "objectives": [
+        { "id": "ac_obj_goto_dogtown", "summary": "str.desc_goto_dogtown", "description": "str.obj_goto_dogtown",
+          "mapPin": { "id": "ac_pin_motel", "nodeRef": "#ac_motel_entrance",
+                      "variant": "ExclamationMarkVariant", "enableGPS": 1, "offsetZ": 0.5 } },
+
+        { "id": "ac_obj_search_room", "summary": "str.desc_search_room", "description": "str.obj_search_room",
+          "mapPin": { "id": "ac_pin_room7", "nodeRef": "#ac_motel_room7",
+                      "variant": "QuestGiverVariant", "enableGPS": 1, "offsetZ": 0.5 } },
+
+        { "id": "ac_obj_search_motel", "description": "str.obj_search_motel", "optional": true }
+      ]
+    },
+    {
+      "id": "ac_ph2_clinic",
+      "objectives": [
+        { "id": "ac_obj_goto_clinic", "summary": "str.desc_goto_clinic", "description": "str.obj_goto_clinic",
+          "mapPin": { "id": "ac_pin_clinic", "nodeRef": "#ac_clinic_entrance",
+                      "variant": "ExclamationMarkVariant", "enableGPS": 1, "offsetZ": 0.5 } },
+
+        { "id": "ac_obj_find_box", "summary": "str.desc_find_box", "description": "str.obj_find_box",
+          "mapPin": { "id": "ac_pin_splinter", "nodeRef": "#ac_splinter_case",
+                      "variant": "QuestGiverVariant", "enableGPS": 0, "offsetZ": 0.5 } },
+
+        { "id": "ac_obj_read_journal", "description": "str.obj_read_journal", "optional": true },
+        { "id": "ac_obj_open_cabinet", "description": "str.obj_open_cabinet", "optional": true }
+      ]
+    },
+    {
+      "id": "ac_ph3_truth",
+      "objectives": [
+        { "id": "ac_obj_talk_mara", "summary": "str.desc_talk_mara", "description": "str.obj_talk_mara",
+          "mapPin": { "id": "ac_pin_mara", "nodeRef": "#ac_mara", "variant": "ConversationVariant",
+                      "enableGPS": 0, "offsetZ": 1.6 } },
+
+        { "id": "ac_obj_terminal", "summary": "str.desc_terminal", "description": "str.obj_terminal",
+          "mapPin": { "id": "ac_pin_terminal", "nodeRef": "#ac_clinic_terminal",
+                      "variant": "QuestGiverVariant", "enableGPS": 0, "offsetZ": 0.5 } }
+      ]
+    },
+    {
+      "id": "ac_ph4_cleanup",
+      "objectives": [
+        { "id": "ac_obj_survive", "summary": "str.desc_survive", "description": "str.obj_survive" },
+        { "id": "ac_obj_decide",  "summary": "str.desc_decide", "description": "str.obj_decide",
+          "mapPin": { "id": "ac_pin_decide", "nodeRef": "#ac_splinter_case",
+                      "variant": "QuestGiverVariant", "enableGPS": 0, "offsetZ": 0.5 } }
+      ]
+    },
+    {
+      "_comment": "Act 7. Exactly one of these is ever activated - the ending switch in the quest graph picks it. Its presence in the completed log is how the journal records which ending the player took.",
+      "id": "ac_ph5_resolution",
+      "objectives": [
+        {
+          "id": "ac_obj_end_destroy",
+          "summary": "str.desc_end_destroy", "description": "str.obj_end_destroy"
+        },
+        {
+          "id": "ac_obj_end_absorb",
+          "summary": "str.desc_end_absorb", "description": "str.obj_end_absorb"
+        },
+        {
+          "_comment": "D130 took this objective's map pin off. It pointed at the deferred marker ac_blueeyes_meet that resolved to nothing, so it has been drawing no pin since D5. D130 retires that id - the meeting it was reserved for is anchored on #ac_motel_entrance instead - and a dangling reference is worse than no pin: this objective describes a handover that happens at the clinic, in a drop box, thirty seconds after the decision (D120). Nothing about it asks the player to travel.",
+          "id": "ac_obj_end_blueeyes",
+          "description": "str.obj_end_blueeyes",
+          "summary": "str.desc_end_blueeyes"
+        },
+        {
+          "id": "ac_obj_end_hide",
+          "description": "str.obj_end_hide",
+          "summary": "str.desc_end_hide",
+          "mapPin": {
+            "id": "ac_pin_badlands",
+            "nodeRef": "#ac_badlands_cache",
+            "variant": "HiddenStashVariant",
+            "enableGPS": 1,
+            "offsetZ": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "_comment": "Act 8, and the only phase that can open after the quest has already been logged as done (D122). The graph parks between quest_done and phase_out, so the journal reads complete while the phase quietly waits for V to drive out to the landfill - or never, if V does not go, which is a legitimate way to finish this quest and is why the objective is optional rather than a blocker. Reached in two of five endings; see the ending switch in source/quest_graph.json for which.",
+      "id": "ac_ph6_aftermath",
+      "objectives": [
+        {
+          "id": "ac_obj_landfill",
+          "description": "str.obj_landfill",
+          "summary": "str.desc_landfill",
+          "mapPin": {
+            "id": "ac_pin_landfill",
+            "nodeRef": "#ac_landfill_body",
+            "variant": "DefaultQuestVariant",
+            "enableGPS": 1,
+            "offsetZ": 0.5,
+            "_comment": "DefaultQuestVariant and not ActionScanVariant: a scan pin promises an interaction, and there is none - walking inside twelve metres is the whole mechanic. GPS on, because the player is being sent somewhere they have no reason to already know."
+          }
+        },
+        {
+          "_comment": "D129. The second optional objective in this phase, and the only one every ending reaches: the graph hangs it off quest_done, so the journal already reads complete while the phase waits for V to go and look. Never going is still a legitimate way to finish the quest.",
+          "id": "ac_obj_cynosure",
+          "description": "str.obj_cynosure",
+          "summary": "str.desc_cynosure",
+          "mapPin": {
+            "id": "ac_pin_cynosure",
+            "nodeRef": "#ac_cynosure_shaft",
+            "variant": "DefaultQuestVariant",
+            "enableGPS": 1,
+            "offsetZ": 0.5
+          }
+        },
+        {
+          "_comment": "D130. The third optional beat in this phase and the only one that is a conversation. It opens when the shaft beat closes - the graph sets ashcache_progress to 8 there, which is also what arms its arrival watch - because the man who sends the invitation is watching the shaft rather than V. ConversationVariant rather than the DefaultQuestVariant the other two use: this pin does promise somebody to talk to.",
+          "id": "ac_obj_meet",
+          "description": "str.obj_blueeyes_meet",
+          "summary": "str.desc_blueeyes_meet",
+          "mapPin": {
+            "id": "ac_pin_meet",
+            "nodeRef": "#ac_motel_entrance",
+            "variant": "ConversationVariant",
+            "enableGPS": 1,
+            "offsetZ": 1.6
+          }
+        }
+      ]
+    }
+  ],
+
+  "phoneConversations": [
+    { "_comment": "D126. This number CALLS. It used to send the two messages that opened the quest - ac_msg_unknown_01 and _02, deleted here - and the call in source/scene_hookcall.json replaced both. What is left is the contact alone, with no conversation under it, which is why 'messages' is empty rather than absent: gen_journal.py reads an empty list as 'a contact who never texts' and emits the gameJournalContact without a gameJournalPhoneConversation beneath it. An empty thread in the player's messages app would be the one visible scar of this change, and this is what stops it appearing.\n\n'type' is Caller now, not Texter, and that is the honest value for a number whose only contact with V is one phone call. Note that ac_contact_mara is still a Texter although D124 holocalls her too - she genuinely does both, and the enum offers only the two. If the phone UI draws correctly for this call and wrongly for hers, that field is the difference, which turns a D124 open question into something one playthrough answers.",
+      "id": "ac_msg_unknown", "title": "str.sms_unknown_title",
+      "contact": { "id": "ac_contact_unknown", "name": "str.sms_unknown_title",
+                   "avatar": "PhoneAvatars.Avatar_Unknown", "type": "Caller" },
+      "messages": [] },
+    { "id": "ac_msg_blueeyes", "title": "str.sms_blueeyes_title",
+      "contact": { "id": "ac_contact_blueeyes", "name": "str.sms_blueeyes_title",
+                   "avatar": "PhoneAvatars.Avatar_Mr_blue_eyes", "type": "Texter" },
+      "messages": [
+        { "id": "ac_msg_blueeyes_01", "sender": "NPC", "text": "str.sms_blueeyes_courier", "questImportant": false, "delay": 2 },
+        { "_comment": "D120. The Blue Eyes ending's receipt. Fired from the graph AFTER the epilogue scene hands control back, so the phone rings in normal gameplay rather than over a Tier3 conversation, and it lands next to the eddies notification the money grant raises on its own.",
+          "id": "ac_msg_blueeyes_02", "sender": "NPC", "text": "str.sms_blueeyes_paid", "questImportant": false, "delay": 4 },
+        { "_comment": "D130. The invitation to the meeting, on the same anonymous thread that pushed V at the courier in act 1 and paid for the splinter in act 5 - three messages and one voice, which is the whole of this man until he is standing in front of V. Fired by the graph the moment the closure order is in V's hands.",
+          "id": "ac_msg_blueeyes_03", "sender": "NPC", "text": "str.sms_blueeyes_meet", "questImportant": false, "delay": 3 }
+      ] },
+    { "_comment": [
+        "D121. Mara's thread - the machinery that lets her keep acting in the quest",
+        "after her one scene ends.",
+        "",
+        "She used to be a kiosk: one conversation in Act 3, and then a woman standing",
+        "in the clinic while the firefight she predicted, the decision and all four",
+        "endings happened around her. The alternative to a phone was an NPC who has",
+        "to be moved, animated, re-spawned into later scenes and kept alive through",
+        "a gunfight - all of it engine surface this project has not measured. A",
+        "burner phone is measured: it is the same gameJournalPhoneConversation the",
+        "Blue Eyes thread already uses, and it is also the truthful shape for an",
+        "agent who has spent nine years not being seen.",
+        "",
+        "Avatar_Unknown, same as the Blue Eyes thread, because it is the only",
+        "non-person avatar of the 377 in the game and a burner should not have a",
+        "face. The two threads are told apart by their titles, which is how they",
+        "would be told apart on a real phone.",
+        "",
+        "Exactly which of these arrive depends on how V treated her - see the",
+        "ending switch in source/quest_graph.json. The cold message is sent on the",
+        "hostile route whatever V did with the splinter, and 'ac_msg_mara_break'",
+        "only ever arrives for a player who broke her with her own journal." ],
+      "id": "ac_msg_mara", "title": "str.sms_mara_title",
+      "contact": { "id": "ac_contact_mara", "name": "str.sms_mara_title",
+                   "avatar": "PhoneAvatars.Avatar_Unknown", "type": "Texter" },
+      "messages": [
+        { "_comment": "Act 4, while the crew is still on the street. 'Keep your phone on. I'll count them for you' is the last thing she says in the scene, so this is her keeping a promise made forty seconds earlier. questImportant: it is tactical information during a fight, and the player should see the notification rather than find it later.",
+          "id": "ac_msg_mara_01", "sender": "NPC", "text": "str.sms_mara_fight", "questImportant": true, "delay": 6 },
+        { "_comment": "The same count, sent by someone who was told to get lost and does it anyway. She refuses the conversation in the last line so the player understands it is a debt being squared, not a door reopening.",
+          "id": "ac_msg_mara_02", "sender": "NPC", "text": "str.sms_mara_fight_cold", "questImportant": true, "delay": 6 },
+        { "id": "ac_msg_mara_end_destroy",  "sender": "NPC", "text": "str.sms_mara_end_destroy",  "questImportant": false, "delay": 5 },
+        { "id": "ac_msg_mara_end_absorb",   "sender": "NPC", "text": "str.sms_mara_end_absorb",   "questImportant": false, "delay": 5 },
+        { "id": "ac_msg_mara_end_blueeyes", "sender": "NPC", "text": "str.sms_mara_end_blueeyes", "questImportant": false, "delay": 5 },
+        { "id": "ac_msg_mara_end_hide",     "sender": "NPC", "text": "str.sms_mara_end_hide",     "questImportant": false, "delay": 5 },
+        { "id": "ac_msg_mara_end_cold",     "sender": "NPC", "text": "str.sms_mara_end_cold",     "questImportant": false, "delay": 5 },
+        { "_comment": "The payoff for opt_break_j, the hardest option in her conversation and until now the one with the least to show for it: it set a fact alongside trust and nothing ever read the fact. Sent after whichever ending message, so it reads as an afterthought she could not help sending.",
+          "id": "ac_msg_mara_break", "sender": "NPC", "text": "str.sms_mara_break", "questImportant": false, "delay": 20 },
+        { "_comment": "D122. The last thing this thread ever does. It arrives from her number and it is not from her - an automated municipal notice on the same conversation that spent D121 learning to sound like a person, four messages after 'Keep your phone on. I'll count them for you'. questImportant: true, because it is the only pointer to the landfill and a player who misses it never learns what happened. delay 30: long enough after the ending message that it reads as a separate day, short enough that the player has not put the controller down.",
+          "id": "ac_msg_mara_ncpd", "sender": "NPC", "text": "str.sms_mara_ncpd", "questImportant": true, "delay": 30 }
+      ] }
+  ]
+}

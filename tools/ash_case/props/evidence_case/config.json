@@ -1,0 +1,38 @@
+{
+ "sheet": "/mnt/ssd/Downloads/sc_FIA evidence transport case.png",
+ "band": [
+  150,
+  572
+ ],
+ "views": [
+  "front",
+  "left",
+  "back",
+  "right"
+ ],
+ "height_m": 0.45,
+ "bg": "dark",
+ "name": "evidence_case",
+ "atlas": 2048,
+ "thr": 26,
+ "close": 10,
+ "boxes": {
+  "front": [
+   12,
+   504
+  ],
+  "left": [
+   520,
+   740
+  ],
+  "back": [
+   766,
+   1254
+  ],
+  "right": [
+   1276,
+   1514
+  ]
+ },
+ "simplify": 2.0
+}
